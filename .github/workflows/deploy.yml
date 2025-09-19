@@ -9,6 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     
     steps:
     - name: Checkout code
@@ -30,43 +31,54 @@ jobs:
         host: ${{ secrets.PROD_HOST }}
         username: ${{ secrets.PROD_USERNAME }}
         password: ${{ secrets.PROD_PASSWORD }}
-        port: ${{ secrets.PROD_PORT }}
+        port: 22
+        timeout: 60s
+        command_timeout: 120s
         script: |
+          set -e  # Exit on any error
+          echo "Starting deployment..."
+          
           # Navigate to website directory
-          cd ${{ secrets.PROD_PATH }}
+          cd ${{ secrets.PROD_PATH }} || exit 1
+          echo "Current directory: $(pwd)"
           
           # Create backup of current theme (if exists)
           if [ -d "wp-content/themes/toneka-theme" ]; then
-            cp -r wp-content/themes/toneka-theme wp-content/themes/toneka-theme-backup-$(date +%Y%m%d-%H%M%S)
+            echo "Creating backup..."
+            cp -r wp-content/themes/toneka-theme wp-content/themes/toneka-theme-backup-$(date +%Y%m%d-%H%M%S) || echo "Backup failed, continuing..."
           fi
           
-          # Clone or update repository
-          if [ ! -d "temp-deployment" ]; then
-            git clone https://github.com/jeden-/toneka_theme.git temp-deployment
-          else
-            cd temp-deployment
-            git fetch origin main
-            git reset --hard origin/main
-            cd ..
+          # Clean up any previous deployment
+          rm -rf temp-deployment-toneka
+          
+          # Clone repository with timeout
+          echo "Cloning repository..."
+          timeout 60 git clone https://github.com/jeden-/toneka_theme.git temp-deployment-toneka || exit 1
+          
+          # Verify theme exists in repo
+          if [ ! -d "temp-deployment-toneka/app/public/wp-content/themes/toneka-theme" ]; then
+            echo "ERROR: Theme directory not found in repository!"
+            exit 1
           fi
           
           # Copy theme files
-          cp -r temp-deployment/app/public/wp-content/themes/toneka-theme wp-content/themes/
+          echo "Copying theme files..."
+          cp -r temp-deployment-toneka/app/public/wp-content/themes/toneka-theme wp-content/themes/ || exit 1
           
           # Set correct permissions
-          chmod -R 755 wp-content/themes/toneka-theme/
+          echo "Setting permissions..."
+          chmod -R 755 wp-content/themes/toneka-theme/ || echo "Permission setting failed, continuing..."
+          
+          # Verify installation
+          if [ -f "wp-content/themes/toneka-theme/style.css" ]; then
+            echo "✅ Theme installed successfully!"
+            echo "Files: $(find wp-content/themes/toneka-theme -type f | wc -l)"
+          else
+            echo "❌ Theme installation failed!"
+            exit 1
+          fi
           
           # Clean up
-          rm -rf temp-deployment
+          rm -rf temp-deployment-toneka
           
-          echo "Deployment completed successfully!"
-          
-    - name: Notify deployment status
-      if: always()
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        channel: '#deployments'
-        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          echo "🚀 Deployment completed successfully!"
