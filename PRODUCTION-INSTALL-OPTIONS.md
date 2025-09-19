@@ -49,8 +49,8 @@ Jeśli masz dostęp FTP:
 ### Dane FTP (prawdopodobnie):
 ```
 Host: ftp.dhosting.pl (lub shop.toneka.pl)
-Username: pressmatic3
-Password: PRessmatic3@!2025
+Username: [SSH_USERNAME]
+Password: [SSH_PASSWORD]
 Path: /shop.toneka.pl-at4c/public_html/wp-content/themes/
 ```
 

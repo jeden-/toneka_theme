@@ -7,7 +7,7 @@ Host: pressmatic3.ssh.dhosting.pl
 Username: pressmatic3
 Server: web03-s211
 Path: ~/shop.toneka.pl-at4c/public_html
-Password: PRessmatic3@!2025
+Password: [HIDDEN FOR SECURITY]
 ```
 
 ## 🔐 GitHub Secrets do dodania:
@@ -21,7 +21,7 @@ PROD_HOST=pressmatic3.ssh.dhosting.pl
 PROD_USERNAME=pressmatic3
 PROD_PORT=22
 PROD_PATH=/home/pressmatic3/shop.toneka.pl-at4c/public_html
-PROD_PASSWORD=PRessmatic3@!2025
+PROD_PASSWORD=[YOUR_SSH_PASSWORD]
 ```
 
 ## ⚠️ Uwaga - Deployment Strategy
