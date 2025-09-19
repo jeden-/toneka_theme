@@ -502,7 +502,7 @@ function toneka_theme_scripts() {
 	);
 	
 	// Category/Shop page script - universal for all product pages
-	if (is_product_category() || is_shop()) {
+	if ((function_exists('is_product_category') && is_product_category()) || (function_exists('is_shop') && is_shop()) || is_tax('product_cat')) {
 		wp_enqueue_script(
 			'toneka-category-page',
 			get_template_directory_uri() . '/js/category-page.js',
@@ -546,9 +546,9 @@ function toneka_theme_scripts() {
 	}
 	
 	// Add AJAX parameters for category filtering - only for category/shop pages
-	if (is_product_category() || is_shop()) {
+	if ((function_exists('is_product_category') && is_product_category()) || (function_exists('is_shop') && is_shop()) || is_tax('product_cat')) {
 		$current_category_id = 0; // Default to 0 (WSZYSTKO) for shop page
-		if (is_product_category()) {
+		if ((function_exists('is_product_category') && is_product_category()) || is_tax('product_cat')) {
 			$current_category_id = get_queried_object_id();
 		}
 		
@@ -594,7 +594,7 @@ function toneka_theme_scripts() {
 	);
 	
 	// Adaptacyjny header - dostosowuje się do jasności tła (produkty, kategorie, sklep, tagi, twórcy)
-	if ( is_product() || is_product_category() || is_shop() || is_product_tag() || is_singular('creator') || is_post_type_archive('creator') ) {
+	if ( (function_exists('is_product') && is_product()) || (function_exists('is_product_category') && is_product_category()) || (function_exists('is_shop') && is_shop()) || (function_exists('is_product_tag') && is_product_tag()) || is_singular('creator') || is_post_type_archive('creator') || is_tax('product_cat') || is_tax('product_tag') ) {
 		wp_enqueue_script(
 			'toneka-adaptive-header',
 			get_template_directory_uri() . '/js/adaptive-header.js',
