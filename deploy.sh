@@ -64,14 +64,14 @@ print_status "Pushing to GitHub..."
 git push origin $(git rev-parse --abbrev-ref HEAD)
 
 print_status "Deployment initiated! Check GitHub Actions for progress."
-print_status "GitHub Actions URL: https://github.com/[your-username]/toneka/actions"
+print_status "GitHub Actions URL: https://github.com/jeden-/toneka_theme/actions"
 
 # Optional: Wait for deployment to complete
 read -p "Do you want to monitor the deployment? (y/n): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     print_status "Opening GitHub Actions in browser..."
-    open "https://github.com/[your-username]/toneka/actions"
+    open "https://github.com/jeden-/toneka_theme/actions"
 fi
 
 echo

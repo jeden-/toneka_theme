@@ -24,8 +24,8 @@ Instrukcje konfiguracji GitHub repository i automatycznego deploymentu na serwer
 ```bash
 cd "/Users/mariusz/Local Sites/tonekacursor"
 
-# Dodaj remote origin (zastąp YOUR_USERNAME swoim username)
-git remote add origin https://github.com/YOUR_USERNAME/toneka.git
+# Dodaj remote origin
+git remote add origin https://github.com/jeden-/toneka_theme.git
 
 # Zmień branch na main (jeśli potrzebne)
 git branch -M main
@@ -69,12 +69,12 @@ sudo yum install git
 cd /path/to/your/wordpress/
 
 # Sklonuj repo (tylko theme folder)
-git clone https://github.com/YOUR_USERNAME/toneka.git temp-repo
+git clone https://github.com/jeden-/toneka_theme.git temp-repo
 cp -r temp-repo/app/public/wp-content/themes/toneka-theme wp-content/themes/
 rm -rf temp-repo
 
 # Lub sklonuj całe repo jeśli chcesz pełną kontrolę
-git clone https://github.com/YOUR_USERNAME/toneka.git .
+git clone https://github.com/jeden-/toneka_theme.git .
 ```
 
 ### 3.3 Ustaw uprawnienia
@@ -134,7 +134,7 @@ git commit -m "test: deployment test"
 git push origin main
 
 # Sprawdź GitHub Actions
-# https://github.com/YOUR_USERNAME/toneka/actions
+# https://github.com/jeden-/toneka_theme/actions
 ```
 
 ## 📊 Krok 6: Monitoring i Logi
