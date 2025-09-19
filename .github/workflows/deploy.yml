@@ -29,27 +29,35 @@ jobs:
       with:
         host: ${{ secrets.PROD_HOST }}
         username: ${{ secrets.PROD_USERNAME }}
-        key: ${{ secrets.PROD_SSH_KEY }}
+        password: ${{ secrets.PROD_PASSWORD }}
         port: ${{ secrets.PROD_PORT }}
         script: |
           # Navigate to website directory
           cd ${{ secrets.PROD_PATH }}
           
-          # Create backup of current theme
-          sudo cp -r wp-content/themes/toneka-theme wp-content/themes/toneka-theme-backup-$(date +%Y%m%d-%H%M%S)
+          # Create backup of current theme (if exists)
+          if [ -d "wp-content/themes/toneka-theme" ]; then
+            cp -r wp-content/themes/toneka-theme wp-content/themes/toneka-theme-backup-$(date +%Y%m%d-%H%M%S)
+          fi
           
-          # Pull latest changes
-          git fetch origin main
-          git reset --hard origin/main
+          # Clone or update repository
+          if [ ! -d "temp-deployment" ]; then
+            git clone https://github.com/jeden-/toneka_theme.git temp-deployment
+          else
+            cd temp-deployment
+            git fetch origin main
+            git reset --hard origin/main
+            cd ..
+          fi
+          
+          # Copy theme files
+          cp -r temp-deployment/app/public/wp-content/themes/toneka-theme wp-content/themes/
           
           # Set correct permissions
-          sudo chown -R www-data:www-data wp-content/themes/toneka-theme/
-          sudo chmod -R 755 wp-content/themes/toneka-theme/
+          chmod -R 755 wp-content/themes/toneka-theme/
           
-          # Clear any caches
-          if [ -f wp-cli.phar ]; then
-            sudo -u www-data php wp-cli.phar cache flush
-          fi
+          # Clean up
+          rm -rf temp-deployment
           
           echo "Deployment completed successfully!"
           
