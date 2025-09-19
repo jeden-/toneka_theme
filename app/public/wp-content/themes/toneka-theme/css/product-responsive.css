@@ -1,0 +1,457 @@
+/*
+ * TONEKA THEME - RESPONSIVE IMPROVEMENTS FOR PRODUCT PAGES
+ * Poprawki responsywności dla strony produktu WooCommerce
+ */
+
+/* ==================================================================
+   MOBILE FIRST APPROACH - POPRAWA RESPONSYWNOŚCI
+   ================================================================== */
+
+/* Tablet Portrait (768px and down) */
+@media screen and (max-width: 768px) {
+    .toneka-product-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .grid-cell {
+        border-right: none !important;
+        border-bottom: 1px solid #fff;
+        min-height: 50vh;
+        padding: 30px 20px;
+    }
+    
+    .grid-cell:last-child {
+        border-bottom: none;
+    }
+    
+    /* Reorder grid cells for better mobile UX */
+    .product-title-cell {
+        order: 1;
+        min-height: 40vh;
+        padding: 60px 20px 30px; /* Account for mobile header */
+    }
+    
+    .product-gallery-cell {
+        order: 2;
+        min-height: 60vh;
+    }
+    
+    .product-creators-cell {
+        order: 3;
+        min-height: auto;
+        padding: 30px 20px;
+    }
+    
+    .product-purchase-cell {
+        order: 4;
+        min-height: 50vh;
+        background-color: #1a1a1a; /* Slightly lighter for mobile */
+    }
+}
+
+/* Mobile (480px and down) */
+@media screen and (max-width: 480px) {
+    .toneka-product-grid {
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    
+    .grid-cell {
+        padding: 20px 15px;
+        min-height: auto;
+    }
+    
+    .product-title-cell {
+        padding: 80px 15px 30px; /* More space for mobile header */
+        min-height: 50vh;
+    }
+    
+    .product-title-cell .product_title {
+        font-size: 2.5rem !important;
+        line-height: 1.1;
+        margin-bottom: 10px;
+    }
+    
+    .product-type-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .product-gallery-cell {
+        min-height: 50vh;
+        padding: 0;
+    }
+    
+    .product-creators-cell {
+        padding: 25px 15px;
+    }
+    
+    .product-purchase-cell {
+        padding: 25px 15px;
+        min-height: auto;
+    }
+}
+
+/* ==================================================================
+   IMPROVED PRODUCT INFO LAYOUT
+   ================================================================== */
+
+/* Better spacing for product info on all devices */
+.toneka-product-grid .product-info-list {
+    margin: 20px 0;
+}
+
+.toneka-product-grid .product-info-list .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.toneka-product-grid .product-info-list .info-row:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-radius: 4px;
+}
+
+.toneka-product-grid .product-info-list .info-row:last-child {
+    border-bottom: none;
+}
+
+.toneka-product-grid .product-info-list .info-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex: 0 0 40%;
+}
+
+.toneka-product-grid .product-info-list .info-value {
+    font-size: 0.9rem;
+    color: #fff;
+    text-align: right;
+    flex: 1;
+    font-weight: 400;
+}
+
+/* ==================================================================
+   ENHANCED VARIANT SELECTOR
+   ================================================================== */
+
+.toneka-variation-selector {
+    margin: 25px 0;
+}
+
+.toneka-variation-selector .variation-option {
+    display: block;
+    padding: 15px 18px;
+    margin: 8px 0;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.toneka-variation-selector .variation-option:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+}
+
+.toneka-variation-selector .variation-option.selected {
+    border-color: #007cba;
+    background: rgba(0, 124, 186, 0.1);
+    box-shadow: 0 0 0 1px rgba(0, 124, 186, 0.3);
+}
+
+.toneka-variation-selector .variation-option::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.toneka-variation-selector .variation-option.selected::before {
+    border-color: #007cba;
+    background: #007cba;
+    box-shadow: inset 0 0 0 3px #000;
+}
+
+.toneka-variation-selector .variation-content {
+    padding-left: 35px;
+}
+
+.toneka-variation-selector .variation-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.toneka-variation-selector .variation-price {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==================================================================
+   IMPROVED ADD TO CART SECTION
+   ================================================================== */
+
+.toneka-add-to-cart-section {
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(0, 124, 186, 0.1), rgba(0, 100, 150, 0.1));
+    border: 1px solid rgba(0, 124, 186, 0.3);
+    border-radius: 10px;
+}
+
+.toneka-quantity-selector {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    gap: 10px;
+}
+
+.toneka-quantity-selector label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-right: 10px;
+}
+
+.toneka-quantity-selector .quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.toneka-quantity-selector .quantity-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.toneka-quantity-selector .quantity-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.toneka-quantity-selector .quantity-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    text-align: center;
+    width: 50px;
+    height: 35px;
+    font-size: 1rem;
+}
+
+.toneka-add-to-cart-btn {
+    width: 100%;
+    padding: 18px 25px;
+    background: linear-gradient(135deg, #007cba, #005a8b);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 124, 186, 0.3);
+}
+
+.toneka-add-to-cart-btn:hover {
+    background: linear-gradient(135deg, #0088cc, #006699);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 124, 186, 0.4);
+}
+
+.toneka-add-to-cart-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 124, 186, 0.3);
+}
+
+/* ==================================================================
+   ENHANCED AUDIO PLAYER STYLES
+   ================================================================== */
+
+#toneka-samples-player-pro {
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.player-main-window {
+    background: #1a1a1a;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-main-window audio {
+    width: 100%;
+    max-width: 320px;
+    filter: invert(1);
+}
+
+.samples-playlist {
+    padding: 15px;
+}
+
+.sample-item {
+    padding: 12px 15px;
+    margin: 5px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sample-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.sample-item.active {
+    background: rgba(0, 124, 186, 0.2);
+    border-left-color: #007cba;
+}
+
+.sample-item .sample-name {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.sample-item .sample-duration {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.playlist-counter {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==================================================================
+   MOBILE OPTIMIZATIONS FOR INTERACTIVE ELEMENTS
+   ================================================================== */
+
+@media screen and (max-width: 768px) {
+    .toneka-variation-selector .variation-option {
+        padding: 18px 20px;
+        margin: 10px 0;
+    }
+    
+    .toneka-add-to-cart-section {
+        padding: 20px;
+        margin-top: 25px;
+    }
+    
+    .toneka-add-to-cart-btn {
+        padding: 20px 25px;
+        font-size: 1rem;
+    }
+    
+    #toneka-samples-player-pro {
+        margin: 20px 0;
+    }
+    
+    .player-main-window {
+        min-height: 150px;
+    }
+    
+    .sample-item {
+        padding: 15px 18px;
+        margin: 8px 0;
+    }
+}
+
+/* ==================================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ================================================================== */
+
+.toneka-variation-selector .variation-option:focus {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+.toneka-add-to-cart-btn:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.sample-item:focus {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+/* ==================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================================================== */
+
+.toneka-product-grid * {
+    will-change: transform;
+}
+
+.toneka-variation-selector .variation-option,
+.toneka-add-to-cart-btn,
+.sample-item {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* ==================================================================
+   PRINT STYLES
+   ================================================================== */
+
+@media print {
+    .toneka-product-grid {
+        display: block !important;
+        height: auto !important;
+        width: 100% !important;
+    }
+    
+    .grid-cell {
+        display: block !important;
+        page-break-inside: avoid;
+        border: 1px solid #000 !important;
+        margin-bottom: 20px;
+    }
+    
+    .product-purchase-cell,
+    #toneka-samples-player-pro {
+        display: none !important;
+    }
+}

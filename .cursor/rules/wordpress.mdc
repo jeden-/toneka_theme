@@ -1,0 +1,94 @@
+---
+alwaysApply: true
+---
+# Cursor Rules - Szablon Sklepu Internetowego
+
+## Ogólne zasady kodowania
+- Używaj semantycznego HTML5 z odpowiednimi tagami (header, nav, main, section, article, aside, footer)
+- Pisz kod w języku angielskim (nazwy zmiennych, funkcji, komentarze)
+- Stosuj konwencję nazewnictwa: kebab-case dla CSS, camelCase dla JavaScript
+- Każda funkcja/komponent powinien mieć jeden cel (Single Responsibility Principle)
+- Używaj BEM metodologii dla CSS klas lub utility-first podejścia (Tailwind)
+
+## Struktura projektu
+- Organizuj pliki w logiczne foldery (components, assets, styles, scripts)
+- Oddzielaj style, skrypty i treść
+- Używaj partiali dla CSS/SCSS (@import)
+- Twórz reużywalne komponenty
+
+## Responsywność i dostępność
+- Mobile-first approach - zacznij od najmniejszych ekranów
+- Używaj CSS Grid i Flexbox dla układów
+- Testuj na różnych rozmiarach ekranów (320px, 768px, 1024px, 1440px+)
+- Dodawaj alt teksty dla obrazów
+- Używaj właściwych poziomów nagłówków (h1-h6)
+- Dodawaj focus states dla elementów interaktywnych
+
+## Wydajność
+- Optymalizuj obrazy (WebP, lazy loading)
+- Minimalizuj CSS i JavaScript
+- Używaj CDN dla external libraries
+- Implementuj critical CSS
+- Unikaj niepotrzebnych animacji w CSS
+
+## E-commerce specyficzne wymagania
+- Implementuj strukturowane dane (JSON-LD dla produktów)
+- Dodaj breadcrumb navigation
+- Twórz SEO-friendly URLs
+- Implementuj filtry i sortowanie produktów
+- Dodaj koszyk z local storage
+- Przewiduj stany loading, error, empty dla list produktów
+- Implementuj search functionality
+- Dodaj wishlist/favorites
+- Przewiduj różne stany produktów (dostępny, wyprzedany, promocja)
+
+## Bezpieczeństwo
+- Sanityzuj wszystkie inputy użytkownika
+- Używaj HTTPS
+- Implementuj CSP headers
+- Waliduj dane po stronie klienta i serwera
+- Nie przechowuj wrażliwych danych w localStorage
+
+## JavaScript/TypeScript
+- Używaj modern JavaScript (ES6+)
+- Implementuj error handling
+- Używaj async/await zamiast callbacks
+- Dodawaj type checking (TypeScript preferowany)
+- Używaj event delegation dla dynamic content
+- Implementuj debouncing dla search inputs
+
+## CSS/SCSS
+- Używaj CSS custom properties (variables)
+- Implementuj smooth transitions
+- Używaj transform zamiast animacji position
+- Dodawaj hover effects dla interaktywnych elementów
+- Implementuj loading states
+- Używaj consistent spacing system (8px grid)
+
+## Testowanie
+- Testuj na różnych przeglądarkach (Chrome, Firefox, Safari, Edge)
+- Używaj browser dev tools dla performance testing
+- Testuj accessibility z keyboard navigation
+- Sprawdzaj SEO z lighthouse
+- Testuj na prawdziwych urządzeniach mobilnych
+
+## Komentarze i dokumentacja
+- Dodawaj komentarze dla złożonych funkcji
+- Dokumentuj API endpoints
+- Twórz README z instrukcjami instalacji
+- Dokumentuj komponenty i ich props/parametry
+
+## Git workflow
+- Używaj opisowych commit messages
+- Twórz feature branches
+- Rób small, focused commits
+- Używaj conventional commits format
+
+## Specyficzne dla sklepu internetowego
+- Implementuj product image gallery z zoom
+- Dodaj product reviews/ratings system
+- Twórz checkout flow (multi-step)
+- Implementuj promo codes/discounts
+- Dodaj recently viewed products
+- Twórz related products suggestions
+- Implementuj category navigation

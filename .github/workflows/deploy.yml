@@ -1,0 +1,64 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, intl, gd, xml, zip
+        
+    - name: Validate PHP syntax
+      run: find app/public/wp-content/themes/toneka-theme -name "*.php" -exec php -l {} \;
+      
+    - name: Deploy to production server
+      if: github.ref == 'refs/heads/main'
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.PROD_HOST }}
+        username: ${{ secrets.PROD_USERNAME }}
+        key: ${{ secrets.PROD_SSH_KEY }}
+        port: ${{ secrets.PROD_PORT }}
+        script: |
+          # Navigate to website directory
+          cd ${{ secrets.PROD_PATH }}
+          
+          # Create backup of current theme
+          sudo cp -r wp-content/themes/toneka-theme wp-content/themes/toneka-theme-backup-$(date +%Y%m%d-%H%M%S)
+          
+          # Pull latest changes
+          git fetch origin main
+          git reset --hard origin/main
+          
+          # Set correct permissions
+          sudo chown -R www-data:www-data wp-content/themes/toneka-theme/
+          sudo chmod -R 755 wp-content/themes/toneka-theme/
+          
+          # Clear any caches
+          if [ -f wp-cli.phar ]; then
+            sudo -u www-data php wp-cli.phar cache flush
+          fi
+          
+          echo "Deployment completed successfully!"
+          
+    - name: Notify deployment status
+      if: always()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        channel: '#deployments'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}

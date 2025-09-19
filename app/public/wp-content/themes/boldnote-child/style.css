@@ -1,0 +1,1030 @@
+/*
+Theme Name: BoldNote Child
+Theme URI: https://qodeinteractive.com
+Description: A child theme of BoldNote Theme
+Author: Qode Interactive
+Author URI: https://qodeinteractive.com
+Template: boldnote
+Version: 1.0.0
+Text Domain: boldnote-child
+*/
+
+/* Style dla repeaterów w panelu admina */
+.autor_group, .obsada_group, .rezyser_group, .muzyka_group, .tlumacz_group, .adaptacja_group, .wydawca_group, .grafika_group {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    background-color: #f8f8f8;
+    position: relative;
+}
+
+.remove_autor, .remove_obsada, .remove_rezyser, .remove_muzyk, .remove_tlumacz, .remove_adaptator, .remove_wydawca, .remove_grafika {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.add_autor, .add_obsada, .add_rezyser, .add_muzyk, .add_tlumacz, .add_adaptator, .add_wydawca, .add_grafika {
+    margin: 10px 0;
+}
+
+
+a, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
+
+
+/* Style dla playera audio/wideo */
+.toneka-player-container {
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    font-family: sans-serif;
+    margin-bottom: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.toneka-player-title {
+    padding: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.toneka-player-preview {
+    position: relative;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    max-height: 400px;
+}
+
+.toneka-player-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.toneka-player-preview video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000;
+}
+
+.toneka-player-controls {
+    padding: 0;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Kontrolki audio */
+.toneka-audio-player {
+    width: 100%;
+    background: #000;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.toneka-audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.toneka-play-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toneka-time {
+    font-size: 14px;
+    min-width: 50px;
+}
+
+.toneka-volume-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 5px;
+}
+
+.toneka-volume-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toneka-volume-slider {
+    width: 80px;
+    height: 4px;
+    background: #444;
+    appearance: none;
+    border-radius: 2px;
+}
+
+.toneka-volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.toneka-progress-container {
+    width: 100%;
+    height: 4px;
+    background: #444;
+    cursor: pointer;
+    position: relative;
+    border-radius: 2px;
+}
+
+.toneka-progress-bar {
+    height: 100%;
+    background: #007bff; /* Domyślny kolor, można go nadpisać w inpku */
+    width: 0;
+    border-radius: 2px;
+}
+
+/* Playlista */
+.toneka-playlist {
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Wymusza pełną szerokość widgetu od początku */
+.elementor-widget-toneka-product-samples .toneka-player-container {
+    width: 100% !important;
+    min-width: 100% !important;
+}
+
+.toneka-playlist-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 0 15px;
+}
+
+.toneka-playlist-title {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.toneka-playlist-count {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+}
+
+.toneka-playlist-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.toneka-playlist-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+    border-bottom: none;
+}
+
+.toneka-playlist-item:hover {
+    background-color: #333;
+}
+
+.toneka-playlist-item.active {
+    background-color: #222;
+    font-weight: bold;
+}
+
+/* Ikony */
+.toneka-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+/* Styles dla widgetu wyboru nośnika */
+.toneka-variation-info-container {
+    margin: 20px 0;
+    padding: 15px 0;
+}
+.toneka-variation-price-display {
+    font-weight: 300!important;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+.toneka-variation-description-display {
+    margin-bottom: 5px;
+    line-height: 1.5;
+    color: #fff;
+}
+.toneka-carrier-options {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+h3.toneka-carrier-title {
+    font-size: 0.8rem;
+}
+
+
+.wp-block-woocommerce-checkout {
+    color: #fff;
+    padding: 4%;
+    margin-top: 200px!important;
+}
+
+.wp-block-woocommerce-checkout-order-summary-block .wc-block-components-checkout-order-summary__title .wc-block-components-checkout-order-summary__title-text{
+    text-transform: uppercase!important;
+}
+/* Product name */
+.wc-block-checkout__sidebar .wc-block-components-product-name {
+    font-size: 1.1rem!important;
+}
+
+/* Quantity */
+span.wc-block-components-order-summary .wc-block-components-order-summary-item__quantity {
+    font-size: 1.1rem!important;
+}
+
+.wc-block-components-address-card__edit {
+    text-transform: uppercase!important;
+}
+
+/* Ukryj natywne kontrolki WooCommerce - bardziej agresywne selektory */
+.woocommerce form.cart .quantity,
+.woocommerce-variation-add-to-cart .quantity,
+.woocommerce div.product form.cart div.quantity,
+.woocommerce .quantity .qty,
+.woocommerce .quantity input,
+.woocommerce .quantity,
+form.cart .quantity,
+.quantity:not(.toneka-quantity-wrapper),
+.woocommerce .quantity .plus,
+.woocommerce .quantity .minus {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+}
+
+/* Pola input */
+.wc-block-components-form .wc-block-components-text-input input[type=email], .wc-block-components-form .wc-block-components-text-input input[type=number], .wc-block-components-form .wc-block-components-text-input input[type=password], .wc-block-components-form .wc-block-components-text-input input[type=tel], .wc-block-components-form .wc-block-components-text-input input[type=text], .wc-block-components-form .wc-block-components-text-input input[type=url], .wc-block-components-text-input input[type=email], .wc-block-components-text-input input[type=number], .wc-block-components-text-input input[type=password], .wc-block-components-text-input input[type=tel], .wc-block-components-text-input input[type=text], .wc-block-components-text-input input[type=url]{
+    background-color: transparent!important;
+    color: #fff!important;
+    border-bottom: 1px solid #444!important;
+    border-top: none!important;
+    border-left: none!important;
+    border-right: none!important;
+    border-radius: 0!important;
+    padding: 0!important;
+    margin: 0!important;
+}
+
+.wc-block-components-form .wc-block-components-text-input label, .wc-block-components-text-input label{
+    color: #4a4a4a!important;
+}
+
+.wc-block-components-form .wc-block-components-text-input input:-webkit-autofill+label, .wc-block-components-form .wc-block-components-text-input.is-active label, .wc-block-components-text-input input:-webkit-autofill+label, .wc-block-components-text-input.is-active label{
+    transform: translateY(-5px) scale(.75)!important;
+}
+
+.wc-blocks-components-select .wc-blocks-components-select__container{
+    background-color: transparent!important;
+    color: #fff!important;
+    border-bottom: none!important;
+    border-top: none!important;
+    border-left: none!important;
+    border-right: none!important;
+    border-radius: 0!important;
+    padding: 0!important;
+    margin: 0!important;
+}
+/* Select */
+.wc-blocks-components-select .wc-blocks-components-select__select{
+    background-color: transparent!important;
+    color: #fff!important;
+    text-transform: uppercase!important;
+    border-bottom: 1px solid #444!important;
+    border-top: none!important;
+    border-left: none!important;
+    border-right: none!important;
+    box-shadow: none!important;
+    outline: none!important;
+    border-radius: 0!important;
+}
+
+/* Usuń cień z listy rozwijanej i wszystkich stanów */
+.wc-blocks-components-select .wc-blocks-components-select__select:focus,
+.wc-blocks-components-select .wc-blocks-components-select__select:active,
+.wc-blocks-components-select .wc-blocks-components-select__select:hover {
+    box-shadow: none!important;
+    outline: none!important;
+    border-right: none!important;
+}
+
+/* Usuń cień z kontenera select */
+.wc-blocks-components-select .wc-blocks-components-select__container:focus-within,
+.wc-blocks-components-select .wc-blocks-components-select__container:focus,
+.wc-blocks-components-select .wc-blocks-components-select__container:active {
+    box-shadow: none!important;
+    outline: none!important;
+}
+
+/* Usuń wszelkie efekty wizualne po zamknięciu listy */
+.wc-blocks-components-select *,
+.wc-blocks-components-select *:before,
+.wc-blocks-components-select *:after {
+    box-shadow: none!important;
+    outline: none!important;
+}
+
+/* Dodatkowe reguły dla różnych stanów select */
+select:focus,
+select:active,
+select:hover {
+    box-shadow: none!important;
+    outline: none!important;
+}
+
+/* Kolor ikon SVG w przyciskach Elementora */
+.elementor-button-icon svg {
+    height: 0.8em !important; 
+    width: 0.8em !important;
+}
+
+
+
+
+/* Dodatkowe style dla przycisków ilości */
+.toneka-quantity-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 25px;
+    padding: 5px;
+    position: relative;
+    z-index: 100;
+}
+
+/* .toneka-quantity-minus,
+.toneka-quantity-plus {
+    width: 18px;
+    height: 12px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    box-shadow: none;
+    margin: 0;
+    outline: none;
+    text-shadow: none;
+    position: relative;
+    z-index: 10;
+} */
+
+/* Ukryj natywne kontrolki WooCommerce */
+body .woocommerce form.cart .quantity,
+body .woocommerce-variation-add-to-cart .quantity,
+body .woocommerce div.product form.cart div.quantity,
+body .woocommerce .quantity .qty,
+body .woocommerce .quantity input,
+body .woocommerce .quantity,
+body form.cart .quantity:not(.toneka-quantity-wrapper),
+body .quantity:not(.toneka-quantity-wrapper),
+body .woocommerce .quantity .plus,
+body .woocommerce .quantity .minus,
+body .woocommerce div.product form.cart .button.plus,
+body .woocommerce div.product form.cart .button.minus {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -9999px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Upewnij się, że nasze elementy są widoczne */
+.toneka-cart-section {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    z-index: 100;
+}
+
+/* Style dla kontrolek ilości */
+.toneka-quantity-minus,
+.toneka-quantity-plus {
+    /* width: 30px;
+    height: 30px; */
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 5px;
+    /* line-height: 1; */
+    transition: all 0.3s ease;
+}
+
+
+.toneka-quantity-minus:hover,
+.toneka-quantity-plus:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+del {
+    color: #969696;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+ins, .price ins {
+    text-decoration: none;
+}
+
+.toneka-quantity-input {
+    width: 45px;
+    height: 30px;
+    text-align: center;
+    border: none !important;
+    background-color: transparent;
+    color: #fff;
+    margin: 0 8px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    padding: 0;
+    position: relative;
+    z-index: 10;
+}
+
+input[type=number]{
+    margin: 0!important;
+}
+
+.toneka-quantity-label {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+.toneka-cart-section {
+    background: transparent;
+    border: none;
+}
+
+.toneka-cart-form {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+.toneka-quantity-section {
+    display: flex !important;
+    align-items: center !important;
+    background: transparent;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.toneka-add-to-cart-button {
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border: 1px solid #fff!important;
+    color: #fff;
+    padding: 15px 30px!important;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.toneka-add-to-cart-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Bardzo agresywne style dla layout w jednej linii */
+.toneka-cart-section .toneka-cart-form,
+form.toneka-cart-form,
+.toneka-carrier-selection-widget .toneka-cart-section form,
+.toneka-carrier-selection-widget form.toneka-cart-form {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.toneka-cart-section .toneka-quantity-section,
+.toneka-carrier-selection-widget .toneka-quantity-section {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.toneka-cart-section .toneka-add-to-cart-button,
+.toneka-carrier-selection-widget .toneka-add-to-cart-button,
+button.toneka-add-to-cart-button {
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+/* Ostateczna metoda - bardzo specifyczne selektory */
+.elementor-widget-container .toneka-carrier-selection-widget .toneka-cart-section form.toneka-cart-form {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+.elementor-widget-container .toneka-carrier-selection-widget .toneka-cart-section .toneka-quantity-section {
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+    width: 90px;
+}
+
+.elementor-widget-container .toneka-carrier-selection-widget .toneka-cart-section button.toneka-add-to-cart-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+}
+
+/* Komunikat błędu */
+.woocommerce-error {
+    display: none !important;
+}
+
+/* Ukryj strzałki w polu input number */
+.toneka-quantity-input::-webkit-outer-spin-button,
+.toneka-quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.toneka-quantity-input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Upewnij się, że nasz formularz jest widoczny */
+.toneka-cart-form {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Animacja dla przycisku "Dodaj do koszyka" */
+.toneka-add-to-cart-button,
+.single_add_to_cart_button,
+.ajax_add_to_cart {
+    transition: all 0.3s ease !important;
+}
+
+/* Style dla przycisku w trakcie ładowania */
+.toneka-add-to-cart-button.loading,
+.single_add_to_cart_button.loading,
+.ajax_add_to_cart.loading {
+    opacity: 0.7 !important;
+}
+
+/* Bardziej specyficzne style dla radio buttonów, aby nadpisać style WooCommerce */
+body .toneka-carrier-option {
+    position: relative !important;
+    display: inline-block !important;
+    margin-right: 15px !important;
+    margin-bottom: 0px !important;
+    cursor: pointer !important;
+    /* font-size: 16px !important; */
+    color: #fff !important;
+    padding-left: 30px !important;
+}
+
+body .toneka-carrier-radio {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    pointer-events: none !important;
+}
+
+body .toneka-carrier-radio-custom {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    left: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+    border: 2px solid #fff !important;
+    border-radius: 50% !important;
+    background-color: #fff !important;
+    transition: all 0.5s ease !important;
+    box-sizing: border-box !important;
+}
+
+body .toneka-carrier-radio:checked + .toneka-carrier-radio-custom {
+    border-color: #fff !important;
+    background-color: #fff !important;
+}
+
+body .toneka-carrier-radio:checked + .toneka-carrier-radio-custom:after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background-color: #000 !important;
+}
+
+/* Resetowanie natywnych stylów radio buttonów */
+input[type="radio"].toneka-carrier-radio {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    z-index: -1 !important;
+}
+
+/* Dodatkowe style dla etykiet */
+.toneka-carrier-options label {
+    display: inline-flex !important;
+    align-items: center !important;
+    position: relative !important;
+    margin-right: 15px !important;
+    margin-bottom: 5px !important;
+    cursor: pointer !important;
+}
+
+/* Style dla etykiety tekstowej */
+.toneka-carrier-label {
+    display: inline-block;
+    vertical-align: top;
+    color: #fff;
+}
+span.toneka-carrier-label {
+    font-size: 0.9rem!important; 
+}
+
+/* Upewnij się, że radio buttony są zawsze widoczne */
+.toneka-carrier-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Dodatkowy styl dla aktywnego radio buttona */
+.toneka-carrier-option input[type="radio"]:focus + .toneka-carrier-radio-custom {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Efekt hover dla radio buttonów */
+body .toneka-carrier-option:hover .toneka-carrier-radio-custom {
+    border-color: #ddd !important;
+}
+
+/* Style dla linków twórców */
+.creator-link {
+    color: #fff!important;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem!important;
+}
+
+.creator-link:hover {
+    color: #ccc;
+    text-decoration: none;
+}
+
+/* Style dla listy produktów twórcy */
+.creator-products {
+    margin: 20px 0;
+}
+
+.creator-products h3 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.product-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.product-item h4 {
+    color: #fff;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.product-item a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.product-item a:hover {
+    color: #ccc;
+} 
+
+.toneka-autorzy, .toneka-obsada, .toneka-rezyserzy, .toneka-muzycy, .toneka-tlumacze, .toneka-product-tlumacz, .toneka-adaptacja, .toneka-wydawca, .toneka-grafika {
+    color: #969696;
+    text-transform: uppercase;
+    font-size: 0.8rem!important;
+}
+
+.elementor-widget-toneka-carrier-selection {
+    color: #fff!important;
+}
+
+/* Creator Products Grid Widget Styles */
+.creator-products-container {
+    width: 100%;
+}
+
+.creator-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Fallback dla desktop */
+    gap: 20px;
+}
+
+.creator-product-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.creator-product-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.creator-product-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.creator-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.creator-product-item:hover .creator-product-image img {
+    transform: scale(1.05);
+}
+
+.creator-product-title {
+    margin: 10px 0 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.creator-product-title a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.creator-product-title a:hover {
+    color: #ccc;
+}
+
+.creator-product-price {
+    margin: 10px 0 0 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Responsive breakpoints - usunięte, ponieważ Elementor obsługuje to przez responsive controls */
+
+/* Stylowanie dla price w widgecie */
+.creator-product-price .price {
+    color: inherit;
+}
+
+.creator-product-price .price del {
+    color: #969696;
+    margin-right: 10px;
+}
+
+.creator-product-price .price ins {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Ujednolicenie stylu wiersza „Tłumaczenie” z pozostałymi polami */
+.toneka-tlumacze,
+.toneka-product-tlumacz {
+  /* padding: 6px 0; */
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.12); */
+  color: #969696;
+  text-transform: uppercase;
+  /* font-size: 0.8rem;
+  letter-spacing: 0.02em; */
+}
+
+/* Etykieta (nagłówek) jak w innych wierszach */
+.toneka-tlumacze strong,
+.toneka-product-tlumacz strong {
+  /* color: #fff; */
+  font-weight: 400; /* wyrównanie do pozostałych sekcji */
+}
+
+/* Linki wartości – bez podkreślenia, jak w innych pozycjach */
+.toneka-tlumacze a,
+.toneka-product-tlumacz a {
+  /* color: #fff; */
+  text-decoration: none;
+}
+.toneka-tlumacze a:hover,
+.toneka-product-tlumacz a:hover {
+  color: #ddd;
+}
+
+/* Prawa ramka Loop Grid: ukryj w ostatniej kolumnie */
+body .elementor-widget-loop-grid.loop-home .elementor-loop-container .e-loop-item:nth-of-type(3n) .elementor-element {
+    border-right-color: transparent !important;
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  body .elementor-widget-loop-grid.loop-home .elementor-loop-container .e-loop-item:nth-of-type(2n) .elementor-element {
+      border-right-color: transparent !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body .elementor-widget-loop-grid.loop-home .elementor-loop-container .e-loop-item .elementor-element {
+      border-right-color: transparent !important;
+  }
+}
+
+/* Style dla dwuetapowego selektora wariantów */
+.toneka-two-step-selector {
+    margin-bottom: 20px;
+}
+
+.toneka-step-container {
+    margin-bottom: 20px;
+}
+
+.toneka-step-title {
+    font-size: 0.8rem;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+h4.toneka-step-title {
+    color: #969696;
+}
+
+
+.toneka-attribute-options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Dla głównego atrybutu - układaj poziomo */
+.toneka-attribute-options[data-attribute="primary"] {
+    flex-direction: row;
+}
+
+/* Dla drugiego atrybutu - układaj poziomo */
+.toneka-attribute-options[data-attribute="secondary"] {
+    flex-direction: row;
+}
+
+/* Responsive - na małych ekranach przejdź na pionowy układ */
+@media (max-width: 768px) {
+    .toneka-attribute-options {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Style dla dwuetapowego widgetu gdy jest nieaktywny drugi krok */
+.toneka-carrier-selection-widget[data-mode="two-step"] .toneka-step-container:not(.active) {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.toneka-carrier-selection-widget[data-mode="two-step"] .toneka-step-container.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Inicjalnie aktywny jest pierwszy krok */
+.toneka-carrier-selection-widget[data-mode="two-step"] .toneka-step-container:first-child {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Style dla koszyka w WooCommerce */
+.wc-block-components-sidebar-layout.wc-block-cart {
+    padding: 4%;
+    color: #fff;
+    margin-top: 200px;
+    text-transform: uppercase;
+}

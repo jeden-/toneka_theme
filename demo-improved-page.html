@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toneka - Funia Rękawiczka (Ulepszona wersja)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Figtree:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Figtree', sans-serif;
+        }
+        
+        .hero-title {
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .audio-wave {
+            height: 4px;
+            background: linear-gradient(90deg, #3B82F6 0%, #1D4ED8 50%, #3B82F6 100%);
+            border-radius: 2px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .format-option:hover {
+            border-color: #3B82F6;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+        }
+        
+        .wave-bar {
+            animation: wave 1s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    
+    <!-- Navigation -->
+    <nav class="bg-black border-b border-gray-800 py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <div class="text-white font-bold text-xl">TONEKA</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">HOME</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">SŁUCHOWISKA</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">DESIGN</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">MUZYKA</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">KONTAKT</a>
+            </div>
+            <button class="text-gray-300 hover:text-white">ZALOGUJ SIĘ</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-16">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left - Product Info -->
+            <div class="space-y-8">
+                <h1 class="hero-title text-6xl lg:text-8xl font-black text-white uppercase leading-tight">
+                    Funia<br>Rękawiczka
+                </h1>
+                <button class="btn-gradient text-white px-8 py-4 rounded-lg font-semibold flex items-center space-x-3 hover:shadow-lg transition-all">
+                    <span>POSŁUCHAJ</span>
+                    <span class="text-xl">↓</span>
+                </button>
+            </div>
+
+            <!-- Right - Product Image -->
+            <div class="flex justify-center">
+                <div class="bg-gradient-to-br from-blue-600 to-purple-700 p-8 rounded-2xl shadow-2xl">
+                    <div class="bg-white p-4 rounded-lg">
+                        <div class="text-center">
+                            <div class="text-blue-600 font-bold text-4xl mb-4">FUNIA</div>
+                            <div class="text-blue-600 text-xl">RĘKAWICZKA</div>
+                            <div class="text-gray-500 text-sm mt-4">SŁUCHOWISKO</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details -->
+    <section class="container mx-auto px-4 py-16">
+        <div class="grid lg:grid-cols-2 gap-12">
+            
+            <!-- Left - Product Information -->
+            <div class="space-y-8">
+                
+                <!-- Product Info Card -->
+                <div class="bg-gray-900 rounded-xl p-6 space-y-4">
+                    <h2 class="text-2xl font-bold text-white mb-6">INFORMACJE O PRODUKCIE</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="flex items-center space-x-3">
+                                <span class="text-blue-400">🎧</span>
+                                <span class="text-gray-400 text-sm uppercase">Typ:</span>
+                            </span>
+                            <span class="text-white font-medium">Słuchowisko</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="flex items-center space-x-3">
+                                <span class="text-blue-400">⏱️</span>
+                                <span class="text-gray-400 text-sm uppercase">Czas trwania:</span>
+                            </span>
+                            <span class="text-white font-medium">124 min</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="flex items-center space-x-3">
+                                <span class="text-blue-400">✍️</span>
+                                <span class="text-gray-400 text-sm uppercase">Autor:</span>
+                            </span>
+                            <span class="text-white font-medium">Stefan Żeromski</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="flex items-center space-x-3">
+                                <span class="text-blue-400">🎬</span>
+                                <span class="text-gray-400 text-sm uppercase">Reżyseria:</span>
+                            </span>
+                            <span class="text-white font-medium">Jan Nowak</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-3">
+                            <span class="flex items-center space-x-3">
+                                <span class="text-blue-400">🏢</span>
+                                <span class="text-gray-400 text-sm uppercase">Wydawca:</span>
+                            </span>
+                            <span class="text-white font-medium">Toneka</span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mt-6 pt-6 border-t border-gray-700">
+                        <h3 class="text-lg font-semibold text-white mb-3">Opis</h3>
+                        <p class="text-gray-300 leading-relaxed text-sm">
+                            Kwiat paproci to mityczny, magiczny kwiat, który w słowiańskich wierzeniach zakwita raz w roku, w noc świętojańską. Wierzono, że znaleźć go może jedynie osoba godna, odważna...
+                        </p>
+                        <button class="mt-3 text-blue-400 hover:text-blue-300 text-sm transition-colors">
+                            Czytaj więcej →
+                        </button>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">#polskie słuchowisko</span>
+                        <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">#literatura klasyczna</span>
+                    </div>
+                </div>
+
+                <!-- Format Selector -->
+                <div class="bg-gray-900 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-white mb-4">Wybierz format</h3>
+                    
+                    <div class="space-y-3">
+                        <!-- CD Option -->
+                        <div class="format-option border border-gray-700 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-4 h-4 rounded-full border-2 border-gray-500"></div>
+                                    <span class="text-white font-medium">CD</span>
+                                </div>
+                                <span class="text-blue-400 font-bold">29 PLN</span>
+                            </div>
+                        </div>
+
+                        <!-- Cassette Option -->
+                        <div class="format-option border border-gray-700 rounded-lg p-4 cursor-pointer transition-all hover:border-blue-500">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-4 h-4 rounded-full border-2 border-gray-500"></div>
+                                    <span class="text-white font-medium">Kaseta</span>
+                                </div>
+                                <span class="text-blue-400 font-bold">35 PLN</span>
+                            </div>
+                        </div>
+
+                        <!-- Digital Option - Selected -->
+                        <div class="border border-blue-500 bg-blue-900/20 rounded-lg p-4 cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-4 h-4 rounded-full border-2 border-blue-500 bg-blue-500 flex items-center justify-center">
+                                        <div class="w-2 h-2 rounded-full bg-white"></div>
+                                    </div>
+                                    <span class="text-white font-medium">Plik cyfrowy</span>
+                                </div>
+                                <span class="text-blue-400 font-bold">19 PLN</span>
+                            </div>
+                        </div>
+
+                        <!-- Vinyl Option - Disabled -->
+                        <div class="border border-gray-700 rounded-lg p-4 opacity-50 cursor-not-allowed">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-4 h-4 rounded-full border-2 border-gray-500"></div>
+                                    <span class="text-white font-medium">Winyl</span>
+                                    <span class="text-xs text-red-400">(Niedostępne)</span>
+                                </div>
+                                <span class="text-gray-500 font-bold">89 PLN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add to Cart -->
+                <div class="btn-gradient rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-white font-semibold text-lg">PLIK CYFROWY × 1</h3>
+                            <p class="text-blue-100">19 PLN</p>
+                        </div>
+                    </div>
+                    <button class="w-full bg-white text-blue-600 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                        DODAJ DO KOSZYKA
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right - Audio Player -->
+            <div class="space-y-8">
+                
+                <!-- Audio Player -->
+                <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-6 shadow-lg">
+                    <!-- Waveform Visualization -->
+                    <div class="bg-gray-700 h-32 rounded-lg mb-6 flex items-end justify-center space-x-1 p-4">
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 60%; animation-delay: 0s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 80%; animation-delay: 0.1s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 40%; animation-delay: 0.2s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 90%; animation-delay: 0.3s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 30%; animation-delay: 0.4s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 70%; animation-delay: 0.5s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 50%; animation-delay: 0.6s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 85%; animation-delay: 0.7s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 35%; animation-delay: 0.8s;"></div>
+                        <div class="wave-bar bg-blue-400 w-1 rounded-t" style="height: 75%; animation-delay: 0.9s;"></div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full transition-colors">▶️</button>
+                            <button class="text-white hover:text-blue-400 transition-colors">⏮️</button>
+                            <button class="text-white hover:text-blue-400 transition-colors">⏭️</button>
+                        </div>
+
+                        <div class="text-white text-sm">0:10 / 124:00</div>
+
+                        <div class="flex items-center space-x-2">
+                            <span class="text-white text-sm">🔊</span>
+                            <div class="w-20 h-1 bg-gray-600 rounded-full">
+                                <div class="w-3/4 h-1 bg-blue-500 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-600 rounded-full h-2 mb-2">
+                        <div class="audio-wave rounded-full h-2 w-1/5"></div>
+                    </div>
+
+                    <div class="text-white font-medium">KWIAT PAPROCI</div>
+                </div>
+
+                <!-- Streaming Platforms -->
+                <div class="bg-gray-900 rounded-xl p-6">
+                    <h3 class="text-white font-semibold mb-4">Dostępne również na:</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button class="bg-green-600 hover:bg-green-700 text-white p-3 rounded-lg flex items-center justify-center space-x-2 transition-colors">
+                            <span>🎵</span>
+                            <span>Spotify</span>
+                        </button>
+                        <button class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-lg flex items-center justify-center space-x-2 transition-colors">
+                            <span>▶️</span>
+                            <span>YouTube</span>
+                        </button>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-lg flex items-center justify-center space-x-2 transition-colors">
+                            <span>🎧</span>
+                            <span>Apple</span>
+                        </button>
+                        <button class="bg-orange-600 hover:bg-orange-700 text-white p-3 rounded-lg flex items-center justify-center space-x-2 transition-colors">
+                            <span>☁️</span>
+                            <span>SoundCloud</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-white mb-8 text-center">POWIĄZANE PRODUKTY</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Product 1 -->
+            <div class="product-card bg-gray-900 rounded-lg overflow-hidden transition-all duration-300">
+                <div class="relative">
+                    <div class="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium">gadżet</div>
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800"></div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-white font-medium mb-2">Funia Torba</h3>
+                    <div class="flex items-center justify-between">
+                        <span class="text-blue-400 font-bold text-lg">30 PLN</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">Kup</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card bg-gray-900 rounded-lg overflow-hidden transition-all duration-300">
+                <div class="relative">
+                    <div class="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium">gadżet</div>
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-blue-600"></div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-white font-medium mb-2">Funia Torba v2</h3>
+                    <div class="flex items-center justify-between">
+                        <span class="text-blue-400 font-bold text-lg">30 PLN</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">Kup</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card bg-gray-900 rounded-lg overflow-hidden transition-all duration-300">
+                <div class="relative">
+                    <div class="absolute top-2 left-2 bg-green-600 text-white px-2 py-1 rounded text-xs font-medium">odzież</div>
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-blue-600"></div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-white font-medium mb-2">Funia Skarpetki</h3>
+                    <div class="flex items-center justify-between">
+                        <span class="text-blue-400 font-bold text-lg">25 PLN</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">Kup</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card bg-gray-900 rounded-lg overflow-hidden transition-all duration-300">
+                <div class="relative">
+                    <div class="absolute top-2 left-2 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">poster</div>
+                    <div class="h-48 bg-gradient-to-br from-orange-600 to-red-600"></div>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-white font-medium mb-2">Funia Poster</h3>
+                    <div class="flex items-center justify-between">
+                        <span class="text-blue-400 font-bold text-lg">35 PLN</span>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">Kup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-white font-bold text-xl mb-4">TONEKA</div>
+                    <p class="text-gray-400">Chcesz z nami się czymś podzielić?</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Nawigacja</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">O nas</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Aktualności</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Pomoc</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Polityka prywatności</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Regulamin</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Facebook</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">YouTube</a>
+                </div>
+                <p class="text-gray-500 text-sm">Copyright © 2024 Toneka</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Format selection
+            document.querySelectorAll('.format-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected state from all options
+                    document.querySelectorAll('.format-option').forEach(opt => {
+                        opt.classList.remove('border-blue-500', 'bg-blue-900/20');
+                        opt.querySelector('.w-4').classList.remove('border-blue-500', 'bg-blue-500');
+                        const dot = opt.querySelector('.w-2');
+                        if (dot) dot.remove();
+                    });
+                    
+                    // Add selected state to clicked option
+                    this.classList.add('border-blue-500', 'bg-blue-900/20');
+                    const radio = this.querySelector('.w-4');
+                    radio.classList.add('border-blue-500', 'bg-blue-500');
+                    radio.innerHTML = '<div class="w-2 h-2 rounded-full bg-white"></div>';
+                });
+            });
+
+            // Audio player
+            const playBtn = document.querySelector('.bg-blue-600');
+            let isPlaying = false;
+            
+            playBtn.addEventListener('click', function() {
+                isPlaying = !isPlaying;
+                this.textContent = isPlaying ? '⏸️' : '▶️';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
