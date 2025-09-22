@@ -91,9 +91,23 @@ jQuery(document).ready(function($) {
             // Add upsell product
             $(document).on('click', '.toneka-minicart-upsell-add-btn', function(e) {
                 e.preventDefault();
-                const productId = $(this).data('product-id');
-                const quantity = parseInt($(this).siblings('.toneka-minicart-upsell-quantity').find('.upsell-quantity-input').val()) || 1;
-                addUpsellProduct(productId, quantity);
+                console.log('TONEKA MINICART: Upsell add button clicked');
+                
+                const $button = $(this);
+                const productId = $button.data('product-id');
+                const quantity = parseInt($button.siblings('.toneka-minicart-upsell-quantity').find('.upsell-quantity-input').val()) || 1;
+                
+                console.log('TONEKA MINICART: Product ID:', productId, 'Quantity:', quantity);
+                
+                if (!productId) {
+                    console.error('TONEKA MINICART: No product ID found');
+                    return;
+                }
+                
+                // Disable button during request
+                $button.prop('disabled', true).text('DODAJĘ...');
+                
+                addUpsellProduct(productId, quantity, $button);
             });
 
     // Aktualizacja minikoszyka po dodaniu produktu przez AJAX
@@ -197,8 +211,12 @@ jQuery(document).ready(function($) {
         });
     }
 
-            function addUpsellProduct(productId, quantity = 1) {
+            function addUpsellProduct(productId, quantity = 1, $button = null) {
                 const ajaxParams = typeof toneka_minicart_params !== 'undefined' ? toneka_minicart_params : wc_add_to_cart_params;
+                
+                console.log('TONEKA MINICART: Starting AJAX request');
+                console.log('TONEKA MINICART: AJAX URL:', ajaxParams.ajax_url);
+                console.log('TONEKA MINICART: Security nonce:', ajaxParams.wc_ajax_nonce);
                 
                 $.ajax({
                     url: ajaxParams.ajax_url,
@@ -210,17 +228,33 @@ jQuery(document).ready(function($) {
                         security: ajaxParams.wc_ajax_nonce
                     },
                     success: function(response) {
+                        console.log('TONEKA MINICART: AJAX Success response:', response);
+                        
+                        if ($button) {
+                            $button.prop('disabled', false).text('DODAJ DO KOSZYKA');
+                        }
+                        
                         if (response.success) {
+                            console.log('TONEKA MINICART: Product added successfully');
                             refreshMinicart();
                             // Trigger added_to_cart event for auto-open
                             $(document.body).trigger('added_to_cart');
                             // Show success message
                             showNotification('Produkt został dodany do koszyka!');
+                        } else {
+                            console.error('TONEKA MINICART: Server returned error:', response);
+                            showNotification('Błąd: ' + (response.data || 'Nieznany błąd'));
                         }
                     },
                     error: function(xhr, status, error) {
-                        console.log('Error adding product:', error);
-                        showNotification('Błąd podczas dodawania produktu!');
+                        console.error('TONEKA MINICART: AJAX Error:', error);
+                        console.error('TONEKA MINICART: Response:', xhr.responseText);
+                        
+                        if ($button) {
+                            $button.prop('disabled', false).text('DODAJ DO KOSZYKA');
+                        }
+                        
+                        showNotification('Błąd podczas dodawania produktu: ' + error);
                     }
                 });
             }

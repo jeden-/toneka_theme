@@ -1285,7 +1285,12 @@ add_action('wp_enqueue_scripts', 'toneka_enqueue_variation_selector_assets', 15)
 function toneka_ajax_add_to_cart() {
     error_log('TONEKA AJAX: Handler called');
     
-    check_ajax_referer('wc_add_to_cart_nonce', 'security');
+    // Check nonce - use the same nonce name as in JavaScript
+    if (!wp_verify_nonce($_POST['security'], 'wc_add_to_cart_nonce')) {
+        error_log('TONEKA AJAX: Nonce verification failed');
+        wp_send_json_error('Security check failed');
+        return;
+    }
     
     error_log('TONEKA AJAX: Nonce sprawdzony');
     

@@ -1364,6 +1364,19 @@ ol, ul {
     color: #000000;
 }
 
+.toneka-minicart-upsell-add-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #666666;
+    color: #999999;
+    border-color: #666666;
+}
+
+.toneka-minicart-upsell-add-btn:disabled:hover {
+    background: #666666;
+    color: #999999;
+}
+
 .toneka-minicart-upsell-add-btn:active {
     transform: none;
 }
