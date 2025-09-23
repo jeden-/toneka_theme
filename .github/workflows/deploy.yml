@@ -26,59 +26,61 @@ jobs:
       
     - name: Deploy to production server
       if: github.ref == 'refs/heads/main'
-      uses: appleboy/ssh-action@v1.0.0
+      uses: appleboy/ssh-action@v1.1.0
       with:
         host: ${{ secrets.PROD_HOST }}
         username: ${{ secrets.PROD_USERNAME }}
         password: ${{ secrets.PROD_PASSWORD }}
         port: 22
         timeout: 60s
-        command_timeout: 120s
+        command_timeout: 300s
+        debug: true
         script: |
-          set -e  # Exit on any error
-          echo "Starting deployment..."
+          echo "🚀 Starting deployment..."
+          echo "Host: $(hostname)"
+          echo "User: $(whoami)"
+          echo "Date: $(date)"
           
           # Navigate to website directory
-          cd ${{ secrets.PROD_PATH }} || exit 1
-          echo "Current directory: $(pwd)"
-          
-          # Create backup of current theme (if exists)
-          if [ -d "wp-content/themes/toneka-theme" ]; then
-            echo "Creating backup..."
-            cp -r wp-content/themes/toneka-theme wp-content/themes/toneka-theme-backup-$(date +%Y%m%d-%H%M%S) || echo "Backup failed, continuing..."
-          fi
+          cd ~/shop.toneka.pl-at4c/public_html
+          echo "Working directory: $(pwd)"
           
           # Clean up any previous deployment
+          echo "Cleaning up previous deployment..."
           rm -rf temp-deployment-toneka
           
-          # Clone repository with timeout
+          # Clone repository
           echo "Cloning repository..."
-          timeout 60 git clone https://github.com/jeden-/toneka_theme.git temp-deployment-toneka || exit 1
+          git clone https://github.com/jeden-/toneka_theme.git temp-deployment-toneka
           
-          # Verify theme exists in repo
+          # Verify theme directory exists
           if [ ! -d "temp-deployment-toneka/app/public/wp-content/themes/toneka-theme" ]; then
-            echo "ERROR: Theme directory not found in repository!"
+            echo "❌ Theme directory not found!"
+            ls -la temp-deployment-toneka/
             exit 1
           fi
           
-          # Copy theme files
-          echo "Copying theme files..."
-          cp -r temp-deployment-toneka/app/public/wp-content/themes/toneka-theme wp-content/themes/ || exit 1
+          # Create backup
+          if [ -d "wp-content/themes/toneka-theme" ]; then
+            echo "Creating backup..."
+            mv wp-content/themes/toneka-theme wp-content/themes/toneka-theme-backup-$(date +%Y%m%d-%H%M%S)
+          fi
           
-          # Set correct permissions
-          echo "Setting permissions..."
-          chmod -R 755 wp-content/themes/toneka-theme/ || echo "Permission setting failed, continuing..."
+          # Copy new theme
+          echo "Installing new theme..."
+          cp -r temp-deployment-toneka/app/public/wp-content/themes/toneka-theme wp-content/themes/
+          
+          # Set permissions
+          chmod -R 755 wp-content/themes/toneka-theme/
           
           # Verify installation
           if [ -f "wp-content/themes/toneka-theme/style.css" ]; then
             echo "✅ Theme installed successfully!"
-            echo "Files: $(find wp-content/themes/toneka-theme -type f | wc -l)"
           else
-            echo "❌ Theme installation failed!"
+            echo "❌ Installation failed!"
             exit 1
           fi
           
           # Clean up
           rm -rf temp-deployment-toneka
-          
-          echo "🚀 Deployment completed successfully!"
+          echo "🎉 Deployment completed!"
