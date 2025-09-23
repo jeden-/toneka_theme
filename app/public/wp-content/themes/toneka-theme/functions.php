@@ -479,6 +479,142 @@ function toneka_customize_register( $wp_customize ) {
 		'type'     => 'textarea',
 		'description' => __('Description text displayed in the hero section.', 'toneka-theme'),
 	));
+
+	// Homepage Section
+	$wp_customize->add_section('toneka_homepage', array(
+		'title'    => __('Strona Główna', 'toneka-theme'),
+		'priority' => 30,
+	));
+
+	// Hero Text
+	$wp_customize->add_setting('toneka_homepage_hero_text', array(
+		'default'           => 'Melodie jak fale, co w stronę marzeń płyną, a dźwięki to słowa, co w ciszy z duszą śpiewają',
+		'sanitize_callback' => 'sanitize_textarea_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_hero_text', array(
+		'label'    => __('Hero - Tekst główny', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'textarea',
+	));
+
+	// Hero Button Text
+	$wp_customize->add_setting('toneka_homepage_button_text', array(
+		'default'           => 'ostatnio dodane',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_button_text', array(
+		'label'    => __('Hero - Tekst przycisku', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'text',
+	));
+
+	// Hero Button URL
+	$wp_customize->add_setting('toneka_homepage_button_url', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_button_url', array(
+		'label'    => __('Hero - Link przycisku', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'url',
+	));
+
+	// Hero Image
+	$wp_customize->add_setting('toneka_homepage_hero_image', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'toneka_homepage_hero_image', array(
+		'label'    => __('Hero - Zdjęcie', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'settings' => 'toneka_homepage_hero_image',
+	)));
+
+	// Section Title
+	$wp_customize->add_setting('toneka_homepage_section_title', array(
+		'default'           => 'sekcja jakiś tytuł',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_section_title', array(
+		'label'    => __('Tytuł sekcji produktów', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'text',
+	));
+
+	// Quote
+	$wp_customize->add_setting('toneka_homepage_quote', array(
+		'default'           => 'Czym jest muzyka ? Nie wiem. Może po prostu niebem. Z nutami zamiast gwiazd.',
+		'sanitize_callback' => 'sanitize_textarea_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_quote', array(
+		'label'    => __('Cytat', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'textarea',
+	));
+
+	// Bottom Text
+	$wp_customize->add_setting('toneka_homepage_bottom_text', array(
+		'default'           => 'Melodie jak fale, co w stronę marzeń płyną, a dźwięki to słowa, co w ciszy z duszą grają. śpiewają',
+		'sanitize_callback' => 'sanitize_textarea_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_bottom_text', array(
+		'label'    => __('Dolna sekcja - Tekst', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'textarea',
+	));
+
+	// Bottom Button Text
+	$wp_customize->add_setting('toneka_homepage_bottom_button_text', array(
+		'default'           => 'posłuchaj',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_bottom_button_text', array(
+		'label'    => __('Dolna sekcja - Tekst przycisku', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'text',
+	));
+
+	// Bottom Button URL
+	$wp_customize->add_setting('toneka_homepage_bottom_button_url', array(
+		'default'           => '#',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_homepage_bottom_button_url', array(
+		'label'    => __('Dolna sekcja - Link przycisku', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'type'     => 'url',
+	));
+
+	// Bottom Image
+	$wp_customize->add_setting('toneka_homepage_bottom_image', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'toneka_homepage_bottom_image', array(
+		'label'    => __('Dolna sekcja - Zdjęcie', 'toneka-theme'),
+		'section'  => 'toneka_homepage',
+		'settings' => 'toneka_homepage_bottom_image',
+	)));
 }
 add_action( 'customize_register', 'toneka_customize_register' );
 
@@ -593,8 +729,8 @@ function toneka_theme_scripts() {
 		true
 	);
 	
-	// Adaptacyjny header - dostosowuje się do jasności tła (produkty, kategorie, sklep, tagi, twórcy)
-	if ( (function_exists('is_product') && is_product()) || (function_exists('is_product_category') && is_product_category()) || (function_exists('is_shop') && is_shop()) || (function_exists('is_product_tag') && is_product_tag()) || is_singular('creator') || is_post_type_archive('creator') || is_tax('product_cat') || is_tax('product_tag') ) {
+	// Adaptacyjny header - dostosowuje się do jasności tła (produkty, kategorie, sklep, tagi, twórcy, strona główna)
+	if ( (function_exists('is_product') && is_product()) || (function_exists('is_product_category') && is_product_category()) || (function_exists('is_shop') && is_shop()) || (function_exists('is_product_tag') && is_product_tag()) || is_singular('creator') || is_post_type_archive('creator') || is_tax('product_cat') || is_tax('product_tag') || is_front_page() ) {
 		wp_enqueue_script(
 			'toneka-adaptive-header',
 			get_template_directory_uri() . '/js/adaptive-header.js',
@@ -1285,12 +1421,7 @@ add_action('wp_enqueue_scripts', 'toneka_enqueue_variation_selector_assets', 15)
 function toneka_ajax_add_to_cart() {
     error_log('TONEKA AJAX: Handler called');
     
-    // Check nonce - use the same nonce name as in JavaScript
-    if (!wp_verify_nonce($_POST['security'], 'wc_add_to_cart_nonce')) {
-        error_log('TONEKA AJAX: Nonce verification failed');
-        wp_send_json_error('Security check failed');
-        return;
-    }
+    check_ajax_referer('wc_add_to_cart_nonce', 'security');
     
     error_log('TONEKA AJAX: Nonce sprawdzony');
     

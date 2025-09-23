@@ -523,7 +523,8 @@ ol, ul {
 
 /* Hero section pod headerem na stronach z przeźroczystym headerem */
 .product-page-header + main .toneka-hero-section,
-.product-page-header ~ * .toneka-hero-section {
+.product-page-header ~ * .toneka-hero-section,
+.product-page-header + .toneka-hero-section {
     margin-top: -82px;
     padding-top: 82px;
 }
@@ -707,7 +708,7 @@ ol, ul {
     max-width: none;
     margin: 0;
     padding: 0;
-    /* border-bottom: 1px solid #ffffff; */
+    border-bottom: 1px solid #ffffff;
 }
 
 .toneka-hero-left {
@@ -761,7 +762,230 @@ ol, ul {
 
 .site-main {
     padding: 7%;
+    min-height: 100vh;
+    color: #ffffff;
 }
+
+/* Style dla standardowych stron WordPress */
+.toneka-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.toneka-page-content {
+    color: #ffffff;
+}
+
+.toneka-page-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 20px;
+}
+
+.toneka-page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+}
+
+.toneka-page-content-wrapper {
+    line-height: 1.6;
+}
+
+.toneka-page-content-wrapper p {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.toneka-page-content-wrapper h1,
+.toneka-page-content-wrapper h2,
+.toneka-page-content-wrapper h3,
+.toneka-page-content-wrapper h4,
+.toneka-page-content-wrapper h5,
+.toneka-page-content-wrapper h6 {
+    color: #ffffff;
+    margin: 30px 0 15px 0;
+    font-weight: 600;
+}
+
+.toneka-page-content-wrapper a {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.toneka-page-content-wrapper a:hover {
+    opacity: 0.8;
+}
+
+.toneka-page-content-wrapper img {
+    max-width: 100%;
+    height: auto;
+}
+
+.toneka-page-content-wrapper ul,
+.toneka-page-content-wrapper ol {
+    margin: 20px 0;
+    padding-left: 30px;
+    color: #ffffff;
+}
+
+.toneka-page-content-wrapper li {
+    margin-bottom: 10px;
+}
+
+/* Style dla index.php i postów */
+.toneka-content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.toneka-archive-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 20px;
+}
+
+.toneka-archive-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+}
+
+.toneka-post-content {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333333;
+    color: #ffffff;
+}
+
+.toneka-post-content:last-child {
+    border-bottom: none;
+}
+
+.toneka-post-header {
+    margin-bottom: 30px;
+}
+
+.toneka-post-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+.toneka-post-title a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.toneka-post-title a:hover {
+    opacity: 0.8;
+}
+
+.toneka-post-meta {
+    font-size: 0.9rem;
+    color: #999999;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.toneka-post-meta a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.toneka-post-meta a:hover {
+    opacity: 0.8;
+}
+
+.toneka-post-content-wrapper {
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.toneka-post-content-wrapper p {
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.toneka-post-content-wrapper h1,
+.toneka-post-content-wrapper h2,
+.toneka-post-content-wrapper h3,
+.toneka-post-content-wrapper h4,
+.toneka-post-content-wrapper h5,
+.toneka-post-content-wrapper h6 {
+    color: #ffffff;
+    margin: 30px 0 15px 0;
+    font-weight: 600;
+}
+
+.toneka-read-more {
+    color: #ffffff !important;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.toneka-read-more:hover {
+    opacity: 0.8;
+}
+
+.toneka-no-content {
+    text-align: center;
+    padding: 80px 20px;
+    color: #ffffff;
+}
+
+.toneka-no-content h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.toneka-no-content p {
+    font-size: 1.1rem;
+    color: #999999;
+}
+
+/* Nawigacja stron */
+.posts-navigation {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.posts-navigation a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border: 1px solid #ffffff;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.posts-navigation a:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* =====================================
+   HOMEPAGE STYLES - używa standardowych stylów z innych stron
+   ===================================== */
 
 /* Custom breadcrumb dla stron twórcy */
 .toneka-breadcrumb {
@@ -1362,19 +1586,6 @@ ol, ul {
 .toneka-minicart-upsell-add-btn:hover {
     background: #ffffff;
     color: #000000;
-}
-
-.toneka-minicart-upsell-add-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    background: #666666;
-    color: #999999;
-    border-color: #666666;
-}
-
-.toneka-minicart-upsell-add-btn:disabled:hover {
-    background: #666666;
-    color: #999999;
 }
 
 .toneka-minicart-upsell-add-btn:active {
@@ -2354,7 +2565,6 @@ ol, ul {
     background-color: #000000;
     color: #ffffff;
     padding: 0;
-    margin-top: 80px;
     position: relative;
     z-index: 1;
 }
@@ -2368,7 +2578,7 @@ ol, ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 60px;
-    padding: 0 3%;
+    padding: 0 7%;
 }
 
 /* Pierwsza kolumna - hardcoded */
@@ -2516,7 +2726,7 @@ ol, ul {
     background: #000000;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 20px 0;
+    padding: 30px 0;
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
@@ -2741,6 +2951,32 @@ ol, ul {
 .toneka-category-title,
 .toneka-tag-title {
     /* Inherits all styles from .toneka-product-title */
+}
+
+/* Nagłówki sekcji na stronie głównej */
+.toneka-category-title h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    padding: 30px 0;
+}
+
+/* Quote section styling */
+.toneka-quote-section {
+    border-bottom: 1px solid #ffffff;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.toneka-quote-section h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
 
 /* Category image in hero right */

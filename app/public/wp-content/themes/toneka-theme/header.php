@@ -25,7 +25,7 @@
 
 	<header id="masthead" class="site-header">
 		<!-- Header dla wszystkich stron, na stronie produktu jest przeźroczysty -->
-		<div class="toneka-main-header <?php echo (is_product() || is_product_category() || is_shop() || is_product_tag() || is_singular('creator') || is_post_type_archive('creator')) ? 'product-page-header' : ''; ?>">
+		<div class="toneka-main-header <?php echo (is_product() || is_product_category() || is_shop() || is_product_tag() || is_singular('creator') || is_post_type_archive('creator') || is_front_page()) ? 'product-page-header' : ''; ?>">
 			<div class="toneka-header-container">
 				<div class="toneka-header-left">
 					<div class="site-branding">

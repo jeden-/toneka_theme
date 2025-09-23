@@ -76,8 +76,10 @@ jQuery(document).ready(function($) {
                 e.preventDefault();
                 const input = $(this).siblings('.upsell-quantity-input');
                 const currentVal = parseInt(input.val()) || 1;
+                console.log('🔢 UPSELL: Minus clicked, current value:', currentVal);
                 if (currentVal > 1) {
                     input.val(currentVal - 1);
+                    console.log('🔢 UPSELL: New value:', currentVal - 1);
                 }
             });
 
@@ -85,29 +87,23 @@ jQuery(document).ready(function($) {
                 e.preventDefault();
                 const input = $(this).siblings('.upsell-quantity-input');
                 const currentVal = parseInt(input.val()) || 1;
+                console.log('🔢 UPSELL: Plus clicked, current value:', currentVal);
                 input.val(currentVal + 1);
+                console.log('🔢 UPSELL: New value:', currentVal + 1);
             });
 
             // Add upsell product
             $(document).on('click', '.toneka-minicart-upsell-add-btn', function(e) {
                 e.preventDefault();
-                console.log('TONEKA MINICART: Upsell add button clicked');
+                const productId = $(this).data('product-id');
+                const quantity = parseInt($(this).closest('.toneka-minicart-upsell-cart-section').find('.upsell-quantity-input').val()) || 1;
                 
-                const $button = $(this);
-                const productId = $button.data('product-id');
-                const quantity = parseInt($button.siblings('.toneka-minicart-upsell-quantity').find('.upsell-quantity-input').val()) || 1;
+                console.log('🛒 UPSELL: Button clicked!');
+                console.log('🛒 UPSELL: Product ID:', productId);
+                console.log('🛒 UPSELL: Quantity:', quantity);
+                console.log('🛒 UPSELL: Button element:', this);
                 
-                console.log('TONEKA MINICART: Product ID:', productId, 'Quantity:', quantity);
-                
-                if (!productId) {
-                    console.error('TONEKA MINICART: No product ID found');
-                    return;
-                }
-                
-                // Disable button during request
-                $button.prop('disabled', true).text('DODAJĘ...');
-                
-                addUpsellProduct(productId, quantity, $button);
+                addUpsellProduct(productId, quantity);
             });
 
     // Aktualizacja minikoszyka po dodaniu produktu przez AJAX
@@ -211,50 +207,42 @@ jQuery(document).ready(function($) {
         });
     }
 
-            function addUpsellProduct(productId, quantity = 1, $button = null) {
-                const ajaxParams = typeof toneka_minicart_params !== 'undefined' ? toneka_minicart_params : wc_add_to_cart_params;
+            function addUpsellProduct(productId, quantity = 1) {
+                console.log('🚀 UPSELL: addUpsellProduct called with:', {productId, quantity});
                 
-                console.log('TONEKA MINICART: Starting AJAX request');
-                console.log('TONEKA MINICART: AJAX URL:', ajaxParams.ajax_url);
-                console.log('TONEKA MINICART: Security nonce:', ajaxParams.wc_ajax_nonce);
+                const ajaxParams = typeof toneka_minicart_params !== 'undefined' ? toneka_minicart_params : wc_add_to_cart_params;
+                console.log('🚀 UPSELL: AJAX params:', ajaxParams);
+                
+                const requestData = {
+                    action: 'toneka_ajax_add_to_cart',
+                    product_id: productId,
+                    quantity: quantity,
+                    security: ajaxParams.wc_ajax_nonce
+                };
+                console.log('🚀 UPSELL: Request data:', requestData);
                 
                 $.ajax({
                     url: ajaxParams.ajax_url,
                     type: 'POST',
-                    data: {
-                        action: 'toneka_ajax_add_to_cart',
-                        product_id: productId,
-                        quantity: quantity,
-                        security: ajaxParams.wc_ajax_nonce
-                    },
+                    data: requestData,
                     success: function(response) {
-                        console.log('TONEKA MINICART: AJAX Success response:', response);
-                        
-                        if ($button) {
-                            $button.prop('disabled', false).text('DODAJ DO KOSZYKA');
-                        }
-                        
+                        console.log('✅ UPSELL: AJAX Success response:', response);
                         if (response.success) {
-                            console.log('TONEKA MINICART: Product added successfully');
+                            console.log('✅ UPSELL: Product added successfully, refreshing minicart');
                             refreshMinicart();
                             // Trigger added_to_cart event for auto-open
                             $(document.body).trigger('added_to_cart');
                             // Show success message
                             showNotification('Produkt został dodany do koszyka!');
                         } else {
-                            console.error('TONEKA MINICART: Server returned error:', response);
-                            showNotification('Błąd: ' + (response.data || 'Nieznany błąd'));
+                            console.error('❌ UPSELL: Server returned success=false:', response);
+                            showNotification('Błąd podczas dodawania produktu!');
                         }
                     },
                     error: function(xhr, status, error) {
-                        console.error('TONEKA MINICART: AJAX Error:', error);
-                        console.error('TONEKA MINICART: Response:', xhr.responseText);
-                        
-                        if ($button) {
-                            $button.prop('disabled', false).text('DODAJ DO KOSZYKA');
-                        }
-                        
-                        showNotification('Błąd podczas dodawania produktu: ' + error);
+                        console.error('❌ UPSELL: AJAX Error:', {xhr, status, error});
+                        console.error('❌ UPSELL: Response text:', xhr.responseText);
+                        showNotification('Błąd podczas dodawania produktu!');
                     }
                 });
             }
