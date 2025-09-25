@@ -233,48 +233,5 @@ get_header(); ?>
         
     </div>
 </div>
-<!-- Bottom Hero Section - używa standardowej struktury -->
-<div class="toneka-hero-section">
-    <div class="toneka-hero-left">
-        <div class="toneka-hero-content">
-            
-            <!-- Bottom Text -->
-            <div class="toneka-product-title">
-                <?php
-                $bottom_text = get_theme_mod('toneka_homepage_bottom_text', 'Melodie jak fale, co w stronę marzeń płyną, a dźwięki to słowa, co w ciszy z duszą grają. śpiewają');
-                echo '<h1>' . esc_html(strtoupper($bottom_text)) . '</h1>';
-                ?>
-            </div>
-            
-            <!-- Bottom Button -->
-            <?php
-            $bottom_button_text = get_theme_mod('toneka_homepage_bottom_button_text', 'posłuchaj');
-            $bottom_button_url = get_theme_mod('toneka_homepage_bottom_button_url', '#');
-            ?>
-            <a href="<?php echo esc_url($bottom_button_url); ?>" class="toneka-listen-button toneka-filter-button animated-arrow-button">
-                <span class="button-text"><?php echo esc_html(strtoupper($bottom_button_text)); ?></span>
-                <div class="button-arrow">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/>
-                        <path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/>
-                        <path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/>
-                    </svg>
-                </div>
-            </a>
-            
-        </div>
-    </div>
-    
-    <div class="toneka-hero-right">
-        <?php
-        $bottom_image = get_theme_mod('toneka_homepage_bottom_image');
-        if ($bottom_image) {
-            echo '<img src="' . esc_url($bottom_image) . '" alt="Bottom Section Image" style="width: 100%; height: 100%; object-fit: cover;" />';
-        } else {
-            echo '<div class="toneka-hero-placeholder" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666666; border: 2px dashed #333333;">Dodaj zdjęcie w Dostosuj → Strona Główna</div>';
-        }
-        ?>
-    </div>
-</div>
 
 <?php get_footer(); ?>
