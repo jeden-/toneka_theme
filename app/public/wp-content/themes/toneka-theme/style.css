@@ -2701,9 +2701,8 @@ ol, ul {
 }
 
 .toneka-footer-bottom-content {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;

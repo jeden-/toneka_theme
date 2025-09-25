@@ -81,19 +81,18 @@
 			<div class="toneka-footer-bottom-content">
 				<!-- Social media links -->
 				<div class="toneka-social-links">
-					<a href="https://instagram.com/toneka" target="_blank" rel="noopener" class="toneka-social-link">
-						<span class="social-text">INSTAGRAM</span>
-						<div class="social-arrow">
-							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 9L9 1" stroke="white" stroke-linecap="round"/>
-								<path d="M9 8L9 1" stroke="white" stroke-linecap="round"/>
-								<path d="M9 1L2 1" stroke="white" stroke-linecap="round"/>
-							</svg>
-						</div>
-					</a>
+					<?php 
+					$instagram_url = get_theme_mod('toneka_instagram_url', 'https://instagram.com/toneka');
+					$instagram_text = get_theme_mod('toneka_instagram_text', 'INSTAGRAM');
+					$facebook_url = get_theme_mod('toneka_facebook_url', 'https://facebook.com/toneka');
+					$facebook_text = get_theme_mod('toneka_facebook_text', 'FACEBOOK');
+					$youtube_url = get_theme_mod('toneka_youtube_url', 'https://youtube.com/toneka');
+					$youtube_text = get_theme_mod('toneka_youtube_text', 'YOU TUBE');
+					?>
 					
-					<a href="https://facebook.com/toneka" target="_blank" rel="noopener" class="toneka-social-link">
-						<span class="social-text">FACEBOOK</span>
+					<?php if ($instagram_url && $instagram_url !== '#') : ?>
+					<a href="<?php echo esc_url($instagram_url); ?>" target="_blank" rel="noopener" class="toneka-social-link">
+						<span class="social-text"><?php echo esc_html($instagram_text); ?></span>
 						<div class="social-arrow">
 							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M1 9L9 1" stroke="white" stroke-linecap="round"/>
@@ -102,9 +101,11 @@
 							</svg>
 						</div>
 					</a>
+					<?php endif; ?>
 					
-					<a href="https://youtube.com/toneka" target="_blank" rel="noopener" class="toneka-social-link">
-						<span class="social-text">YOU TUBE</span>
+					<?php if ($facebook_url && $facebook_url !== '#') : ?>
+					<a href="<?php echo esc_url($facebook_url); ?>" target="_blank" rel="noopener" class="toneka-social-link">
+						<span class="social-text"><?php echo esc_html($facebook_text); ?></span>
 						<div class="social-arrow">
 							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M1 9L9 1" stroke="white" stroke-linecap="round"/>
@@ -113,6 +114,20 @@
 							</svg>
 						</div>
 					</a>
+					<?php endif; ?>
+					
+					<?php if ($youtube_url && $youtube_url !== '#') : ?>
+					<a href="<?php echo esc_url($youtube_url); ?>" target="_blank" rel="noopener" class="toneka-social-link">
+						<span class="social-text"><?php echo esc_html($youtube_text); ?></span>
+						<div class="social-arrow">
+							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 9L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 8L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 1L2 1" stroke="white" stroke-linecap="round"/>
+							</svg>
+						</div>
+					</a>
+					<?php endif; ?>
 				</div>
 				
 				<!-- Copyright -->

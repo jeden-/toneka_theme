@@ -615,6 +615,90 @@ function toneka_customize_register( $wp_customize ) {
 		'section'  => 'toneka_homepage',
 		'settings' => 'toneka_homepage_bottom_image',
 	)));
+
+	// Social Media Section
+	$wp_customize->add_section('toneka_social_media', array(
+		'title'    => __('Social Media', 'toneka-theme'),
+		'priority' => 130,
+	));
+
+	// Instagram URL
+	$wp_customize->add_setting('toneka_instagram_url', array(
+		'default'           => 'https://instagram.com/toneka',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_instagram_url', array(
+		'label'    => __('Instagram - URL', 'toneka-theme'),
+		'section'  => 'toneka_social_media',
+		'type'     => 'url',
+	));
+
+	// Instagram Text
+	$wp_customize->add_setting('toneka_instagram_text', array(
+		'default'           => 'INSTAGRAM',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_instagram_text', array(
+		'label'    => __('Instagram - Tekst', 'toneka-theme'),
+		'section'  => 'toneka_social_media',
+		'type'     => 'text',
+	));
+
+	// Facebook URL
+	$wp_customize->add_setting('toneka_facebook_url', array(
+		'default'           => 'https://facebook.com/toneka',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_facebook_url', array(
+		'label'    => __('Facebook - URL', 'toneka-theme'),
+		'section'  => 'toneka_social_media',
+		'type'     => 'url',
+	));
+
+	// Facebook Text
+	$wp_customize->add_setting('toneka_facebook_text', array(
+		'default'           => 'FACEBOOK',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_facebook_text', array(
+		'label'    => __('Facebook - Tekst', 'toneka-theme'),
+		'section'  => 'toneka_social_media',
+		'type'     => 'text',
+	));
+
+	// YouTube URL
+	$wp_customize->add_setting('toneka_youtube_url', array(
+		'default'           => 'https://youtube.com/toneka',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_youtube_url', array(
+		'label'    => __('YouTube - URL', 'toneka-theme'),
+		'section'  => 'toneka_social_media',
+		'type'     => 'url',
+	));
+
+	// YouTube Text
+	$wp_customize->add_setting('toneka_youtube_text', array(
+		'default'           => 'YOU TUBE',
+		'sanitize_callback' => 'sanitize_text_field',
+		'transport'         => 'refresh',
+	));
+
+	$wp_customize->add_control('toneka_youtube_text', array(
+		'label'    => __('YouTube - Tekst', 'toneka-theme'),
+		'section'  => 'toneka_social_media',
+		'type'     => 'text',
+	));
 }
 add_action( 'customize_register', 'toneka_customize_register' );
 
