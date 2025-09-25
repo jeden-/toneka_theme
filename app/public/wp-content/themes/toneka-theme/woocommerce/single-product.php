@@ -91,9 +91,9 @@ get_header( 'shop' ); ?>
 			</div>
 
 			<!-- Related Products Section -->
-			<div class="toneka-related-products">
+			<!-- <div class="toneka-related-products">
 			    <?php toneka_display_related_products(); ?>
-			</div>
+			</div> -->
 
 
 
