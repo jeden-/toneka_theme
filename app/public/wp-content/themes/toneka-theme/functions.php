@@ -2253,7 +2253,7 @@ function toneka_display_suggested_audio() {
     
     // Pobierz produkty audio (kategorie: audio, słuchowiska, muzyka)
     $audio_products = wc_get_products(array(
-        'limit' => 3,
+        'limit' => 6, // Pobierz więcej żeby mieć z czego wybierać
         'orderby' => 'rand',
         'status' => 'publish',
         'category' => array('audio', 'słuchowiska', 'muzyka'),
@@ -2263,7 +2263,7 @@ function toneka_display_suggested_audio() {
     // Jeśli brak kategorii audio, szukaj produktów z "audio" w nazwie
     if (empty($audio_products)) {
         $audio_products = wc_get_products(array(
-            'limit' => 3,
+            'limit' => 6,
             'orderby' => 'rand',
             'status' => 'publish',
             'search' => 'audio',
@@ -2274,7 +2274,7 @@ function toneka_display_suggested_audio() {
     // Fallback - losowe produkty
     if (empty($audio_products)) {
         $audio_products = wc_get_products(array(
-            'limit' => 3,
+            'limit' => 6,
             'orderby' => 'rand',
             'status' => 'publish',
             'exclude' => array($product->get_id())
@@ -2283,17 +2283,21 @@ function toneka_display_suggested_audio() {
     
     if (empty($audio_products)) return;
     
-    // Usuń duplikaty na wszelki wypadek
+    // Usuń duplikaty i weź dokładnie 3 unikalne produkty
     $unique_audio = array();
     $seen_ids = array();
     foreach ($audio_products as $audio_product) {
         $id = $audio_product->get_id();
-        if (!in_array($id, $seen_ids)) {
+        if (!in_array($id, $seen_ids) && count($unique_audio) < 3) {
             $unique_audio[] = $audio_product;
             $seen_ids[] = $id;
         }
     }
     $audio_products = $unique_audio;
+    
+    // Debug: sprawdź ile produktów mamy
+    error_log('TONEKA DEBUG: toneka_display_suggested_audio - po filtrowaniu: ' . count($audio_products) . ' produktów');
+    error_log('TONEKA DEBUG: IDs produktów: ' . implode(', ', $seen_ids));
     
     if (empty($audio_products)) return;
     
