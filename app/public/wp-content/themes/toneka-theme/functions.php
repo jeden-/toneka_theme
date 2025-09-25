@@ -2286,6 +2286,14 @@ function toneka_display_suggested_audio() {
     
     if (empty($audio_products)) return;
     
+    // Upewnij się, że mamy dokładnie 3 produkty
+    $audio_products = array_slice($audio_products, 0, 3);
+    
+    // Debug: sprawdź ile produktów mamy
+    if (count($audio_products) > 3) {
+        error_log('TONEKA DEBUG: toneka_display_suggested_audio zwraca ' . count($audio_products) . ' produktów zamiast 3');
+    }
+    
     echo '<div class="toneka-suggested-section">';
     echo '<div class="toneka-category-title">';
     echo '<h2>PROPONOWANE SŁUCHOWISKA</h2>';
