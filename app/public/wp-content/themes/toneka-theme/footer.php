@@ -76,19 +76,49 @@
 			</div>
 		</div>
 
-		<!-- Back to top -->
+		<!-- Footer bottom with social media and copyright -->
 		<div class="toneka-footer-bottom">
-			<div class="toneka-back-to-top">
-				<button class="toneka-back-to-top-btn animated-arrow-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-					<span class="button-text">BACK TO TOP</span>
-					<div class="button-arrow">
-						<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/>
-							<path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/>
-							<path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/>
-						</svg>
-					</div>
-				</button>
+			<div class="toneka-footer-bottom-content">
+				<!-- Social media links -->
+				<div class="toneka-social-links">
+					<a href="https://instagram.com/toneka" target="_blank" rel="noopener" class="toneka-social-link">
+						<span class="social-text">INSTAGRAM</span>
+						<div class="social-arrow">
+							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 9L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 8L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 1L2 1" stroke="white" stroke-linecap="round"/>
+							</svg>
+						</div>
+					</a>
+					
+					<a href="https://facebook.com/toneka" target="_blank" rel="noopener" class="toneka-social-link">
+						<span class="social-text">FACEBOOK</span>
+						<div class="social-arrow">
+							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 9L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 8L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 1L2 1" stroke="white" stroke-linecap="round"/>
+							</svg>
+						</div>
+					</a>
+					
+					<a href="https://youtube.com/toneka" target="_blank" rel="noopener" class="toneka-social-link">
+						<span class="social-text">YOU TUBE</span>
+						<div class="social-arrow">
+							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 9L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 8L9 1" stroke="white" stroke-linecap="round"/>
+								<path d="M9 1L2 1" stroke="white" stroke-linecap="round"/>
+							</svg>
+						</div>
+					</a>
+				</div>
+				
+				<!-- Copyright -->
+				<div class="toneka-copyright">
+					<span>Copyright © 2024 Toneka</span>
+				</div>
 			</div>
 		</div>
 	</footer><!-- #colophon -->

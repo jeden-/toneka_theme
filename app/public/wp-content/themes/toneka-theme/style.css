@@ -2693,17 +2693,90 @@ ol, ul {
     opacity: 0.7;
 }
 
-/* Back to top */
+/* Footer bottom */
 .toneka-footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    background: #000;
     padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.toneka-back-to-top {
+.toneka-footer-bottom-content {
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 7%;
+    padding: 0 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Social media links */
+.toneka-social-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.toneka-social-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: white;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.toneka-social-link:hover {
+    opacity: 0.8;
+}
+
+.social-text {
+    font-family: 'Figtree', sans-serif;
+}
+
+.social-arrow {
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Copyright */
+.toneka-copyright {
+    color: #bbbbbb;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.toneka-copyright span {
+    font-family: 'Figtree', sans-serif;
+}
+
+/* Responsive footer bottom */
+@media (max-width: 768px) {
+    .toneka-footer-bottom-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .toneka-social-links {
+        gap: 20px;
+    }
+    
+    .toneka-social-link {
+        font-size: 9px;
+    }
+    
+    .toneka-copyright {
+        font-size: 9px;
+    }
 }
 
 .toneka-back-to-top-btn {
