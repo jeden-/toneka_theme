@@ -2319,15 +2319,27 @@ function toneka_display_suggested_audio() {
     
     if (empty($unique_products)) return;
     
-    // Upewnij się, że mamy dokładnie 3 produkty
-    $unique_products = array_slice($unique_products, 0, 3);
+    // Dostosuj liczbę produktów do rzeczywistej dostępności
+    $max_products = min(3, count($unique_products)); // Maksymalnie 3, ale nie więcej niż dostępne
+    $unique_products = array_slice($unique_products, 0, $max_products);
+    
+    // Jeśli mamy mniej niż 2 produkty, nie wyświetlaj sekcji
+    if (count($unique_products) < 2) return;
     
     echo '<div class="toneka-suggested-section">';
     echo '<div class="toneka-category-title">';
     echo '<h2>PROPONOWANE SŁUCHOWISKA</h2>';
     echo '</div>';
     
-    echo '<div class="toneka-products-grid toneka-category-products-grid toneka-suggested-audio-grid">';
+    // Dodaj klasę CSS w zależności od liczby produktów
+    $grid_class = 'toneka-products-grid toneka-category-products-grid toneka-suggested-audio-grid';
+    if (count($unique_products) == 2) {
+        $grid_class .= ' toneka-grid-2-products';
+    } elseif (count($unique_products) == 1) {
+        $grid_class .= ' toneka-grid-1-product';
+    }
+    
+    echo '<div class="' . $grid_class . '">';
     
     foreach ($unique_products as $audio_product) {
         $product_id = $audio_product->get_id();

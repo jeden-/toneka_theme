@@ -5000,6 +5000,19 @@ ol, ul {
     margin: 0 auto;
 }
 
+/* Dynamiczne dostosowanie do liczby produktów */
+.toneka-grid-2-products {
+    grid-template-columns: repeat(2, 1fr) !important;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.toneka-grid-1-product {
+    grid-template-columns: 1fr !important;
+    justify-content: center;
+    max-width: 400px;
+}
+
 /* Responsive adjustments for homepage grids */
 @media (max-width: 1024px) {
     .toneka-homepage-audio-grid,
