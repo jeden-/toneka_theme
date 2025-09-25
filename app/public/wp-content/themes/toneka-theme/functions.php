@@ -2177,15 +2177,42 @@ function toneka_display_suggested_merch() {
         ));
     }
     
-    // Fallback - losowe produkty
+    // Fallback - losowe produkty (więcej żeby mieć z czego wybierać)
     if (empty($merch_products)) {
         $merch_products = wc_get_products(array(
-            'limit' => 3,
+            'limit' => 15,
             'orderby' => 'rand',
             'status' => 'publish',
             'exclude' => array($product->get_id())
         ));
     }
+    
+    if (empty($merch_products)) return;
+    
+    // Usuń duplikaty i weź maksymalnie 3 unikalne produkty
+    $unique_merch = array();
+    $used_ids = array($product->get_id());
+    
+    foreach ($merch_products as $merch_product) {
+        $product_id = $merch_product->get_id();
+        if (!in_array($product_id, $used_ids)) {
+            $unique_merch[] = $merch_product;
+            $used_ids[] = $product_id;
+            if (count($unique_merch) >= 3) break; // Maksymalnie 3
+        }
+    }
+    
+    // Ostateczne sprawdzenie - usuń ewentualne duplikaty
+    $final_merch = array();
+    $final_ids = array();
+    foreach ($unique_merch as $prod) {
+        $id = $prod->get_id();
+        if (!in_array($id, $final_ids)) {
+            $final_merch[] = $prod;
+            $final_ids[] = $id;
+        }
+    }
+    $merch_products = $final_merch;
     
     if (empty($merch_products)) return;
     
@@ -2285,10 +2312,11 @@ function toneka_display_suggested_audio() {
     
     if (empty($audio_products)) return;
     
-    // Usuń duplikaty i weź unikalne produkty
+    // Usuń duplikaty i weź unikalne produkty - maksymalnie 3
     $unique_products = array();
     $used_ids = array($product->get_id()); // Wyklucz aktualny produkt
     
+    // Najpierw spróbuj znaleźć produkty audio
     foreach ($audio_products as $audio_product) {
         $product_id = $audio_product->get_id();
         if (!in_array($product_id, $used_ids)) {
@@ -2298,10 +2326,10 @@ function toneka_display_suggested_audio() {
         }
     }
     
-    // Jeśli nadal za mało, dodaj więcej losowych produktów
+    // Jeśli nadal za mało, dodaj więcej losowych produktów (ale nie więcej niż 3 w sumie)
     if (count($unique_products) < 3) {
         $additional_products = wc_get_products(array(
-            'limit' => 10,
+            'limit' => 20, // Więcej opcji
             'orderby' => 'rand',
             'status' => 'publish',
             'exclude' => $used_ids
@@ -2312,10 +2340,22 @@ function toneka_display_suggested_audio() {
             if (!in_array($product_id, $used_ids)) {
                 $unique_products[] = $additional_product;
                 $used_ids[] = $product_id;
-                if (count($unique_products) >= 3) break;
+                if (count($unique_products) >= 3) break; // Maksymalnie 3
             }
         }
     }
+    
+    // Ostateczne sprawdzenie - usuń ewentualne duplikaty
+    $final_products = array();
+    $final_ids = array();
+    foreach ($unique_products as $prod) {
+        $id = $prod->get_id();
+        if (!in_array($id, $final_ids)) {
+            $final_products[] = $prod;
+            $final_ids[] = $id;
+        }
+    }
+    $unique_products = $final_products;
     
     if (empty($unique_products)) return;
     
@@ -3114,4 +3154,5 @@ function toneka_strtoupper_polish($string) {
     $string = strtr($string, $polish_chars);
     return strtoupper($string);
 }
+
 
