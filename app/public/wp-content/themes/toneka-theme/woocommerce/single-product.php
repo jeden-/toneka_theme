@@ -91,6 +91,16 @@ get_header( 'shop' ); ?>
 			    </div>
 			</div>
 
+			<!-- Suggested Merch Section -->
+			<div class="toneka-suggested-merch-section">
+			    <?php toneka_display_suggested_merch(); ?>
+			</div>
+
+			<!-- Suggested Audio Section -->
+			<div class="toneka-suggested-audio-section">
+			    <?php toneka_display_suggested_audio(); ?>
+			</div>
+
 			<!-- Related Products Section -->
 			<div class="toneka-related-products">
 			    <?php toneka_display_related_products(); ?>

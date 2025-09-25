@@ -2150,6 +2150,194 @@ function toneka_display_product_metadata() {
  */
 
 /**
+ * Wyświetla sugerowany merch dla słuchowiska
+ */
+function toneka_display_suggested_merch() {
+    global $product;
+    
+    if (!$product) return;
+    
+    // Pobierz produkty merch (kategorie: merch, gadżety, ubrania)
+    $merch_products = wc_get_products(array(
+        'limit' => 3,
+        'orderby' => 'rand',
+        'status' => 'publish',
+        'category' => array('merch', 'gadżety', 'ubrania'),
+        'exclude' => array($product->get_id())
+    ));
+    
+    // Jeśli brak kategorii merch, szukaj produktów z "merch" w nazwie
+    if (empty($merch_products)) {
+        $merch_products = wc_get_products(array(
+            'limit' => 3,
+            'orderby' => 'rand',
+            'status' => 'publish',
+            'search' => 'merch',
+            'exclude' => array($product->get_id())
+        ));
+    }
+    
+    // Fallback - losowe produkty
+    if (empty($merch_products)) {
+        $merch_products = wc_get_products(array(
+            'limit' => 3,
+            'orderby' => 'rand',
+            'status' => 'publish',
+            'exclude' => array($product->get_id())
+        ));
+    }
+    
+    if (empty($merch_products)) return;
+    
+    echo '<div class="toneka-suggested-section">';
+    echo '<div class="toneka-category-title">';
+    echo '<h2>PROPONOWANY MERCH</h2>';
+    echo '</div>';
+    
+    echo '<div class="toneka-products-grid toneka-category-products-grid toneka-suggested-merch-grid">';
+    
+    foreach ($merch_products as $merch_product) {
+        $product_id = $merch_product->get_id();
+        $image_url = get_the_post_thumbnail_url($product_id, 'full');
+        
+        // Get creator name
+        if (function_exists('toneka_get_product_creator_name')) {
+            $creator_name = toneka_get_product_creator_name($product_id);
+        } else {
+            $creator_name = 'TONEKA';
+        }
+        ?>
+        
+        <div class="toneka-product-card" data-url="<?php echo esc_url($merch_product->get_permalink()); ?>">
+            <div class="toneka-product-author">
+                <?php echo esc_html($creator_name); ?>
+            </div>
+            
+            <div class="toneka-product-image">
+                <?php if ($image_url): ?>
+                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($merch_product->get_name()); ?>">
+                <?php else: ?>
+                    <div class="toneka-product-placeholder">
+                        <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">
+                            <rect width="200" height="200" fill="#333"/>
+                            <text x="100" y="100" text-anchor="middle" fill="white" font-size="14">BRAK ZDJĘCIA</text>
+                        </svg>
+                    </div>
+                <?php endif; ?>
+                
+                <div class="toneka-product-footer">
+                    <div class="toneka-product-title">
+                        <a href="<?php echo esc_url($merch_product->get_permalink()); ?>"><?php echo esc_html(strtoupper($merch_product->get_name())); ?></a>
+                    </div>
+                    <div class="toneka-product-price">
+                        <?php echo $merch_product->get_price_html(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php
+    }
+    
+    echo '</div>';
+    echo '</div>';
+}
+
+/**
+ * Wyświetla sugerowane słuchowiska
+ */
+function toneka_display_suggested_audio() {
+    global $product;
+    
+    if (!$product) return;
+    
+    // Pobierz produkty audio (kategorie: audio, słuchowiska, muzyka)
+    $audio_products = wc_get_products(array(
+        'limit' => 3,
+        'orderby' => 'rand',
+        'status' => 'publish',
+        'category' => array('audio', 'słuchowiska', 'muzyka'),
+        'exclude' => array($product->get_id())
+    ));
+    
+    // Jeśli brak kategorii audio, szukaj produktów z "audio" w nazwie
+    if (empty($audio_products)) {
+        $audio_products = wc_get_products(array(
+            'limit' => 3,
+            'orderby' => 'rand',
+            'status' => 'publish',
+            'search' => 'audio',
+            'exclude' => array($product->get_id())
+        ));
+    }
+    
+    // Fallback - losowe produkty
+    if (empty($audio_products)) {
+        $audio_products = wc_get_products(array(
+            'limit' => 3,
+            'orderby' => 'rand',
+            'status' => 'publish',
+            'exclude' => array($product->get_id())
+        ));
+    }
+    
+    if (empty($audio_products)) return;
+    
+    echo '<div class="toneka-suggested-section">';
+    echo '<div class="toneka-category-title">';
+    echo '<h2>PROPONOWANE SŁUCHOWISKA</h2>';
+    echo '</div>';
+    
+    echo '<div class="toneka-products-grid toneka-category-products-grid toneka-suggested-audio-grid">';
+    
+    foreach ($audio_products as $audio_product) {
+        $product_id = $audio_product->get_id();
+        $image_url = get_the_post_thumbnail_url($product_id, 'full');
+        
+        // Get creator name
+        if (function_exists('toneka_get_product_creator_name')) {
+            $creator_name = toneka_get_product_creator_name($product_id);
+        } else {
+            $creator_name = 'TONEKA';
+        }
+        ?>
+        
+        <div class="toneka-product-card" data-url="<?php echo esc_url($audio_product->get_permalink()); ?>">
+            <div class="toneka-product-author">
+                <?php echo esc_html($creator_name); ?>
+            </div>
+            
+            <div class="toneka-product-image">
+                <?php if ($image_url): ?>
+                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($audio_product->get_name()); ?>">
+                <?php else: ?>
+                    <div class="toneka-product-placeholder">
+                        <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">
+                            <rect width="200" height="200" fill="#333"/>
+                            <text x="100" y="100" text-anchor="middle" fill="white" font-size="14">BRAK ZDJĘCIA</text>
+                        </svg>
+                    </div>
+                <?php endif; ?>
+                
+                <div class="toneka-product-footer">
+                    <div class="toneka-product-title">
+                        <a href="<?php echo esc_url($audio_product->get_permalink()); ?>"><?php echo esc_html(strtoupper($audio_product->get_name())); ?></a>
+                    </div>
+                    <div class="toneka-product-price">
+                        <?php echo $audio_product->get_price_html(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php
+    }
+    
+    echo '</div>';
+    echo '</div>';
+}
+
+/**
  * Wyświetla produkty powiązane w siatce 3x2
  */
 function toneka_display_related_products() {
