@@ -2283,6 +2283,20 @@ function toneka_display_suggested_audio() {
     
     if (empty($audio_products)) return;
     
+    // Usuń duplikaty na wszelki wypadek
+    $unique_audio = array();
+    $seen_ids = array();
+    foreach ($audio_products as $audio_product) {
+        $id = $audio_product->get_id();
+        if (!in_array($id, $seen_ids)) {
+            $unique_audio[] = $audio_product;
+            $seen_ids[] = $id;
+        }
+    }
+    $audio_products = $unique_audio;
+    
+    if (empty($audio_products)) return;
+    
     echo '<div class="toneka-suggested-section">';
     echo '<div class="toneka-category-title">';
     echo '<h2>PROPONOWANE SŁUCHOWISKA</h2>';
