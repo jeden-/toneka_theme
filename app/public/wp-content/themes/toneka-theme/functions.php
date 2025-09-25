@@ -2177,42 +2177,15 @@ function toneka_display_suggested_merch() {
         ));
     }
     
-    // Fallback - losowe produkty (więcej żeby mieć z czego wybierać)
+    // Fallback - losowe produkty
     if (empty($merch_products)) {
         $merch_products = wc_get_products(array(
-            'limit' => 15,
+            'limit' => 3,
             'orderby' => 'rand',
             'status' => 'publish',
             'exclude' => array($product->get_id())
         ));
     }
-    
-    if (empty($merch_products)) return;
-    
-    // Usuń duplikaty i weź maksymalnie 3 unikalne produkty
-    $unique_merch = array();
-    $used_ids = array($product->get_id());
-    
-    foreach ($merch_products as $merch_product) {
-        $product_id = $merch_product->get_id();
-        if (!in_array($product_id, $used_ids)) {
-            $unique_merch[] = $merch_product;
-            $used_ids[] = $product_id;
-            if (count($unique_merch) >= 3) break; // Maksymalnie 3
-        }
-    }
-    
-    // Ostateczne sprawdzenie - usuń ewentualne duplikaty
-    $final_merch = array();
-    $final_ids = array();
-    foreach ($unique_merch as $prod) {
-        $id = $prod->get_id();
-        if (!in_array($id, $final_ids)) {
-            $final_merch[] = $prod;
-            $final_ids[] = $id;
-        }
-    }
-    $merch_products = $final_merch;
     
     if (empty($merch_products)) return;
     
@@ -2280,7 +2253,7 @@ function toneka_display_suggested_audio() {
     
     // Pobierz produkty audio (kategorie: audio, słuchowiska, muzyka)
     $audio_products = wc_get_products(array(
-        'limit' => 6, // Pobierz więcej żeby mieć z czego wybierać
+        'limit' => 3,
         'orderby' => 'rand',
         'status' => 'publish',
         'category' => array('audio', 'słuchowiska', 'muzyka'),
@@ -2290,7 +2263,7 @@ function toneka_display_suggested_audio() {
     // Jeśli brak kategorii audio, szukaj produktów z "audio" w nazwie
     if (empty($audio_products)) {
         $audio_products = wc_get_products(array(
-            'limit' => 6,
+            'limit' => 3,
             'orderby' => 'rand',
             'status' => 'publish',
             'search' => 'audio',
@@ -2298,73 +2271,17 @@ function toneka_display_suggested_audio() {
         ));
     }
     
-    // Fallback - losowe produkty (więcej żeby mieć z czego wybierać)
+    // Fallback - losowe produkty
     if (empty($audio_products)) {
-        $all_products = wc_get_products(array(
-            'limit' => 15,
+        $audio_products = wc_get_products(array(
+            'limit' => 3,
             'orderby' => 'rand',
             'status' => 'publish',
             'exclude' => array($product->get_id())
         ));
-        
-        $audio_products = $all_products;
     }
     
     if (empty($audio_products)) return;
-    
-    // Usuń duplikaty i weź unikalne produkty - maksymalnie 3
-    $unique_products = array();
-    $used_ids = array($product->get_id()); // Wyklucz aktualny produkt
-    
-    // Najpierw spróbuj znaleźć produkty audio
-    foreach ($audio_products as $audio_product) {
-        $product_id = $audio_product->get_id();
-        if (!in_array($product_id, $used_ids)) {
-            $unique_products[] = $audio_product;
-            $used_ids[] = $product_id;
-            if (count($unique_products) >= 3) break; // Zatrzymaj po 3 unikalnych produktach
-        }
-    }
-    
-    // Jeśli nadal za mało, dodaj więcej losowych produktów (ale nie więcej niż 3 w sumie)
-    if (count($unique_products) < 3) {
-        $additional_products = wc_get_products(array(
-            'limit' => 20, // Więcej opcji
-            'orderby' => 'rand',
-            'status' => 'publish',
-            'exclude' => $used_ids
-        ));
-        
-        foreach ($additional_products as $additional_product) {
-            $product_id = $additional_product->get_id();
-            if (!in_array($product_id, $used_ids)) {
-                $unique_products[] = $additional_product;
-                $used_ids[] = $product_id;
-                if (count($unique_products) >= 3) break; // Maksymalnie 3
-            }
-        }
-    }
-    
-    // Ostateczne sprawdzenie - usuń ewentualne duplikaty
-    $final_products = array();
-    $final_ids = array();
-    foreach ($unique_products as $prod) {
-        $id = $prod->get_id();
-        if (!in_array($id, $final_ids)) {
-            $final_products[] = $prod;
-            $final_ids[] = $id;
-        }
-    }
-    $unique_products = $final_products;
-    
-    if (empty($unique_products)) return;
-    
-    // Dostosuj liczbę produktów do rzeczywistej dostępności
-    $max_products = min(3, count($unique_products)); // Maksymalnie 3, ale nie więcej niż dostępne
-    $unique_products = array_slice($unique_products, 0, $max_products);
-    
-    // Jeśli mamy mniej niż 2 produkty, nie wyświetlaj sekcji
-    if (count($unique_products) < 2) return;
     
     echo '<div class="toneka-suggested-section">';
     echo '<div class="toneka-category-title">';
@@ -2373,15 +2290,15 @@ function toneka_display_suggested_audio() {
     
     // Dodaj klasę CSS w zależności od liczby produktów
     $grid_class = 'toneka-products-grid toneka-category-products-grid toneka-suggested-audio-grid';
-    if (count($unique_products) == 2) {
+    if (count($audio_products) == 2) {
         $grid_class .= ' toneka-grid-2-products';
-    } elseif (count($unique_products) == 1) {
+    } elseif (count($audio_products) == 1) {
         $grid_class .= ' toneka-grid-1-product';
     }
     
     echo '<div class="' . $grid_class . '">';
     
-    foreach ($unique_products as $audio_product) {
+    foreach ($audio_products as $audio_product) {
         $product_id = $audio_product->get_id();
         $image_url = get_the_post_thumbnail_url($product_id, 'full');
         
@@ -3154,5 +3071,4 @@ function toneka_strtoupper_polish($string) {
     $string = strtr($string, $polish_chars);
     return strtoupper($string);
 }
-
 
