@@ -52,6 +52,11 @@ wp-config-local.php
 /app/public/wp-content/blogs.dir/
 /app/public/wp-content/debug.log
 
+# Backup files
+/app/public/wp-content/ai1wm-backups/
+*.wpress
+manual-deploy.sh
+
 # OS generated files
 .DS_Store
 .DS_Store?

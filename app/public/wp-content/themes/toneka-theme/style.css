@@ -708,11 +708,11 @@ ol, ul {
     max-width: none;
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .toneka-hero-left {
-    border-right: 1px solid #ffffff;
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
     display: flex;
     flex-direction: column;
     background: #000000;
@@ -1810,12 +1810,12 @@ ol, ul {
     min-height: auto;
     margin: 0;
     padding: 0;
-    border-top: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .toneka-product-details {
-    border-right: 1px solid #ffffff;
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
     padding: 14%;
     display: flex;
     flex-direction: column;
@@ -2378,7 +2378,7 @@ ol, ul {
 .toneka-more-section {
     background: #000000;
     /* border-top: 1px solid #ffffff; */
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 27px 60px;
     height: 82px;
     display: flex;
@@ -2444,7 +2444,7 @@ ol, ul {
 /* Prawy border tylko dla pierwszego i drugiego w rzędzie (nie dla trzeciego) */
 .toneka-product-card:nth-child(3n-2),
 .toneka-product-card:nth-child(3n-1) {
-    border-right: 1px solid #ffffff;
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 /* Brak górnego bordera dla drugiego rzędu */
@@ -2480,7 +2480,7 @@ ol, ul {
     justify-content: center;
     padding: 122px; /* Padding jak w Figmie */
     background: #000000;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     position: relative;
 }
 
@@ -2730,6 +2730,7 @@ ol, ul {
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
+    margin-top: 90px;
 }
 
 .toneka-footer-main {
@@ -2967,7 +2968,7 @@ ol, ul {
 
 /* Quote section styling */
 .toneka-quote-section {
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 30px 0;
     text-align: center;
 }
@@ -3032,7 +3033,7 @@ ol, ul {
 .toneka-category-filter-section {
     background: #000000;
     /* border-bottom: 1px solid #ffffff; */
-    border-top: 1px solid #ffffff;
+    /* border-top: 1px solid rgba(255, 255, 255, 0.4); */
     padding: 40px 60px;
 }
 
@@ -3186,7 +3187,7 @@ ol, ul {
 /* Category products grid - reuse related products grid */
 .toneka-category-products-grid {
     /* Inherits all styles from .toneka-products-grid */
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 /* No products message */
@@ -4605,7 +4606,7 @@ ol, ul {
 
 /* Creators list styles */
 .toneka-creators-archive-content {
-    border-top: 1px solid #ffffff;
+    /* border-top: 1px solid #ffffff; */
     padding: 80px 0;
     background-color: #000000;
 }
@@ -4973,5 +4974,30 @@ ol, ul {
     .toneka-creator-title-right {
         font-size: 0.7rem;
     }
-}/* Test automatic deployment Fri Sep 19 19:36:08 CEST 2025 */
-/* Production deployment 2025-09-19 19:43:04 - Theme ready! */
+/* Homepage specific styles - 3 products per row */
+.toneka-homepage-audio-grid,
+.toneka-homepage-merch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+}
+
+/* Responsive adjustments for homepage grids */
+@media (max-width: 1024px) {
+    .toneka-homepage-audio-grid,
+    .toneka-homepage-merch-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toneka-homepage-audio-grid,
+    .toneka-homepage-merch-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
