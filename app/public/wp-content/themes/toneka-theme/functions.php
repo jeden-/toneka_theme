@@ -2271,14 +2271,17 @@ function toneka_display_suggested_audio() {
         ));
     }
     
-    // Fallback - losowe produkty
+    // Fallback - losowe produkty (dokładnie 3)
     if (empty($audio_products)) {
-        $audio_products = wc_get_products(array(
-            'limit' => 3,
+        $all_products = wc_get_products(array(
+            'limit' => 10,
             'orderby' => 'rand',
             'status' => 'publish',
             'exclude' => array($product->get_id())
         ));
+        
+        // Weź dokładnie 3 produkty
+        $audio_products = array_slice($all_products, 0, 3);
     }
     
     if (empty($audio_products)) return;

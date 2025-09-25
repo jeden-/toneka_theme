@@ -79,17 +79,6 @@ get_header( 'shop' ); ?>
 			    </div>
 			</div>
 
-			<!-- Sekcja "Więcej" -->
-			<div class="toneka-more-section">
-			    <div class="toneka-more-content animated-arrow-button">
-			        <span>SŁUCHOWISKA, KSIĄŻKI, SZTUKA</span>
-			        <div class="button-arrow">
-			            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-			                <path d="M5 10h10m0 0l-3-3m3 3l-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-			            </svg>
-			        </div>
-			    </div>
-			</div>
 
 			<!-- Suggested Merch Section -->
 			<div class="toneka-suggested-merch-section">
