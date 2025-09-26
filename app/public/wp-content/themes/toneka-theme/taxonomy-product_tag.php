@@ -133,14 +133,30 @@ if (!$tag_image_url) {
 
                                 // Display appropriate creator
                                 if ($is_merch) {
-                                    $grafika = get_post_meta(get_the_ID(), '_grafika', true);
-                                    if (!empty($grafika)) {
-                                        echo '<div class="toneka-product-author">' . esc_html(strtoupper($grafika)) . '</div>';
+                                    $grafika_meta = get_post_meta(get_the_ID(), '_grafika', true);
+                                    if (!empty($grafika_meta)) {
+                                        $grafika = toneka_normalize_person_data($grafika_meta);
+                                        if (!empty($grafika) && is_array($grafika)) {
+                                            $first_graphic = reset($grafika);
+                                            if (isset($first_graphic['imie_nazwisko']) && !empty($first_graphic['imie_nazwisko'])) {
+                                                echo '<div class="toneka-product-author">' . esc_html(strtoupper($first_graphic['imie_nazwisko'])) . '</div>';
+                                            }
+                                        } else if (is_string($grafika_meta)) {
+                                            echo '<div class="toneka-product-author">' . esc_html(strtoupper($grafika_meta)) . '</div>';
+                                        }
                                     }
                                 } elseif ($is_sluchowiska) {
-                                    $autors = get_post_meta(get_the_ID(), '_autors', true);
-                                    if (!empty($autors)) {
-                                        echo '<div class="toneka-product-author">' . esc_html(strtoupper($autors)) . '</div>';
+                                    $autors_meta = get_post_meta(get_the_ID(), '_autors', true);
+                                    if (!empty($autors_meta)) {
+                                        $autors = toneka_normalize_person_data($autors_meta);
+                                        if (!empty($autors) && is_array($autors)) {
+                                            $first_author = reset($autors);
+                                            if (isset($first_author['imie_nazwisko']) && !empty($first_author['imie_nazwisko'])) {
+                                                echo '<div class="toneka-product-author">' . esc_html(strtoupper($first_author['imie_nazwisko'])) . '</div>';
+                                            }
+                                        } else if (is_string($autors_meta)) {
+                                            echo '<div class="toneka-product-author">' . esc_html(strtoupper($autors_meta)) . '</div>';
+                                        }
                                     }
                                 }
                                 ?>

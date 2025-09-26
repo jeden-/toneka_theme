@@ -381,7 +381,7 @@ ol, ul {
 .toneka-default-logo a {
     color: #ffffff;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     text-decoration: none;
 }
@@ -687,7 +687,7 @@ ol, ul {
     align-items: center;
     justify-content: center;
     font-size: 0.7rem;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 /* =====================================
@@ -1142,7 +1142,7 @@ ol, ul {
 .toneka-minicart-header h3 {
     font-family: 'Figtree', sans-serif;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #969696;
     text-transform: uppercase;
     margin: 0;
@@ -1312,7 +1312,7 @@ ol, ul {
 .toneka-minicart-item-price {
     font-family: 'Figtree', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     margin-top: 5px;
 }
@@ -1365,7 +1365,7 @@ ol, ul {
 .toneka-minicart-total {
     font-family: 'Figtree', sans-serif;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -1405,7 +1405,7 @@ ol, ul {
 .toneka-minicart-upsells h4 {
     font-family: 'Figtree', sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
     margin: 0 0 15px 0;
@@ -1453,7 +1453,7 @@ ol, ul {
 .toneka-minicart-upsell-item-name {
     font-family: 'Figtree', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
     margin: 0;
@@ -1471,7 +1471,7 @@ ol, ul {
 .toneka-minicart-upsell-item-price {
     font-family: 'Figtree', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     margin-top: 5px;
 }
@@ -2605,7 +2605,7 @@ ol, ul {
 .toneka-footer-title {
     font-family: 'Figtree', sans-serif;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.28;
     color: #ffffff;
     text-transform: uppercase;
@@ -2621,7 +2621,7 @@ ol, ul {
     color: #ffffff;
     font-family: 'Figtree', sans-serif;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 1.44px;
     text-decoration: none;
@@ -2650,7 +2650,7 @@ ol, ul {
 .toneka-footer-contact p {
     font-family: 'Figtree', sans-serif;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.4;
     color: #ffffff;
     text-transform: uppercase;
@@ -2665,7 +2665,7 @@ ol, ul {
 .footer-widget-title {
     font-family: 'Figtree', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
     margin: 0 0 16px 0;
@@ -2722,7 +2722,7 @@ ol, ul {
     color: white;
     text-decoration: none;
     font-size: 10px;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
@@ -2748,7 +2748,7 @@ ol, ul {
 .toneka-copyright {
     color: #bbbbbb;
     font-size: 10px;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -2787,7 +2787,7 @@ ol, ul {
     color: #ffffff;
     font-family: 'Figtree', sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     cursor: pointer;
     padding: 0;
@@ -3029,7 +3029,7 @@ ol, ul {
 /* Nagłówki sekcji na stronie głównej */
 .toneka-category-title h2 {
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4;
     color: #ffffff;
@@ -3047,7 +3047,7 @@ ol, ul {
 
 .toneka-quote-section h2 {
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 300;
     margin: 0;
     padding: 0;
 }
@@ -3131,7 +3131,7 @@ ol, ul {
 .toneka-category-filter-item {
     font-family: 'Figtree', sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -3171,7 +3171,7 @@ ol, ul {
 .toneka-category-filter-separator {
     font-family: 'Figtree', sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #969696;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -4131,7 +4131,7 @@ ol, ul {
 .toneka-cart-item-name {
     font-family: 'Figtree', sans-serif;
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     margin: 0;
 }
@@ -4334,7 +4334,7 @@ ol, ul {
 .toneka-checkout-order h2 {
     font-family: 'Figtree', sans-serif;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 30px;
@@ -4432,7 +4432,7 @@ ol, ul {
 .toneka-checkout-item-name {
     font-family: 'Figtree', sans-serif;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     margin: 0 0 5px 0;
 }
@@ -4505,7 +4505,7 @@ ol, ul {
 .toneka-payment-methods h3 {
     font-family: 'Figtree', sans-serif;
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -4892,7 +4892,7 @@ ol, ul {
 .toneka-creator-role-text {
     font-family: 'Figtree', sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #969696;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -4995,7 +4995,7 @@ ol, ul {
     justify-content: center;
     font-family: 'Figtree', sans-serif;
     font-size: 0.8rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #ffffff;
     text-align: center;
     padding: 20px;
