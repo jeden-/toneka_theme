@@ -81,100 +81,51 @@ if (!$tag_image_url) {
         </div>
         
         <!-- Products Grid -->
-        <div class="toneka-products-grid" id="toneka-products-container">
+        <div class="toneka-products-grid toneka-category-products-grid">
             <?php
             if (woocommerce_product_loop()) {
-                woocommerce_product_loop_start();
-
-                if (wc_get_loop_prop('is_shortcode')) {
-                    $columns = absint(wc_get_loop_prop('columns'));
-                } else {
-                    $columns = wc_get_default_products_per_row();
-                }
-
-                while (have_posts()) {
+                while (have_posts()) :
                     the_post();
                     global $product;
-                    ?>
-                    <div class="toneka-product-card">
-                        <a href="<?php echo esc_url(get_permalink()); ?>" class="toneka-product-link">
-                            <!-- Product Image -->
-                            <div class="toneka-product-image-container">
-                                <?php if (has_post_thumbnail()): ?>
-                                    <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>" 
-                                         alt="<?php echo esc_attr(get_the_title()); ?>" 
-                                         class="toneka-product-image">
-                                <?php else: ?>
-                                    <div class="toneka-product-placeholder">
-                                        <span class="toneka-placeholder-text">BRAK ZDJĘCIA</span>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            
-                            <!-- Product Info -->
-                            <div class="toneka-product-info">
-                                <!-- Author/Creator Info -->
-                                <?php
-                                // Get product categories to determine if it's MERCH or SŁUCHOWISKA
-                                $product_categories = wp_get_post_terms(get_the_ID(), 'product_cat');
-                                $is_merch = false;
-                                $is_sluchowiska = false;
-
-                                foreach ($product_categories as $cat) {
-                                    if (strtoupper($cat->name) === 'MERCH') {
-                                        $is_merch = true;
-                                        break;
-                                    }
-                                    if (strtoupper($cat->name) === 'SŁUCHOWISKA') {
-                                        $is_sluchowiska = true;
-                                        break;
-                                    }
-                                }
-
-                                // Display appropriate creator
-                                if ($is_merch) {
-                                    $grafika_meta = get_post_meta(get_the_ID(), '_grafika', true);
-                                    if (!empty($grafika_meta)) {
-                                        $grafika = toneka_normalize_person_data($grafika_meta);
-                                        if (!empty($grafika) && is_array($grafika)) {
-                                            $first_graphic = reset($grafika);
-                                            if (isset($first_graphic['imie_nazwisko']) && !empty($first_graphic['imie_nazwisko'])) {
-                                                echo '<div class="toneka-product-author">' . esc_html(strtoupper($first_graphic['imie_nazwisko'])) . '</div>';
-                                            }
-                                        } else if (is_string($grafika_meta)) {
-                                            echo '<div class="toneka-product-author">' . esc_html(strtoupper($grafika_meta)) . '</div>';
-                                        }
-                                    }
-                                } elseif ($is_sluchowiska) {
-                                    $autors_meta = get_post_meta(get_the_ID(), '_autors', true);
-                                    if (!empty($autors_meta)) {
-                                        $autors = toneka_normalize_person_data($autors_meta);
-                                        if (!empty($autors) && is_array($autors)) {
-                                            $first_author = reset($autors);
-                                            if (isset($first_author['imie_nazwisko']) && !empty($first_author['imie_nazwisko'])) {
-                                                echo '<div class="toneka-product-author">' . esc_html(strtoupper($first_author['imie_nazwisko'])) . '</div>';
-                                            }
-                                        } else if (is_string($autors_meta)) {
-                                            echo '<div class="toneka-product-author">' . esc_html(strtoupper($autors_meta)) . '</div>';
-                                        }
-                                    }
-                                }
-                                ?>
-                                
-                                <!-- Product Title -->
-                                <h3 class="toneka-product-title"><?php echo esc_html(strtoupper(get_the_title())); ?></h3>
-                                
-                                <!-- Product Price -->
-                                <div class="toneka-product-price">
-                                    <?php echo $product->get_price_html(); ?>
-                                </div>
-                            </div>
-                        </a>
+                    
+                    // Get product data
+                    $product_id = get_the_ID();
+                    $product_obj = wc_get_product($product_id);
+                    $image_url = get_the_post_thumbnail_url($product_id, 'full');
+                    
+                    // Get creator name based on product category (author for słuchowiska, graphic for merch)
+                    $creator_name = toneka_get_product_creator_name($product_id);
+                ?>
+                
+                <div class="toneka-product-card" data-url="<?php echo esc_url($product_obj->get_permalink()); ?>">
+                    <div class="toneka-product-author">
+                        <?php echo esc_html($creator_name); ?>
                     </div>
-                    <?php
-                }
-
-                woocommerce_product_loop_end();
+                    
+                    <div class="toneka-product-image">
+                        <?php if ($image_url): ?>
+                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_obj->get_name()); ?>">
+                        <?php else: ?>
+                            <div class="toneka-product-placeholder">
+                                <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">
+                                    <rect width="200" height="200" fill="#333"/>
+                                    <text x="100" y="100" text-anchor="middle" fill="white" font-size="14">BRAK ZDJĘCIA</text>
+                                </svg>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <div class="toneka-product-footer">
+                            <div class="toneka-product-title">
+                                <a href="<?php echo esc_url($product_obj->get_permalink()); ?>"><?php echo esc_html(strtoupper($product_obj->get_name())); ?></a>
+                            </div>
+                            <div class="toneka-product-price">
+                                <?php echo $product_obj->get_price_html(); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php endwhile;
             } else {
                 ?>
                 <div class="toneka-no-products">
