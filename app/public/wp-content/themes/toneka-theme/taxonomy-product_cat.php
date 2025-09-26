@@ -19,6 +19,7 @@ $category_id = $current_category->term_id;
 $category_name = $current_category->name;
 $category_description = $current_category->description;
 
+// Debug: sprawdź dane kategorii
 // Get category image
 $category_image_id = get_term_meta($category_id, 'thumbnail_id', true);
 $category_image_url = $category_image_id ? wp_get_attachment_image_url($category_image_id, 'full') : '';

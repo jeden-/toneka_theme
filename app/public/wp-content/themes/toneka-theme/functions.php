@@ -2328,17 +2328,34 @@ function toneka_display_suggested_merch() {
 }
 
 /**
+ * Debug function to check all products in category
+ */
+
+/**
  * Get random featured product from category for hero image
  */
 function toneka_get_random_featured_product($category_id) {
-    if (!$category_id) return null;
+    if (!$category_id) {
+        return null;
+    }
     
-    // Get random featured product from category
+    // Check if WooCommerce is loaded
+    if (!function_exists('wc_get_products')) {
+        return null;
+    }
+    
+    // Get category info to use slug instead of ID
+    $category = get_term($category_id, 'product_cat');
+    if (!$category) {
+        return null;
+    }
+    
+    // Get random featured product from category using SLUG
     $products = wc_get_products(array(
         'limit' => 1,
         'orderby' => 'rand',
         'status' => 'publish',
-        'category' => array($category_id),
+        'category' => array($category->slug), // Use slug instead of ID
         'featured' => true, // Only featured products
         'meta_query' => array(
             array(
@@ -2354,7 +2371,7 @@ function toneka_get_random_featured_product($category_id) {
             'limit' => 1,
             'orderby' => 'rand',
             'status' => 'publish',
-            'category' => array($category_id),
+            'category' => array($category->slug), // Use slug instead of ID
             'meta_query' => array(
                 array(
                     'key' => '_thumbnail_id',
@@ -2371,14 +2388,27 @@ function toneka_get_random_featured_product($category_id) {
  * Get random featured product from tag for hero image
  */
 function toneka_get_random_featured_product_by_tag($tag_id) {
-    if (!$tag_id) return null;
+    if (!$tag_id) {
+        return null;
+    }
     
-    // Get random featured product from tag
+    // Check if WooCommerce is loaded
+    if (!function_exists('wc_get_products')) {
+        return null;
+    }
+    
+    // Get tag info to use slug instead of ID
+    $tag = get_term($tag_id, 'product_tag');
+    if (!$tag) {
+        return null;
+    }
+    
+    // Get random featured product from tag using SLUG
     $products = wc_get_products(array(
         'limit' => 1,
         'orderby' => 'rand',
         'status' => 'publish',
-        'tag' => array($tag_id),
+        'tag' => array($tag->slug), // Use slug instead of ID
         'featured' => true, // Only featured products
         'meta_query' => array(
             array(
@@ -2394,7 +2424,7 @@ function toneka_get_random_featured_product_by_tag($tag_id) {
             'limit' => 1,
             'orderby' => 'rand',
             'status' => 'publish',
-            'tag' => array($tag_id),
+            'tag' => array($tag->slug), // Use slug instead of ID
             'meta_query' => array(
                 array(
                     'key' => '_thumbnail_id',
