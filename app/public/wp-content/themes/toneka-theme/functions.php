@@ -2328,6 +2328,170 @@ function toneka_display_suggested_merch() {
 }
 
 /**
+ * Get random featured product from category for hero image
+ */
+function toneka_get_random_featured_product($category_id) {
+    if (!$category_id) return null;
+    
+    // Get random featured product from category
+    $products = wc_get_products(array(
+        'limit' => 1,
+        'orderby' => 'rand',
+        'status' => 'publish',
+        'category' => array($category_id),
+        'featured' => true, // Only featured products
+        'meta_query' => array(
+            array(
+                'key' => '_thumbnail_id',
+                'compare' => 'EXISTS'
+            )
+        )
+    ));
+    
+    // If no featured products, get any random product with image
+    if (empty($products)) {
+        $products = wc_get_products(array(
+            'limit' => 1,
+            'orderby' => 'rand',
+            'status' => 'publish',
+            'category' => array($category_id),
+            'meta_query' => array(
+                array(
+                    'key' => '_thumbnail_id',
+                    'compare' => 'EXISTS'
+                )
+            )
+        ));
+    }
+    
+    return !empty($products) ? $products[0] : null;
+}
+
+/**
+ * Get random featured product from tag for hero image
+ */
+function toneka_get_random_featured_product_by_tag($tag_id) {
+    if (!$tag_id) return null;
+    
+    // Get random featured product from tag
+    $products = wc_get_products(array(
+        'limit' => 1,
+        'orderby' => 'rand',
+        'status' => 'publish',
+        'tag' => array($tag_id),
+        'featured' => true, // Only featured products
+        'meta_query' => array(
+            array(
+                'key' => '_thumbnail_id',
+                'compare' => 'EXISTS'
+            )
+        )
+    ));
+    
+    // If no featured products, get any random product with image
+    if (empty($products)) {
+        $products = wc_get_products(array(
+            'limit' => 1,
+            'orderby' => 'rand',
+            'status' => 'publish',
+            'tag' => array($tag_id),
+            'meta_query' => array(
+                array(
+                    'key' => '_thumbnail_id',
+                    'compare' => 'EXISTS'
+                )
+            )
+        ));
+    }
+    
+    return !empty($products) ? $products[0] : null;
+}
+
+/**
+ * Display random featured product image in tag hero
+ */
+function toneka_display_tag_hero_product($tag_id) {
+    $featured_product = toneka_get_random_featured_product_by_tag($tag_id);
+    
+    if (!$featured_product) {
+        // Fallback to tag image or placeholder
+        $tag_image_id = get_term_meta($tag_id, 'thumbnail_id', true);
+        $tag_image_url = $tag_image_id ? wp_get_attachment_image_url($tag_image_id, 'full') : '';
+        
+        if ($tag_image_url) {
+            echo '<img src="' . esc_url($tag_image_url) . '" alt="' . esc_attr(get_term($tag_id)->name) . '" class="toneka-hero-image">';
+        } else {
+            echo '<div class="toneka-hero-placeholder">';
+            echo '<div class="toneka-placeholder-content">';
+            echo '<span class="toneka-placeholder-text">' . esc_html(strtoupper(get_term($tag_id)->name)) . '</span>';
+            echo '</div>';
+            echo '</div>';
+        }
+        return;
+    }
+    
+    // Display featured product image with link
+    $product_id = $featured_product->get_id();
+    $image_url = get_the_post_thumbnail_url($product_id, 'full');
+    $product_url = $featured_product->get_permalink();
+    
+    echo '<a href="' . esc_url($product_url) . '" class="toneka-hero-product-link">';
+    if ($image_url) {
+        echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($featured_product->get_name()) . '" class="toneka-hero-image">';
+    } else {
+        echo '<div class="toneka-hero-placeholder">';
+        echo '<div class="toneka-placeholder-content">';
+        echo '<span class="toneka-placeholder-text">BRAK ZDJĘCIA</span>';
+        echo '</div>';
+        echo '</div>';
+    }
+    echo '</a>';
+}
+
+/**
+ * Display random featured product image in category hero
+ */
+function toneka_display_category_hero_product($category_id) {
+    $featured_product = toneka_get_random_featured_product($category_id);
+    
+    if (!$featured_product) {
+        // Fallback to category image or placeholder
+        $category_image_id = get_term_meta($category_id, 'thumbnail_id', true);
+        $category_image_url = $category_image_id ? wp_get_attachment_image_url($category_image_id, 'full') : '';
+        
+        if ($category_image_url) {
+            echo '<img src="' . esc_url($category_image_url) . '" alt="' . esc_attr(get_term($category_id)->name) . '">';
+        } else {
+            echo '<div class="toneka-category-placeholder">';
+            echo '<svg width="200" height="200" viewBox="0 0 200 200" fill="#333">';
+            echo '<rect width="200" height="200" fill="#333"/>';
+            echo '<text x="100" y="100" text-anchor="middle" fill="white" font-size="14">' . esc_html(strtoupper(get_term($category_id)->name)) . '</text>';
+            echo '</svg>';
+            echo '</div>';
+        }
+        return;
+    }
+    
+    // Display featured product image with link
+    $product_id = $featured_product->get_id();
+    $image_url = get_the_post_thumbnail_url($product_id, 'full');
+    $product_url = $featured_product->get_permalink();
+    
+    echo '<a href="' . esc_url($product_url) . '" class="toneka-hero-product-link">';
+    if ($image_url) {
+        echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($featured_product->get_name()) . '">';
+    } else {
+        echo '<div class="toneka-product-placeholder">';
+        echo '<svg width="200" height="200" viewBox="0 0 200 200" fill="#333">';
+        echo '<rect width="200" height="200" fill="#333"/>';
+        echo '<text x="100" y="100" text-anchor="middle" fill="white" font-size="14">BRAK ZDJĘCIA</text>';
+        echo '</svg>';
+        echo '</div>';
+    }
+    echo '</a>';
+}
+
+/**
  * Wyświetla sugerowane słuchowiska
  */
 function toneka_display_suggested_audio() {

@@ -61,16 +61,8 @@ if (!$tag_image_url) {
     </div>
     
     <div class="toneka-hero-right">
-        <?php if ($tag_image_url): ?>
-            <img src="<?php echo esc_url($tag_image_url); ?>" alt="<?php echo esc_attr($tag_name); ?>" class="toneka-hero-image">
-        <?php else: ?>
-            <!-- Placeholder if no image -->
-            <div class="toneka-hero-placeholder">
-                <div class="toneka-placeholder-content">
-                    <span class="toneka-placeholder-text"><?php echo esc_html(strtoupper($tag_name)); ?></span>
-                </div>
-            </div>
-        <?php endif; ?>
+        <!-- Losowy wyróżniony produkt z tagu -->
+        <?php toneka_display_tag_hero_product($tag_id); ?>
     </div>
 </div>
 

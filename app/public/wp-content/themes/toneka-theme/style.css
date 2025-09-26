@@ -3068,13 +3068,25 @@ ol, ul {
     object-position: center;
 }
 
-.toneka-category-placeholder {
+/* Hero product link in category */
+.toneka-hero-product-link {
+    display: block;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #333333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.toneka-hero-product-link:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.toneka-hero-product-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Category description */

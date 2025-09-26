@@ -57,19 +57,9 @@ $category_image_url = $category_image_id ? wp_get_attachment_image_url($category
     </div>
     
     <div class="toneka-hero-right">
-        <!-- Zdjęcie kategorii -->
+        <!-- Losowy wyróżniony produkt z kategorii -->
         <div class="toneka-category-image">
-            <?php if ($category_image_url): ?>
-                <img src="<?php echo esc_url($category_image_url); ?>" alt="<?php echo esc_attr($category_name); ?>">
-            <?php else: ?>
-                <!-- Placeholder jeśli brak zdjęcia -->
-                <div class="toneka-category-placeholder">
-                    <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">
-                        <rect width="200" height="200" fill="#333"/>
-                        <text x="100" y="100" text-anchor="middle" fill="white" font-size="14"><?php echo esc_html(strtoupper($category_name)); ?></text>
-                    </svg>
-                </div>
-            <?php endif; ?>
+            <?php toneka_display_category_hero_product($category_id); ?>
         </div>
     </div>
 </div>
