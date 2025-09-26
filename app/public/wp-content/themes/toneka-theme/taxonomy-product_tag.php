@@ -70,14 +70,9 @@ if (!$tag_image_url) {
 <div class="toneka-content-section toneka-tag-products" id="products-section">
     <div class="toneka-content-container">
         
-        <!-- Filter Section -->
-        <div class="toneka-category-filter-section">
-            <div class="toneka-category-filter-container">
-                <!-- Bieżący tag -->
-                <div class="toneka-category-filter-item toneka-category-filter-active">
-                    <span><?php echo esc_html(strtoupper($tag_name)); ?></span>
-                </div>
-            </div>
+        <!-- Section Title -->
+        <div class="toneka-category-title">
+            <h2><?php echo esc_html(strtoupper($tag_name)); ?></h2>
         </div>
         
         <!-- Products Grid -->

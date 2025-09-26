@@ -839,9 +839,8 @@ ol, ul {
 
 /* Style dla index.php i postów */
 .toneka-content-container {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 0;
+    padding: 0;
 }
 
 .toneka-archive-header {
