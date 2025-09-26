@@ -276,15 +276,12 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
 }
 
 .wc-block-components-form .wc-block-components-text-input input[type=email], .wc-block-components-form .wc-block-components-text-input input[type=number], .wc-block-components-form .wc-block-components-text-input input[type=password], .wc-block-components-form .wc-block-components-text-input input[type=tel], .wc-block-components-form .wc-block-components-text-input input[type=text], .wc-block-components-form .wc-block-components-text-input input[type=url], .wc-block-components-text-input input[type=email], .wc-block-components-text-input input[type=number], .wc-block-components-text-input input[type=password], .wc-block-components-text-input input[type=tel], .wc-block-components-text-input input[type=text], .wc-block-components-text-input input[type=url] {
-    background-color: transparent!important;
+    background-color: #ffffff!important;
     border-radius: 0!important;
-    border-bottom: 1px solid #fff!important;
-    border-top: none!important;
-    border-left: none!important;
-    border-right: none!important;
-    padding: 0;
+    border: 1px solid #333333!important;
+    padding: 12px 15px!important;
     margin: 0;
-    color: #fff!important;
+    color: #000000!important;
 }
 
 .wc-block-components-form .wc-block-components-text-input.has-error label, .wc-block-components-text-input.has-error label {
@@ -4362,11 +4359,12 @@ ol, ul {
 .toneka-checkout-fields textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #969696;
-    background: #000000;
-    color: #ffffff;
+    border: 1px solid #333333;
+    background: #ffffff;
+    color: #000000;
     font-family: 'Figtree', sans-serif;
     font-size: 1rem;
+    border-radius: 0;
     transition: border-color 0.3s ease;
 }
 
@@ -4374,7 +4372,7 @@ ol, ul {
 .toneka-checkout-fields select:focus,
 .toneka-checkout-fields textarea:focus {
     outline: none;
-    border-color: #ffffff;
+    border-color: #000000;
 }
 
 /* Checkout items */
@@ -4548,6 +4546,37 @@ ol, ul {
     color: #ffffff;
 }
 
+/* General form input styles - apply to all forms */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="url"],
+select,
+textarea {
+    background: #ffffff !important;
+    border: 1px solid #333333 !important;
+    color: #000000 !important;
+    border-radius: 0 !important;
+    padding: 12px 15px !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 1rem !important;
+    transition: border-color 0.3s ease !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+    outline: none !important;
+    border-color: #000000 !important;
+}
+
 .woocommerce-account h2,
 .woocommerce-form-login h2,
 .woocommerce-form-register h2 {
@@ -4578,17 +4607,18 @@ ol, ul {
 .woocommerce-form-row input[type="password"] {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #969696;
-    background: #000000;
-    color: #ffffff;
+    border: 1px solid #333333;
+    background: #ffffff;
+    color: #000000;
     font-family: 'Figtree', sans-serif;
     font-size: 1rem;
+    border-radius: 0;
     transition: border-color 0.3s ease;
 }
 
 .woocommerce-form-row input:focus {
     outline: none;
-    border-color: #ffffff;
+    border-color: #000000;
 }
 
 .woocommerce-Button {
@@ -5115,4 +5145,5 @@ ol, ul {
         gap: 20px;
     }
 }
+
 /* Force deployment Thu Sep 25 13:36:32 CEST 2025 */
