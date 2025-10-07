@@ -280,7 +280,7 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
     border-radius: 0!important;
     border: none!important;
     border-bottom: 1px solid #666666!important;
-    padding: 12px 0!important;
+    padding: 12px 15px!important;
     margin: 0;
     color: #ffffff!important;
     transition: all 0.3s ease!important;
@@ -4472,7 +4472,7 @@ ol, ul {
 .toneka-checkout-fields select,
 .toneka-checkout-fields textarea {
     width: 100%;
-    padding: 12px 0;
+    padding: 12px 15px;
     border: none;
     border-bottom: 1px solid #666666;
     background: #000000;
@@ -4681,12 +4681,13 @@ input[type="checkbox"] {
     border: 1px solid #666666 !important;
     background: #000000 !important;
     border-radius: 0 !important;
-    margin: 0 !important;
+    margin: 0 8px 0 0 !important;
     padding: 0 !important;
     position: relative !important;
     cursor: pointer !important;
     vertical-align: middle !important;
     transition: all 0.3s ease !important;
+    flex-shrink: 0 !important;
 }
 
 input[type="checkbox"]:checked {
@@ -4701,9 +4702,10 @@ input[type="checkbox"]:checked::after {
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     color: #ffffff !important;
-    font-size: 12px !important;
-    font-weight: bold !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
     line-height: 1 !important;
+    font-family: 'Figtree', sans-serif !important;
 }
 
 input[type="checkbox"]:focus {
@@ -4837,7 +4839,7 @@ select {
     border-bottom: 1px solid #666666 !important;
     color: #ffffff !important;
     border-radius: 0 !important;
-    padding: 12px 0 !important;
+    padding: 12px 15px !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 1rem !important;
     transition: all 0.3s ease !important;
@@ -4846,9 +4848,9 @@ select {
     -moz-appearance: none !important;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
     background-repeat: no-repeat !important;
-    background-position: right 0 center !important;
+    background-position: right 15px center !important;
     background-size: 16px !important;
-    padding-right: 24px !important;
+    padding-right: 40px !important;
 }
 
 select:focus {
@@ -4901,9 +4903,9 @@ select:focus {
 
 /* Checkbox label styles */
 .woocommerce-checkout .woocommerce-form .form-row input[type="checkbox"] + label {
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 0 !important;
     margin-bottom: 0 !important;
     cursor: pointer !important;
     font-size: 14px !important;
@@ -4911,6 +4913,22 @@ select:focus {
     font-family: 'Figtree', sans-serif !important;
     font-weight: 300 !important;
     text-transform: none !important;
+    line-height: 1.4 !important;
+}
+
+/* WooCommerce Blocks checkbox label */
+.wc-block-components-checkbox__label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+    margin-bottom: 0 !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    color: #999999 !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+    line-height: 1.4 !important;
 }
 
 /* Textarea styles for order notes - subtelne */
@@ -4920,7 +4938,7 @@ textarea {
     border-bottom: 1px solid #666666 !important;
     color: #ffffff !important;
     border-radius: 0 !important;
-    padding: 12px 0 !important;
+    padding: 12px 15px !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 1rem !important;
     transition: all 0.3s ease !important;
@@ -5011,7 +5029,7 @@ textarea::placeholder {
 .woocommerce-form-row input[type="email"],
 .woocommerce-form-row input[type="password"] {
     width: 100%;
-    padding: 12px 0;
+    padding: 12px 15px;
     border: none;
     border-bottom: 1px solid #666666;
     background: #000000;
