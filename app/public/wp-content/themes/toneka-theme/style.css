@@ -4652,15 +4652,109 @@ ol, ul {
     color: #ffffff;
 }
 
-/* General form input styles - apply to all forms */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"],
-input[type="number"],
-input[type="url"],
-select,
-textarea {
+/* Checkbox styles - zgodne z projektem Figma */
+input[type="checkbox"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    border: 1px solid #ffffff !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    cursor: pointer !important;
+    vertical-align: middle !important;
+}
+
+input[type="checkbox"]:checked {
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: #000000 !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+}
+
+input[type="checkbox"]:focus {
+    outline: none !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* WooCommerce checkout button styles */
+.woocommerce-checkout .woocommerce-form button[type="submit"],
+.woocommerce-checkout .woocommerce-form .button,
+.woocommerce-checkout .woocommerce-form input[type="submit"] {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+    padding: 12px 24px !important;
+    border-radius: 100px !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.28px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    width: auto !important;
+    min-width: 200px !important;
+}
+
+.woocommerce-checkout .woocommerce-form button[type="submit"]:hover,
+.woocommerce-checkout .woocommerce-form .button:hover,
+.woocommerce-checkout .woocommerce-form input[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-color: #ffffff !important;
+}
+
+.woocommerce-checkout .woocommerce-form button[type="submit"]:focus,
+.woocommerce-checkout .woocommerce-form .button:focus,
+.woocommerce-checkout .woocommerce-form input[type="submit"]:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Secondary button styles (like "Wróć do koszyka") */
+.woocommerce-checkout .woocommerce-form .button.alt,
+.woocommerce-checkout .woocommerce-form a.button {
+    background: transparent !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+    padding: 12px 24px !important;
+    border-radius: 100px !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.28px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.woocommerce-checkout .woocommerce-form .button.alt:hover,
+.woocommerce-checkout .woocommerce-form a.button:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #ffffff !important;
+}
+
+/* Select dropdown styles */
+select {
     background: #ffffff !important;
     border: 1px solid #333333 !important;
     color: #000000 !important;
@@ -4669,18 +4763,50 @@ textarea {
     font-family: 'Figtree', sans-serif !important;
     font-size: 1rem !important;
     transition: border-color 0.3s ease !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: 16px !important;
+    padding-right: 40px !important;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="tel"]:focus,
-input[type="number"]:focus,
-input[type="url"]:focus,
-select:focus,
-textarea:focus {
+select:focus {
     outline: none !important;
     border-color: #000000 !important;
+}
+
+/* Label styles for checkout forms */
+.woocommerce-checkout .woocommerce-form label {
+    color: #ffffff !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+}
+
+/* Form field wrapper styles */
+.woocommerce-checkout .woocommerce-form .form-row {
+    margin-bottom: 20px !important;
+}
+
+.woocommerce-checkout .woocommerce-form .form-row label {
+    margin-bottom: 8px !important;
+}
+
+/* Checkbox label styles */
+.woocommerce-checkout .woocommerce-form .form-row input[type="checkbox"] + label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-bottom: 0 !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .woocommerce-account h2,
