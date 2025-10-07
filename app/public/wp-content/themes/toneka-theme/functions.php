@@ -2935,13 +2935,6 @@ function toneka_ajax_filter_category() {
     $filter_categories = array();
     $all_display_categories = array();
     
-    // Always start with "WSZYSTKO"
-    $all_display_categories[] = array(
-        'category' => (object) array('term_id' => 0, 'name' => 'WSZYSTKO'),
-        'is_current' => ($category_id === 0),
-        'is_parent' => false
-    );
-    
     if ($category_id === 0) {
         // WSZYSTKO page - show only top level categories (Słuchowiska, Merch)
         $top_categories = get_terms(array(
@@ -2951,6 +2944,13 @@ function toneka_ajax_filter_category() {
             'orderby' => 'term_order',
             'order' => 'ASC'
         ));
+        
+        // Add "WSZYSTKO" as active
+        $all_display_categories[] = array(
+            'category' => (object) array('term_id' => 0, 'name' => 'WSZYSTKO'),
+            'is_current' => true,
+            'is_parent' => false
+        );
         
         // Add top level categories
         if (!empty($top_categories) && !is_wp_error($top_categories)) {
