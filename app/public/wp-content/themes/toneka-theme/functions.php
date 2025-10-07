@@ -73,6 +73,15 @@ if ( ! function_exists( 'toneka_theme_setup' ) ) {
 		add_theme_support( 'wc-product-gallery-zoom' );
 		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
+		
+		// Add custom logo support
+		add_theme_support( 'custom-logo', array(
+			'height'      => 50,
+			'width'       => 200,
+			'flex-height' => true,
+			'flex-width'  => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+		) );
 	}
 }
 add_action( 'after_setup_theme', 'toneka_theme_setup' );
