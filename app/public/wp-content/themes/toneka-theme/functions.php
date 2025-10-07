@@ -2979,17 +2979,31 @@ function toneka_ajax_filter_category() {
             'taxonomy' => 'product_cat',
             'parent' => $category_id,
             'hide_empty' => true,
-            'orderby' => 'term_order',
+            'orderby' => 'name',
             'order' => 'ASC'
         ));
         
         if (!empty($child_categories) && !is_wp_error($child_categories)) {
             // Current category has children - show current + children
             $filter_categories = array_merge(array($category), $child_categories);
-            // Sort children only, keep current category first
+            // Sort children only by custom order, keep current category first
             $current_cat = array_shift($filter_categories);
             usort($filter_categories, function($a, $b) {
-                return $a->term_order - $b->term_order;
+                // Custom sorting for age categories
+                $a_name = $a->name;
+                $b_name = $b->name;
+                
+                // Extract age numbers for proper sorting
+                preg_match('/(\d+)-(\d+)/', $a_name, $a_matches);
+                preg_match('/(\d+)-(\d+)/', $b_name, $b_matches);
+                
+                if (!empty($a_matches) && !empty($b_matches)) {
+                    // Both are age categories - sort by first age number
+                    return intval($a_matches[1]) - intval($b_matches[1]);
+                }
+                
+                // Fallback to alphabetical sorting
+                return strcmp($a_name, $b_name);
             });
             array_unshift($filter_categories, $current_cat);
             
@@ -3017,7 +3031,7 @@ function toneka_ajax_filter_category() {
                 'taxonomy' => 'product_cat',
                 'parent' => $category->parent,
                 'hide_empty' => true,
-                'orderby' => 'term_order',
+                'orderby' => 'name',
                 'order' => 'ASC'
             ));
             
@@ -3030,8 +3044,27 @@ function toneka_ajax_filter_category() {
                 );
             }
             
-            // Add siblings (including current)
+            // Add siblings (including current) - sort them properly
             if (!empty($sibling_categories) && !is_wp_error($sibling_categories)) {
+                // Sort siblings by custom order
+                usort($sibling_categories, function($a, $b) {
+                    // Custom sorting for age categories
+                    $a_name = $a->name;
+                    $b_name = $b->name;
+                    
+                    // Extract age numbers for proper sorting
+                    preg_match('/(\d+)-(\d+)/', $a_name, $a_matches);
+                    preg_match('/(\d+)-(\d+)/', $b_name, $b_matches);
+                    
+                    if (!empty($a_matches) && !empty($b_matches)) {
+                        // Both are age categories - sort by first age number
+                        return intval($a_matches[1]) - intval($b_matches[1]);
+                    }
+                    
+                    // Fallback to alphabetical sorting
+                    return strcmp($a_name, $b_name);
+                });
+                
                 foreach ($sibling_categories as $cat) {
                     $all_display_categories[] = array(
                         'category' => $cat,
@@ -3047,7 +3080,7 @@ function toneka_ajax_filter_category() {
                 'taxonomy' => 'product_cat',
                 'parent' => $category_id,
                 'hide_empty' => true,
-                'orderby' => 'term_order',
+                'orderby' => 'name',
                 'order' => 'ASC'
             ));
             
@@ -3058,8 +3091,27 @@ function toneka_ajax_filter_category() {
                 'is_parent' => false
             );
             
-            // Add children if any
+            // Add children if any - sort them properly
             if (!empty($child_categories) && !is_wp_error($child_categories)) {
+                // Sort children by custom order
+                usort($child_categories, function($a, $b) {
+                    // Custom sorting for age categories
+                    $a_name = $a->name;
+                    $b_name = $b->name;
+                    
+                    // Extract age numbers for proper sorting
+                    preg_match('/(\d+)-(\d+)/', $a_name, $a_matches);
+                    preg_match('/(\d+)-(\d+)/', $b_name, $b_matches);
+                    
+                    if (!empty($a_matches) && !empty($b_matches)) {
+                        // Both are age categories - sort by first age number
+                        return intval($a_matches[1]) - intval($b_matches[1]);
+                    }
+                    
+                    // Fallback to alphabetical sorting
+                    return strcmp($a_name, $b_name);
+                });
+                
                 foreach ($child_categories as $cat) {
                     $all_display_categories[] = array(
                         'category' => $cat,
