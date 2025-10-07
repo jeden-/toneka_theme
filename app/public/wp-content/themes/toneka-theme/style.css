@@ -4751,6 +4751,47 @@ input[type="checkbox"]:hover {
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* WooCommerce Blocks checkout button styles - subtelne - bardzo specyficzne selektory */
+.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained,
+.wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained,
+button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained,
+.wc-block-checkout__actions .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained,
+.wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained {
+    background: #000000 !important;
+    border: 1px solid #666666 !important;
+    color: #ffffff !important;
+    padding: 12px 24px !important;
+    border-radius: 0 !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.28px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    width: auto !important;
+    min-width: 200px !important;
+}
+
+.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover,
+.wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained:hover,
+button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover,
+.wc-block-checkout__actions .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover,
+.wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: #999999 !important;
+}
+
+.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus,
+.wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained:focus,
+button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus,
+.wc-block-checkout__actions .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus,
+.wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus {
+    outline: none !important;
+    border-color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
 /* Secondary button styles (like "Wróć do koszyka") - subtelne */
 .woocommerce-checkout .woocommerce-form .button.alt,
 .woocommerce-checkout .woocommerce-form a.button {
