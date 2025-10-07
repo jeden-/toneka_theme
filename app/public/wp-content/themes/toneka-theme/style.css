@@ -292,8 +292,64 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
     background: rgba(255, 255, 255, 0.05)!important;
 }
 
+/* Override autofill styles - zachowaj czarne tło */
+.wc-block-components-form .wc-block-components-text-input input[type=email]:-webkit-autofill, 
+.wc-block-components-form .wc-block-components-text-input input[type=number]:-webkit-autofill, 
+.wc-block-components-form .wc-block-components-text-input input[type=password]:-webkit-autofill, 
+.wc-block-components-form .wc-block-components-text-input input[type=tel]:-webkit-autofill, 
+.wc-block-components-form .wc-block-components-text-input input[type=text]:-webkit-autofill, 
+.wc-block-components-form .wc-block-components-text-input input[type=url]:-webkit-autofill,
+.wc-block-components-text-input input[type=email]:-webkit-autofill, 
+.wc-block-components-text-input input[type=number]:-webkit-autofill, 
+.wc-block-components-text-input input[type=password]:-webkit-autofill, 
+.wc-block-components-text-input input[type=tel]:-webkit-autofill, 
+.wc-block-components-text-input input[type=text]:-webkit-autofill, 
+.wc-block-components-text-input input[type=url]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
 .wc-block-components-form .wc-block-components-text-input.has-error label, .wc-block-components-text-input.has-error label {
     color: #e71d1d!important;
+}
+
+/* WooCommerce Blocks label styles - szare teksty, uppercase, wyżej */
+.wc-block-components-form .wc-block-components-text-input label,
+.wc-block-components-form .wc-block-components-select label,
+.wc-block-components-form .wc-block-components-textarea label {
+    color: #404040 !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    padding: 0 15px !important;
+}
+
+/* WooCommerce Blocks section headings - białe tytuły, padding */
+.wc-block-components-form h2,
+.wc-block-components-form h3 {
+    color: #ffffff !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 16px !important;
+    padding: 0 15px !important;
+}
+
+/* WooCommerce Blocks descriptions - szare opisy, padding */
+.wc-block-components-form p {
+    color: #999999 !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 300 !important;
+    margin-bottom: 16px !important;
+    line-height: 1.4 !important;
+    padding: 0 15px !important;
 }
 
 /* Screen reader text */
@@ -4493,6 +4549,16 @@ ol, ul {
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* Override autofill styles - zachowaj czarne tło */
+.toneka-checkout-fields input[type="text"]:-webkit-autofill,
+.toneka-checkout-fields input[type="email"]:-webkit-autofill,
+.toneka-checkout-fields input[type="tel"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
 .toneka-checkout-fields input:focus,
 .toneka-checkout-fields select:focus,
 .toneka-checkout-fields textarea:focus {
@@ -4862,16 +4928,17 @@ select:focus {
 
 /* Label styles for checkout forms */
 .woocommerce-checkout .woocommerce-form label {
-    color: #ffffff !important;
+    color: #404040 !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 14px !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 12px !important;
     display: block !important;
+    padding: 0 15px !important;
 }
 
-/* Description text styles - szare opisy */
+/* Description text styles - szare opisy, padding jak input label */
 .woocommerce-checkout .woocommerce-form p {
     color: #999999 !important;
     font-family: 'Figtree', sans-serif !important;
@@ -4879,6 +4946,7 @@ select:focus {
     font-weight: 300 !important;
     margin-bottom: 16px !important;
     line-height: 1.4 !important;
+    padding: 0 15px !important;
 }
 
 /* Section headings - białe tytuły */
@@ -4890,6 +4958,7 @@ select:focus {
     font-weight: 500 !important;
     text-transform: uppercase !important;
     margin-bottom: 16px !important;
+    padding: 0 15px !important;
 }
 
 /* Form field wrapper styles */
@@ -5046,6 +5115,16 @@ textarea::placeholder {
     outline: none;
     border-bottom-color: #ffffff;
     background: rgba(255, 255, 255, 0.05);
+}
+
+/* Override autofill styles - zachowaj czarne tło */
+.woocommerce-form-row input[type="text"]:-webkit-autofill,
+.woocommerce-form-row input[type="email"]:-webkit-autofill,
+.woocommerce-form-row input[type="password"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 .woocommerce-form-row input:focus {
