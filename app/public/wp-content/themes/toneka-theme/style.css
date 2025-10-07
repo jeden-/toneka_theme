@@ -2560,7 +2560,7 @@ ol, ul {
 .toneka-product-price {
     padding: 8px 12px;
     height: 100%;
-    display: flex;
+    display: none; /* Ukryj ceny na listach produktów */
     align-items: center;
     justify-content: flex-end;
     min-width: 120px;
