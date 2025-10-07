@@ -408,10 +408,26 @@ ol, ul {
     text-transform: uppercase;
     line-height: 1.4;
     transition: opacity 0.3s ease;
+    position: relative;
+}
+
+.toneka-primary-menu .menu-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: width 0.4s ease;
 }
 
 .toneka-primary-menu .menu-item a:hover {
     opacity: 0.8;
+}
+
+.toneka-primary-menu .menu-item a:hover::after {
+    width: 100%;
 }
 
 .toneka-primary-menu .menu-item.current-menu-item a,
@@ -531,6 +547,10 @@ ol, ul {
 .product-page-header.header-on-light .toneka-account-link,
 .product-page-header.header-on-light .toneka-cart-link {
     color: #292929;
+}
+
+.product-page-header.header-on-light .toneka-primary-menu li a::after {
+    background: #292929;
 }
 
 .product-page-header.header-on-light .toneka-primary-menu .menu-item.current-menu-item a::after,
@@ -755,6 +775,22 @@ ol, ul {
 .woocommerce-breadcrumb a {
     color: #ffffff!important;
     text-decoration: none;
+    position: relative;
+}
+
+.woocommerce-breadcrumb a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: width 0.4s ease;
+}
+
+.woocommerce-breadcrumb a:hover::after {
+    width: 100%;
 }
 
 .site-main {
@@ -996,10 +1032,26 @@ ol, ul {
     color: #ffffff;
     text-decoration: none;
     transition: opacity 0.3s ease;
+    position: relative;
+}
+
+.toneka-breadcrumb a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: width 0.4s ease;
 }
 
 .toneka-breadcrumb a:hover {
     opacity: 0.8;
+}
+
+.toneka-breadcrumb a:hover::after {
+    width: 100%;
 }
 
 .breadcrumb-separator {
@@ -2705,10 +2757,26 @@ ol, ul {
     font-size: 14px;
     text-transform: uppercase;
     transition: opacity 0.3s ease;
+    position: relative;
+}
+
+.footer-widget a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: width 0.4s ease;
 }
 
 .footer-widget a:hover {
     opacity: 0.7;
+}
+
+.footer-widget a:hover::after {
+    width: 100%;
 }
 
 /* Footer bottom */
@@ -3160,10 +3228,26 @@ ol, ul {
     transition: color 0.3s ease;
     cursor: pointer;
     display: inline-block;
+    position: relative;
+}
+
+.toneka-category-filter-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #ffffff;
+    transition: width 0.4s ease;
 }
 
 .toneka-category-filter-item a:hover {
     color: #ffffff;
+}
+
+.toneka-category-filter-item a:hover::after {
+    width: 100%;
 }
 
 .toneka-category-filter-active span {
