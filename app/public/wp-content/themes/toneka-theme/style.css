@@ -4716,15 +4716,15 @@ input[type="checkbox"]:hover {
     border-color: #999999 !important;
 }
 
-/* WooCommerce checkout button styles */
+/* WooCommerce checkout button styles - subtelne */
 .woocommerce-checkout .woocommerce-form button[type="submit"],
 .woocommerce-checkout .woocommerce-form .button,
 .woocommerce-checkout .woocommerce-form input[type="submit"] {
-    background: rgba(255, 255, 255, 0.2) !important;
-    border: 1px solid #ffffff !important;
+    background: #000000 !important;
+    border: 1px solid #666666 !important;
     color: #ffffff !important;
     padding: 12px 24px !important;
-    border-radius: 100px !important;
+    border-radius: 0 !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 14px !important;
     font-weight: 400 !important;
@@ -4739,25 +4739,26 @@ input[type="checkbox"]:hover {
 .woocommerce-checkout .woocommerce-form button[type="submit"]:hover,
 .woocommerce-checkout .woocommerce-form .button:hover,
 .woocommerce-checkout .woocommerce-form input[type="submit"]:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
-    border-color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: #999999 !important;
 }
 
 .woocommerce-checkout .woocommerce-form button[type="submit"]:focus,
 .woocommerce-checkout .woocommerce-form .button:focus,
 .woocommerce-checkout .woocommerce-form input[type="submit"]:focus {
     outline: none !important;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
+    border-color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Secondary button styles (like "Wróć do koszyka") */
+/* Secondary button styles (like "Wróć do koszyka") - subtelne */
 .woocommerce-checkout .woocommerce-form .button.alt,
 .woocommerce-checkout .woocommerce-form a.button {
     background: transparent !important;
-    border: 1px solid #ffffff !important;
+    border: 1px solid #666666 !important;
     color: #ffffff !important;
     padding: 12px 24px !important;
-    border-radius: 100px !important;
+    border-radius: 0 !important;
     font-family: 'Figtree', sans-serif !important;
     font-size: 14px !important;
     font-weight: 400 !important;
@@ -4773,8 +4774,15 @@ input[type="checkbox"]:hover {
 
 .woocommerce-checkout .woocommerce-form .button.alt:hover,
 .woocommerce-checkout .woocommerce-form a.button:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: #999999 !important;
+}
+
+.woocommerce-checkout .woocommerce-form .button.alt:focus,
+.woocommerce-checkout .woocommerce-form a.button:focus {
+    outline: none !important;
     border-color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Select dropdown styles */
@@ -4858,6 +4866,35 @@ select:focus {
     font-family: 'Figtree', sans-serif !important;
     font-weight: 300 !important;
     text-transform: none !important;
+}
+
+/* Textarea styles for order notes - subtelne */
+textarea {
+    background: #000000 !important;
+    border: none !important;
+    border-bottom: 1px solid #666666 !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    padding: 12px 0 !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+    resize: vertical !important;
+    min-height: 100px !important;
+    width: 100% !important;
+}
+
+textarea:focus {
+    outline: none !important;
+    border-bottom-color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+textarea::placeholder {
+    color: #666666 !important;
+    font-family: 'Figtree', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 300 !important;
 }
 
 .woocommerce-account h2,
