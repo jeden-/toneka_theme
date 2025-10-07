@@ -75,33 +75,26 @@ $category_image_url = $category_image_id ? wp_get_attachment_image_url($category
             $current_category = get_queried_object();
             $current_category_id = $current_category->term_id;
             
-            // Get categories for filter display - universal logic with WSZYSTKO
+            // Get categories for filter display - only current category and its children
             $filter_categories = array();
             $all_display_categories = array();
-            
-            // Always start with "WSZYSTKO"
-            $all_display_categories[] = array(
-                'category' => (object) array('term_id' => 0, 'name' => 'WSZYSTKO'),
-                'is_current' => false,
-                'is_parent' => false
-            );
             
             // Check if current category has children
             $child_categories = get_terms(array(
                 'taxonomy' => 'product_cat',
                 'parent' => $current_category_id,
                 'hide_empty' => true,
-                'orderby' => 'name',
+                'orderby' => 'term_order',
                 'order' => 'ASC'
             ));
             
             if (!empty($child_categories) && !is_wp_error($child_categories)) {
                 // Current category has children - show current + children
                 $filter_categories = array_merge(array($current_category), $child_categories);
-                // Sort children only, keep current category first
+                // Sort children only by term_order, keep current category first
                 $current_cat = array_shift($filter_categories);
                 usort($filter_categories, function($a, $b) {
-                    return strcmp($a->name, $b->name);
+                    return $a->term_order - $b->term_order;
                 });
                 array_unshift($filter_categories, $current_cat);
                 
@@ -129,7 +122,7 @@ $category_image_url = $category_image_id ? wp_get_attachment_image_url($category
                     'taxonomy' => 'product_cat',
                     'parent' => $current_category->parent,
                     'hide_empty' => true,
-                    'orderby' => 'name',
+                    'orderby' => 'term_order',
                     'order' => 'ASC'
                 ));
                 
@@ -159,7 +152,7 @@ $category_image_url = $category_image_id ? wp_get_attachment_image_url($category
                     'taxonomy' => 'product_cat',
                     'parent' => $current_category_id,
                     'hide_empty' => true,
-                    'orderby' => 'name',
+                    'orderby' => 'term_order',
                     'order' => 'ASC'
                 ));
                 

@@ -1,5 +1,48 @@
 <?php
 
+// ==================================================================
+// DEVELOPMENT: DISABLE ALL CACHING
+// ==================================================================
+
+/**
+ * Disable all caching for development
+ */
+function toneka_disable_caching() {
+    // Remove cache headers that might be set by plugins
+    if (!headers_sent()) {
+        header('Cache-Control: no-cache, no-store, must-revalidate, proxy-revalidate, max-age=0');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('ETag: ""');
+    }
+}
+add_action('init', 'toneka_disable_caching', 1);
+
+/**
+ * Add cache-busting meta tags to HTML head
+ */
+function toneka_add_cache_busting_meta() {
+    echo '<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">' . "\n";
+    echo '<meta http-equiv="Pragma" content="no-cache">' . "\n";
+    echo '<meta http-equiv="Expires" content="0">' . "\n";
+}
+add_action('wp_head', 'toneka_add_cache_busting_meta', 1);
+
+/**
+ * Add cache-busting version to CSS and JS files
+ */
+function toneka_cache_bust_assets($src) {
+    if (strpos($src, '?ver=') === false) {
+        $src = add_query_arg('ver', time(), $src);
+    } else {
+        $src = preg_replace('/ver=([^&]+)/', 'ver=' . time(), $src);
+    }
+    return $src;
+}
+add_filter('style_loader_src', 'toneka_cache_bust_assets', 9999);
+add_filter('script_loader_src', 'toneka_cache_bust_assets', 9999);
+
 if ( ! function_exists( 'toneka_theme_setup' ) ) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -706,11 +749,12 @@ add_action( 'customize_register', 'toneka_customize_register' );
  * Enqueue scripts and styles.
  */
 function toneka_theme_scripts() {
-	// Ładuj Google Fonts - tylko Figtree
-	wp_enqueue_style( 'toneka-google-fonts', 'https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap', array(), null );
+	// Ładuj lokalne fonty
+	wp_enqueue_style( 'toneka-figtree-font', get_template_directory_uri() . '/fonts/figtree-local.css', array(), wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style( 'toneka-poppins-font', get_template_directory_uri() . '/fonts/poppins-local.css', array(), wp_get_theme()->get( 'Version' ) );
 	
 	// Główny arkusz stylów
-	wp_enqueue_style( 'toneka-theme-style', get_stylesheet_uri(), array('toneka-google-fonts'), wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style( 'toneka-theme-style', get_stylesheet_uri(), array('toneka-figtree-font', 'toneka-poppins-font'), wp_get_theme()->get( 'Version' ) );
 
 	// Skrypt nawigacji
 	wp_enqueue_script(
@@ -2904,7 +2948,7 @@ function toneka_ajax_filter_category() {
             'taxonomy' => 'product_cat',
             'parent' => 0,
             'hide_empty' => true,
-            'orderby' => 'name',
+            'orderby' => 'term_order',
             'order' => 'ASC'
         ));
         
@@ -2926,7 +2970,7 @@ function toneka_ajax_filter_category() {
             'taxonomy' => 'product_cat',
             'parent' => $category_id,
             'hide_empty' => true,
-            'orderby' => 'name',
+            'orderby' => 'term_order',
             'order' => 'ASC'
         ));
         
@@ -2936,7 +2980,7 @@ function toneka_ajax_filter_category() {
             // Sort children only, keep current category first
             $current_cat = array_shift($filter_categories);
             usort($filter_categories, function($a, $b) {
-                return strcmp($a->name, $b->name);
+                return $a->term_order - $b->term_order;
             });
             array_unshift($filter_categories, $current_cat);
             
@@ -2964,7 +3008,7 @@ function toneka_ajax_filter_category() {
                 'taxonomy' => 'product_cat',
                 'parent' => $category->parent,
                 'hide_empty' => true,
-                'orderby' => 'name',
+                'orderby' => 'term_order',
                 'order' => 'ASC'
             ));
             
@@ -2994,7 +3038,7 @@ function toneka_ajax_filter_category() {
                 'taxonomy' => 'product_cat',
                 'parent' => $category_id,
                 'hide_empty' => true,
-                'orderby' => 'name',
+                'orderby' => 'term_order',
                 'order' => 'ASC'
             ));
             
