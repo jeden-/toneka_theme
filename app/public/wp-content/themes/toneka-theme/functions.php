@@ -760,10 +760,9 @@ add_action( 'customize_register', 'toneka_customize_register' );
 function toneka_theme_scripts() {
 	// Ładuj lokalne fonty
 	wp_enqueue_style( 'toneka-figtree-font', get_template_directory_uri() . '/fonts/figtree-local.css', array(), wp_get_theme()->get( 'Version' ) );
-	wp_enqueue_style( 'toneka-poppins-font', get_template_directory_uri() . '/fonts/poppins-local.css', array(), wp_get_theme()->get( 'Version' ) );
 	
 	// Główny arkusz stylów
-	wp_enqueue_style( 'toneka-theme-style', get_stylesheet_uri(), array('toneka-figtree-font', 'toneka-poppins-font'), wp_get_theme()->get( 'Version' ) );
+	wp_enqueue_style( 'toneka-theme-style', get_stylesheet_uri(), array('toneka-figtree-font'), wp_get_theme()->get( 'Version' ) );
 
 	// Skrypt nawigacji
 	wp_enqueue_script(

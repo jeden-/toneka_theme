@@ -1145,7 +1145,6 @@ ol, ul {
     text-transform: uppercase;
     line-height: 1.4;
     color: #ffffff;
-    font-family: 'Poppins', sans-serif;
     margin: 0;
 }
 
@@ -2664,7 +2663,6 @@ ol, ul {
     text-decoration: none;
     font-size: 1rem;
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
     font-weight: normal;
     line-height: 1.4;
 }
@@ -2687,7 +2685,7 @@ ol, ul {
     color: #969696;
     font-size: 0.8rem;
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
+
     font-weight: normal;
 }
 

@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "Toneka",
+    "slug": "toneka-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.toneka.app",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app needs access to microphone for audio playback.",
+        "NSAppleMusicUsageDescription": "This app needs access to music library for audio playback."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.toneka.app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.WAKE_LOCK"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "react-native-track-player",
+        {
+          "ios": {
+            "enableBackgroundMode": true
+          },
+          "android": {
+            "enableBackgroundMode": true
+          }
+        }
+      ]
+    ]
+  }
+}

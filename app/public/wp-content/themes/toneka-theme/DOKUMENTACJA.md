@@ -63,11 +63,11 @@ Strona produktu została zaprojektowana zgodnie z projektem Figma i składa się
 - **Automatyczne linkowanie twórców**: Imiona i nazwiska w polach meta są automatycznie linkowane do stron twórców
 - **Niestandardowy selektor wariantów**: Zastępuje domyślny formularz WooCommerce eleganckim selektorem w formie tabeli
 - **Responsywny design**: Layout dostosowuje się do urządzeń mobilnych
-- **Integracja z Google Fonts**: Używa fontów Figtree, Lato i Poppins zgodnie z projektem
+- **Integracja z lokalnymi fontami**: Używa fontu Figtree zgodnie z projektem
 
 ### d. Kolorystyka i Typografia
 
 - **Tło**: #000000 (czarny)
 - **Tekst**: #ffffff (biały)
 - **Bordery**: #ffffff i rgba(255, 255, 255, 0.4)
-- **Fonty**: Figtree (główny), Lato (tytuły), Poppins (akcenty)
+- **Fonty**: Figtree (główny font dla całej strony)

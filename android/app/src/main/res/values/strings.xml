@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Toneka</string>
+    <string name="track_player_notification_channel_name">Toneka Player</string>
+    <string name="track_player_notification_channel_description">Toneka audio player notifications</string>
+</resources>
