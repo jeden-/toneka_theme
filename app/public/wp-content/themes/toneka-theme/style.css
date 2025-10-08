@@ -392,14 +392,18 @@ ol, ul {
    ===================================== */
 
 .site-header {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 999;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
 }
 
 /* Header standardowy */
 .toneka-main-header {
     background: transparent;
-    height: 82px;
+    height: 120px;
 }
 
 .toneka-header-container {
@@ -3490,6 +3494,9 @@ ol, ul {
     /* border-bottom: 1px solid #ffffff; */
     /* border-top: 1px solid rgba(255, 255, 255, 0.4); */
     padding: 40px 60px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
 }
 
 .toneka-category-filter-container {
