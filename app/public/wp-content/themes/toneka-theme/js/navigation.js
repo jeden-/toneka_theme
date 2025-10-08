@@ -132,5 +132,24 @@
         
         // Make updateCartCount available globally
         window.updateCartCount = updateCartCount;
+
+        // Sticky header with scroll detection
+        const siteHeader = document.querySelector('.site-header');
+        if (siteHeader) {
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Add 'scrolled' class after scrolling 50px
+                if (scrollTop > 50) {
+                    siteHeader.classList.add('scrolled');
+                } else {
+                    siteHeader.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        }
     });
 })();

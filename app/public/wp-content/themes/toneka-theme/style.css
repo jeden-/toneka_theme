@@ -392,12 +392,19 @@ ol, ul {
    ===================================== */
 
 .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 999;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+/* Header z tłem po scrollowaniu */
+.site-header.scrolled {
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
-    transition: background 0.3s ease;
 }
 
 /* Header standardowy */
