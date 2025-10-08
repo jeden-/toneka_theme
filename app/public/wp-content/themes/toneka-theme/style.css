@@ -1103,6 +1103,24 @@ ol, ul {
     color: #ffffff;
 }
 
+/* Usuń padding dla strony głównej */
+body.home .site-main {
+    padding: 0;
+}
+
+/* Style dla sekcji produktów na stronie głównej */
+.toneka-category-page {
+    background: #000000;
+    padding: 0;
+    margin: 0;
+}
+
+.toneka-category-content {
+    padding: 40px 7%;
+    max-width: none;
+    margin: 0;
+}
+
 /* Style dla standardowych stron WordPress */
 .toneka-page-container {
     
