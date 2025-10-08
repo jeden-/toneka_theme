@@ -787,7 +787,8 @@ ol, ul {
 .toneka-hero-slider {
     position: relative;
     width: 100%;
-    height: auto;
+    height: 100vh;
+    min-height: 600px;
     overflow: hidden;
     background: #000000;
 }
@@ -825,21 +826,6 @@ ol, ul {
     grid-template-columns: 1fr 1fr;
     min-height: 50vw;
     background: #000000;
-}
-
-/* Wymuszenie kwadratów dla slajdera */
-.toneka-slide.toneka-hero-section .toneka-hero-left,
-.toneka-slide.toneka-hero-section .toneka-hero-right {
-    aspect-ratio: 1;
-    height: 50vw;
-}
-
-/* Kadrowanie zdjęć do kwadratu */
-.toneka-slide.toneka-hero-section .toneka-hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
 }
 
 
@@ -906,11 +892,11 @@ ol, ul {
     transform: translateY(-50%) scale(0.95);
 }
 
-/* Dots Navigation - na środku dolnej krawędzi prawego boksu */
+/* Dots Navigation */
 .toneka-slider-dots {
     position: absolute;
     bottom: 30px;
-    left: 75%;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
@@ -958,17 +944,20 @@ ol, ul {
         min-height: 500px;
     }
     
-    /* Mobile: slajder w układzie pionowym */
-    .toneka-slide.toneka-hero-section {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        min-height: 100vh;
+    .toneka-slide-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 15px;
     }
     
-    .toneka-slide.toneka-hero-section .toneka-hero-left,
-    .toneka-slide.toneka-hero-section .toneka-hero-right {
-        height: 50vh;
-        aspect-ratio: 1;
+    .toneka-slide-content .toneka-hero-left,
+    .toneka-slide-content .toneka-hero-right {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .toneka-slide-content .toneka-hero-left {
+        margin-bottom: 30px;
     }
     
     .toneka-slider-prev,

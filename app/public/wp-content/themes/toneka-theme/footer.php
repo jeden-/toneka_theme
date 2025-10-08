@@ -61,17 +61,12 @@
 					<?php endif; ?>
 				</div>
 
-				<!-- Trzecia kolumna - widget area + dane kontaktowe -->
-				<div class="toneka-footer-column toneka-footer-right">
-					<div class="toneka-footer-contact">
-						<p>Toneka, Kraków, Szewska 21</p>
-						<p>555 555 555</p>
-					</div>
-					
-					<?php if ( is_active_sidebar( 'footer-widget-3' ) ) : ?>
-						<?php dynamic_sidebar( 'footer-widget-3' ); ?>
-					<?php endif; ?>
-				</div>
+			<!-- Trzecia kolumna - widget area -->
+			<div class="toneka-footer-column toneka-footer-right">
+				<?php if ( is_active_sidebar( 'footer-widget-3' ) ) : ?>
+					<?php dynamic_sidebar( 'footer-widget-3' ); ?>
+				<?php endif; ?>
+			</div>
 
 			</div>
 		</div>
