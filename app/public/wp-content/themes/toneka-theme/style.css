@@ -787,8 +787,7 @@ ol, ul {
 .toneka-hero-slider {
     position: relative;
     width: 100%;
-    height: 100vh;
-    min-height: 100vh;
+    height: auto;
     overflow: hidden;
     background: #000000;
 }
@@ -824,17 +823,15 @@ ol, ul {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
+    min-height: 50vw;
     background: #000000;
 }
 
 /* Wymuszenie kwadratów dla slajdera */
 .toneka-slide.toneka-hero-section .toneka-hero-left,
 .toneka-slide.toneka-hero-section .toneka-hero-right {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 1;
+    height: 50vw;
 }
 
 /* Kadrowanie zdjęć do kwadratu */
@@ -909,16 +906,15 @@ ol, ul {
     transform: translateY(-50%) scale(0.95);
 }
 
-/* Dots Navigation */
+/* Dots Navigation - na środku dolnej krawędzi prawego boksu */
 .toneka-slider-dots {
     position: absolute;
-    bottom: 20px;
-    left: 50%;
+    bottom: 30px;
+    left: 75%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
     z-index: 10;
-    pointer-events: none;
 }
 
 .toneka-slider-dot {
@@ -930,7 +926,6 @@ ol, ul {
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    pointer-events: all;
 }
 
 .toneka-slider-dot.active {
@@ -1101,24 +1096,6 @@ ol, ul {
     padding: 7%;
     min-height: 100vh;
     color: #ffffff;
-}
-
-/* Usuń padding dla strony głównej */
-body.home .site-main {
-    padding: 0;
-}
-
-/* Style dla sekcji produktów na stronie głównej */
-.toneka-category-page {
-    background: #000000;
-    padding: 0;
-    margin: 0;
-}
-
-.toneka-category-content {
-    padding: 40px 7%;
-    max-width: none;
-    margin: 0;
 }
 
 /* Style dla standardowych stron WordPress */
