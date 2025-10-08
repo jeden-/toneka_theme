@@ -66,13 +66,12 @@ get_header(); ?>
                 echo '<div class="toneka-hero-placeholder" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666666; border: 2px dashed #333333;">Dodaj zdjęcie w Dostosuj → Hero Slider</div>';
             }
         } else {
-            // Wyświetl slajdy
+            // Wyświetl slajdy z oryginalnym layoutem 50/50
             foreach ($slides as $index => $slide) {
                 $active_class = $index === 0 ? ' active' : '';
-                echo '<div class="toneka-slide' . $active_class . '" data-slide="' . $index . '">';
-                echo '<div class="toneka-slide-background" style="background-image: url(' . esc_url($slide['image']) . ');"></div>';
-                echo '<div class="toneka-slide-overlay"></div>';
-                echo '<div class="toneka-slide-content">';
+                echo '<div class="toneka-slide toneka-hero-section' . $active_class . '" data-slide="' . $index . '">';
+                echo '<div class="toneka-hero-left">';
+                echo '<div class="toneka-hero-content">';
                 echo '<div class="woocommerce-breadcrumb"><a href="' . esc_url(home_url('/')) . '">WSZYSTKO</a> / STRONA GŁÓWNA</div>';
                 echo '<div class="toneka-product-title"><h1>' . esc_html(strtoupper($slide['title'])) . '</h1></div>';
                 if ($slide['subtitle']) {
@@ -82,6 +81,9 @@ get_header(); ?>
                 echo '<span class="button-text">' . esc_html(strtoupper($slide['button_text'])) . '</span>';
                 echo '<div class="button-arrow"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/><path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/><path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/></svg></div>';
                 echo '</a></div></div>';
+                echo '<div class="toneka-hero-right">';
+                echo '<img src="' . esc_url($slide['image']) . '" alt="' . esc_attr($slide['title']) . '" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" />';
+                echo '</div></div>';
             }
         }
         ?>
