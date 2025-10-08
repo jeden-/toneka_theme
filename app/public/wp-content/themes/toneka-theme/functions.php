@@ -751,6 +751,236 @@ function toneka_customize_register( $wp_customize ) {
 		'section'  => 'toneka_social_media',
 		'type'     => 'text',
 	));
+
+	// Hero Slider Section
+	$wp_customize->add_section( 'toneka_hero_slider', array(
+		'title'    => __( 'Hero Slider', 'toneka-theme' ),
+		'priority' => 30,
+	) );
+
+	// Slider Settings
+	$wp_customize->add_setting( 'toneka_slider_autoplay', array(
+		'default'           => true,
+		'sanitize_callback' => 'wp_validate_boolean',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_autoplay', array(
+		'settings' => 'toneka_slider_autoplay',
+		'label'    => __('Automatyczne odtwarzanie', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'checkbox',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_duration', array(
+		'default'           => 5000,
+		'sanitize_callback' => 'absint',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_duration', array(
+		'settings' => 'toneka_slider_duration',
+		'label'    => __('Czas przejścia (ms)', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'number',
+		'input_attrs' => array(
+			'min' => 1000,
+			'max' => 10000,
+			'step' => 500,
+		),
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_transition', array(
+		'default'           => 'fade',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_transition', array(
+		'settings' => 'toneka_slider_transition',
+		'label'    => __('Typ przejścia', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'select',
+		'choices'  => array(
+			'fade' => 'Fade',
+			'slide' => 'Slide',
+			'zoom' => 'Zoom',
+		),
+	) );
+
+	// Slider 1
+	$wp_customize->add_setting( 'toneka_slider_1_image', array(
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_slider_1_image', array(
+		'settings' => 'toneka_slider_1_image',
+		'label'    => __('Slider 1 - Zdjęcie', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+	) ) );
+
+	$wp_customize->add_setting( 'toneka_slider_1_title', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_1_title', array(
+		'settings' => 'toneka_slider_1_title',
+		'label'    => __('Slider 1 - Tytuł', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_1_subtitle', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_1_subtitle', array(
+		'settings' => 'toneka_slider_1_subtitle',
+		'label'    => __('Slider 1 - Podtytuł', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_1_button_text', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_1_button_text', array(
+		'settings' => 'toneka_slider_1_button_text',
+		'label'    => __('Slider 1 - Tekst przycisku', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_1_button_url', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_1_button_url', array(
+		'settings' => 'toneka_slider_1_button_url',
+		'label'    => __('Slider 1 - URL przycisku', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'url',
+	) );
+
+	// Slider 2
+	$wp_customize->add_setting( 'toneka_slider_2_image', array(
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_slider_2_image', array(
+		'settings' => 'toneka_slider_2_image',
+		'label'    => __('Slider 2 - Zdjęcie', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+	) ) );
+
+	$wp_customize->add_setting( 'toneka_slider_2_title', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_2_title', array(
+		'settings' => 'toneka_slider_2_title',
+		'label'    => __('Slider 2 - Tytuł', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_2_subtitle', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_2_subtitle', array(
+		'settings' => 'toneka_slider_2_subtitle',
+		'label'    => __('Slider 2 - Podtytuł', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_2_button_text', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_2_button_text', array(
+		'settings' => 'toneka_slider_2_button_text',
+		'label'    => __('Slider 2 - Tekst przycisku', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_2_button_url', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_2_button_url', array(
+		'settings' => 'toneka_slider_2_button_url',
+		'label'    => __('Slider 2 - URL przycisku', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'url',
+	) );
+
+	// Slider 3
+	$wp_customize->add_setting( 'toneka_slider_3_image', array(
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_slider_3_image', array(
+		'settings' => 'toneka_slider_3_image',
+		'label'    => __('Slider 3 - Zdjęcie', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+	) ) );
+
+	$wp_customize->add_setting( 'toneka_slider_3_title', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_3_title', array(
+		'settings' => 'toneka_slider_3_title',
+		'label'    => __('Slider 3 - Tytuł', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_3_subtitle', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_3_subtitle', array(
+		'settings' => 'toneka_slider_3_subtitle',
+		'label'    => __('Slider 3 - Podtytuł', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_3_button_text', array(
+		'default'           => '',
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_3_button_text', array(
+		'settings' => 'toneka_slider_3_button_text',
+		'label'    => __('Slider 3 - Tekst przycisku', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'text',
+	) );
+
+	$wp_customize->add_setting( 'toneka_slider_3_button_url', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( 'toneka_slider_3_button_url', array(
+		'settings' => 'toneka_slider_3_button_url',
+		'label'    => __('Slider 3 - URL przycisku', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+		'type'     => 'url',
+	) );
 }
 add_action( 'customize_register', 'toneka_customize_register' );
 
@@ -772,6 +1002,17 @@ function toneka_theme_scripts() {
 		'1.0.0',
 		true
 	);
+
+	// Skrypt slajdera hero (tylko na stronie głównej)
+	if (is_front_page()) {
+		wp_enqueue_script(
+			'toneka-hero-slider',
+			get_template_directory_uri() . '/js/hero-slider.js',
+			array(),
+			wp_get_theme()->get( 'Version' ),
+			true
+		);
+	}
 	
 	// Category/Shop page script - universal for all product pages
 	if ((function_exists('is_product_category') && is_product_category()) || (function_exists('is_shop') && is_shop()) || is_tax('product_cat')) {
