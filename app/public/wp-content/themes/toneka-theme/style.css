@@ -164,7 +164,6 @@ html {
 html,
 body {
     width: 100%;
-    max-width: none;
     background: #000000;
     color: #ffffff;
     font-family: 'Figtree', sans-serif;
@@ -204,7 +203,6 @@ p, span, div, a, button, input, textarea, select,
 .container,
 .wp-block-group__inner-container {
     width: 100%;
-    max-width: none;
     margin: 0;
     padding: 0;
 }
@@ -226,7 +224,6 @@ p, span, div, a, button, input, textarea, select,
 .single-product .wp-site-blocks,
 .single-product .wp-block-post-content {
     width: 100%;
-    max-width: none;
     margin: 0;
     padding: 0;
 }
@@ -235,7 +232,6 @@ p, span, div, a, button, input, textarea, select,
 .single-product .toneka-product-info-section,
 .single-product .toneka-more-section,
 .single-product .toneka-related-products {
-    max-width: none;
 }
 
 del {
@@ -439,7 +435,6 @@ ol, ul {
 .custom-logo {
     height: 18px;
     width: auto;
-    max-width: 140px!important;
 }
 
 .toneka-default-logo a {
@@ -727,7 +722,6 @@ ol, ul {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 100%;
-    max-width: none;
     padding: 0;
 }
 
@@ -972,7 +966,6 @@ ol, ul {
     .toneka-slide-content .toneka-hero-left,
     .toneka-slide-content .toneka-hero-right {
         width: 100%;
-        max-width: 100%;
         padding: 0;
         height: 100vw; /* Wysokość = szerokość ekranu = kwadrat 1:1 */
         border-right: none;
@@ -1023,7 +1016,6 @@ ol, ul {
     grid-template-columns: 1fr 1fr;
     height: 50vw;
     width: 100%;
-    max-width: none;
     margin: 0;
     padding: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -2156,7 +2148,6 @@ ol, ul {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    max-width: none;
     min-height: auto;
     margin: 0;
     padding: 0;
@@ -2634,7 +2625,6 @@ ol, ul {
 /* Audio player */
 .toneka-audio-player {
     width: 100%;
-    max-width: 400px;
     background: #111111;
     border: 1px solid #a5a5a5;
     border-radius: 8px;
@@ -2733,7 +2723,6 @@ ol, ul {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: none;
     margin: 0;
 }
 
@@ -2752,7 +2741,6 @@ ol, ul {
 
 .toneka-related-products {
     width: 100%;
-    max-width: none;
     margin: 0;
 }
 
@@ -3432,7 +3420,6 @@ ol, ul {
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     line-height: 1.6;
     margin: 20px 0;
-    max-width: 80%;
     text-transform: uppercase;
 }
 
@@ -3569,7 +3556,6 @@ ol, ul {
     z-index: 9999;
     font-family: 'Figtree', sans-serif;
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    max-width: 300px;
     animation: slideInRight 0.3s ease;
 }
 
@@ -3618,7 +3604,6 @@ ol, ul {
 }
 
 .toneka-category-products-container {
-    max-width: none;
     margin: 0;
     padding: 0;
 }
@@ -3670,7 +3655,6 @@ ol, ul {
 /* Responsive styles for category page */
 @media (max-width: 768px) {
     .toneka-category-description {
-        max-width: 100%;
         font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     }
     
@@ -3700,7 +3684,6 @@ ol, ul {
         top: 80px;
         right: 10px;
         left: 10px;
-        max-width: none;
         text-align: center;
     }
     
@@ -4079,7 +4062,6 @@ ol, ul {
     border-radius: 12px;
     border: 1px solid #a5a5a5;
     padding: 20px;
-    max-width: 400px;
     width: 90%;
     max-height: 60vh;
     overflow-y: auto;
@@ -4335,7 +4317,6 @@ ol, ul {
 }
 
 .toneka-cart-container {
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -4506,7 +4487,6 @@ ol, ul {
 .toneka-cart-totals {
     border-top: 1px solid #ffffff;
     padding-top: 30px;
-    max-width: 400px;
     margin-left: auto;
 }
 
@@ -4612,7 +4592,6 @@ ol, ul {
     }
     
     .toneka-cart-totals {
-        max-width: none;
         margin-left: 0;
     }
 }
@@ -4625,7 +4604,6 @@ ol, ul {
 }
 
 .toneka-checkout-container {
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -4881,7 +4859,6 @@ ol, ul {
 .woocommerce-account .woocommerce-MyAccount-content,
 .woocommerce-form-login,
 .woocommerce-form-register {
-    max-width: 500px;
     margin: 0 auto;
     background: #000000;
     color: #ffffff;
@@ -5400,7 +5377,6 @@ textarea::placeholder {
 }
 
 .toneka-creator-content {
-    max-width: 800px;
 }
 
 .toneka-creator-header {
@@ -5437,7 +5413,6 @@ textarea::placeholder {
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
-    max-width: 700px;
 }
 
 .toneka-creator-excerpt p {
@@ -5699,7 +5674,6 @@ textarea::placeholder {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    max-width: 1200px;
     margin: 0 auto 60px auto;
     padding: 0 20px;
 }
@@ -5715,7 +5689,6 @@ textarea::placeholder {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -5734,13 +5707,11 @@ textarea::placeholder {
 .toneka-grid-2-products {
     grid-template-columns: repeat(2, 1fr) !important;
     justify-content: center;
-    max-width: 800px;
 }
 
 .toneka-grid-1-product {
     grid-template-columns: 1fr !important;
     justify-content: center;
-    max-width: 400px;
 }
 
 /* Responsive adjustments for homepage grids */
