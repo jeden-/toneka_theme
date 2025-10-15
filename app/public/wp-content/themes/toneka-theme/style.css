@@ -553,6 +553,18 @@ ol, ul {
     .toneka-primary-menu {
         display: flex !important;
     }
+    
+    /* Grid produktów - 2 kolumny dla tabletów (769px-1024px) */
+    .toneka-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop duże ekrany - 3 kolumny */
+@media (min-width: 1025px) {
+    .toneka-products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* Header actions (konto, koszyk) */
@@ -5666,7 +5678,7 @@ textarea::placeholder {
     }
 }
 
-/* Homepage specific styles - 3 products per row */
+/* Homepage specific styles - domyślnie 3 produkty w rzędzie (desktop duży) */
 .toneka-homepage-audio-grid,
 .toneka-homepage-merch-grid {
     display: grid;
@@ -5690,6 +5702,17 @@ textarea::placeholder {
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Tablet (769px-1024px) - 2 kolumny */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .toneka-homepage-audio-grid,
+    .toneka-homepage-merch-grid,
+    .toneka-suggested-merch-grid,
+    .toneka-suggested-audio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
 }
 
 /* Dynamiczne dostosowanie do liczby produktów */
