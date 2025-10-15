@@ -9,6 +9,25 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: custom-theme
 Text Domain: tonekatheme
+
+RESPONSYWNOŚĆ - 2 BREAKPOINTY:
+--------------------------------
+Mobile (≤768px):
+- 1 kolumna produktów
+- Menu hamburger
+- Hero: 2 kwadraty pionowo (tekst nad zdjęciem)
+- Fonty: minimalne rozmiary z clamp()
+
+Desktop (>768px):
+- 3 kolumny produktów
+- Menu normalne
+- Hero: 2 kwadraty poziomo (tekst | zdjęcie)
+- Fonty: maksymalne rozmiary z clamp()
+
+FONTY RESPONSYWNE:
+- Wszystkie fonty używają clamp(min, 1.0vw, max)
+- Skalują się płynnie z szerokością ekranu
+- Proporcje: 0.8vw-1.4vw w zależności od rozmiaru bazowego
 */
 
 /* =====================================
@@ -742,6 +761,12 @@ ol, ul {
     transition: color 0.3s ease;
 }
 
+/* Mobile menu */
+@media (max-width: 768px) {
+    .product-page-header .toneka-primary-menu {
+        display: none;
+    }
+}
 .product-page-header .toneka-header-actions {
     display: flex;
     align-items: center;
@@ -1037,6 +1062,7 @@ ol, ul {
     align-items: flex-start;
     overflow: visible;
     box-sizing: border-box;
+    border-right: 1px solid #a5a5a5;
 }
 
 /* Ukryj kategorie produktu nad breadcrumbami */
@@ -2135,7 +2161,7 @@ ol, ul {
 .toneka-product-info-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 100%;
+    width: 70%;
     min-height: auto;
     margin: 0;
     padding: 0;
@@ -2806,7 +2832,7 @@ ol, ul {
     flex: 1;
     overflow: hidden;
     background: #000000;
-    padding: 60px;
+    padding: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3156,13 +3182,12 @@ ol, ul {
 /* Scrolling text section */
 .toneka-scrolling-text-section {
     background: #000000;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid #a5a5a5;
+    border-bottom: 1px solid #a5a5a5;
     padding: 30px 0;
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
-    margin-top: 90px;
 }
 
 .toneka-footer-main {
@@ -5661,9 +5686,8 @@ textarea::placeholder {
 .toneka-homepage-merch-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin: 0 auto 60px auto;
-    padding: 0 20px;
+    margin: 0 auto 0 auto;
+    padding: 0;
 }
 
 /* Suggested products sections on single product page */
