@@ -3529,9 +3529,9 @@ function toneka_render_product_card($product_id) {
     ob_start();
     ?>
     <div class="toneka-product-card" data-url="<?php echo esc_url($product_url); ?>">
-        <?php if (!empty($product_label)): ?>
-            <div class="toneka-product-label"><?php echo esc_html(strtoupper($product_label)); ?></div>
-        <?php endif; ?>
+        <div class="toneka-product-label">
+            <?php if (!empty($product_label)) echo esc_html(strtoupper($product_label)); ?>
+        </div>
         
         <div class="toneka-product-image-wrapper">
             <?php if ($image_url): ?>

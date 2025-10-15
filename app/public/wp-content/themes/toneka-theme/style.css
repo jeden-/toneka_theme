@@ -2785,12 +2785,12 @@ ol, ul {
     position: relative;
     transition: transform 0.2s ease;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid #a5a5a5;
     border-left: none;
 }
 
 .toneka-product-card:hover {
-    transform: translateY(-2px);
+    transform: none;
 }
 
 /* Pierwszy kafelek w rzędzie - bez lewego bordera */
@@ -2812,13 +2812,20 @@ ol, ul {
 .toneka-product-label {
     background: #000000;
     color: #969696;
-    padding: 8px 12px;
-    font-size: 0.7rem;
-    font-weight: 300;
+    padding: 3% 4%;
+    font-size: 0.9rem;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-family: 'Figtree', sans-serif;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+}
+
+/* Pusta etykieta - nadal zajmuje miejsce */
+.toneka-product-label:empty {
+    min-height: 2.5em;
 }
 
 /* Wrapper dla zdjęcia - zajmuje dostępne miejsce w karcie */
@@ -2855,13 +2862,12 @@ ol, ul {
 /* Info pod zdjęciem - tytuł / autor w jednej linii */
 .toneka-product-info {
     background: #000000;
-    padding: 12px;
+    padding: 3% 4%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     flex-shrink: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 /* Linia z tytułem i autorem */
@@ -3415,6 +3421,7 @@ ol, ul {
     margin: 0;
     text-align: center;
     padding: 30px 0;
+    border-top: 1px solid #a5a5a5;
 }
 
 /* Quote section styling */
