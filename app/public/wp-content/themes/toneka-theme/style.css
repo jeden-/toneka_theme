@@ -2805,37 +2805,25 @@ ol, ul {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Wrapper dla zdjęcia z PROMO badge */
+/* Wrapper dla zdjęcia */
 .toneka-product-image-wrapper {
     position: relative;
     width: 100%;
     aspect-ratio: 1;
     overflow: hidden;
     background: #000000;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .toneka-product-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     display: block;
-}
-
-/* PROMO Badge - lewy górny róg */
-.toneka-promo-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: #ffffff;
-    color: #000000;
-    padding: 6px 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    z-index: 2;
-    font-family: 'Figtree', sans-serif;
 }
 
 /* Placeholder dla braku zdjęcia */
@@ -2848,77 +2836,63 @@ ol, ul {
     background: #1a1a1a;
 }
 
-/* Info pod zdjęciem - nazwa i autorzy */
+/* Info pod zdjęciem - tytuł / autor w jednej linii */
 .toneka-product-info {
     background: #000000;
     padding: 12px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
     align-items: flex-start;
     justify-content: flex-end;
     min-height: 60px;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Nazwa produktu */
-.toneka-product-info .toneka-product-title {
+/* Linia z tytułem i autorem */
+.toneka-product-title-line {
     width: 100%;
 }
 
-.toneka-product-info .toneka-product-title a {
+.toneka-product-title-line a {
     color: #ffffff;
     text-decoration: none;
     font-size: 0.9rem;
     text-transform: uppercase;
-    font-weight: 400;
     line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-family: 'Figtree', sans-serif;
+    display: block;
+    word-wrap: break-word;
 }
 
-.toneka-product-info .toneka-product-title a:hover {
+.toneka-product-title-line a:hover {
     opacity: 0.8;
 }
 
-/* Autorzy/Graficy */
-.toneka-product-creators {
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 300;
-    line-height: 1.3;
-    text-transform: uppercase;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: 'Figtree', sans-serif;
-    width: 100%;
+/* Nazwa produktu - semibold */
+.toneka-product-name {
+    font-weight: 600;
 }
 
-/* Dodatkowy opis pod autorami */
-.toneka-product-subtitle {
-    color: #969696;
-    font-size: 0.7rem;
-    font-weight: 300;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-family: 'Figtree', sans-serif;
-    width: 100%;
-    margin-top: 2px;
+/* Separator między tytułem a autorem */
+.toneka-title-separator {
+    font-weight: 400;
+}
+
+/* Autor - regular */
+.toneka-product-author {
+    font-weight: 400;
 }
 
 /* Backward compatibility - ukryj stare elementy */
-.toneka-product-author {
+.toneka-product-creators {
+    display: none !important;
+}
+
+.toneka-product-subtitle {
+    display: none !important;
+}
+
+.toneka-product-title {
     display: none !important;
 }
 
