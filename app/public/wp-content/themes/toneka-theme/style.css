@@ -1065,6 +1065,16 @@ ol, ul {
     border-right: 1px solid #a5a5a5;
 }
 
+.toneka-text-section-image {
+    margin-bottom: 20px;
+}
+
+.toneka-text-section-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Ukryj kategorie produktu nad breadcrumbami */
 .toneka-hero-content .product-categories,
 .toneka-hero-content .woocommerce-product-categories,

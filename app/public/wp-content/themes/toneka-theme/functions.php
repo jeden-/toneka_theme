@@ -981,6 +981,17 @@ function toneka_customize_register( $wp_customize ) {
 		'section'  => 'toneka_hero_slider',
 		'type'     => 'url',
 	) );
+
+	// Obrazek w sekcji tekstowej
+	$wp_customize->add_setting( 'toneka_text_section_image', array(
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_text_section_image', array(
+		'settings' => 'toneka_text_section_image',
+		'label'    => __('Obrazek w sekcji tekstowej', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+	) ) );
 }
 add_action( 'customize_register', 'toneka_customize_register' );
 

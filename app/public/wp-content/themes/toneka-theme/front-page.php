@@ -54,7 +54,13 @@ get_header(); ?>
                 echo '<div class="toneka-hero-section">';
                 echo '<div class="toneka-hero-left">';
                 echo '<div class="toneka-hero-content">';
-                echo '<div class="woocommerce-breadcrumb"><a href="' . esc_url(home_url('/')) . '">WSZYSTKO</a> / STRONA GŁÓWNA</div>';
+                
+                // Obrazek w sekcji tekstowej
+                $text_section_image = get_theme_mod('toneka_text_section_image', '');
+                if ($text_section_image) {
+                    echo '<div class="toneka-text-section-image"><img src="' . esc_url($text_section_image) . '" alt="Text Section Image" /></div>';
+                }
+                
                 echo '<div class="toneka-product-title"><h1>' . esc_html(strtoupper(get_theme_mod('toneka_homepage_hero_text', 'Melodie jak fale, co w stronę marzeń płyną, a dźwięki to słowa, co w ciszy z duszą śpiewają'))) . '</h1></div>';
                 echo '<a href="' . esc_url(get_theme_mod('toneka_homepage_button_url', wc_get_page_permalink('shop'))) . '" class="toneka-listen-button toneka-filter-button animated-arrow-button">';
                 echo '<span class="button-text">' . esc_html(strtoupper(get_theme_mod('toneka_homepage_button_text', 'ostatnio dodane'))) . '</span>';
@@ -72,7 +78,13 @@ get_header(); ?>
                 echo '<div class="toneka-slide toneka-hero-section' . $active_class . '" data-slide="' . $index . '">';
                 echo '<div class="toneka-hero-left">';
                 echo '<div class="toneka-hero-content">';
-                echo '<div class="woocommerce-breadcrumb"><a href="' . esc_url(home_url('/')) . '">WSZYSTKO</a> / STRONA GŁÓWNA</div>';
+                
+                // Obrazek w sekcji tekstowej
+                $text_section_image = get_theme_mod('toneka_text_section_image', '');
+                if ($text_section_image) {
+                    echo '<div class="toneka-text-section-image"><img src="' . esc_url($text_section_image) . '" alt="Text Section Image" /></div>';
+                }
+                
                 echo '<div class="toneka-product-title"><h1>' . esc_html(strtoupper($slide['title'])) . '</h1></div>';
                 if ($slide['subtitle']) {
                     echo '<div class="toneka-slide-subtitle"><p>' . esc_html($slide['subtitle']) . '</p></div>';
