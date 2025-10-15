@@ -2810,6 +2810,10 @@ ol, ul {
 
 /* Etykieta nad zdjęciem (np. W ROLI GŁÓWNEJ: MACIEJ STUHR) */
 .toneka-product-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     background: #000000;
     color: #969696;
     padding: 3% 4%;
@@ -2818,14 +2822,10 @@ ol, ul {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-family: 'Figtree', sans-serif;
+    z-index: 10;
     min-height: 2.5em;
     display: flex;
     align-items: center;
-}
-
-/* Pusta etykieta - nadal zajmuje miejsce */
-.toneka-product-label:empty {
-    min-height: 2.5em;
 }
 
 /* Wrapper dla zdjęcia - zajmuje dostępne miejsce w karcie */
