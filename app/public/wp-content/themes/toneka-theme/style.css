@@ -544,6 +544,17 @@ ol, ul {
     transform: rotate(-45deg) translate(7px, -6px);
 }
 
+/* Desktop - ukryj hamburger, pokaż normalne menu */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none !important;
+    }
+    
+    .toneka-primary-menu {
+        display: flex !important;
+    }
+}
+
 /* Header actions (konto, koszyk) */
 .toneka-header-actions {
     display: flex;
