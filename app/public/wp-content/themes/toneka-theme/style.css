@@ -3611,7 +3611,7 @@ ol, ul {
 /* Category products grid - reuse related products grid */
 .toneka-category-products-grid {
     /* Inherits all styles from .toneka-products-grid */
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    /* border-top: 1px solid rgba(255, 255, 255, 0.4); */
 }
 
 /* No products message */
@@ -5680,15 +5680,15 @@ textarea::placeholder {
 
 /* Suggested products sections on single product page */
 .toneka-suggested-section {
-    margin: 60px 0;
-    padding: 0 20px;
+    margin:  0;
+    padding: 0;
 }
 
 .toneka-suggested-merch-grid,
 .toneka-suggested-audio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    /* gap: 30px; */
     margin: 0 auto;
 }
 
@@ -5703,16 +5703,7 @@ textarea::placeholder {
     }
 }
 
-/* Dynamiczne dostosowanie do liczby produktów */
-.toneka-grid-2-products {
-    grid-template-columns: repeat(2, 1fr) !important;
-    justify-content: center;
-}
-
-.toneka-grid-1-product {
-    grid-template-columns: 1fr !important;
-    justify-content: center;
-}
+/* Grid zawsze 3 kolumny - bez dynamicznego dostosowania */
 
 /* Responsive adjustments for homepage grids */
 @media (max-width: 768px) {

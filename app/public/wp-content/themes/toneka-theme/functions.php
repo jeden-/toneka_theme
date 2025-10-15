@@ -2853,13 +2853,8 @@ function toneka_display_suggested_audio() {
     echo '<h2>PROPONOWANE SŁUCHOWISKA</h2>';
     echo '</div>';
     
-    // Dodaj klasę CSS w zależności od liczby produktów
+    // Grid zawsze 3 kolumny
     $grid_class = 'toneka-products-grid toneka-category-products-grid toneka-suggested-audio-grid';
-    if (count($audio_products) == 2) {
-        $grid_class .= ' toneka-grid-2-products';
-    } elseif (count($audio_products) == 1) {
-        $grid_class .= ' toneka-grid-1-product';
-    }
     
     echo '<div class="' . $grid_class . '">';
     
