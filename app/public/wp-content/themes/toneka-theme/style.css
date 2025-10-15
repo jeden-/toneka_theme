@@ -2781,15 +2781,31 @@ ol, ul {
     display: flex;
     flex-direction: column;
     width: 100%;
+    aspect-ratio: 1;
     position: relative;
     transition: transform 0.2s ease;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: none;
+    border-left: none;
 }
 
 .toneka-product-card:hover {
     transform: translateY(-2px);
+}
+
+/* Pierwszy kafelek w rzędzie - bez lewego bordera */
+.toneka-product-card:first-child {
+    border-left: none;
+}
+
+/* Ostatni kafelek w rzędzie - prawy border przezroczysty (niewidoczny ale zajmuje miejsce) */
+.toneka-product-card:last-child {
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* Ostatni rząd kafelków - bez dolnego bordera (łączy się z footerem) */
+.toneka-products-grid .toneka-product-card:nth-last-child(-n+3) {
+    border-bottom: none;
 }
 
 /* Etykieta nad zdjęciem (np. W ROLI GŁÓWNEJ: MACIEJ STUHR) */
@@ -2805,11 +2821,11 @@ ol, ul {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Wrapper dla zdjęcia */
+/* Wrapper dla zdjęcia - zajmuje dostępne miejsce w karcie */
 .toneka-product-image-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 1;
+    flex: 1;
     overflow: hidden;
     background: #000000;
     padding: 60px;
@@ -2843,8 +2859,8 @@ ol, ul {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-end;
-    min-height: 60px;
+    justify-content: center;
+    flex-shrink: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 
