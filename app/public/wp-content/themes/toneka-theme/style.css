@@ -990,26 +990,6 @@ ol, ul {
     }
 }
 
-@media (max-width: 480px) {
-    .toneka-hero-slider {
-        height: 100vw;
-    }
-    
-    .toneka-slide-content {
-        padding: 0 10px;
-    }
-    
-    .toneka-slider-prev,
-    .toneka-slider-next {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .toneka-slide-subtitle p {
-        font-size: 14px;
-    }
-}
-
 /* Hero Section - Idealne kwadraty 50/50 */
 .toneka-hero-section {
     display: grid;
@@ -2576,29 +2556,6 @@ ol, ul {
     }
 }
 
-@media (max-width: 480px) {
-    .toneka-cart-section,
-    .toneka-cart-form {
-        gap: 12px;
-    }
-    
-    .toneka-quantity-wrapper {
-        min-width: auto;
-        flex-shrink: 0;
-    }
-    
-    .toneka-add-to-cart-button {
-        font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-        padding: 12px 16px;
-        min-width: 0;
-    }
-    
-    .toneka-variation-price-display {
-        font-size: clamp(0.8rem, 1.2vw, 1.1rem);
-        text-align: center;
-    }
-}
-
 .toneka-tags-row {
     margin-top: 30px;
 }
@@ -3250,54 +3207,6 @@ ol, ul {
    ===================================== */
 
 /* Tablet (769px - 1024px) */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .toneka-footer-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0 40px;
-        text-align: center;
-    }
-    
-    .toneka-footer-right {
-        align-items: center;
-        text-align: center;
-    }
-    
-    .toneka-back-to-top {
-        padding: 0 40px;
-        justify-content: center;
-    }
-    
-    .toneka-scrolling-text-content {
-        font-size: 20px;
-        padding-right: 80px;
-    }
-
-    .toneka-header-container {
-        padding: 7px 40px;
-    }
-    
-    .toneka-hero-content {
-        padding: 40px 80px 40px 100px;
-    }
-    
-    .toneka-product-details {
-        padding: 120px 80px 100px 100px;
-    }
-    
-    .toneka-audio-section {
-        padding: 100px;
-    }
-    
-    .toneka-product-title {
-        font-size: 60px;
-    }
-    
-    .toneka-hero-right .toneka-product-image {
-        padding: 100px 120px;
-    }
-}
-
 /* Mobile (max 768px) */
 @media (max-width: 768px) {
     .toneka-footer-container {
@@ -3732,12 +3641,6 @@ ol, ul {
 }
 
 /* Responsive styles for category page */
-@media (max-width: 1200px) {
-    .toneka-category-description {
-        max-width: 90%;
-    }
-}
-
 @media (max-width: 768px) {
     .toneka-category-description {
         max-width: 100%;
@@ -4114,33 +4017,6 @@ ol, ul {
     
 }
 
-@media (max-width: 480px) {
-    .toneka-figma-player {
-        height: 250px;
-        border-radius: 16px;
-    }
-    
-    .toneka-skip-button {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .toneka-play-pause-button {
-        width: 55px;
-        height: 55px;
-    }
-    
-    .toneka-left-controls,
-    .toneka-right-controls {
-        gap: 3px;
-    }
-    
-    .toneka-control-btn {
-        width: 30px;
-        height: 30px;
-    }
-}
-
 /* Playlist overlay */
 .toneka-playlist-overlay {
     position: absolute;
@@ -4408,13 +4284,6 @@ ol, ul {
     .toneka-figma-player {
         min-height: 180px;
         max-height: 600px;
-    }
-}
-
-@media (max-width: 480px) {
-    .toneka-figma-player {
-        min-height: 150px;
-        max-height: 400px;
     }
 }
 
@@ -5597,26 +5466,6 @@ textarea::placeholder {
 }
 
 /* Responsive styles for creators archive */
-@media (max-width: 1024px) {
-    .toneka-creators-archive-content {
-        border-top: 1px solid #ffffff;
-        padding: 60px 20px;
-    }
-    
-    .toneka-creator-item {
-        padding: 30px 0;
-    }
-    
-    .toneka-creator-name {
-        font-size: clamp(1.3rem, 2vw, 1.8rem);
-    }
-    
-    .toneka-creator-function {
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-        margin-left: 15px;
-    }
-}
-
 @media (max-width: 768px) {
     .toneka-creators-archive-description {
         font-size: clamp(0.65rem, 1.0vw, 0.9rem);
@@ -5646,20 +5495,6 @@ textarea::placeholder {
     
     .toneka-creator-excerpt {
         font-size: clamp(0.75rem, 1.1vw, 1rem);
-    }
-}
-
-@media (max-width: 480px) {
-    .toneka-creator-name {
-        font-size: clamp(1rem, 1.4vw, 1.3rem);
-    }
-    
-    .toneka-creator-function {
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    }
-    
-    .toneka-creator-excerpt {
-        font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     }
 }
 
@@ -5810,13 +5645,6 @@ textarea::placeholder {
 }
 
 /* Responsywność dla strony twórcy - identyczna z produktem */
-@media (max-width: 1024px) {
-    .toneka-portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-}
-
 @media (max-width: 768px) {
     /* Creator używa tej samej struktury co produkt */
     .toneka-creator-portfolio-section {
@@ -5838,19 +5666,6 @@ textarea::placeholder {
     }
 }
 
-@media (max-width: 480px) {
-    .toneka-creator-description {
-        font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    }
-    
-    .toneka-creator-title-addon {
-        font-size: 0.4em;
-        margin-top: 5px;
-    }
-    
-    .toneka-creator-title-right {
-        font-size: clamp(0.55rem, 0.8vw, 0.7rem);
-    }
 /* Homepage specific styles - 3 products per row */
 .toneka-homepage-audio-grid,
 .toneka-homepage-merch-grid {
@@ -5891,16 +5706,6 @@ textarea::placeholder {
 }
 
 /* Responsive adjustments for homepage grids */
-@media (max-width: 1024px) {
-    .toneka-homepage-audio-grid,
-    .toneka-homepage-merch-grid,
-    .toneka-suggested-merch-grid,
-    .toneka-suggested-audio-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-}
-
 @media (max-width: 768px) {
     .toneka-homepage-audio-grid,
     .toneka-homepage-merch-grid,
