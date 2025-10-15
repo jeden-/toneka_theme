@@ -1292,14 +1292,31 @@ function toneka_add_custom_product_fields() {
 		}
 	</style>';
 
-	// Pole PROMO
+	// Pola wyświetlane na kartach produktów
 	echo '<div class="options_group">';
 	woocommerce_wp_text_input([
+		'id' => '_product_label',
+		'label' => __('Etykieta nad zdjęciem (lista produktów)', 'tonekatheme'),
+		'placeholder' => __('np. W ROLI GŁÓWNEJ: MACIEJ STUHR', 'tonekatheme'),
+		'desc_tip' => true,
+		'description' => __('Szary tekst wyświetlany nad zdjęciem produktu na listach. Jeśli puste - nie wyświetla się.', 'tonekatheme'),
+	]);
+	
+	woocommerce_wp_text_input([
 		'id' => '_promo_badge',
-		'label' => __('PROMO (wyświetlany nad zdjęciem produktu)', 'tonekatheme'),
+		'label' => __('PROMO badge (na zdjęciu produktu)', 'tonekatheme'),
 		'placeholder' => __('np. NOWOŚĆ, PROMOCJA, -20%', 'tonekatheme'),
 		'desc_tip' => true,
-		'description' => __('Tekst wyświetlany w lewym górnym rogu nad zdjęciem produktu na listach. Jeśli puste - nie wyświetla się.', 'tonekatheme'),
+		'description' => __('Biały badge w lewym górnym rogu zdjęcia produktu. Jeśli puste - nie wyświetla się.', 'tonekatheme'),
+	]);
+	
+	woocommerce_wp_textarea_input([
+		'id' => '_product_subtitle',
+		'label' => __('Dodatkowy opis (pod autorami)', 'tonekatheme'),
+		'placeholder' => __('np. TUTAJ DRUGA LINIJKA JEŚLI TYTUŁ BĘDZIE DŁUŻSZY', 'tonekatheme'),
+		'desc_tip' => true,
+		'description' => __('Szary tekst wyświetlany pod autorami na listach produktów. Jeśli puste - nie wyświetla się.', 'tonekatheme'),
+		'rows' => 2,
 	]);
 	echo '</div>';
 	
@@ -1424,10 +1441,10 @@ function toneka_save_custom_product_fields($post_id) {
 	// error_log('TONEKA DEBUG - Saving product fields for post_id: ' . $post_id);
 	
 	// Zapisz proste pola tekstowe
-	$simple_fields = ['_promo_badge', '_rok_produkcji', '_czas_trwania'];
+	$simple_fields = ['_product_label', '_promo_badge', '_product_subtitle', '_rok_produkcji', '_czas_trwania'];
 	foreach ($simple_fields as $field) {
 		if (isset($_POST[$field])) {
-			$value = sanitize_text_field($_POST[$field]);
+			$value = $field === '_product_subtitle' ? sanitize_textarea_field($_POST[$field]) : sanitize_text_field($_POST[$field]);
 			update_post_meta($post_id, $field, $value);
 		}
 	}
@@ -3521,7 +3538,9 @@ function toneka_render_product_card($product_id) {
     $image_url = get_the_post_thumbnail_url($product_id, 'full');
     $product_name = $product_obj->get_name();
     $product_url = $product_obj->get_permalink();
+    $product_label = get_post_meta($product_id, '_product_label', true);
     $promo_badge = get_post_meta($product_id, '_promo_badge', true);
+    $product_subtitle = get_post_meta($product_id, '_product_subtitle', true);
     
     // Get all creators (comma-separated)
     $creators = toneka_get_all_product_creators($product_id);
@@ -3529,6 +3548,10 @@ function toneka_render_product_card($product_id) {
     ob_start();
     ?>
     <div class="toneka-product-card" data-url="<?php echo esc_url($product_url); ?>">
+        <?php if (!empty($product_label)): ?>
+            <div class="toneka-product-label"><?php echo esc_html(strtoupper($product_label)); ?></div>
+        <?php endif; ?>
+        
         <div class="toneka-product-image-wrapper">
             <?php if (!empty($promo_badge)): ?>
                 <div class="toneka-promo-badge"><?php echo esc_html(strtoupper($promo_badge)); ?></div>
@@ -3551,7 +3574,10 @@ function toneka_render_product_card($product_id) {
                 <a href="<?php echo esc_url($product_url); ?>"><?php echo esc_html(strtoupper($product_name)); ?></a>
             </div>
             <?php if (!empty($creators)): ?>
-                <div class="toneka-product-creators"><?php echo esc_html($creators); ?></div>
+                <div class="toneka-product-creators"><?php echo esc_html(strtoupper($creators)); ?></div>
+            <?php endif; ?>
+            <?php if (!empty($product_subtitle)): ?>
+                <div class="toneka-product-subtitle"><?php echo esc_html($product_subtitle); ?></div>
             <?php endif; ?>
         </div>
     </div>

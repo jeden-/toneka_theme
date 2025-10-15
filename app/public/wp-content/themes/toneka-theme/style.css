@@ -2792,6 +2792,19 @@ ol, ul {
     transform: translateY(-2px);
 }
 
+/* Etykieta nad zdjęciem (np. W ROLI GŁÓWNEJ: MACIEJ STUHR) */
+.toneka-product-label {
+    background: #000000;
+    color: #969696;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Figtree', sans-serif;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
 /* Wrapper dla zdjęcia z PROMO badge */
 .toneka-product-image-wrapper {
     position: relative;
@@ -2874,8 +2887,24 @@ ol, ul {
 
 /* Autorzy/Graficy */
 .toneka-product-creators {
-    color: #969696;
+    color: #ffffff;
     font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1.3;
+    text-transform: uppercase;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Figtree', sans-serif;
+    width: 100%;
+}
+
+/* Dodatkowy opis pod autorami */
+.toneka-product-subtitle {
+    color: #969696;
+    font-size: 0.7rem;
     font-weight: 300;
     line-height: 1.3;
     display: -webkit-box;
@@ -2885,6 +2914,7 @@ ol, ul {
     text-overflow: ellipsis;
     font-family: 'Figtree', sans-serif;
     width: 100%;
+    margin-top: 2px;
 }
 
 /* Backward compatibility - ukryj stare elementy */
