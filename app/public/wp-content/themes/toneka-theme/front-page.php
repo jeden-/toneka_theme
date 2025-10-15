@@ -147,46 +147,8 @@ get_header(); ?>
                 
                 if ($audio_products) {
                     foreach ($audio_products as $product) {
-                        $product_id = $product->get_id();
-                        $product_obj = $product;
-                        $image_url = get_the_post_thumbnail_url($product_id, 'full');
-                        
-                        // Get creator name using the same function as category pages
-                        if (function_exists('toneka_get_product_creator_name')) {
-                            $creator_name = toneka_get_product_creator_name($product_id);
-                        } else {
-                            $creator_name = 'TONEKA';
-                        }
-                        ?>
-                        
-                        <div class="toneka-product-card" data-url="<?php echo esc_url($product_obj->get_permalink()); ?>">
-                            <div class="toneka-product-author">
-                                <?php echo esc_html($creator_name); ?>
-                            </div>
-                            
-                            <div class="toneka-product-image">
-                                <?php if ($image_url): ?>
-                                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_obj->get_name()); ?>">
-                                <?php else: ?>
-                                    <div class="toneka-product-placeholder">
-                                        <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">
-                                            <rect width="200" height="200" fill="#333"/>
-                                            <text x="100" y="100" text-anchor="middle" fill="white" font-size="14">BRAK ZDJĘCIA</text>
-                                        </svg>
-                                    </div>
-                                <?php endif; ?>
-                                
-                                <div class="toneka-product-footer">
-                                    <div class="toneka-product-title">
-                                        <a href="<?php echo esc_url($product_obj->get_permalink()); ?>"><?php echo esc_html(strtoupper($product_obj->get_name())); ?></a>
-                                    </div>
-                                    <div class="toneka-product-price">
-                                        <?php echo $product_obj->get_price_html(); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+                        // Use new product card function
+                        echo toneka_render_product_card($product->get_id());
                         <?php
                     }
                 } else {
@@ -239,46 +201,8 @@ get_header(); ?>
                 
                 if ($merch_products) {
                     foreach ($merch_products as $product) {
-                        $product_id = $product->get_id();
-                        $product_obj = $product;
-                        $image_url = get_the_post_thumbnail_url($product_id, 'full');
-                        
-                        // Get creator name using the same function as category pages
-                        if (function_exists('toneka_get_product_creator_name')) {
-                            $creator_name = toneka_get_product_creator_name($product_id);
-                        } else {
-                            $creator_name = 'TONEKA';
-                        }
-                        ?>
-                        
-                        <div class="toneka-product-card" data-url="<?php echo esc_url($product_obj->get_permalink()); ?>">
-                            <div class="toneka-product-author">
-                                <?php echo esc_html($creator_name); ?>
-                            </div>
-                            
-                            <div class="toneka-product-image">
-                                <?php if ($image_url): ?>
-                                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_obj->get_name()); ?>">
-                                <?php else: ?>
-                                    <div class="toneka-product-placeholder">
-                                        <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">
-                                            <rect width="200" height="200" fill="#333"/>
-                                            <text x="100" y="100" text-anchor="middle" fill="white" font-size="14">BRAK ZDJĘCIA</text>
-                                        </svg>
-                                    </div>
-                                <?php endif; ?>
-                                
-                                <div class="toneka-product-footer">
-                                    <div class="toneka-product-title">
-                                        <a href="<?php echo esc_url($product_obj->get_permalink()); ?>"><?php echo esc_html(strtoupper($product_obj->get_name())); ?></a>
-                                    </div>
-                                    <div class="toneka-product-price">
-                                        <?php echo $product_obj->get_price_html(); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+                        // Use new product card function
+                        echo toneka_render_product_card($product->get_id());
                         <?php
                     }
                 } else {
