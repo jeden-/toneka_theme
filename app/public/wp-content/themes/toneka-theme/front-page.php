@@ -149,7 +149,6 @@ get_header(); ?>
                     foreach ($audio_products as $product) {
                         // Use new product card function
                         echo toneka_render_product_card($product->get_id());
-                        <?php
                     }
                 } else {
                     echo '<div class="toneka-no-products"><p>Brak słuchowisk do wyświetlenia.</p></div>';
@@ -203,7 +202,6 @@ get_header(); ?>
                     foreach ($merch_products as $product) {
                         // Use new product card function
                         echo toneka_render_product_card($product->get_id());
-                        <?php
                     }
                 } else {
                     echo '<div class="toneka-no-products"><p>Brak produktów merch do wyświetlenia.</p></div>';
