@@ -971,9 +971,10 @@ ol, ul {
     
     .toneka-slide-content .toneka-hero-left,
     .toneka-slide-content .toneka-hero-right {
+        width: 100%;
         max-width: 100%;
         padding: 0;
-        height: 100vw; /* Każdy kwadrat 100vw */
+        height: 100vw; /* Wysokość = szerokość ekranu = kwadrat 1:1 */
         border-right: none;
     }
     
