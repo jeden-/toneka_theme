@@ -2925,8 +2925,16 @@ ol, ul {
     display: none !important;
 }
 
-.toneka-product-title {
+/* Ukryj tytuły tylko w kartach produktów, nie w sliderze */
+.toneka-product-card .toneka-product-title {
     display: none !important;
+}
+
+/* Pokaż tytuły w sliderze */
+.toneka-hero-slider .toneka-product-title,
+.toneka-slide .toneka-product-title,
+.toneka-hero-content .toneka-product-title {
+    display: block !important;
 }
 
 .toneka-product-footer {
