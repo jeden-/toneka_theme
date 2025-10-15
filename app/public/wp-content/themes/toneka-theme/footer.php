@@ -82,7 +82,7 @@
 					$facebook_url = get_theme_mod('toneka_facebook_url', 'https://facebook.com/toneka');
 					$facebook_text = get_theme_mod('toneka_facebook_text', 'FACEBOOK');
 					$youtube_url = get_theme_mod('toneka_youtube_url', 'https://youtube.com/toneka');
-					$youtube_text = get_theme_mod('toneka_youtube_text', 'YOU TUBE');
+					$youtube_text = get_theme_mod('toneka_youtube_text', 'YOUTUBE');
 					?>
 					
 					<?php if ($instagram_url && $instagram_url !== '#') : ?>
