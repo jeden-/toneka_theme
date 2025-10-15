@@ -960,23 +960,37 @@ ol, ul {
 /* Responsive Design */
 @media (max-width: 768px) {
     .toneka-hero-slider {
-        height: 100vw;
+        height: 200vw; /* 2 kwadraty pionowo */
     }
     
     .toneka-slide-content {
         flex-direction: column;
         text-align: center;
-        padding: 0 15px;
+        padding: 0;
     }
     
     .toneka-slide-content .toneka-hero-left,
     .toneka-slide-content .toneka-hero-right {
         max-width: 100%;
         padding: 0;
+        height: 100vw; /* Każdy kwadrat 100vw */
+        border-right: none;
     }
     
     .toneka-slide-content .toneka-hero-left {
-        margin-bottom: 30px;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .toneka-slide-content .toneka-hero-content {
+        padding: 40px 20px;
+        text-align: left;
+    }
+    
+    .toneka-slide-content .toneka-hero-right img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
     }
     
     .toneka-slider-prev,
