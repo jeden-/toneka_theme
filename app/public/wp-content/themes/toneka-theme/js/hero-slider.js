@@ -159,21 +159,32 @@ class HeroSlider {
         const prevSlide = this.slides[prevIndex];
         const nextSlide = this.slides[nextIndex];
 
-        // Pokaż następny slajd
-        nextSlide.classList.add('active');
-        nextSlide.style.opacity = '0';
+        // Najpierw ukryj poprzedni slajd
+        prevSlide.style.transition = 'opacity 0.4s ease-in-out';
+        prevSlide.style.opacity = '0';
         
-        // Animacja fade
-        requestAnimationFrame(() => {
-            nextSlide.style.transition = 'opacity 0.8s ease-in-out';
-            nextSlide.style.opacity = '1';
+        // Po ukryciu poprzedniego, pokaż następny
+        setTimeout(() => {
+            prevSlide.classList.remove('active');
+            prevSlide.style.transition = '';
+            prevSlide.style.opacity = '';
             
-            setTimeout(() => {
-                prevSlide.classList.remove('active');
-                nextSlide.style.transition = '';
-                this.isTransitioning = false;
-            }, 800);
-        });
+            // Pokaż następny slajd
+            nextSlide.classList.add('active');
+            nextSlide.style.opacity = '0';
+            
+            // Animacja fade in
+            requestAnimationFrame(() => {
+                nextSlide.style.transition = 'opacity 0.4s ease-in-out';
+                nextSlide.style.opacity = '1';
+                
+                setTimeout(() => {
+                    nextSlide.style.transition = '';
+                    nextSlide.style.opacity = '';
+                    this.isTransitioning = false;
+                }, 400);
+            });
+        }, 400);
     }
 
     slideTransition(prevIndex, nextIndex) {
