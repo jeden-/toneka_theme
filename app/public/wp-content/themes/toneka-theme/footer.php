@@ -26,49 +26,19 @@
 		<div class="toneka-footer-main">
 			<div class="toneka-footer-container">
 				
-				<!-- Pierwsza kolumna - hardcoded -->
+				<!-- Pierwsza kolumna - widget area -->
 				<div class="toneka-footer-column toneka-footer-left">
-					<div class="toneka-footer-logo">
-						<?php if ( has_custom_logo() ) : ?>
-							<?php the_custom_logo(); ?>
-						<?php else : ?>
-							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-								<svg width="140" height="18" viewBox="0 0 140 18">
-									<text x="0" y="14" font-family="Arial" font-size="14">TONEKA</text>
-								</svg>
-							</a>
-						<?php endif; ?>
-					</div>
-					
-					<div class="toneka-footer-content">
-						<h3 class="toneka-footer-title">Chcesz z nami się<br>czymś podzielić</h3>
-						
-						<a href="mailto:kontakt@toneka.pl" class="toneka-footer-button animated-arrow-button">
-							<span class="button-text">NAPISZ</span>
-							<div class="button-arrow">
-								<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/>
-									<path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/>
-									<path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/>
-								</svg>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<!-- Druga kolumna - widget area -->
-				<div class="toneka-footer-column toneka-footer-center">
 					<?php if ( is_active_sidebar( 'footer-widget-2' ) ) : ?>
 						<?php dynamic_sidebar( 'footer-widget-2' ); ?>
 					<?php endif; ?>
 				</div>
 
-			<!-- Trzecia kolumna - widget area -->
-			<div class="toneka-footer-column toneka-footer-right">
-				<?php if ( is_active_sidebar( 'footer-widget-3' ) ) : ?>
-					<?php dynamic_sidebar( 'footer-widget-3' ); ?>
-				<?php endif; ?>
-			</div>
+				<!-- Druga kolumna - widget area -->
+				<div class="toneka-footer-column toneka-footer-right">
+					<?php if ( is_active_sidebar( 'footer-widget-3' ) ) : ?>
+						<?php dynamic_sidebar( 'footer-widget-3' ); ?>
+					<?php endif; ?>
+				</div>
 
 			</div>
 		</div>

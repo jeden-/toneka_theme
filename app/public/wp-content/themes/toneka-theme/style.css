@@ -2988,71 +2988,24 @@ ol, ul {
 .toneka-footer-container {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 60px;
     padding: 0 7%;
 }
 
-/* Pierwsza kolumna - hardcoded */
+/* Pierwsza kolumna - widget area */
 .toneka-footer-left {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-.toneka-footer-logo svg {
-    fill: #ffffff;
-}
-
-.toneka-footer-logo svg text {
-    fill: #ffffff;
-}
-
-.toneka-footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.toneka-footer-title {
-    font-family: 'Figtree', sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 1.28;
-    color: #ffffff;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-.toneka-footer-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-family: 'Figtree', sans-serif;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 1.44px;
-    text-decoration: none;
-    cursor: pointer;
-    padding: 8px 4px;
-}
-
 /* Druga kolumna - widget */
-.toneka-footer-center {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Trzecia kolumna - kontakt + widget */
 .toneka-footer-right {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .toneka-footer-contact {
@@ -3289,15 +3242,6 @@ ol, ul {
     .toneka-footer-right {
         align-items: center;
         text-align: center;
-    }
-    
-    .toneka-footer-title {
-        font-size: 18px;
-    }
-    
-    .toneka-footer-button {
-        font-size: 14px;
-        gap: 8px;
     }
     
     .toneka-back-to-top {
