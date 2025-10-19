@@ -264,7 +264,7 @@ ins {
 
 h1 {
     font-size: clamp(2.2rem, 3.3vw, 3rem);
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
 }
 
@@ -1407,21 +1407,39 @@ ol, ul {
     background: none;
     border: none;
     color: #ffffff;
-    padding: 0;
+    padding: 8px 0;
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     font-weight: 300;
     text-transform: uppercase;
     margin-top: 3%;
-    text-decoration: none; /* Usuń podkreślenie linku */
-    display: inline-flex; /* Zachowaj flex dla elementu <a> */
+    text-decoration: none;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .toneka-listen-button:hover {
-    color: #ffffff; /* Zachowaj biały kolor przy hover */
+    color: #ffffff;
     text-decoration: none;
+    opacity: 0.8;
+}
+
+.toneka-listen-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.toneka-listen-button:hover::before {
+    width: 100%;
 }
 
 .toneka-listen-button .button-text {
@@ -1432,6 +1450,11 @@ ol, ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.toneka-listen-button:hover .button-arrow {
+    transform: rotate(45deg);
 }
 
 .toneka-listen-button .button-arrow svg {
@@ -2024,7 +2047,8 @@ ol, ul {
 .animated-arrow-button .button-text,
 .animated-arrow-button span:not(.button-arrow) {
     position: relative;
-    letter-spacing: 1.44px;
+    /* letter-spacing: 1.44px; */
+    font-size: clamp(0.8rem, 1.0vw, 0.9rem);
 }
 
 /* Animowana linia pod tekstem */
@@ -2903,7 +2927,7 @@ ol, ul {
 
 /* Nazwa produktu - semibold */
 .toneka-product-name {
-    font-weight: 600;
+    font-weight: 400;
 }
 
 /* Separator między tytułem a autorem */
@@ -2913,7 +2937,7 @@ ol, ul {
 
 /* Autor - regular */
 .toneka-product-author {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 /* Backward compatibility - ukryj stare elementy */
@@ -3410,13 +3434,12 @@ ol, ul {
 }
 
 .toneka-title-icon {
-    width: 30px;
-    height: 30px;
+    width: clamp(60px, 5vw, 120px);
     opacity: 0.8;
 }
 
 .toneka-section-title h2 {
-    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-size: clamp(1rem, 1.7vw, 1.4rem);
     font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4;
