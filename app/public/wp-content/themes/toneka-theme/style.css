@@ -3278,19 +3278,31 @@ ol, ul {
         gap: 20px;
     }
     
-    .toneka-hero-section {
+    .toneka-hero-section,
+    .toneka-slide.toneka-hero-section {
         grid-template-columns: 1fr;
+        grid-template-areas: 
+            "hero-text"
+            "hero-image";
         height: auto;
+        min-height: auto;
     }
     
     .toneka-hero-left,
     .toneka-hero-right {
         border-right: none;
+        width: 100vw;
         height: 100vw;
+        aspect-ratio: 1;
     }
     
     .toneka-hero-left {
+        grid-area: hero-text;
         border-bottom: 1px solid #ffffff;
+    }
+    
+    .toneka-hero-right {
+        grid-area: hero-image;
     }
     
     .toneka-hero-right .toneka-product-image {
@@ -3370,6 +3382,7 @@ ol, ul {
     align-items: center;
     padding: 30px 7%;
     border-top: 1px solid #a5a5a5;
+    border-bottom: 1px solid #a5a5a5;
 }
 
 .toneka-section-title {
