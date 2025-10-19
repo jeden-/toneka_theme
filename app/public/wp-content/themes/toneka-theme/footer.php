@@ -16,6 +16,8 @@
 				<div class="toneka-scrolling-text" data-speed="<?php echo esc_attr( get_theme_mod( 'toneka_scrolling_speed', 50 ) ); ?>">
 					<span class="toneka-scrolling-text-content"><?php echo esc_html( $scrolling_text ); ?></span>
 					<span class="toneka-scrolling-text-content"><?php echo esc_html( $scrolling_text ); ?></span>
+					<span class="toneka-scrolling-text-content"><?php echo esc_html( $scrolling_text ); ?></span>
+					<span class="toneka-scrolling-text-content"><?php echo esc_html( $scrolling_text ); ?></span>
 				</div>
 			</div>
 		</div>
