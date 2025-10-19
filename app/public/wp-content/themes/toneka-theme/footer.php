@@ -99,7 +99,7 @@
 				
 				<!-- Copyright -->
 				<div class="toneka-copyright">
-					<span>Copyright © 2024 Toneka</span>
+					<span>Copyright © 2024-<?php echo date('Y'); ?> Toneka</span>
 				</div>
 			</div>
 		</div>
