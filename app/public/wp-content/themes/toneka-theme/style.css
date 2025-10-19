@@ -491,7 +491,7 @@ ol, ul {
 .toneka-primary-menu .menu-item a {
     color: #ffffff;
     text-decoration: none;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: clamp(0.7rem, 1.0vw, 0.85rem) !important;
     font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4;
@@ -2792,6 +2792,11 @@ ol, ul {
     border-left: none;
 }
 
+/* Pierwszy rząd produktów - bez górnego bordera (żeby nie było podwójnej linii z tytułem) */
+.toneka-product-card:nth-child(-n+3) {
+    border-top: none;
+}
+
 /* Ostatni kafelek w rzędzie - prawy border przezroczysty (niewidoczny ale zajmuje miejsce) */
 .toneka-product-card:last-child {
     border-right: 1px solid rgba(255, 255, 255, 0);
@@ -2999,7 +3004,7 @@ ol, ul {
 
 .footer-widget-title {
     font-family: 'Figtree', sans-serif;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: clamp(0.7rem, 1.0vw, 0.85rem),
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
@@ -3019,7 +3024,7 @@ ol, ul {
 .footer-widget a {
     color: #ffffff;
     text-decoration: none;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: clamp(0.7rem, 1.0vw, 0.85rem);
     text-transform: uppercase;
     transition: opacity 0.3s ease;
     position: relative;
@@ -3355,6 +3360,7 @@ ol, ul {
     text-align: center;
     padding: 30px 0;
     border-top: 1px solid #a5a5a5;
+    border-bottom: 1px solid #a5a5a5;
 }
 
 /* Nowy layout nagłówków sekcji */
@@ -3520,12 +3526,12 @@ ol, ul {
 /* Category Filter Section */
 .toneka-category-filter-section {
     background: #000000;
-    /* border-bottom: 1px solid #ffffff; */
-    /* border-top: 1px solid rgba(255, 255, 255, 0.4); */
-    padding: 40px 60px;
+    border-top: 1px solid #a5a5a5;
+    border-bottom: 1px solid #a5a5a5;
     min-height: 120px;
     display: flex;
     align-items: center;
+    padding: 40px 7%;
 }
 
 .toneka-category-filter-container {
