@@ -33,6 +33,7 @@ wp-config-local.php
 /app/sql/
 /conf/
 !/conf/nginx/site.conf.hbs
+!/conf/nginx/includes/mime-types.conf.hbs
 
 # Plugin and Theme Files (excluding our custom theme)
 /app/public/wp-content/plugins/
