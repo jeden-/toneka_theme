@@ -1139,17 +1139,6 @@ function toneka_theme_scripts() {
 		true
 	);
 	
-	// Adaptacyjny header - dostosowuje się do jasności tła (produkty, kategorie, sklep, tagi, twórcy, strona główna)
-	if ( (function_exists('is_product') && is_product()) || (function_exists('is_product_category') && is_product_category()) || (function_exists('is_shop') && is_shop()) || (function_exists('is_product_tag') && is_product_tag()) || is_singular('creator') || is_post_type_archive('creator') || is_tax('product_cat') || is_tax('product_tag') || is_front_page() ) {
-		wp_enqueue_script(
-			'toneka-adaptive-header',
-			get_template_directory_uri() . '/js/adaptive-header.js',
-			array(),
-			'1.0.0',
-			true
-		);
-	}
-	
 	// Przewijający się tekst w footerze
 	if ( get_theme_mod( 'toneka_scrolling_text_enabled', true ) ) {
 		wp_enqueue_script(

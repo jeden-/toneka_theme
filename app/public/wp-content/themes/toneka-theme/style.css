@@ -629,64 +629,6 @@ ol, ul {
 /* Hero section pod headerem na stronach z przeźroczystym headerem */
 /* Hero section zaczyna się normalnie pod headerem - bez negatywnego marginu */
 
-/* Header na jasnym tle - ciemny tekst i ikony */
-.product-page-header.header-on-light .toneka-primary-menu li a,
-.product-page-header.header-on-light .toneka-account-link,
-.product-page-header.header-on-light .toneka-cart-link {
-    color: #292929;
-}
-
-.product-page-header.header-on-light .toneka-primary-menu li a::after {
-    background: #292929;
-}
-
-.product-page-header.header-on-light .toneka-primary-menu .menu-item.current-menu-item a::after,
-.product-page-header.header-on-light .toneka-primary-menu .menu-item.current_page_item a::after,
-.product-page-header.header-on-light .toneka-category-filter-active::after {
-    background: #292929;
-}
-
-.product-page-header.header-on-light svg {
-    fill: #292929;
-    stroke: #292929;
-}
-
-.product-page-header.header-on-light svg circle,
-.product-page-header.header-on-light svg path {
-    stroke: #292929;
-}
-
-.product-page-header.header-on-light svg text {
-    fill: #292929;
-}
-
-/* Header na ciemnym tle - biały tekst i ikony */
-.product-page-header.header-on-dark .toneka-primary-menu li a,
-.product-page-header.header-on-dark .toneka-account-link,
-.product-page-header.header-on-dark .toneka-cart-link {
-    color: #ffffff;
-}
-
-.product-page-header.header-on-dark .toneka-primary-menu .menu-item.current-menu-item a::after,
-.product-page-header.header-on-dark .toneka-primary-menu .menu-item.current_page_item a::after,
-.product-page-header.header-on-dark .toneka-category-filter-active::after {
-    background: #ffffff;
-}
-
-.product-page-header.header-on-dark svg {
-    fill: #ffffff;
-    stroke: #ffffff;
-}
-
-.product-page-header.header-on-dark svg circle,
-.product-page-header.header-on-dark svg path {
-    stroke: #ffffff;
-}
-
-.product-page-header.header-on-dark svg text {
-    fill: #ffffff;
-}
-
 /* Style ikonek dla wszystkich stron */
 .toneka-main-header .toneka-account-link,
 .toneka-main-header .toneka-cart-link {
