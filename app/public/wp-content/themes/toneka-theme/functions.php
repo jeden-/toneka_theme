@@ -758,18 +758,6 @@ function toneka_customize_register( $wp_customize ) {
 		'priority' => 30,
 	) );
 
-	// Obrazek w sekcji tekstowej - na początku sekcji
-	$wp_customize->add_setting( 'toneka_text_section_image', array(
-		'sanitize_callback' => 'esc_url_raw',
-	) );
-
-	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_text_section_image', array(
-		'settings' => 'toneka_text_section_image',
-		'label'    => __('Mała grafika nad tytułem', 'toneka-theme'),
-		'section'  => 'toneka_hero_slider',
-		'description' => __('Ten obrazek będzie wyświetlany nad tytułem we wszystkich slajdach', 'toneka-theme'),
-	) ) );
-
 	// Slider Settings
 	$wp_customize->add_setting( 'toneka_slider_autoplay', array(
 		'default'           => true,
@@ -840,6 +828,17 @@ function toneka_customize_register( $wp_customize ) {
 		'type'     => 'text',
 	) );
 
+	// Slider 1 - Grafika nad tytułem
+	$wp_customize->add_setting( 'toneka_slider_1_title_image', array(
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_slider_1_title_image', array(
+		'settings' => 'toneka_slider_1_title_image',
+		'label'    => __('Slider 1 - Grafika nad tytułem', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+	) ) );
+
 	$wp_customize->add_setting( 'toneka_slider_1_subtitle', array(
 		'default'           => '',
 		'sanitize_callback' => 'sanitize_text_field',
@@ -899,6 +898,17 @@ function toneka_customize_register( $wp_customize ) {
 		'type'     => 'text',
 	) );
 
+	// Slider 2 - Grafika nad tytułem
+	$wp_customize->add_setting( 'toneka_slider_2_title_image', array(
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_slider_2_title_image', array(
+		'settings' => 'toneka_slider_2_title_image',
+		'label'    => __('Slider 2 - Grafika nad tytułem', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+	) ) );
+
 	$wp_customize->add_setting( 'toneka_slider_2_subtitle', array(
 		'default'           => '',
 		'sanitize_callback' => 'sanitize_text_field',
@@ -957,6 +967,17 @@ function toneka_customize_register( $wp_customize ) {
 		'section'  => 'toneka_hero_slider',
 		'type'     => 'text',
 	) );
+
+	// Slider 3 - Grafika nad tytułem
+	$wp_customize->add_setting( 'toneka_slider_3_title_image', array(
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'toneka_slider_3_title_image', array(
+		'settings' => 'toneka_slider_3_title_image',
+		'label'    => __('Slider 3 - Grafika nad tytułem', 'toneka-theme'),
+		'section'  => 'toneka_hero_slider',
+	) ) );
 
 	$wp_customize->add_setting( 'toneka_slider_3_subtitle', array(
 		'default'           => '',
@@ -2510,7 +2531,7 @@ function toneka_display_product_metadata() {
             <div class="toneka-toggle-description animated-arrow-button" data-state="collapsed">
                 <span class="toggle-text">WIĘCEJ</span>
                 <div class="button-arrow">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/>
                         <path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/>
                         <path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/>

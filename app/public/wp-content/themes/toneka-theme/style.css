@@ -264,7 +264,7 @@ ins {
 
 h1 {
     font-size: clamp(2.2rem, 3.3vw, 3rem);
-    font-weight: 700;
+    font-weight: 400;
     text-transform: uppercase;
 }
 
@@ -735,14 +735,14 @@ ol, ul {
 .product-page-header .toneka-header-left {
     display: flex;
     align-items: center;
-    padding-left: 7%;
+    padding-left: 14%;
 }
 
 .product-page-header .toneka-header-right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 7%;
+    padding-right: 14%;
 }
 
 .product-page-header .toneka-primary-menu {
@@ -1066,7 +1066,7 @@ ol, ul {
 }
 
 .toneka-text-section-image {
-    margin-bottom: 20px;
+    margin-bottom: 3%;
 }
 
 .toneka-text-section-image img {
@@ -1411,7 +1411,7 @@ ol, ul {
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     font-weight: 300;
     text-transform: uppercase;
-    margin-top: 30px;
+    margin-top: 3%;
     text-decoration: none; /* Usuń podkreślenie linku */
     display: inline-flex; /* Zachowaj flex dla elementu <a> */
     align-items: center;
@@ -1429,8 +1429,6 @@ ol, ul {
 }
 
 .toneka-listen-button .button-arrow {
-    width: 20px;
-    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1439,6 +1437,8 @@ ol, ul {
 .toneka-listen-button .button-arrow svg {
     fill: none;
     stroke: #ffffff;
+    width: clamp(16px, 2.5vw, 24px);
+    height: clamp(16px, 2.5vw, 24px);
 }
 
 @keyframes arrow-move {
@@ -2842,7 +2842,7 @@ ol, ul {
     flex: 1;
     overflow: hidden;
     background: #000000;
-    padding: 20%;
+    padding: 21%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3393,6 +3393,94 @@ ol, ul {
     padding: 30px 0;
     border-top: 1px solid #a5a5a5;
 }
+
+/* Nowy layout nagłówków sekcji */
+.toneka-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 7%;
+    border-top: 1px solid #a5a5a5;
+}
+
+.toneka-section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.toneka-title-icon {
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+}
+
+.toneka-section-title h2 {
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #ffffff;
+    margin: 0;
+    text-align: left;
+    padding: 0;
+    border: none;
+}
+
+.toneka-section-link {
+    display: flex;
+    align-items: center;
+}
+
+.toneka-view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: clamp(0.8rem, 1.0vw, 0.9rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 0;
+}
+
+.toneka-view-all-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.toneka-view-all-link:hover::before {
+    width: 100%;
+}
+
+.toneka-view-all-link:hover {
+    opacity: 0.8;
+}
+
+.toneka-arrow-icon {
+    width: clamp(12px, 2.0vw, 18px);
+    height: clamp(12px, 2.0vw, 18px);
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+}
+
+.toneka-view-all-link:hover .toneka-arrow-icon {
+    transform: rotate(45deg);
+}
+
+.toneka-arrow-icon img {
+    width: clamp(10px, 1.5vw, 16px);
+    height: clamp(10px, 1.5vw, 16px);
+}
+
 
 /* Quote section styling */
 .toneka-quote-section {

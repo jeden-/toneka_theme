@@ -21,6 +21,7 @@ get_header(); ?>
         
         // Slider 1
         $slide1_image = get_theme_mod('toneka_slider_1_image');
+        $slide1_title_image = get_theme_mod('toneka_slider_1_title_image');
         $slide1_title = get_theme_mod('toneka_slider_1_title', 'Melodie jak fale, co w stronę marzeń płyną');
         $slide1_subtitle = get_theme_mod('toneka_slider_1_subtitle', 'a dźwięki to słowa, co w ciszy z duszą śpiewają');
         $slide1_button_text = get_theme_mod('toneka_slider_1_button_text', 'ostatnio dodane');
@@ -28,6 +29,7 @@ get_header(); ?>
         
         // Slider 2
         $slide2_image = get_theme_mod('toneka_slider_2_image');
+        $slide2_title_image = get_theme_mod('toneka_slider_2_title_image');
         $slide2_title = get_theme_mod('toneka_slider_2_title', 'Odkryj magiczny świat słuchowisk');
         $slide2_subtitle = get_theme_mod('toneka_slider_2_subtitle', 'gdzie każda historia ma swój unikalny głos');
         $slide2_button_text = get_theme_mod('toneka_slider_2_button_text', 'przeglądaj');
@@ -35,6 +37,7 @@ get_header(); ?>
         
         // Slider 3
         $slide3_image = get_theme_mod('toneka_slider_3_image');
+        $slide3_title_image = get_theme_mod('toneka_slider_3_title_image');
         $slide3_title = get_theme_mod('toneka_slider_3_title', 'Toneka - gdzie muzyka spotyka się z opowieścią');
         $slide3_subtitle = get_theme_mod('toneka_slider_3_subtitle', 'dołącz do naszej społeczności melomanów');
         $slide3_button_text = get_theme_mod('toneka_slider_3_button_text', 'dowiedz się więcej');
@@ -42,9 +45,9 @@ get_header(); ?>
         
         // Wyświetl slajdy tylko jeśli mają zdjęcia
         $slides = array();
-        if ($slide1_image) $slides[] = array('image' => $slide1_image, 'title' => $slide1_title, 'subtitle' => $slide1_subtitle, 'button_text' => $slide1_button_text, 'button_url' => $slide1_button_url);
-        if ($slide2_image) $slides[] = array('image' => $slide2_image, 'title' => $slide2_title, 'subtitle' => $slide2_subtitle, 'button_text' => $slide2_button_text, 'button_url' => $slide2_button_url);
-        if ($slide3_image) $slides[] = array('image' => $slide3_image, 'title' => $slide3_title, 'subtitle' => $slide3_subtitle, 'button_text' => $slide3_button_text, 'button_url' => $slide3_button_url);
+        if ($slide1_image) $slides[] = array('image' => $slide1_image, 'title_image' => $slide1_title_image, 'title' => $slide1_title, 'subtitle' => $slide1_subtitle, 'button_text' => $slide1_button_text, 'button_url' => $slide1_button_url);
+        if ($slide2_image) $slides[] = array('image' => $slide2_image, 'title_image' => $slide2_title_image, 'title' => $slide2_title, 'subtitle' => $slide2_subtitle, 'button_text' => $slide2_button_text, 'button_url' => $slide2_button_url);
+        if ($slide3_image) $slides[] = array('image' => $slide3_image, 'title_image' => $slide3_title_image, 'title' => $slide3_title, 'subtitle' => $slide3_subtitle, 'button_text' => $slide3_button_text, 'button_url' => $slide3_button_url);
         
         // Jeśli nie ma żadnych slajdów, pokaż domyślny hero
         if (empty($slides)) {
@@ -64,7 +67,7 @@ get_header(); ?>
                 echo '<div class="toneka-product-title"><h1>' . esc_html(strtoupper(get_theme_mod('toneka_homepage_hero_text', 'Melodie jak fale, co w stronę marzeń płyną, a dźwięki to słowa, co w ciszy z duszą śpiewają'))) . '</h1></div>';
                 echo '<a href="' . esc_url(get_theme_mod('toneka_homepage_button_url', wc_get_page_permalink('shop'))) . '" class="toneka-listen-button toneka-filter-button animated-arrow-button">';
                 echo '<span class="button-text">' . esc_html(strtoupper(get_theme_mod('toneka_homepage_button_text', 'ostatnio dodane'))) . '</span>';
-                echo '<div class="button-arrow"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/><path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/><path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/></svg></div>';
+                echo '<div class="button-arrow"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/><path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/><path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/></svg></div>';
                 echo '</a></div></div>';
                 echo '<div class="toneka-hero-right"><img src="' . esc_url($hero_image) . '" alt="Hero Image" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" /></div>';
                 echo '</div>';
@@ -79,10 +82,9 @@ get_header(); ?>
                 echo '<div class="toneka-hero-left">';
                 echo '<div class="toneka-hero-content">';
                 
-                // Obrazek w sekcji tekstowej
-                $text_section_image = get_theme_mod('toneka_text_section_image', '');
-                if ($text_section_image) {
-                    echo '<div class="toneka-text-section-image"><img src="' . esc_url($text_section_image) . '" alt="Text Section Image" /></div>';
+                // Obrazek nad tytułem dla tego slajdu
+                if ($slide['title_image']) {
+                    echo '<div class="toneka-text-section-image"><img src="' . esc_url($slide['title_image']) . '" alt="Title Image" /></div>';
                 }
                 
                 echo '<div class="toneka-product-title"><h1>' . esc_html(strtoupper($slide['title'])) . '</h1></div>';
@@ -91,7 +93,7 @@ get_header(); ?>
                 }
                 echo '<a href="' . esc_url($slide['button_url']) . '" class="toneka-listen-button toneka-filter-button animated-arrow-button">';
                 echo '<span class="button-text">' . esc_html(strtoupper($slide['button_text'])) . '</span>';
-                echo '<div class="button-arrow"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/><path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/><path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/></svg></div>';
+                echo '<div class="button-arrow"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/><path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/><path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/></svg></div>';
                 echo '</a></div></div>';
                 echo '<div class="toneka-hero-right">';
                 echo '<img src="' . esc_url($slide['image']) . '" alt="' . esc_attr($slide['title']) . '" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" />';
@@ -131,7 +133,18 @@ get_header(); ?>
         
         <!-- Najnowsze Słuchowiska Section -->
         <div class="toneka-category-title">
-            <h2>NAJNOWSZE SŁUCHOWISKA</h2>
+            <div class="toneka-section-header">
+                <div class="toneka-section-title">
+                    <h2>NAJNOWSZE SŁUCHOWISKA</h2>
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/title.svg" alt="Title" class="toneka-title-icon" />
+                </div>
+                <div class="toneka-section-link">
+                    <a href="<?php echo esc_url(get_term_link('sluchowiska', 'product_cat')); ?>" class="toneka-view-all-link">
+                        WSZYSTKIE
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/arrow_up.svg" alt="Arrow" class="toneka-arrow-icon" />
+                    </a>
+                </div>
+            </div>
         </div>
         
         <!-- Słuchowiska Grid - 3 produkty w jednym rzędzie -->
@@ -173,7 +186,18 @@ get_header(); ?>
         
         <!-- Merch Section -->
         <div class="toneka-category-title">
-            <h2>MERCH</h2>
+            <div class="toneka-section-header">
+                <div class="toneka-section-title">
+                    <h2>MERCH</h2>
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/title.svg" alt="Title" class="toneka-title-icon" />
+                </div>
+                <div class="toneka-section-link">
+                    <a href="<?php echo esc_url(get_term_link('merch', 'product_cat')); ?>" class="toneka-view-all-link">
+                        WSZYSTKIE
+                        <img src="<?php echo get_template_directory_uri(); ?>/img/arrow_up.svg" alt="Arrow" class="toneka-arrow-icon" />
+                    </a>
+                </div>
+            </div>
         </div>
         
         <!-- Merch Grid - 3 produkty w jednym rzędzie -->

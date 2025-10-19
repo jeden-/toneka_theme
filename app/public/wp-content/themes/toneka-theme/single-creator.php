@@ -47,7 +47,7 @@ while ( have_posts() ) :
                 <a href="#portfolio-section" class="toneka-listen-button toneka-portfolio-button animated-arrow-button">
                     <span class="button-text">PORTFOLIO</span>
                     <div class="button-arrow">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/>
                             <path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/>
                             <path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/>
