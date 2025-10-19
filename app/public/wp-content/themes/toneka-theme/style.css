@@ -1347,7 +1347,7 @@ ol, ul {
 /* Tytuł produktu */
 .toneka-product-title {
     font-size: clamp(2.2rem, 3.3vw, 3rem);
-    font-weight: 600;
+    font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4;
     color: #ffffff;
