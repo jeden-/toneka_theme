@@ -453,7 +453,8 @@ ol, ul {
 
 .custom-logo {
     height: 18px;
-    width: auto;
+    width: 125px;
+    object-fit: contain;
 }
 
 .toneka-default-logo a {
