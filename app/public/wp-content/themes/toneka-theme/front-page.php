@@ -97,22 +97,21 @@ get_header(); ?>
                 echo '</a></div></div>';
                 echo '<div class="toneka-hero-right">';
                 echo '<img src="' . esc_url($slide['image']) . '" alt="' . esc_attr($slide['title']) . '" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" />';
-                
-                // Kropki nawigacji dla tego slajdu
-                if (!empty($slides) && count($slides) > 1) {
-                    echo '<div class="toneka-slider-dots">';
-                    foreach ($slides as $dot_index => $dot_slide) {
-                        $active_class = $dot_index === $index ? ' active' : '';
-                        echo '<button class="toneka-slider-dot' . $active_class . '" data-slide="' . $dot_index . '" aria-label="Przejdź do slajdu ' . ($dot_index + 1) . '"></button>';
-                    }
-                    echo '</div>';
-                }
-                
                 echo '</div></div>';
             }
         }
         ?>
     </div>
+    
+    <!-- Kropki nawigacji - globalne dla wszystkich slajdów -->
+    <?php if (!empty($slides) && count($slides) > 1): ?>
+    <div class="toneka-slider-dots">
+        <?php foreach ($slides as $dot_index => $dot_slide): ?>
+            <?php $active_class = $dot_index === 0 ? ' active' : ''; ?>
+            <button class="toneka-slider-dot<?php echo $active_class; ?>" data-slide="<?php echo $dot_index; ?>" aria-label="Przejdź do slajdu <?php echo $dot_index + 1; ?>"></button>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
     
     <!-- Navigation Controls -->
     <?php if (!empty($slides) && count($slides) > 1): ?>

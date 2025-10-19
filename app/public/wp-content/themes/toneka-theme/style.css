@@ -870,6 +870,7 @@ ol, ul {
     display: flex;
     gap: 10px;
     z-index: 10;
+    pointer-events: none;
 }
 
 .toneka-slider-dot {
@@ -881,6 +882,7 @@ ol, ul {
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    pointer-events: all;
 }
 
 .toneka-slider-dot.active {
