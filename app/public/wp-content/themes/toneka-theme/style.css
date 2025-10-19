@@ -452,8 +452,14 @@ ol, ul {
 }
 
 .custom-logo {
-    height: 18px;
-    width: 125px;
+    height: 18px !important;
+    width: 125px !important;
+    object-fit: contain;
+}
+
+.product-page-header .custom-logo {
+    height: 18px !important;
+    width: 125px !important;
     object-fit: contain;
 }
 
