@@ -2951,9 +2951,10 @@ ol, ul {
 .toneka-footer-container {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: auto auto 1fr;
+    gap: 40px;
     padding: 0 7%;
+    align-items: start;
 }
 
 /* Pierwsza kolumna - widget area */
