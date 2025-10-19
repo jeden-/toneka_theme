@@ -336,7 +336,7 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
 .wc-block-components-form .wc-block-components-textarea label {
     color: #404040 !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     margin-bottom: 12px !important;
@@ -349,7 +349,7 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
 .wc-block-components-form h3 {
     color: #ffffff !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 16px !important;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem) !important;
     font-weight: 500 !important;
     text-transform: uppercase !important;
     margin-bottom: 16px !important;
@@ -360,7 +360,7 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
 .wc-block-components-form p {
     color: #999999 !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 13px !important;
+    font-size: clamp(0.7rem, 1.0vw, 0.85rem) !important;
     font-weight: 300 !important;
     margin-bottom: 16px !important;
     line-height: 1.4 !important;
@@ -465,7 +465,7 @@ ol, ul {
 
 .toneka-default-logo a {
     color: #ffffff;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     font-weight: 300;
     text-transform: uppercase;
     text-decoration: none;
@@ -591,7 +591,7 @@ ol, ul {
     gap: 8px;
     color: #ffffff;
     text-decoration: none;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     text-transform: uppercase;
     transition: opacity 0.3s ease;
 }
@@ -617,7 +617,7 @@ ol, ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: clamp(0.55rem, 0.8vw, 0.7rem);
     font-weight: 600;
 }
 
@@ -644,7 +644,7 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     text-transform: uppercase;
     transition: color 0.3s ease;
 }
@@ -704,7 +704,7 @@ ol, ul {
 .product-page-header .toneka-primary-menu li a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     font-weight: 300;
     text-transform: uppercase;
     transition: color 0.3s ease;
@@ -730,7 +730,7 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     text-transform: uppercase;
     transition: color 0.3s ease;
 }
@@ -811,7 +811,7 @@ ol, ul {
 
 .toneka-slide-subtitle p {
     font-family: 'Figtree', sans-serif;
-    font-size: 18px;
+    font-size: clamp(1rem, 1.4vw, 1.3rem);
     font-weight: 400;
     line-height: 1.6;
     color: #ffffff;
@@ -971,7 +971,7 @@ ol, ul {
     }
     
     .toneka-slide-subtitle p {
-        font-size: 16px;
+        font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     }
 }
 
@@ -1493,7 +1493,7 @@ ol, ul {
     background: none;
     border: none;
     color: #ffffff;
-    font-size: 32px;
+    font-size: clamp(1.8rem, 2.6vw, 2.3rem);
     cursor: pointer;
     padding: 0;
     width: 32px;
@@ -1602,7 +1602,7 @@ ol, ul {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     border-radius: 50%;
     transition: background 0.3s ease;
 }
@@ -1617,7 +1617,7 @@ ol, ul {
     color: #ffffff;
     width: 35px;
     text-align: center;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     font-family: 'Figtree', sans-serif;
 }
 
@@ -1644,7 +1644,7 @@ ol, ul {
 
 .toneka-minicart-item-variant {
     font-family: 'Figtree', sans-serif;
-    font-size: 12px;
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     margin: 2px 0;
@@ -1652,7 +1652,7 @@ ol, ul {
 
 .toneka-minicart-item-price {
     font-family: 'Figtree', sans-serif;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     font-weight: 300;
     color: #ffffff;
     margin-top: 5px;
@@ -1668,13 +1668,13 @@ ol, ul {
 .toneka-minicart-price-regular {
     text-decoration: line-through;
     color: #666666;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 .toneka-minicart-price-current {
     color: #ffffff;
     font-weight: 600;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
 }
 
 .toneka-minicart-savings {
@@ -1705,7 +1705,7 @@ ol, ul {
 
 .toneka-minicart-total {
     font-family: 'Figtree', sans-serif;
-    font-size: 18px;
+    font-size: clamp(1rem, 1.4vw, 1.3rem);
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
@@ -1745,7 +1745,7 @@ ol, ul {
 
 .toneka-minicart-upsells h4 {
     font-family: 'Figtree', sans-serif;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
@@ -1793,7 +1793,7 @@ ol, ul {
 
 .toneka-minicart-upsell-item-name {
     font-family: 'Figtree', sans-serif;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
@@ -1803,7 +1803,7 @@ ol, ul {
 
 .toneka-minicart-upsell-item-variant {
     font-family: 'Figtree', sans-serif;
-    font-size: 12px;
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     margin: 2px 0;
@@ -1811,7 +1811,7 @@ ol, ul {
 
 .toneka-minicart-upsell-item-price {
     font-family: 'Figtree', sans-serif;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     font-weight: 300;
     color: #ffffff;
     margin-top: 5px;
@@ -1828,17 +1828,17 @@ ol, ul {
 .toneka-minicart-upsell-price-regular {
     text-decoration: line-through;
     color: #666666;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 .toneka-minicart-upsell-price-current {
     color: #ffffff;
     font-weight: 600;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
 }
 
 .toneka-minicart-upsell-savings {
-    font-size: 11px;
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     color: #00ff00;
     font-weight: 600;
     background: rgba(0, 255, 0, 0.1);
@@ -1879,7 +1879,7 @@ ol, ul {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     border-radius: 50%;
     transition: background 0.3s ease;
 }
@@ -1894,7 +1894,7 @@ ol, ul {
     color: #ffffff;
     width: 35px;
     text-align: center;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     font-family: 'Figtree', sans-serif;
 }
 
@@ -1969,11 +1969,11 @@ ol, ul {
     
     
     .toneka-minicart-item-variant {
-        font-size: 11px;
+        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     }
     
     .toneka-minicart-item-price {
-        font-size: 14px;
+        font-size: clamp(0.75rem, 1.1vw, 1rem);
     }
     
     .toneka-minicart-header h3 {
@@ -2148,7 +2148,7 @@ ol, ul {
     align-items: center;
     justify-content: center;
     color: #666;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
 }
 
 /* =====================================
@@ -2311,14 +2311,14 @@ ol, ul {
 }
 
 .toneka-description-row .toneka-meta-value {
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     line-height: 1.6;
 }
 
 .toneka-more-link {
     color: #969696;
     text-decoration: none;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     text-transform: uppercase;
     margin-top: 10px;
     display: inline-block;
@@ -2628,7 +2628,7 @@ ol, ul {
 }
 
 .toneka-variation-label {
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     color: #ffffff;
     text-transform: uppercase;
 }
@@ -2645,7 +2645,7 @@ ol, ul {
 .toneka-player-placeholder {
     text-align: center;
     color: #969696;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     margin-bottom: 20px;
 }
 
@@ -2688,13 +2688,13 @@ ol, ul {
 }
 
 .toneka-track-title {
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     color: #ffffff;
     margin-bottom: 5px;
 }
 
 .toneka-track-time {
-    font-size: 12px;
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     color: #969696;
 }
 
@@ -2741,7 +2741,7 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 20px;
-    font-size: 25px;
+    font-size: clamp(1.4rem, 2.0vw, 1.8rem);
     text-transform: uppercase;
     color: #ffffff;
 }
@@ -2978,7 +2978,7 @@ ol, ul {
 
 .toneka-footer-contact p {
     font-family: 'Figtree', sans-serif;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     font-weight: 300;
     line-height: 1.4;
     color: #ffffff;
@@ -2993,7 +2993,7 @@ ol, ul {
 
 .footer-widget-title {
     font-family: 'Figtree', sans-serif;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
@@ -3013,7 +3013,7 @@ ol, ul {
 .footer-widget a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     text-transform: uppercase;
     transition: opacity 0.3s ease;
     position: relative;
@@ -3066,7 +3066,7 @@ ol, ul {
     gap: 7px;
     color: white;
     text-decoration: none;
-    font-size: 10px;
+    font-size: clamp(0.55rem, 0.8vw, 0.7rem);
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -3117,7 +3117,7 @@ ol, ul {
 /* Copyright */
 .toneka-copyright {
     color: #bbbbbb;
-    font-size: 10px;
+    font-size: clamp(0.55rem, 0.8vw, 0.7rem);
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -3140,11 +3140,11 @@ ol, ul {
     }
     
     .toneka-social-link {
-        font-size: 9px;
+        font-size: clamp(0.5rem, 0.7vw, 0.6rem);
     }
     
     .toneka-copyright {
-        font-size: 9px;
+        font-size: clamp(0.5rem, 0.7vw, 0.6rem);
     }
 }
 
@@ -3192,7 +3192,7 @@ ol, ul {
 
 .toneka-scrolling-text-content {
     font-family: 'Figtree', sans-serif;
-    font-size: 24px;
+    font-size: clamp(1.3rem, 1.9vw, 1.7rem);
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
@@ -3239,11 +3239,11 @@ ol, ul {
     }
     
     .toneka-back-to-top-btn {
-        font-size: 16px;
+        font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     }
     
     .toneka-scrolling-text-content {
-        font-size: 18px;
+        font-size: clamp(1rem, 1.4vw, 1.3rem);
         padding-right: 60px;
     }
     
@@ -3287,7 +3287,7 @@ ol, ul {
     }
     
     .toneka-product-title {
-        font-size: 48px;
+        font-size: clamp(2.7rem, 3.9vw, 3.4rem);
     }
     
     .toneka-product-categories {
@@ -4092,12 +4092,12 @@ ol, ul {
     }
     
     .toneka-track-details h3.toneka-track-title {
-        font-size: 14px;
+        font-size: clamp(0.75rem, 1.1vw, 1rem);
     }
     
     .toneka-track-details p.toneka-track-type,
     .toneka-track-time {
-        font-size: 10px;
+        font-size: clamp(0.55rem, 0.8vw, 0.7rem);
     }
     
 }
@@ -4154,7 +4154,7 @@ ol, ul {
 .toneka-playlist-header h3 {
     color: white;
     font-family: 'Figtree', sans-serif;
-    font-size: 16px;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     margin: 0;
 }
 
@@ -4162,7 +4162,7 @@ ol, ul {
     background: none;
     border: none;
     color: white;
-    font-size: 24px;
+    font-size: clamp(1.3rem, 1.9vw, 1.7rem);
     cursor: pointer;
     padding: 0;
     width: 30px;
@@ -4212,7 +4212,7 @@ ol, ul {
 .toneka-playlist-item-name {
     color: white;
     font-family: 'Figtree', sans-serif;
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
     font-weight: 500;
     margin-bottom: 2px;
 }
@@ -4223,7 +4223,7 @@ ol, ul {
 
 .toneka-playlist-item-duration {
     color: #aaa;
-    font-size: 12px;
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
 }
 
 .toneka-playlist-item-controls {
@@ -4266,12 +4266,12 @@ ol, ul {
 }
 
 .toneka-figma-player.toneka-fullscreen .toneka-track-details h3.toneka-track-title {
-    font-size: 20px;
+    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
 }
 
 .toneka-figma-player.toneka-fullscreen .toneka-track-details p.toneka-track-type,
 .toneka-figma-player.toneka-fullscreen .toneka-track-time {
-    font-size: 14px;
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
 }
 
 /* Stany playera */
@@ -4970,7 +4970,7 @@ input[type="checkbox"]:checked::after {
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     color: #ffffff !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 600 !important;
     line-height: 1 !important;
     font-family: 'Figtree', sans-serif !important;
@@ -4996,7 +4996,7 @@ input[type="checkbox"]:hover {
     padding: 12px 24px !important;
     border-radius: 25px !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.28px !important;
@@ -5035,7 +5035,7 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
     padding: 12px 24px !important;
     border-radius: 25px !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.28px !important;
@@ -5075,7 +5075,7 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
     padding: 12px 24px !important;
     border-radius: 0 !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.28px !important;
@@ -5132,7 +5132,7 @@ select:focus {
 .woocommerce-checkout .woocommerce-form label {
     color: #404040 !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     margin-bottom: 12px !important;
@@ -5144,7 +5144,7 @@ select:focus {
 .woocommerce-checkout .woocommerce-form p {
     color: #999999 !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 13px !important;
+    font-size: clamp(0.7rem, 1.0vw, 0.85rem) !important;
     font-weight: 300 !important;
     margin-bottom: 16px !important;
     line-height: 1.4 !important;
@@ -5156,7 +5156,7 @@ select:focus {
 .woocommerce-checkout .woocommerce-form h3 {
     color: #ffffff !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 16px !important;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem) !important;
     font-weight: 500 !important;
     text-transform: uppercase !important;
     margin-bottom: 16px !important;
@@ -5179,7 +5179,7 @@ select:focus {
     gap: 0 !important;
     margin-bottom: 0 !important;
     cursor: pointer !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     color: #999999 !important;
     font-family: 'Figtree', sans-serif !important;
     font-weight: 300 !important;
@@ -5194,7 +5194,7 @@ select:focus {
     gap: 0 !important;
     margin-bottom: 0 !important;
     cursor: pointer !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     color: #999999 !important;
     font-family: 'Figtree', sans-serif !important;
     font-weight: 300 !important;
@@ -5242,7 +5242,7 @@ textarea::placeholder {
     padding: 12px 24px !important;
     border-radius: 25px !important;
     font-family: 'Figtree', sans-serif !important;
-    font-size: 14px !important;
+    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.28px !important;
