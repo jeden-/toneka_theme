@@ -2011,6 +2011,17 @@ ol, ul {
     width: 100%;
 }
 
+/* Wyłącz podwójne podkreślenie dla przycisków hero */
+.toneka-listen-button.animated-arrow-button .button-text::after,
+.toneka-listen-button.animated-arrow-button span:not(.button-arrow)::after {
+    display: none;
+}
+
+.toneka-listen-button.animated-arrow-button:hover .button-text::after,
+.toneka-listen-button.animated-arrow-button:hover span:not(.button-arrow)::after {
+    display: none;
+}
+
 /* Strzałka - domyślnie w górę */
 .animated-arrow-button .button-arrow {
     position: relative;

@@ -97,6 +97,17 @@ get_header(); ?>
                 echo '</a></div></div>';
                 echo '<div class="toneka-hero-right">';
                 echo '<img src="' . esc_url($slide['image']) . '" alt="' . esc_attr($slide['title']) . '" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" />';
+                
+                // Kropki nawigacji dla tego slajdu
+                if (!empty($slides) && count($slides) > 1) {
+                    echo '<div class="toneka-slider-dots">';
+                    foreach ($slides as $dot_index => $dot_slide) {
+                        $active_class = $dot_index === $index ? ' active' : '';
+                        echo '<button class="toneka-slider-dot' . $active_class . '" data-slide="' . $dot_index . '" aria-label="Przejdź do slajdu ' . ($dot_index + 1) . '"></button>';
+                    }
+                    echo '</div>';
+                }
+                
                 echo '</div></div>';
             }
         }
@@ -116,13 +127,6 @@ get_header(); ?>
                 <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </button>
-    </div>
-    
-    <!-- Dots Navigation -->
-    <div class="toneka-slider-dots">
-        <?php foreach ($slides as $index => $slide): ?>
-            <button class="toneka-slider-dot<?php echo $index === 0 ? ' active' : ''; ?>" data-slide="<?php echo $index; ?>" aria-label="Przejdź do slajdu <?php echo $index + 1; ?>"></button>
-        <?php endforeach; ?>
     </div>
     <?php endif; ?>
 </div>
