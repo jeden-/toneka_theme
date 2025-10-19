@@ -865,6 +865,7 @@ ol, ul {
 .toneka-slider-dots {
     position: absolute;
     bottom: 30px;
+    right: 0;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
