@@ -2952,7 +2952,7 @@ ol, ul {
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto auto 1fr;
-    gap: 40px;
+    gap: 80px;
     padding: 0 7%;
     align-items: start;
 }
@@ -3071,10 +3071,35 @@ ol, ul {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
+    position: relative;
+    padding: 4px 0;
 }
 
 .toneka-social-link:hover {
     opacity: 0.8;
+}
+
+.toneka-social-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.toneka-social-link:hover::before {
+    width: 100%;
+}
+
+.toneka-social-link .social-arrow {
+    transition: transform 0.3s ease;
+}
+
+.toneka-social-link:hover .social-arrow {
+    transform: rotate(45deg);
 }
 
 .social-text {
