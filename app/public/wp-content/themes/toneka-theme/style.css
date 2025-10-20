@@ -837,8 +837,9 @@ ol, ul {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent!important;
     border-radius: 50%;
+    border: none!important;
     width: 50px;
     height: 50px;
     display: flex;
