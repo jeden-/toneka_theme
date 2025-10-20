@@ -418,6 +418,9 @@ ol, ul {
 .toneka-main-header {
     background: transparent;
     height: 120px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .toneka-header-container {
@@ -623,11 +626,11 @@ ol, ul {
 
 /* Header przeźroczysty na stronie produktu */
 .product-page-header {
-    /* position: absolute; */
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: transparent;
     height: 82px;
     transition: background-color 0.3s ease;
@@ -871,9 +874,9 @@ ol, ul {
 /* Dots Navigation */
 .toneka-slider-dots {
     position: absolute;
-    bottom: 30px;
-    right: 0;
-    left: 50%;
+    bottom: 5%;
+    /* right: 0; */
+    left: 9%;
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
@@ -1339,7 +1342,6 @@ ol, ul {
     font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     font-weight: 100;
     color: #969696;
-    letter-spacing: 0.1em;
     margin: 30px 0;
     text-transform: uppercase;
 }
@@ -1472,11 +1474,9 @@ ol, ul {
 }
 
 .toneka-minicart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: relative;
     margin-bottom: 30px;
-    /* padding-bottom: 20px; */
+    padding-bottom: 20px;
     border-bottom: 1px solid #969696;
 }
 
@@ -1490,21 +1490,62 @@ ol, ul {
 }
 
 .toneka-minicart-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
     background: none;
     border: none;
     color: #ffffff;
-    font-size: clamp(1.8rem, 2.6vw, 2.3rem);
     cursor: pointer;
     padding: 0;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 9999;
 }
 
 .toneka-minicart-close:hover {
     opacity: 0.7;
+}
+
+.toneka-minicart-close svg {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.2s ease;
+}
+
+.toneka-minicart-close:hover svg {
+    opacity: 0.7;
+}
+
+/* Przycisk zamykania widoczny tylko gdy mini koszyk jest aktywny */
+.toneka-minicart:not(.is-active) .toneka-minicart-close {
+    display: none;
+}
+
+.toneka-minicart.is-active .toneka-minicart-close {
+    display: flex !important;
+    z-index: 99999 !important;
+    opacity: 0;
+    animation: fadeInCloseButton 0.3s ease-in-out 0.4s forwards;
+    border: none;
+}
+
+.toneka-minicart.is-active .toneka-minicart-close:hover {
+    background: #5a5a5a!important;
+}
+
+@keyframes fadeInCloseButton {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .toneka-minicart-items {
@@ -1560,7 +1601,7 @@ ol, ul {
 
 .toneka-minicart-remove {
     background: none;
-    border: none;
+    border: 1px solid #5a5a5a!important;
     color: #ffffff;
     cursor: pointer;
     padding: 4px;
@@ -1571,6 +1612,7 @@ ol, ul {
 
 .toneka-minicart-remove:hover {
     opacity: 1;
+    background: #5a5a5a!important;
 }
 
 .toneka-minicart-remove svg {
@@ -1586,7 +1628,7 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 0;
-    border: 1px solid #a5a5a5;
+    /* border: 1px solid #a5a5a5; */
     border-radius: 30px;
     padding: 2px;
     order: 2;
@@ -1843,7 +1885,6 @@ ol, ul {
     font-weight: 600;
     background: rgba(0, 255, 0, 0.1);
     padding: 2px 6px;
-    border-radius: 3px;
 }
 
 .toneka-minicart-upsell-item-actions {
@@ -1864,7 +1905,7 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 0;
-    border: 1px solid #a5a5a5;
+    /* border: 1px solid #a5a5a5; */
     border-radius: 30px;
     padding: 2px;
 }
@@ -1999,7 +2040,6 @@ ol, ul {
 .animated-arrow-button .button-text,
 .animated-arrow-button span:not(.button-arrow) {
     position: relative;
-    /* letter-spacing: 1.44px; */
     font-size: clamp(0.8rem, 1.0vw, 0.9rem);
 }
 
@@ -2476,7 +2516,7 @@ ol, ul {
 .toneka-quantity-wrapper {
     display: flex;
     align-items: center;
-    border: 1px solid #969696;
+    /* border: 1px solid #969696; */
     border-radius: 25px;
     overflow: hidden;
 }
@@ -2825,7 +2865,6 @@ ol, ul {
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     font-family: 'Figtree', sans-serif;
     z-index: 10;
     min-height: 2.5em;
@@ -3080,7 +3119,6 @@ ol, ul {
     font-size: clamp(0.55rem, 0.8vw, 0.7rem);
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     transition: all 0.3s ease;
     position: relative;
     padding: 4px 0;
@@ -3131,7 +3169,6 @@ ol, ul {
     font-size: clamp(0.55rem, 0.8vw, 0.7rem);
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .toneka-copyright span {
@@ -3232,6 +3269,15 @@ ol, ul {
 /* Tablet (769px - 1024px) */
 /* Mobile (max 768px) */
 @media (max-width: 768px) {
+    /* Wyłącz sticky header na mobile */
+    .toneka-main-header {
+        position: static;
+    }
+    
+    .product-page-header {
+        position: static;
+    }
+    
     .toneka-footer-container {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -3560,7 +3606,6 @@ ol, ul {
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .toneka-category-filter-item a {
@@ -3617,7 +3662,6 @@ ol, ul {
     font-weight: 300;
     color: #969696;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
 }
@@ -4763,7 +4807,7 @@ ol, ul {
     color: #ffffff;
     font-family: 'Figtree', sans-serif;
     font-size: clamp(0.75rem, 1.1vw, 1rem);
-    border-radius: 0;
+    border-radius: 0!important;
     transition: all 0.3s ease;
 }
 
@@ -5024,7 +5068,6 @@ input[type="checkbox"]:hover {
     font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.28px !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
     width: auto !important;
@@ -5063,7 +5106,6 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
     font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.28px !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
     width: auto !important;
@@ -5103,7 +5145,6 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
     font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.28px !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
     text-decoration: none !important;
@@ -5270,7 +5311,6 @@ textarea::placeholder {
     font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.28px !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
     width: auto !important;
@@ -5314,8 +5354,8 @@ textarea::placeholder {
 
 .woocommerce-form-row label {
     font-family: 'Figtree', sans-serif;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    color: #ffffff;
+    font-size: clamp(0.6rem, 1.0vw, 0.8rem);
+    color: #7B7B7B;
     text-transform: uppercase;
     margin-bottom: 8px;
     display: block;
@@ -5332,7 +5372,7 @@ textarea::placeholder {
     color: #ffffff;
     font-family: 'Figtree', sans-serif;
     font-size: clamp(0.75rem, 1.1vw, 1rem);
-    border-radius: 0;
+    border-radius: 0!important;
     transition: all 0.3s ease;
 }
 
@@ -5439,7 +5479,6 @@ textarea::placeholder {
     font-weight: 300;
     color: rgba(255, 255, 255, 0.3);
     text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 .toneka-creators-archive-title {
@@ -5626,7 +5665,6 @@ textarea::placeholder {
     font-weight: 300;
     color: #969696;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     margin: 0;
 }
 
@@ -5645,7 +5683,6 @@ textarea::placeholder {
     font-weight: 300;
     color: #969696;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 /* Creator Portfolio Section - prawa kolumna jak audio-section */
@@ -5685,7 +5722,7 @@ textarea::placeholder {
     aspect-ratio: 1;
     position: relative;
     overflow: hidden;
-    /* border-radius: 8px; */
+    border-radius: 0!important;
     transition: box-shadow 0.2s ease;
 }
 
@@ -5805,3 +5842,48 @@ textarea::placeholder {
 }
 
 /* Force deployment Thu Sep 25 13:36:32 CEST 2025 */
+
+/* =====================================
+   GLOBAL BUTTON STYLE (excluding arrow buttons)
+   Applies a consistent pill shape, font sizing, and weights
+   Note: Arrow buttons keep their own visuals (.animated-arrow-button, .toneka-more-link, etc.)
+   ===================================== */
+
+button:not(.animated-arrow-button),
+input[type="submit"]:not(.animated-arrow-button),
+input[type="button"]:not(.animated-arrow-button),
+a.button:not(.animated-arrow-button):not(.toneka-more-link),
+.toneka-button,
+.woocommerce a.button:not(.animated-arrow-button),
+.woocommerce button.button:not(.animated-arrow-button),
+.woocommerce input.button:not(.animated-arrow-button) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border: 1px solid #ffffff;
+    border-radius: 9999px;
+    background: #000000;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: clamp(0.875rem, 1.0vw, 0.95rem);
+    line-height: 1;
+    width: auto;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+button:not(.animated-arrow-button):hover,
+input[type="submit"]:not(.animated-arrow-button):hover,
+input[type="button"]:not(.animated-arrow-button):hover,
+a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
+.toneka-button:hover,
+.woocommerce a.button:not(.animated-arrow-button):hover,
+.woocommerce button.button:not(.animated-arrow-button):hover,
+.woocommerce input.button:not(.animated-arrow-button):hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}

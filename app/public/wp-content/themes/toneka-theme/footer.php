@@ -109,5 +109,13 @@
 
 <?php wp_footer(); ?>
 
+<!-- Mini-cart overlay -->
+<div class="toneka-minicart-overlay"></div>
+
+<!-- Mini-cart -->
+<div class="toneka-minicart">
+    <?php toneka_display_custom_minicart(); ?>
+</div>
+
 </body>
 </html>

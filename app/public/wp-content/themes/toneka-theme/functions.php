@@ -95,8 +95,19 @@ add_action( 'after_setup_theme', 'toneka_theme_setup' );
  */
 function toneka_display_custom_minicart() {
     if (WC()->cart->is_empty()) {
-        echo '<div class="toneka-minicart-empty">
-                <p>Twój koszyk jest pusty</p>
+        echo '<div class="toneka-minicart-content">
+                <div class="toneka-minicart-header">
+                    <h3>Twój koszyk</h3>
+                    <button class="toneka-minicart-close">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 9L30.2132 30.0364" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M9.10645 30.064L30.3196 9.02754" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="toneka-minicart-empty">
+                    <p>Twój koszyk jest pusty</p>
+                </div>
               </div>';
         return;
     }
@@ -105,7 +116,12 @@ function toneka_display_custom_minicart() {
     <div class="toneka-minicart-content">
         <div class="toneka-minicart-header">
             <h3>Twój koszyk</h3>
-            <button class="toneka-minicart-close">&times;</button>
+            <button class="toneka-minicart-close">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 9L30.2132 30.0364" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M9.10645 30.064L30.3196 9.02754" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </button>
         </div>
         
         <div class="toneka-minicart-items">
