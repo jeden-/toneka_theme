@@ -2401,12 +2401,34 @@ ol, ul {
     color: #969696;
 }
 
+.toneka-toggle-description {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* distance between label and arrow */
+    cursor: pointer;
+}
+
 .toneka-toggle-description[data-state="expanded"] .button-arrow {
+    transform: rotate(90deg);
+}
+
+.toneka-toggle-description[data-state="collapsed"] .button-arrow {
+    transform: rotate(0deg);
+}
+
+.toneka-toggle-description[data-state="collapsed"]:hover .button-arrow {
+    transform: rotate(90deg); /* hover on container -> arrow down */
+}
+
+/* Expanded state: arrow starts down (90deg); on hover turn additional 90deg */
+.toneka-toggle-description[data-state="expanded"]:hover .button-arrow {
     transform: rotate(180deg);
 }
 
 .toneka-toggle-description .button-arrow {
     transition: transform 0.3s ease;
+    width: clamp(14px, 1.2vw, 16px);
+    height: clamp(14px, 1.2vw, 16px);
 }
 
 /* ===== SEKCJA ZAKUPOWA ===== */
