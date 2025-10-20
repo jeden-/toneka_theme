@@ -1090,8 +1090,8 @@ ol, ul {
 }
 
 .toneka-page-title {
-    font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-    font-weight: 700;
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-weight: 300;
     text-transform: uppercase;
     color: #ffffff;
     margin: 0;
@@ -1114,7 +1114,7 @@ ol, ul {
 .toneka-page-content-wrapper h6 {
     color: #ffffff;
     margin: 30px 0 15px 0;
-    font-weight: 600;
+    font-weight: 300;
 }
 
 .toneka-page-content-wrapper a {
@@ -1232,13 +1232,13 @@ ol, ul {
 .toneka-post-content-wrapper h6 {
     color: #ffffff;
     margin: 30px 0 15px 0;
-    font-weight: 600;
+    font-weight: 300;
 }
 
 .toneka-read-more {
     color: #ffffff !important;
     text-decoration: underline;
-    font-weight: 500;
+    font-weight: 400;
     transition: opacity 0.3s ease;
 }
 
@@ -1253,7 +1253,7 @@ ol, ul {
 }
 
 .toneka-no-content h1 {
-    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-size: clamp(2.2rem, 3.3vw, 3rem);
     margin-bottom: 20px;
     color: #ffffff;
 }
