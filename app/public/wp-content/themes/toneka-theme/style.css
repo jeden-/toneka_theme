@@ -2393,7 +2393,6 @@ ol, ul {
     gap: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-bottom: 1px solid #333333!important;
     padding-bottom: 10px;
 }
 
@@ -2422,7 +2421,7 @@ ol, ul {
 
 /* Expanded state: arrow starts down (90deg); on hover turn additional 90deg */
 .toneka-toggle-description[data-state="expanded"]:hover .button-arrow {
-    transform: rotate(180deg);
+    transform: rotate(0deg);
 }
 
 .toneka-toggle-description .button-arrow {
