@@ -2617,7 +2617,18 @@ function toneka_display_suggested_merch() {
     
     echo '<div class="toneka-suggested-section">';
     echo '<div class="toneka-category-title">';
+    echo '<div class="toneka-section-header">';
+    echo '<div class="toneka-section-title">';
     echo '<h2>PROPONOWANY MERCH</h2>';
+    echo '<img src="' . get_template_directory_uri() . '/img/title.svg" alt="Title" class="toneka-title-icon" />';
+    echo '</div>';
+    echo '<div class="toneka-section-link">';
+    echo '<a href="' . esc_url(get_term_link('merch', 'product_cat')) . '" class="toneka-view-all-link">';
+    echo 'WSZYSTKIE';
+    echo '<img src="' . get_template_directory_uri() . '/img/arrow_up.svg" alt="Arrow" class="toneka-arrow-icon" />';
+    echo '</a>';
+    echo '</div>';
+    echo '</div>';
     echo '</div>';
     
     echo '<div class="toneka-products-grid toneka-category-products-grid toneka-suggested-merch-grid">';
@@ -2888,7 +2899,18 @@ function toneka_display_suggested_audio() {
     
     echo '<div class="toneka-suggested-section">';
     echo '<div class="toneka-category-title">';
+    echo '<div class="toneka-section-header">';
+    echo '<div class="toneka-section-title">';
     echo '<h2>PROPONOWANE SŁUCHOWISKA</h2>';
+    echo '<img src="' . get_template_directory_uri() . '/img/title.svg" alt="Title" class="toneka-title-icon" />';
+    echo '</div>';
+    echo '<div class="toneka-section-link">';
+    echo '<a href="' . esc_url(get_term_link('sluchowiska', 'product_cat')) . '" class="toneka-view-all-link">';
+    echo 'WSZYSTKIE';
+    echo '<img src="' . get_template_directory_uri() . '/img/arrow_up.svg" alt="Arrow" class="toneka-arrow-icon" />';
+    echo '</a>';
+    echo '</div>';
+    echo '</div>';
     echo '</div>';
     
     // Grid zawsze 3 kolumny
