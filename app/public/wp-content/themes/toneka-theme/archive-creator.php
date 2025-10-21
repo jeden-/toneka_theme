@@ -22,13 +22,6 @@ $hero_description = get_theme_mod('creators_archive_hero_description', 'Poznaj t
     <div class="toneka-hero-left">
         <div class="toneka-hero-content">
             
-            <!-- Breadcrumb -->
-            <nav class="toneka-breadcrumb">
-                <a href="<?php echo esc_url(home_url('/')); ?>">WSZYSTKO</a>
-                <span class="toneka-breadcrumb-separator"> / </span>
-                <span class="toneka-breadcrumb-current">TWÓRCY</span>
-            </nav>
-            
             <!-- Page Title -->
             <h1 class="toneka-product-title toneka-creators-archive-title"><?php echo esc_html($hero_title); ?></h1>
             

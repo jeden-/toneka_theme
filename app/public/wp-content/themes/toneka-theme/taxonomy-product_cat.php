@@ -30,8 +30,6 @@ $category_image_url = $category_image_id ? wp_get_attachment_image_url($category
         <!-- Główna zawartość hero -->
         <div class="toneka-hero-content">
             
-            <?php woocommerce_breadcrumb(); ?>
-            
             <!-- Tytuł kategorii -->
             <h1 class="toneka-product-title toneka-category-title"><?php echo esc_html(strtoupper($category_name)); ?></h1>
             

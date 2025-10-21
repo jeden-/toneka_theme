@@ -31,13 +31,6 @@ while ( have_posts() ) :
             <!-- Główna zawartość hero -->
             <div class="toneka-hero-content">
                 
-                <!-- Breadcrumb -->
-                <nav class="toneka-breadcrumb">
-                    <a href="<?php echo get_post_type_archive_link('creator'); ?>">TWÓRCY</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span class="breadcrumb-current"><?php echo esc_html(strtoupper($creator_name)); ?></span>
-                </nav>
-                
                 <!-- Imię i nazwisko twórcy -->
                 <h1 class="toneka-product-title toneka-creator-title">
                     <?php echo esc_html(strtoupper($creator_name)); ?>

@@ -410,7 +410,6 @@ ol, ul {
     position: relative;
     z-index: 999;
     background: #000000;
-    border-top: 1px solid #a5a5a5;
     border-bottom: 1px solid #a5a5a5;
 }
 
@@ -830,6 +829,7 @@ ol, ul {
     transform: translateY(-50%);
     z-index: 10;
     pointer-events: none;
+    display: none;/* CZASOWO UKRYTE PRZEZ CSS */
 }
 
 .toneka-slider-prev,
@@ -876,10 +876,10 @@ ol, ul {
     position: absolute;
     bottom: 5%;
     /* right: 0; */
-    left: 12%;
+    left: 7.8%;
     transform: translateX(-50%);
     display: flex;
-    gap: 10%;
+    gap: 6px;
     z-index: 10;
     pointer-events: none;
 }
@@ -887,13 +887,16 @@ ol, ul {
 .toneka-slider-dot {
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    border-radius: 0;
     background: rgba(255, 255, 255, 0.3);
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     pointer-events: all;
+    padding: 0;
+    display: block;
+    flex: none;
 }
 
 .toneka-slider-dot.active {
@@ -990,7 +993,7 @@ ol, ul {
 }
 
 .toneka-hero-left {
-    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    /* border-right: 1px solid rgba(255, 255, 255, 0.4); */
     display: flex;
     flex-direction: column;
     background: #000000;
@@ -1151,7 +1154,7 @@ ol, ul {
 
 .toneka-archive-header {
     margin-bottom: 40px;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #7b7b7b;
     padding-bottom: 20px;
 }
 
@@ -1166,7 +1169,7 @@ ol, ul {
 .toneka-post-content {
     margin-bottom: 60px;
     padding-bottom: 40px;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #7b7b7b;
     color: #ffffff;
 }
 
@@ -1267,7 +1270,7 @@ ol, ul {
 .posts-navigation {
     margin-top: 60px;
     padding-top: 40px;
-    border-top: 1px solid #333333;
+    border-top: 1px solid #7b7b7b;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2229,7 +2232,7 @@ ol, ul {
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
-	border-bottom: 1px solid #fff;
+	border-bottom: 1px solid #a5a5a5;
 	padding-bottom: 10px;
 }
 
@@ -2259,7 +2262,7 @@ ol, ul {
     display: block;
     padding-top: 1%;
     padding-bottom: 1%;
-    border-bottom: 1px solid #333333!important;
+    border-bottom: 1px solid #7b7b7b!important;
     line-height: 1.4;
     padding-left: 1%;
     padding-right: 1%;
@@ -2348,6 +2351,7 @@ ol, ul {
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     padding-left: 1%;
     padding-right: 1%;
+    margin-bottom: 5%;
 }
 
 .toneka-description-row .toneka-meta-value {
@@ -2768,7 +2772,7 @@ ol, ul {
 .toneka-volume-slider {
     flex: 1;
     height: 4px;
-    background: #333333;
+    background: #7b7b7b;
     border-radius: 2px;
     position: relative;
     cursor: pointer;
@@ -2861,6 +2865,11 @@ ol, ul {
 /* Ostatni kafelek w rzędzie - prawy border przezroczysty (niewidoczny ale zajmuje miejsce) */
 .toneka-product-card:last-child {
     border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* Gdy jest tylko 1 produkt - musi mieć widoczną prawą ramkę */
+.toneka-product-card:first-child:last-child {
+    border-right: 1px solid #a5a5a5;
 }
 
 /* Gdy są tylko 2 produkty w gridzie 3-kolumnowym, drugi produkt musi mieć widoczną linię z prawej */
@@ -3064,7 +3073,7 @@ ol, ul {
 
 .footer-widget-title {
     font-family: 'Figtree', sans-serif;
-    font-size: clamp(0.7rem, 1.0vw, 0.85rem),
+    font-size: clamp(0.7rem, 1.0vw, 0.85rem);
     font-weight: 300;
     color: #ffffff;
     text-transform: uppercase;
@@ -3113,7 +3122,7 @@ ol, ul {
 .toneka-footer-bottom {
     background: #000;
     padding: 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid #a5a5a5;
 }
 
 .toneka-footer-bottom-content {
@@ -4504,7 +4513,7 @@ ol, ul {
     display: flex;
     gap: 20px;
     padding: 20px 0;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #7b7b7b;
     align-items: flex-start;
 }
 
@@ -4797,7 +4806,7 @@ ol, ul {
     color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 30px;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #7b7b7b;
     padding-bottom: 15px;
 }
 
@@ -4868,7 +4877,7 @@ ol, ul {
     display: flex;
     gap: 15px;
     padding: 15px 0;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #7b7b7b;
     align-items: center;
 }
 
@@ -5527,7 +5536,7 @@ textarea::placeholder {
 }
 
 .toneka-creator-item {
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #7b7b7b;
     padding: 40px 0;
     transition: all 0.6s ease;
 }
@@ -5870,7 +5879,7 @@ textarea::placeholder {
    Note: Arrow buttons keep their own visuals (.animated-arrow-button, .toneka-more-link, etc.)
    ===================================== */
 
-button:not(.animated-arrow-button),
+button:not(.animated-arrow-button):not(.toneka-slider-dot),
 input[type="submit"]:not(.animated-arrow-button),
 input[type="button"]:not(.animated-arrow-button),
 a.button:not(.animated-arrow-button):not(.toneka-more-link),
@@ -5896,7 +5905,7 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link),
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-button:not(.animated-arrow-button):hover,
+button:not(.animated-arrow-button):not(.toneka-slider-dot):hover,
 input[type="submit"]:not(.animated-arrow-button):hover,
 input[type="button"]:not(.animated-arrow-button):hover,
 a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,

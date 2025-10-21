@@ -35,8 +35,6 @@ if (!$tag_image_url) {
         <!-- Główna zawartość hero -->
         <div class="toneka-hero-content">
             
-            <?php woocommerce_breadcrumb(); ?>
-            
             <!-- Tytuł tagu -->
             <h1 class="toneka-product-title toneka-tag-title"><?php echo esc_html(strtoupper($tag_name)); ?></h1>
             

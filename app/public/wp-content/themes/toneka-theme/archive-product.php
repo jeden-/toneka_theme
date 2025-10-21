@@ -19,8 +19,6 @@ get_header(); ?>
         <!-- Główna zawartość hero -->
         <div class="toneka-hero-content">
             
-            <?php woocommerce_breadcrumb(); ?>
-            
             <!-- Tytuł sklepu -->
             <h1 class="toneka-product-title toneka-category-title">SKLEP</h1>
             

@@ -2452,6 +2452,35 @@ function toneka_display_product_metadata() {
         </div>
         <?php endif; ?>
         
+        <!-- Opis produktu -->
+        <?php if ($product->get_short_description()): ?>
+        <div class="toneka-description-row">
+            <div class="toneka-product-description">
+                <p><?php echo wp_kses_post($product->get_short_description()); ?></p>
+            </div>
+            
+            <!-- Główny opis (ukryty domyślnie) -->
+            <?php if ($product->get_description()): ?>
+            <div class="toneka-full-description" style="display: none;">
+                <div class="toneka-full-description-content">
+                    <?php echo wp_kses_post($product->get_description()); ?>
+                </div>
+            </div>
+            
+            <div class="toneka-toggle-description animated-arrow-button" data-state="collapsed">
+                <span class="toggle-text">WIĘCEJ</span>
+                <div class="button-arrow">
+                    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/>
+                        <path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/>
+                        <path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
+        
         <?php if (!empty($autors)): ?>
         <div class="toneka-meta-row">
             <span class="toneka-meta-label">autor:</span>
@@ -2513,35 +2542,6 @@ function toneka_display_product_metadata() {
             <div class="toneka-meta-half">
                 <span class="toneka-meta-label">rok wydania:</span>
                 <span class="toneka-meta-value"><?php echo esc_html($rok_produkcji); ?></span>
-            </div>
-            <?php endif; ?>
-        </div>
-        <?php endif; ?>
-        
-        <!-- Opis produktu -->
-        <?php if ($product->get_short_description()): ?>
-        <div class="toneka-description-row">
-            <div class="toneka-product-description">
-                <p><span class="toneka-meta-label">Opis:</span> <?php echo wp_kses_post($product->get_short_description()); ?></p>
-            </div>
-            
-            <!-- Główny opis (ukryty domyślnie) -->
-            <?php if ($product->get_description()): ?>
-            <div class="toneka-full-description" style="display: none;">
-                <div class="toneka-full-description-content">
-                    <?php echo wp_kses_post($product->get_description()); ?>
-                </div>
-            </div>
-            
-            <div class="toneka-toggle-description animated-arrow-button" data-state="collapsed">
-                <span class="toggle-text">WIĘCEJ</span>
-                <div class="button-arrow">
-                    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/>
-                        <path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/>
-                        <path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/>
-                    </svg>
-                </div>
             </div>
             <?php endif; ?>
         </div>

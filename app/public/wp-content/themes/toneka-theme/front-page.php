@@ -72,7 +72,7 @@ get_header(); ?>
                 echo '<div class="toneka-hero-right"><img src="' . esc_url($hero_image) . '" alt="Hero Image" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" /></div>';
                 echo '</div>';
             } else {
-                echo '<div class="toneka-hero-placeholder" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666666; border: 2px dashed #333333;">Dodaj zdjęcie w Dostosuj → Hero Slider</div>';
+                echo '<div class="toneka-hero-placeholder" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666666; border: 2px dashed #7b7b7b;">Dodaj zdjęcie w Dostosuj → Hero Slider</div>';
             }
         } else {
             // Wyświetl slajdy z oryginalnym layoutem 50/50
