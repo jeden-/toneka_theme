@@ -876,7 +876,7 @@ ol, ul {
     position: absolute;
     bottom: 5%;
     /* right: 0; */
-    left: 7.8%;
+    left: 8.2%;
     transform: translateX(-50%);
     display: flex;
     gap: 6px;
@@ -2351,7 +2351,7 @@ ol, ul {
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     padding-left: 1%;
     padding-right: 1%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 .toneka-description-row .toneka-meta-value {
@@ -2874,7 +2874,8 @@ ol, ul {
 
 /* Gdy są tylko 2 produkty w gridzie 3-kolumnowym, drugi produkt musi mieć widoczną linię z prawej */
 .toneka-suggested-merch-grid .toneka-product-card:nth-child(2):last-child,
-.toneka-suggested-audio-grid .toneka-product-card:nth-child(2):last-child {
+.toneka-suggested-audio-grid .toneka-product-card:nth-child(2):last-child,
+.toneka-category-products-grid .toneka-product-card:nth-child(2):last-child {
     border-right: 1px solid #a5a5a5;
 }
 
