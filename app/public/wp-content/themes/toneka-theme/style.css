@@ -2873,6 +2873,17 @@ ol, ul {
     object-fit: cover;
 }
 
+/* Player w kontenerze zdjęcia */
+.toneka-product-image .toneka-audio-player {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    border: none;
+    border-radius: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
 .toneka-product-content {
     width: 50%;
     padding: 7%;
@@ -3971,8 +3982,8 @@ ol, ul {
 .toneka-figma-player {
     position: relative;
     width: 100%;
-    height: 400px; /* Domyślna wysokość, będzie nadpisana przez JavaScript */
-    border-radius: 28px;
+    height: 100%; /* Domyślna wysokość, będzie nadpisana przez JavaScript */
+    border-radius: 0x;
     overflow: hidden;
     background: #000;
     margin: 40px 0;
@@ -4240,7 +4251,7 @@ ol, ul {
 /* Responsywność */
 @media (max-width: 768px) {
     .toneka-figma-player {
-        height: 300px;
+        height: 100%;
         border-radius: 20px;
         margin: 20px 0;
     }
@@ -4512,7 +4523,7 @@ ol, ul {
 .toneka-figma-player {
     transition: height 0.5s ease-in-out;
     min-height: 200px;
-    max-height: 800px;
+    max-height: 100%;
 }
 
 /* Specjalne style dla różnych proporcji */

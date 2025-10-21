@@ -37,10 +37,10 @@ get_header( 'shop' ); ?>
 
 			<!-- New Product Layout - Image Left Sticky, Content Right -->
 			<div class="toneka-product-layout">
-			    <!-- Left Side - Sticky Image -->
+			    <!-- Left Side - Sticky Player -->
 			    <div class="toneka-product-image-container">
 			        <div class="toneka-product-image">
-			            <?php toneka_show_product_images_custom(); ?>
+			            <?php toneka_display_product_samples_player(); ?>
 			        </div>
 			    </div>
 			    
