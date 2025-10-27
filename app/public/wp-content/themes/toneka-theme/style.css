@@ -541,7 +541,7 @@ ol, ul {
 .menu-toggle {
     display: none;
     background: none;
-    border: 1px solid #7b7b7b;
+    border: none!important;
     border-radius: 50%;
     padding: 0;
     cursor: pointer;
@@ -727,24 +727,22 @@ ol, ul {
     .product-page-header .toneka-primary-menu {
         display: none;
     }
-}
-.product-page-header .toneka-header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-left: 30px;
-}
-
-.product-page-header .toneka-account-link,
-.product-page-header .toneka-cart-link {
-    color: #ffffff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
-    text-transform: uppercase;
-    transition: color 0.3s ease;
+    
+    .product-page-header .toneka-header-actions {
+        display: none !important; /* Ukryj koszyk i konto na mobile */
+    }
+    
+    .product-page-header .toneka-account-link,
+    .product-page-header .toneka-cart-link {
+        color: #ffffff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: clamp(0.75rem, 1.1vw, 1rem);
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+    }
 }
 
 .product-page-header .cart-count {
@@ -3403,6 +3401,7 @@ ol, ul {
     /* Wyłącz sticky header na mobile */
     .toneka-main-header {
         position: static;
+        height: 70px;
     }
     
     .product-page-header {
@@ -3440,11 +3439,14 @@ ol, ul {
     }
 
     .toneka-header-container {
-        padding: 7px 20px;
+        padding: 2% 5%;
     }
     
     .menu-toggle {
         display: flex;
+        width: 24px!important;
+        height: 24px!important;
+        padding: 0!important;
     }
     
     .toneka-primary-menu {
@@ -3453,6 +3455,28 @@ ol, ul {
     
     .toneka-header-actions {
         display: none; /* Ukryj koszyk i konto na mobile */
+    }
+    
+    .toneka-cart-icon {
+        display: none !important; /* Ukryj koszyk na mobile */
+    }
+    
+    /* Ukryj cart-count z headera, ale pokaż w mobile menu */
+    .toneka-header-right .cart-count {
+        display: none !important;
+    }
+    
+    /* Pokaż cart-count w mobile menu */
+    .mobile-cart-link .cart-count {
+        display: inline-flex !important;
+        position: static !important; /* Zmień z absolute na static */
+        top: auto !important;
+        right: auto !important;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+        font-weight: 300;
+        margin-left: 8px; /* Dodaj odstęp od tekstu */
     }
     
     .toneka-hero-section,
@@ -3502,11 +3526,11 @@ ol, ul {
     .toneka-product-details {
         border-right: none;
         border-bottom: 1px solid #ffffff;
-        padding: 80px 40px 60px 40px;
+        padding: 7%;
     }
     
     .toneka-audio-section {
-        padding: 80px 40px;
+        padding: 7%;
     }
     
     .toneka-products-grid {
@@ -3524,6 +3548,13 @@ ol, ul {
     
     /* Mobile Menu Styles */
     .mobile-hamburger svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .mobile-hamburger svg:first-child {
         display: block;
     }
     
@@ -3556,21 +3587,28 @@ ol, ul {
         display: flex;
     }
     
+    /* Ukryj minicart overlay gdy menu jest otwarte */
+    .mobile-menu-overlay.is-active ~ .toneka-minicart-overlay,
+    .mobile-menu-overlay.is-active ~ .toneka-minicart {
+        display: none !important;
+    }
+    
     .mobile-menu-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid #7b7b7b;
+        padding: 2% 5%;
+        height: 70px;
+        /* border-bottom: 1px solid #7b7b7b; */
     }
     
     .mobile-close {
         background: none;
-        border: none;
+        border: none!important;
         cursor: pointer;
-        padding: 0;
-        width: 24px;
-        height: 24px;
+        padding: 0!important;
+        width: 24px!important;
+        height: 24px!important;
     }
     
     .mobile-close svg {
@@ -3631,7 +3669,24 @@ ol, ul {
         border-bottom: 1px solid #7b7b7b;
     }
     
-    .mobile-cart-link,
+    .mobile-cart-link {
+        color: #ffffff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'Figtree', sans-serif;
+        font-size: clamp(0.7rem, 2.5vw, 1rem);
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .mobile-cart-link svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+    }
+    
     .mobile-social-link {
         color: #ffffff;
         text-decoration: none;
@@ -6071,7 +6126,7 @@ textarea::placeholder {
 @media (max-width: 768px) {
     /* Creator używa tej samej struktury co produkt */
     .toneka-creator-portfolio-section {
-        padding: 14%;
+        padding: 7%;
     }
     
     .toneka-portfolio-grid {
