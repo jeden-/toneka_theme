@@ -10,44 +10,46 @@
         console.log('TONEKA NAV: DOMContentLoaded event fired');
         // Mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
-        const primaryMenu = document.querySelector('.toneka-primary-menu');
+        const menuClose = document.querySelector('.menu-close');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
 
-        if (menuToggle && primaryMenu) {
+        if (menuToggle && mobileMenuOverlay) {
+            // Open mobile menu
             menuToggle.addEventListener('click', function() {
                 const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
                 
                 // Toggle aria-expanded
                 menuToggle.setAttribute('aria-expanded', !isExpanded);
                 
-                // Toggle mobile menu class
+                // Toggle mobile menu overlay
                 if (isExpanded) {
-                    primaryMenu.classList.remove('mobile-menu-open');
+                    mobileMenuOverlay.classList.remove('is-active');
                 } else {
-                    primaryMenu.classList.add('mobile-menu-open');
+                    mobileMenuOverlay.classList.add('is-active');
                 }
             });
 
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!menuToggle.contains(event.target) && !primaryMenu.contains(event.target)) {
+            // Close mobile menu
+            if (menuClose) {
+                menuClose.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.remove('is-active');
                     menuToggle.setAttribute('aria-expanded', 'false');
-                    primaryMenu.classList.remove('mobile-menu-open');
-                }
-            });
+                });
+            }
 
             // Close mobile menu on escape key
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape') {
+                    mobileMenuOverlay.classList.remove('is-active');
                     menuToggle.setAttribute('aria-expanded', 'false');
-                    primaryMenu.classList.remove('mobile-menu-open');
                 }
             });
 
             // Close mobile menu when window is resized to desktop
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 768) {
+                    mobileMenuOverlay.classList.remove('is-active');
                     menuToggle.setAttribute('aria-expanded', 'false');
-                    primaryMenu.classList.remove('mobile-menu-open');
                 }
             });
         }

@@ -49,10 +49,9 @@
 
 				<div class="toneka-header-right">
 					<nav id="site-navigation" class="main-navigation">
-						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-							<span class="hamburger-line"></span>
-							<span class="hamburger-line"></span>
-							<span class="hamburger-line"></span>
+						<button class="menu-toggle mobile-hamburger" aria-controls="primary-menu" aria-expanded="false">
+							<?php include get_template_directory() . '/img/mobile1.svg'; ?>
+							<?php include get_template_directory() . '/img/mobile_hover.svg'; ?>
 							<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'tonekatheme' ); ?></span>
 						</button>
 
@@ -115,5 +114,78 @@
 			</div>
 		</div>
 	</header><!-- #masthead -->
+
+	<!-- Mobile Menu Overlay -->
+	<div class="mobile-menu-overlay" id="mobile-menu-overlay">
+		<div class="mobile-menu-header">
+			<div class="site-branding">
+				<?php
+				if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+					the_custom_logo();
+				} else {
+					?>
+					<div class="toneka-default-logo">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+							<svg width="140" height="18" viewBox="0 0 140 18">
+								<text x="0" y="14" font-family="Arial" font-size="14">TONEKA</text>
+							</svg>
+						</a>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+			<button class="menu-close mobile-close" aria-label="Zamknij menu">
+				<?php include get_template_directory() . '/img/close1.svg'; ?>
+				<?php include get_template_directory() . '/img/close_hover.svg'; ?>
+			</button>
+		</div>
+		
+		<nav class="mobile-menu-nav">
+			<?php
+			if ( has_nav_menu( 'primary' ) ) {
+				wp_nav_menu(
+					array(
+						'theme_location' => 'primary',
+						'menu_id'        => 'mobile-primary-menu',
+						'menu_class'     => 'mobile-primary-menu',
+						'container'      => false,
+						'fallback_cb'    => false,
+					)
+				);
+			} else {
+				?>
+				<ul class="mobile-primary-menu">
+					<li class="menu-item"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">HOME</a></li>
+					<li class="menu-item"><a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">SŁUCHOWISKA</a></li>
+					<li class="menu-item"><a href="#">DESIGN</a></li>
+					<li class="menu-item"><a href="#">MUZYKA</a></li>
+					<li class="menu-item"><a href="#">KONTAKT</a></li>
+					<?php if ( is_user_logged_in() ) : ?>
+						<li class="menu-item"><a href="<?php echo esc_url( wp_logout_url( home_url() ) ); ?>">WYLOGUJ SIĘ</a></li>
+					<?php else : ?>
+						<li class="menu-item"><a href="<?php echo esc_url( wp_login_url() ); ?>">ZALOGUJ SIĘ</a></li>
+					<?php endif; ?>
+				</ul>
+				<?php
+			}
+			?>
+		</nav>
+		
+		<?php if ( class_exists( 'WooCommerce' ) ) : ?>
+		<div class="mobile-menu-cart">
+			<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="mobile-cart-link">
+				<span class="mobile-cart-icon">KOSZYK</span>
+				<span class="cart-count"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></span>
+			</a>
+		</div>
+		
+		<div class="mobile-menu-social">
+			<a href="#" class="mobile-social-link">INSTAGRAM</a>
+			<a href="#" class="mobile-social-link">FACEBOOK</a>
+			<a href="#" class="mobile-social-link">YOUTUBE</a>
+		</div>
+		<?php endif; ?>
+	</div>
 
 	<div id="content" class="site-content">

@@ -1641,14 +1641,15 @@ ol, ul {
     background: none;
     border: 1px solid #ffffff;
     color: #ffffff;
-    width: 30px;
-    height: 30px;
+    width: 30px!important;
+    height: 30px!important;
+    padding: 20px!important;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    border-radius: 50%;
+    border-radius: 50%!important;
     transition: all 0.3s ease;
 }
 
@@ -1917,14 +1918,15 @@ ol, ul {
     background: none;
     border: 1px solid #ffffff;
     color: #ffffff;
-    width: 30px;
-    height: 30px;
+    width: 30px!important;
+    height: 30px!important;
+    padding: 20px!important;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    border-radius: 50%;
+    border-radius: 50%!important;
     transition: all 0.3s ease;
 }
 
@@ -2541,24 +2543,24 @@ ol, ul {
 .toneka-quantity-wrapper {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0px;
 }
 
 .toneka-quantity-minus,
 .toneka-quantity-plus {
     background: none;
     border: 1px solid #ffffff;
-    border-radius: 50%;
+    border-radius: 50%!important;
     color: #ffffff;
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem)!important;
+    padding: 20px!important;
+    width: 30px!important;
+    height: 30px!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    cursor: pointer!important;
+    transition: all 0.3s ease!important;
 }
 
 .toneka-quantity-minus:hover,
@@ -2571,10 +2573,11 @@ ol, ul {
     border: none;
     color: #ffffff;
     text-align: center;
-    width: 35px;
+    width: 28px;
     padding: 8px 4px;
     font-size: clamp(0.75rem, 1.1vw, 1rem);
     -moz-appearance: textfield; /* Firefox - usuń kontrolki */
+    text-align: center!important;
 }
 
 /* Ukryj kontrolki systemowe w Chrome, Safari, Edge */
@@ -3439,7 +3442,7 @@ ol, ul {
     }
     
     .toneka-header-actions {
-        gap: 20px;
+        display: none; /* Ukryj koszyk i konto na mobile */
     }
     
     .toneka-hero-section,
@@ -3507,6 +3510,147 @@ ol, ul {
     
     .toneka-product-image {
         padding: 40px; /* Mniejszy padding na mobile */
+    }
+    
+    /* Mobile Menu Styles */
+    .mobile-hamburger svg {
+        display: block;
+    }
+    
+    .mobile-hamburger svg:last-child {
+        display: none;
+    }
+    
+    .mobile-hamburger:hover svg:first-child {
+        display: none;
+    }
+    
+    .mobile-hamburger:hover svg:last-child {
+        display: block;
+    }
+    
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000000;
+        z-index: 9998;
+        display: none;
+        flex-direction: column;
+    }
+    
+    .mobile-menu-overlay.is-active {
+        display: flex;
+    }
+    
+    .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #7b7b7b;
+    }
+    
+    .mobile-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .mobile-close svg {
+        display: block;
+    }
+    
+    .mobile-close svg:last-child {
+        display: none;
+    }
+    
+    .mobile-close:hover svg:first-child {
+        display: none;
+    }
+    
+    .mobile-close:hover svg:last-child {
+        display: block;
+    }
+    
+    .mobile-menu-nav {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+    
+    .mobile-primary-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    
+    .mobile-primary-menu .menu-item a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        text-transform: uppercase;
+        font-family: 'Figtree', sans-serif;
+        font-weight: 300;
+        transition: opacity 0.3s ease;
+    }
+    
+    .mobile-primary-menu .menu-item a:hover {
+        opacity: 0.8;
+    }
+    
+    .mobile-menu-cart,
+    .mobile-menu-social {
+        padding: 20px;
+        border-top: 1px solid #7b7b7b;
+    }
+    
+    .mobile-menu-cart {
+        border-bottom: 1px solid #7b7b7b;
+    }
+    
+    .mobile-cart-link,
+    .mobile-social-link {
+        color: #ffffff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'Figtree', sans-serif;
+        font-size: clamp(0.7rem, 2.5vw, 1rem);
+        transition: opacity 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .mobile-cart-link:hover,
+    .mobile-social-link:hover {
+        opacity: 0.7;
+    }
+    
+    .mobile-menu-social {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .mobile-social-link::after {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-left: 5px;
+        background: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 0L8 4L4 8L0 4L4 0Z' fill='white'/%3E%3C/svg%3E") no-repeat;
     }
 }
 
@@ -4668,6 +4812,7 @@ button.toneka-skip-button.toneka-skip-backward:hover {
 .toneka-cart-quantity .quantity-btn {
     width: 30px;
     height: 30px;
+    padding: 20px!important;
     border: 1px solid #a5a5a5;
     background: none;
     color: #ffffff;
