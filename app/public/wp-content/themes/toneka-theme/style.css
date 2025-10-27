@@ -2541,9 +2541,7 @@ ol, ul {
 .toneka-quantity-wrapper {
     display: flex;
     align-items: center;
-    /* border: 1px solid #969696; */
-    border-radius: 25px;
-    overflow: hidden;
+    gap: 8px;
 }
 
 .toneka-quantity-minus,
