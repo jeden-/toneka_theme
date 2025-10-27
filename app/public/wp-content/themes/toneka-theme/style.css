@@ -1639,17 +1639,17 @@ ol, ul {
 
 .quantity-btn {
     background: none;
-    border: none;
+    border: 1px solid #ffffff;
     color: #ffffff;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
     border-radius: 50%;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .quantity-btn:hover {
@@ -1915,17 +1915,17 @@ ol, ul {
 
 .upsell-quantity-btn {
     background: none;
-    border: none;
+    border: 1px solid #ffffff;
     color: #ffffff;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
     border-radius: 50%;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .upsell-quantity-btn:hover {
@@ -2549,12 +2549,18 @@ ol, ul {
 .toneka-quantity-minus,
 .toneka-quantity-plus {
     background: none;
-    border: none;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
     color: #ffffff;
     font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    padding: 4px 8px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .toneka-quantity-minus:hover,
@@ -4281,8 +4287,7 @@ button.toneka-skip-button.toneka-skip-backward:hover {
     }
     
     .toneka-bottom-panel {
-        padding: 8px 14tak
-        %!important;
+        padding: 8px 14px !important;
         gap: 8px;
     }
     
