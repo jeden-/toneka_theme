@@ -148,14 +148,14 @@ function initializePlayer(playerContainer) {
         
         // Responsywne ograniczenia wysokości
         let minHeight = 200;
-        let maxHeight = 800;
+        let maxHeight = 9999; // Usunięte ograniczenie 800px
         
         if (window.innerWidth <= 480) {
             minHeight = 150;
-            maxHeight = 400;
+            maxHeight = 9999; // Usunięte ograniczenie 400px
         } else if (window.innerWidth <= 768) {
             minHeight = 180;
-            maxHeight = 600;
+            maxHeight = 9999; // Usunięte ograniczenie 600px
         }
         
         const finalHeight = Math.max(minHeight, Math.min(maxHeight, scaledHeight));

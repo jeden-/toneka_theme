@@ -3604,10 +3604,10 @@ function toneka_render_product_card($product_id) {
         <div class="toneka-product-info">
             <div class="toneka-product-title-line">
                 <a href="<?php echo esc_url($product_url); ?>">
-                    <span class="toneka-product-name"><?php echo esc_html(strtoupper($product_name)); ?></span>
+                    <span class="toneka-product-name"><?php echo esc_html($product_name); ?></span>
                     <?php if (!empty($creators)): ?>
                         <span class="toneka-title-separator"> / </span>
-                        <span class="toneka-product-author"><?php echo esc_html(strtoupper($creators)); ?></span>
+                        <span class="toneka-product-author"><?php echo esc_html($creators); ?></span>
                     <?php endif; ?>
                 </a>
             </div>
