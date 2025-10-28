@@ -100,6 +100,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkedRadio = document.querySelector('.toneka-carrier-radio:checked');
     if (checkedRadio) {
         updateVariationInfo(checkedRadio.value);
+    } else if (variationsData.length > 0) {
+        // Jeśli nie ma zaznaczonego wariantu, wybierz pierwszy i wyświetl jego cenę
+        const firstRadio = document.querySelector('.toneka-carrier-radio');
+        if (firstRadio) {
+            firstRadio.checked = true;
+            updateVariationInfo(firstRadio.value);
+        }
     }
     
     // Obsługa formularza dodawania do koszyka
