@@ -3578,14 +3578,30 @@ function toneka_render_product_card($product_id) {
     $product_url = $product_obj->get_permalink();
     $product_label = get_post_meta($product_id, '_product_label', true);
     
-    // Get all creators (comma-separated)
-    $creators = toneka_get_all_product_creators($product_id);
+    // Check if product is in MERCH category
+    $categories = get_the_terms($product_id, 'product_cat');
+    $is_merch = false;
+    
+    if ($categories && !is_wp_error($categories)) {
+        foreach ($categories as $category) {
+            if (strtolower($category->name) === 'merch' || strtolower($category->slug) === 'merch') {
+                $is_merch = true;
+                break;
+            }
+        }
+    }
+    
+    // Get all creators (comma-separated) only if not merch
+    $creators = '';
+    if (!$is_merch) {
+        $creators = toneka_get_all_product_creators($product_id);
+    }
     
     ob_start();
     ?>
     <div class="toneka-product-card" data-url="<?php echo esc_url($product_url); ?>">
         <div class="toneka-product-label">
-            <?php if (!empty($product_label)) echo esc_html($product_label); ?>
+            <?php if (!empty($product_label) && !$is_merch) echo esc_html($product_label); ?>
         </div>
         
         <div class="toneka-product-image-wrapper">
