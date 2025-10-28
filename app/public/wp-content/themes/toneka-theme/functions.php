@@ -2183,11 +2183,9 @@ function toneka_display_product_samples_player() {
             <!-- Obraz produktu (zawsze obecny, JavaScript decyduje o widoczności) -->
             <div class="toneka-background-image" style="background-image: url('<?php echo esc_url($background_image); ?>')"></div>
             
-        </div>
-
-        <!-- Playlista (wyjeżdża z dołu) -->
-        <?php if (count($samples) > 1): ?>
-        <div class="toneka-playlist" data-visible="false">
+            <!-- Playlista (wyjeżdża z dołu) -->
+            <?php if (count($samples) > 1): ?>
+            <div class="toneka-playlist" data-visible="false">
             <div class="toneka-playlist-items">
                 <?php foreach ($samples as $index => $sample):
                     if (empty($sample['file'])) continue;
@@ -2211,8 +2209,9 @@ function toneka_display_product_samples_player() {
                     </div>
                 <?php endforeach; ?>
             </div>
+            </div>
+            <?php endif; ?>
         </div>
-        <?php endif; ?>
 
         <!-- Dolny panel z informacjami i kontrolkami -->
         <div class="toneka-bottom-panel">

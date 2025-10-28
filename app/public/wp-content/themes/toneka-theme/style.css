@@ -4397,24 +4397,25 @@ ol, ul {
 .toneka-figma-player {
     position: relative;
     width: 100%;
-    height: 100%; /* Domyślna wysokość, będzie nadpisana przez JavaScript */
+    height: auto; /* Auto aby pomieścić wszystkie elementy */
     border-radius: 0x;
-    overflow: hidden;
+    overflow: visible; /* Visible aby dolny panel był widoczny */
     background: #000;
     /* margin: 40px 0; */
 }
 
 /* Tło playera */
 .toneka-player-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Kwadratowy obraz produktu */
     z-index: 1;
 }
 
 .toneka-background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -4424,6 +4425,9 @@ ol, ul {
 }
 
 .toneka-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
