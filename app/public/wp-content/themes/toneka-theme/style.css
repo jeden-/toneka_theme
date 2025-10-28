@@ -3404,7 +3404,7 @@ ol, ul {
     color: #ffffff;
     text-transform: uppercase;
     white-space: nowrap;
-    padding-right: 100px; /* Space between repetitions */
+    padding-right: 10px; /* Space between repetitions */
 }
 
 @keyframes scroll-left {

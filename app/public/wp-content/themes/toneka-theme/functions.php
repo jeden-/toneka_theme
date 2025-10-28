@@ -2245,10 +2245,6 @@ function toneka_display_product_samples_player() {
                     $sample_description = !empty($sample['description']) ? $sample['description'] : '';
                     ?>
                     <div class="toneka-playlist-item <?php echo ($index === 0) ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-src="<?php echo esc_url($sample['file']); ?>">
-                        <div class="toneka-playlist-item-info">
-                            <div class="toneka-playlist-item-name"><?php echo esc_html($sample_name); ?></div>
-                            <div class="toneka-playlist-item-description"><?php echo esc_html($sample_description); ?></div>
-                        </div>
                         <button class="toneka-playlist-item-play">
                             <svg class="toneka-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="white">
                                 <path d="M8 5v14l11-7z"/>
@@ -2257,6 +2253,10 @@ function toneka_display_product_samples_player() {
                                 <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
                             </svg>
                         </button>
+                        <div class="toneka-playlist-item-info">
+                            <div class="toneka-playlist-item-name"><?php echo esc_html($sample_name); ?></div>
+                            <div class="toneka-playlist-item-description"><?php echo esc_html($sample_description); ?></div>
+                        </div>
                         <div class="toneka-playlist-item-time">0:00 /0:40</div>
                     </div>
                 <?php endforeach; ?>
