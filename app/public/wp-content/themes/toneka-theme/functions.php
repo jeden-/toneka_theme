@@ -2442,24 +2442,7 @@ function toneka_display_product_metadata() {
             <?php endif; ?>
         </div>
         
-        <!-- Kategorie produktu z czasem trwania -->
-        <?php 
-        $product_categories = get_the_terms(get_the_ID(), 'product_cat');
-        $category_links = array();
-        if ($product_categories && !is_wp_error($product_categories)) {
-            foreach ($product_categories as $category) {
-                if ($category->slug !== 'uncategorized') {
-                    $category_url = get_term_link($category);
-                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . strtoupper($category->name) . '</a>';
-                }
-            }
-        }
-        ?>
-        <?php if (!empty($category_links)): ?>
-        <div class="toneka-meta-row">
-            <span class="toneka-meta-label"><?php echo implode(', ', $category_links); ?></span>
-        </div>
-        <?php endif; ?>
+        <!-- Kategorie produktu - przeniesione nad tagi -->
         
         <!-- Opis produktu -->
         <?php if ($product->get_short_description()): ?>
@@ -2553,6 +2536,26 @@ function toneka_display_product_metadata() {
                 <span class="toneka-meta-value"><?php echo esc_html($rok_produkcji); ?></span>
             </div>
             <?php endif; ?>
+        </div>
+        <?php endif; ?>
+        
+        <!-- Kategorie -->
+        <?php 
+        $product_categories = get_the_terms(get_the_ID(), 'product_cat');
+        $category_links = array();
+        if ($product_categories && !is_wp_error($product_categories)) {
+            foreach ($product_categories as $category) {
+                if ($category->slug !== 'uncategorized') {
+                    $category_url = get_term_link($category);
+                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . strtoupper($category->name) . '</a>';
+                }
+            }
+        }
+        ?>
+        <?php if (!empty($category_links)): ?>
+        <div class="toneka-meta-row toneka-categories-row">
+            <span class="toneka-meta-label">kategorie:</span>
+            <span class="toneka-meta-value"><?php echo implode(', ', $category_links); ?></span>
         </div>
         <?php endif; ?>
         
