@@ -2970,19 +2970,39 @@ ol, ul {
     position: relative;
     transition: transform 0.2s ease;
     cursor: pointer;
-    border-top: 1px solid #a5a5a5;
-    border-bottom: 1px solid #a5a5a5;
+    border: 1px solid #a5a5a5;
     border-left: none;
-    border-right: none;
 }
 
 .toneka-product-card:hover {
     transform: none;
 }
 
+/* Pierwszy kafelek w rzędzie - bez lewego bordera */
+.toneka-product-card:first-child {
+    border-left: none;
+}
+
 /* Pierwszy rząd produktów - bez górnego bordera (żeby nie było podwójnej linii z tytułem) */
 .toneka-product-card:nth-child(-n+3) {
     border-top: none;
+}
+
+/* Ostatni kafelek w rzędzie - prawy border przezroczysty (niewidoczny ale zajmuje miejsce) */
+.toneka-product-card:last-child {
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* Gdy jest tylko 1 produkt - musi mieć widoczną prawą ramkę */
+.toneka-product-card:first-child:last-child {
+    border-right: 1px solid #a5a5a5;
+}
+
+/* Gdy są tylko 2 produkty w gridzie 3-kolumnowym, drugi produkt musi mieć widoczną linię z prawej */
+.toneka-suggested-merch-grid .toneka-product-card:nth-child(2):last-child,
+.toneka-suggested-audio-grid .toneka-product-card:nth-child(2):last-child,
+.toneka-category-products-grid .toneka-product-card:nth-child(2):last-child {
+    border-right: 1px solid #a5a5a5;
 }
 
 /* Ostatni rząd kafelków - bez dolnego bordera (łączy się z footerem) */
@@ -3723,21 +3743,8 @@ ol, ul {
     }
     
     .toneka-product-card {
-        border-top: 1px solid #a5a5a5;
-        border-bottom: 1px solid #a5a5a5;
-        border-left: none;
-        border-right: none;
+        border: 1px solid #a5a5a5; /* Na mobile wszystkie bordery widoczne */
         aspect-ratio: 1; /* Zachowaj kwadrat na mobile */
-    }
-    
-    /* Na mobile - tylko pierwszy element bez górnego bordera */
-    .toneka-product-card:first-child {
-        border-top: none;
-    }
-    
-    /* Na mobile - ostatni element bez dolnego bordera */
-    .toneka-products-grid .toneka-product-card:last-child {
-        border-bottom: none;
     }
     
     .toneka-product-image {
