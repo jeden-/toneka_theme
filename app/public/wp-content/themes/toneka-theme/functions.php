@@ -2547,7 +2547,7 @@ function toneka_display_product_metadata() {
             foreach ($product_categories as $category) {
                 if ($category->slug !== 'uncategorized') {
                     $category_url = get_term_link($category);
-                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . strtoupper($category->name) . '</a>';
+                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . esc_html($category->name) . '</a>';
                 }
             }
         }
@@ -2570,7 +2570,7 @@ function toneka_display_product_metadata() {
                 <?php 
                 $tag_links = array();
                 foreach ($tags as $tag) {
-                    $tag_links[] = '<a href="' . esc_url(get_term_link($tag)) . '" class="toneka-tag-link">' . esc_html(strtoupper($tag->name)) . '</a>';
+                    $tag_links[] = '<a href="' . esc_url(get_term_link($tag)) . '" class="toneka-tag-link">' . esc_html($tag->name) . '</a>';
                 }
                 echo implode(', ', $tag_links);
                 ?>
