@@ -3673,6 +3673,24 @@ ol, ul {
         padding: 10%!important;
     }
 
+    .toneka-product-title-line {
+        width: 100%!important;
+    }
+    
+    .toneka-product-title-line a {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .toneka-title-separator {
+        display: none;
+    }
+    
+    .toneka-product-author {
+        display: block;
+    }
+
     .toneka-back-to-top {
         padding: 0 5%;
         justify-content: center;
