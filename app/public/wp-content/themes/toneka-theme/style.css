@@ -4548,13 +4548,17 @@ button.toneka-skip-button.toneka-skip-backward:hover {
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     z-index: 4;
-    transform: translateY(100%);
+    transform: translateY(100%); /* Domyślnie ukryta - wysuwa się w dół */
     transition: transform 0.3s ease;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0; /* Dodatkowe ukrycie */
+    pointer-events: none; /* Wyłącz interakcje gdy ukryta */
 }
 
 .toneka-playlist[data-visible="true"] {
-    transform: translateY(0);
+    transform: translateY(0); /* Wysuwa się do góry */
+    opacity: 1; /* Pokazuj gdy aktywna */
+    pointer-events: auto; /* Włącz interakcje gdy widoczna */
 }
 
 .toneka-playlist-items {
@@ -4819,139 +4823,7 @@ button.toneka-skip-button.toneka-skip-backward:hover {
     
 }
 
-/* Playlist overlay */
-.toneka-playlist-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease;
-}
-
-.toneka-playlist-overlay.closing {
-    animation: fadeOut 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-.toneka-playlist-content {
-    background: rgba(20, 20, 20, 0.95);
-    border-radius: 12px;
-    border: 1px solid #a5a5a5;
-    padding: 20px;
-    width: 90%;
-    max-height: 60vh;
-    overflow-y: auto;
-}
-
-.toneka-playlist-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.toneka-playlist-header h3 {
-    color: white;
-    font-family: 'Figtree', sans-serif;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
-    margin: 0;
-}
-
-.toneka-playlist-close {
-    background: none;
-    border: none;
-    color: white;
-    font-size: clamp(1.3rem, 1.9vw, 1.7rem);
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.toneka-playlist-close:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.toneka-playlist-items {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.toneka-playlist-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-}
-
-.toneka-playlist-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.toneka-playlist-item.active {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.toneka-playlist-item-info {
-    flex: 1;
-}
-
-.toneka-playlist-item-name {
-    color: white;
-    font-family: 'Figtree', sans-serif;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
-    font-weight: 500;
-    margin-bottom: 2px;
-}
-
-.toneka-playlist-item.active .toneka-playlist-item-name {
-    color: #fff;
-}
-
-.toneka-playlist-item-duration {
-    color: #aaa;
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-}
-
-.toneka-playlist-item-controls {
-    margin-left: 10px;
-    opacity: 0.7;
-}
-
-.toneka-playlist-item:hover .toneka-playlist-item-controls,
-.toneka-playlist-item.active .toneka-playlist-item-controls {
-    opacity: 1;
-}
+/* Stare style playlisty usunięte - używamy nowej playlisty wyjeżdżającej z dołu */
 
 /* Fullscreen styles */
 .toneka-figma-player.toneka-fullscreen {
