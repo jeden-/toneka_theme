@@ -35,7 +35,7 @@
                     mobileMenuOverlay.classList.remove('is-active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                 });
-            }
+                }
 
             // Close mobile menu on escape key
             document.addEventListener('keydown', function(event) {

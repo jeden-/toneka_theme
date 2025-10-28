@@ -67,27 +67,42 @@ function initializePlayer(playerContainer) {
         if (!playerData.samples[index]) return;
         
         const track = playerData.samples[index];
-        audioElement.src = track.file;
+        
+        // Sprawdź, czy to obraz galerii
+        const isGalleryImage = track.is_image === true;
+        
+        if (!isGalleryImage) {
+            audioElement.src = track.file;
+        }
         
         // Sprawdź typ aktualnego pliku
         const fileExtension = track.file.split('.').pop().toLowerCase();
         const videoExtensions = ['mp4', 'mov', 'webm', 'avi'];
-        const isCurrentTrackVideo = videoExtensions.includes(fileExtension);
+        const isCurrentTrackVideo = !isGalleryImage && videoExtensions.includes(fileExtension);
         
         // Aktualizuj informacje o utworze
         const trackTitle = playerContainer.querySelector('.toneka-track-title');
+        const trackSubtitle = playerContainer.querySelector('.toneka-track-subtitle');
         const trackType = playerContainer.querySelector('.toneka-track-type');
         
         if (trackTitle) {
             trackTitle.textContent = track.name || playerData.productName;
         }
         
+        if (trackSubtitle) {
+            trackSubtitle.textContent = track.description || '';
+        }
+        
         if (trackType) {
-            trackType.textContent = isCurrentTrackVideo ? 'Video' : 'Audio';
+            trackType.textContent = isCurrentTrackVideo ? 'Video' : (isGalleryImage ? 'Image' : 'Audio');
         }
         
         // Przełącz tryb playera
-        switchPlayerMode(isCurrentTrackVideo);
+        if (isGalleryImage) {
+            switchPlayerMode(false, track.file); // Tryb obrazu
+        } else {
+            switchPlayerMode(isCurrentTrackVideo);
+        }
         
         // Reset progress
         progressBar.style.width = '0%';
@@ -97,7 +112,7 @@ function initializePlayer(playerContainer) {
         playerContainer.setAttribute('data-current-track', index);
     }
     
-    function switchPlayerMode(isVideo) {
+    function switchPlayerMode(isVideo, galleryImageUrl = null) {
         const videoElement = playerContainer.querySelector('.toneka-background-video');
         const imageBackground = playerContainer.querySelector('.toneka-background-image');
         
@@ -118,12 +133,17 @@ function initializePlayer(playerContainer) {
             playerContainer.classList.add('video-mode');
             playerContainer.classList.remove('audio-mode');
         } else {
-            // Tryb audio - pokaż obraz i wizualizację, ukryj video
+            // Tryb audio/image - pokaż obraz i wizualizację, ukryj video
             if (videoElement) {
                 videoElement.style.display = 'none';
             }
             if (imageBackground) {
                 imageBackground.style.display = 'block';
+                
+                // Jeśli przekazano URL obrazu galerii, zaktualizuj tło
+                if (galleryImageUrl) {
+                    imageBackground.style.backgroundImage = `url('${galleryImageUrl}')`;
+                }
                 
                 // Pobierz wymiary obrazu produktu
                 getImageDimensions(imageBackground, (width, height) => {
@@ -163,8 +183,11 @@ function initializePlayer(playerContainer) {
         const useFullWidth = finalWidth <= containerWidth;
         
         // Smooth transition
-        playerContainer.style.transition = 'height 0.5s ease-in-out';
-        playerContainer.style.height = finalHeight + 'px';
+        const backgroundContainer = playerContainer.querySelector('.toneka-player-background');
+        if (backgroundContainer) {
+            backgroundContainer.style.transition = 'height 0.5s ease-in-out';
+            backgroundContainer.style.height = finalHeight + 'px';
+        }
         
         // Dodaj klasę z informacją o proporcjach
         playerContainer.classList.remove('aspect-16-9', 'aspect-4-3', 'aspect-1-1', 'aspect-wide', 'aspect-tall');
@@ -324,8 +347,26 @@ function initializePlayer(playerContainer) {
             }
         }, 250));
         
+        // Gallery thumbnails
+        const thumbnails = playerContainer.querySelectorAll('.toneka-gallery-thumbnail');
+        if (thumbnails.length > 0) {
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    const index = parseInt(thumbnail.dataset.index);
+                    if (index !== currentTrackIndex) {
+                        loadTrack(index);
+                        
+                        // Update active thumbnail
+                        thumbnails.forEach(t => t.classList.remove('active'));
+                        thumbnail.classList.add('active');
+                    }
+                });
+            });
+        }
+        
         // Mouse events dla auto-hide kontrolek w trybie video
-        setupControlsAutoHide();
+        // DISABLED: Nawigacja jest teraz poza obrazem, nie ukrywamy jej
+        // setupControlsAutoHide();
     }
     
     function setupControlsAutoHide() {
@@ -333,10 +374,11 @@ function initializePlayer(playerContainer) {
         const bottomPanel = playerContainer.querySelector('.toneka-bottom-panel');
         
         // Mouse move - pokaż kontrolki
-        playerContainer.addEventListener('mousemove', () => {
-            showControls();
-            scheduleControlsHide();
-        });
+        // DISABLED: Nawigacja jest teraz poza obrazem, nie ukrywamy jej
+        // playerContainer.addEventListener('mousemove', () => {
+        //     showControls();
+        //     scheduleControlsHide();
+        // });
         
         // Mouse enter na kontrolki - anuluj ukrywanie
         if (mainControls) {
@@ -411,6 +453,16 @@ function initializePlayer(playerContainer) {
                 showPlayButton();
             });
         }
+        
+        // Zamknij playlist po kliknięciu play/pause
+        closePlaylist();
+    }
+    
+    function closePlaylist() {
+        const playlist = playerContainer.querySelector('div.toneka-playlist');
+        if (playlist && playlist.getAttribute('data-visible') === 'true') {
+            playlist.setAttribute('data-visible', 'false');
+        }
     }
     
     function skipTime(seconds) {
@@ -427,6 +479,19 @@ function initializePlayer(playerContainer) {
             if (wasPlaying) {
                 setTimeout(() => audioElement.play(), 100);
             }
+            
+            // Aktualizuj aktywną miniaturkę
+            const thumbnails = playerContainer.querySelectorAll('.toneka-gallery-thumbnail');
+            if (thumbnails.length > 0) {
+                thumbnails.forEach(t => t.classList.remove('active'));
+                const activeThumbnail = playerContainer.querySelector(`.toneka-gallery-thumbnail[data-index="${newIndex}"]`);
+                if (activeThumbnail) {
+                    activeThumbnail.classList.add('active');
+                }
+            }
+            
+            // Zamknij playlist po zmianie utworu
+            closePlaylist();
         }
     }
     
@@ -507,6 +572,9 @@ function initializePlayer(playerContainer) {
                     items.forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
                 }
+                
+                // Zamknij playlist po wybraniu utworu
+                closePlaylist();
             });
             
             // Obsługa przycisku play/pause w elemencie playlisty
@@ -519,12 +587,16 @@ function initializePlayer(playerContainer) {
                     if (trackIndex === currentTrackIndex) {
                         // Toggle play/pause dla aktualnego utworu
                         togglePlayPause();
+                        // Zamknij playlist po kliknięciu play/pause
+                        closePlaylist();
                     } else {
                         // Załaduj i odtwórz nowy utwór
                         loadTrack(trackIndex);
                         setTimeout(() => audioElement.play(), 100);
                         items.forEach(i => i.classList.remove('active'));
                         item.classList.add('active');
+                        // Zamknij playlist po wybraniu utworu
+                        closePlaylist();
                     }
                 });
             }
@@ -679,10 +751,12 @@ function initializePlayer(playerContainer) {
             changeTrack(1);
             setTimeout(() => audioElement.play(), 100);
         } else {
-            showPlayButton();
-            progressBar.style.width = '0%';
-            progressHandle.style.left = '0%';
-            audioElement.currentTime = 0;
+            // Loop back to the first track
+            const wasPlaying = isPlaying;
+            loadTrack(0);
+            if (wasPlaying) {
+                setTimeout(() => audioElement.play(), 100);
+            }
         }
     }
     
@@ -694,7 +768,8 @@ function initializePlayer(playerContainer) {
         
         
         // Zaplanuj ukrycie kontrolek w trybie video
-        scheduleControlsHide();
+        // DISABLED: Nawigacja jest teraz poza obrazem, nie ukrywamy jej
+        // scheduleControlsHide();
     }
     
     function handlePause() {
@@ -704,8 +779,9 @@ function initializePlayer(playerContainer) {
         playerContainer.classList.remove('playing');
         
         // Pokaż kontrolki po pauzie
-        showControls();
-        clearTimeout(controlsHideTimeout);
+        // DISABLED: Nawigacja jest teraz poza obrazem, nie ukrywamy jej
+        // showControls();
+        // clearTimeout(controlsHideTimeout);
     }
     
     function handleError(e) {
@@ -724,8 +800,9 @@ function initializePlayer(playerContainer) {
             case 'Space':
                 e.preventDefault();
                 togglePlayPause();
-                showControls();
-                scheduleControlsHide();
+                // DISABLED: Nawigacja jest teraz poza obrazem, nie ukrywamy jej
+                // showControls();
+                // scheduleControlsHide();
                 break;
             case 'ArrowLeft':
                 e.preventDefault();

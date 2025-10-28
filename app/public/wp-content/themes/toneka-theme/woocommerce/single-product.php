@@ -42,14 +42,14 @@ get_header( 'shop' ); ?>
 			        <div class="toneka-product-image">
 			            <?php toneka_display_product_samples_player(); ?>
 			        </div>
-			    </div>
-			    
+                </div>
+
 			    <!-- Right Side - All Content -->
 			    <div class="toneka-product-content">
 			        <?php toneka_display_product_metadata(); ?>
 			        <?php toneka_output_variable_product_selector(); ?>
-			    </div>
-			</div>
+                </div>
+            </div>
 
 
 			<!-- Suggested Merch Section -->
@@ -68,7 +68,7 @@ get_header( 'shop' ); ?>
 			</div> -->
 
 
-
+			
 		<?php endwhile; // end of the loop. ?>
 
 	<?php

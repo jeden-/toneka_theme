@@ -41,9 +41,9 @@ get_header( 'shop' ); ?>
 			    <div class="toneka-product-image-container">
 			        <div class="toneka-product-image">
 			            <?php toneka_display_product_samples_player(); ?>
-			        </div>
 			    </div>
-			    
+			</div>
+
 			    <!-- Right Side - All Content -->
 			    <div class="toneka-product-content">
 			        <?php toneka_display_product_metadata(); ?>

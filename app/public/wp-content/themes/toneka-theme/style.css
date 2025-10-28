@@ -2277,6 +2277,12 @@ ol, ul {
     padding-right: 1%;
 }
 
+/* Border dla pierwszego elementu metadata po opisie */
+.toneka-description-row + .toneka-meta-row,
+.toneka-product-metadata > .toneka-meta-row:first-of-type {
+    border-top: 1px solid #7b7b7b!important;
+}
+
 .toneka-meta-row:last-child {
     border-bottom: none;
 }
@@ -2583,6 +2589,7 @@ ol, ul {
 .toneka-quantity-minus:hover,
 .toneka-quantity-plus:hover {
     background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
 }
 
 .toneka-quantity-input {
@@ -2877,12 +2884,13 @@ ol, ul {
     position: sticky;
     top: 0;
     width: 50%;
-    aspect-ratio: 1;
+    /* aspect-ratio: 1; - Usunięte, aby pomieścić nawigację */
     display: flex;
-    /* align-items: center; */
-    justify-content: center;
-    /* padding: 40px; */
+    align-items: start;
+    /* justify-content: center; */
+    padding: 7%;
     box-sizing: border-box;
+    overflow: visible;
 }
 
 .toneka-product-image {
@@ -2892,9 +2900,10 @@ ol, ul {
     border-bottom: none;
     border-left: none;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    overflow: visible;
     /* padding: 14%; */
 }
 
@@ -2920,6 +2929,7 @@ ol, ul {
     padding: 7%;
     box-sizing: border-box;
     background: #000000;
+    border-left: 1px solid #a5a5a5;
 }
 
 /* Mobile - single column layout */
@@ -2943,6 +2953,7 @@ ol, ul {
     .toneka-product-content {
         width: 100%;
         padding: 20px;
+        border-left: none;
     }
 }
 
@@ -4426,8 +4437,9 @@ ol, ul {
 .toneka-player-background {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1; /* Kwadratowy obraz produktu */
+    /* aspect-ratio: 1 / 1; - Usunięte, aby wideo miało oryginalne proporcje */
     z-index: 1;
+    /* Wysokość będzie ustawiana dynamicznie przez JavaScript */
 }
 
 .toneka-background-video {
@@ -4436,7 +4448,7 @@ ol, ul {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Zmienione z cover na contain, aby zachować oryginalne proporcje */
     filter: blur(1px) brightness(0.7);
     z-index: 1;
     display: block;
@@ -4630,23 +4642,23 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-playlist-item-description {
-    font-size: 11.24px;
+    font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     font-weight: 300;
     color: #bbbbbb;
     min-width: 120px;
 }
 
 .toneka-playlist-item-name {
-    font-size: 14px;
+    font-size: clamp(0.7rem, 1vw, 0.95rem);
     font-weight: 400;
     color: white;
 }
 
 .toneka-playlist-item-play {
-    background: none;
-    border: none;
+    background: none!important;
+    border: none!important;
     cursor: pointer;
-    padding: 8px;
+    padding: 8px!important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4658,7 +4670,7 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-playlist-item-time {
-    font-size: 11.24px;
+    font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     color: #bbbbbb;
     margin-left: 16px;
     min-width: 70px;
@@ -4669,7 +4681,7 @@ div.toneka-playlist[data-visible="true"] {
 .toneka-bottom-panel {
     position: relative;
     background: #000000;
-    padding: 11px 28px;
+    padding: 11px 0;
     display: flex;
     flex-direction: column;
     gap: 11px;
@@ -4684,7 +4696,7 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-track-details h3.toneka-track-title {
-    font-size: 16.85px;
+    font-size: clamp(0.75rem, 1.1vw, 1.1rem);
     font-weight: normal;
     margin: 0;
     line-height: 1;
@@ -4693,7 +4705,7 @@ div.toneka-playlist[data-visible="true"] {
 
 .toneka-track-details p.toneka-track-type,
 .toneka-track-details p.toneka-track-subtitle {
-    font-size: 11.24px;
+    font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     font-weight: 300;
     margin: 5px 0 0 0;
     color: #bbbbbb;
@@ -4701,7 +4713,7 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-track-time {
-    font-size: 11.24px;
+    font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     font-weight: 300;
     color: white;
     line-height: 1;
@@ -4758,6 +4770,7 @@ div.toneka-playlist[data-visible="true"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2px;
 }
 
 .toneka-left-controls,
@@ -4768,32 +4781,35 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-control-btn {
-    width: 34px;
-    height: 34px;
+    width: 34px!important;
+    height: 34px!important;
     background: none;
-    border: none;
+    border: none!important;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     transition: all 0.3s ease;
+    padding: 0!important;
 }
 
 .toneka-control-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff!important;
+    color: #000000!important;
     transform: scale(1.1);
 }
 
 .toneka-control-btn svg {
     opacity: 0.8;
     transition: opacity 0.3s ease;
-    width: 17px;
-    height: 17px;
+    width: 24px;
+    height: 24px;
 }
 
 .toneka-control-btn:hover svg {
     opacity: 1;
+    fill: #000000!important;
 }
 
 /* Przycisk playlisty - upewnij się, że jest widoczny */
@@ -4801,6 +4817,69 @@ button.toneka-playlist {
     display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
+}
+
+button.toneka-playlist:hover svg rect {
+    fill: #000000 !important;
+}
+
+/* Tryb galerii - ukryj niepotrzebne kontrolki */
+.toneka-figma-player.gallery-mode .toneka-play-pause,
+.toneka-figma-player.gallery-mode .toneka-playlist,
+.toneka-figma-player.gallery-mode .toneka-volume,
+.toneka-figma-player.gallery-mode .toneka-progress-container,
+.toneka-figma-player.gallery-mode .toneka-track-info {
+    display: none !important;
+}
+
+/* Miniaturki galerii */
+.toneka-gallery-thumbnails {
+    display: flex;
+    gap: 8px;
+    padding: 11px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.toneka-gallery-thumbnails::-webkit-scrollbar {
+    height: 4px;
+}
+
+.toneka-gallery-thumbnails::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.toneka-gallery-thumbnails::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.toneka-gallery-thumbnails::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.toneka-gallery-thumbnail {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.toneka-gallery-thumbnail:hover {
+    opacity: 1;
+    border-color: #a5a5a5;
+}
+
+.toneka-gallery-thumbnail.active {
+    opacity: 1;
+    border-color: #ffffff;
 }
 
 /* Ukryty player */
@@ -4920,7 +4999,8 @@ button.toneka-playlist {
     visibility: visible;
 }
 
-.toneka-figma-player.controls-hidden.video-mode .toneka-main-controls,
+/* DISABLED: Nawigacja jest teraz poza obrazem, nie ukrywamy jej */
+/* .toneka-figma-player.controls-hidden.video-mode .toneka-main-controls,
 .toneka-figma-player.controls-hidden.video-mode .toneka-bottom-panel {
     opacity: 0;
     visibility: hidden;
@@ -4930,7 +5010,7 @@ button.toneka-playlist {
 .toneka-figma-player.controls-visible .toneka-bottom-panel {
     opacity: 1;
     visibility: visible;
-}
+} */
 
 /* W trybie audio kontrolki zawsze widoczne */
 .toneka-figma-player.audio-mode .toneka-main-controls,
@@ -4940,14 +5020,15 @@ button.toneka-playlist {
 }
 
 /* Cursor w trybie video */
-.toneka-figma-player.video-mode.controls-hidden {
+/* DISABLED: Nawigacja jest teraz poza obrazem, nie ukrywamy jej */
+/* .toneka-figma-player.video-mode.controls-hidden {
     cursor: none;
 }
 
 .toneka-figma-player.video-mode.controls-visible,
 .toneka-figma-player.audio-mode {
     cursor: default;
-}
+} */
 
 /* Dynamiczne proporcje playera */
 .toneka-figma-player {

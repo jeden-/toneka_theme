@@ -2137,8 +2137,42 @@ function toneka_display_product_samples_player() {
     global $product;
     $samples = get_post_meta($product->get_id(), '_product_samples', true);
 
-    if (empty($samples) || !is_array($samples)) {
+    // Sprawdź, czy produkt ma sample audio/wideo
+    $has_samples = !empty($samples) && is_array($samples);
+    
+    // Sprawdź, czy produkt ma galerię zdjęć (dla merch)
+    $gallery_ids = $product->get_gallery_image_ids();
+    $has_gallery = !empty($gallery_ids);
+    
+    // Jeśli nie ma ani sampli, ani galerii, nie wyświetlaj playera
+    if (!$has_samples && !$has_gallery) {
         return;
+    }
+    
+    // Jeśli nie ma sampli, ale ma galerię, utwórz "sample" ze zdjęć
+    if (!$has_samples && $has_gallery) {
+        $samples = [];
+        
+        // Dodaj najpierw główne zdjęcie produktu
+        $main_image_id = $product->get_image_id();
+        if ($main_image_id) {
+            $samples[] = [
+                'name' => 'Zdjęcie główne',
+                'description' => '',
+                'file' => wp_get_attachment_url($main_image_id),
+                'is_image' => true
+            ];
+        }
+        
+        // Następnie dodaj zdjęcia z galerii
+        foreach ($gallery_ids as $index => $image_id) {
+            $samples[] = [
+                'name' => 'Zdjęcie ' . ($index + 2),
+                'description' => '',
+                'file' => wp_get_attachment_url($image_id),
+                'is_image' => true
+            ];
+        }
     }
 
     // Sprawdź czy KTÓRYKOLWIEK z plików jest wideo
@@ -2148,6 +2182,10 @@ function toneka_display_product_samples_player() {
     $first_sample = $samples[0];
     
     foreach ($samples as $sample) {
+        // Pomiń obrazy galerii przy sprawdzaniu video
+        if (isset($sample['is_image']) && $sample['is_image']) {
+            continue;
+        }
         $sample_ext = strtolower(pathinfo($sample['file'], PATHINFO_EXTENSION));
         if (in_array($sample_ext, $video_extensions)) {
             $has_video = true;
@@ -2162,18 +2200,28 @@ function toneka_display_product_samples_player() {
         $first_sample = $first_video_sample;
     }
     
-    $file_extension = strtolower(pathinfo($first_sample['file'], PATHINFO_EXTENSION));
-    $is_video = in_array($file_extension, $video_extensions);
+    // Sprawdź, czy pierwszy sample to obraz z galerii
+    $is_gallery_image = isset($first_sample['is_image']) && $first_sample['is_image'];
+    $file_extension = $is_gallery_image ? 'jpg' : strtolower(pathinfo($first_sample['file'], PATHINFO_EXTENSION));
+    $is_video = !$is_gallery_image && in_array($file_extension, $video_extensions);
     
     
     // Pobierz obraz produktu jako tło
     $product_image_id = $product->get_image_id();
-    $background_image = $product_image_id ? wp_get_attachment_image_url($product_image_id, 'large') : '';
+    // Jeśli pierwszy sample to obraz galerii, użyj go jako tła, inaczej użyj głównego obrazu produktu
+    if ($is_gallery_image) {
+        $background_image = $first_sample['file'];
+    } else {
+        $background_image = $product_image_id ? wp_get_attachment_image_url($product_image_id, 'large') : '';
+    }
     
     // Unikalny ID dla tego playera
     $player_id = 'toneka-player-' . $product->get_id();
+    
+    // Sprawdź, czy wszystkie sample to obrazy (tryb galerii)
+    $is_gallery_mode = !empty($samples) && count(array_filter($samples, function($s) { return isset($s['is_image']) && $s['is_image']; })) === count($samples);
     ?>
-    <div class="toneka-figma-player" id="<?php echo esc_attr($player_id); ?>" data-current-track="0" data-total-tracks="<?php echo count($samples); ?>">
+    <div class="toneka-figma-player <?php echo $is_gallery_mode ? 'gallery-mode' : ''; ?>" id="<?php echo esc_attr($player_id); ?>" data-current-track="0" data-total-tracks="<?php echo count($samples); ?>">
         <!-- Tło wideo/obrazu -->
         <div class="toneka-player-background">
             <!-- Element video (zawsze obecny, JavaScript decyduje o widoczności) -->
@@ -2196,8 +2244,8 @@ function toneka_display_product_samples_player() {
                     ?>
                     <div class="toneka-playlist-item <?php echo ($index === 0) ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-src="<?php echo esc_url($sample['file']); ?>">
                         <div class="toneka-playlist-item-info">
-                            <div class="toneka-playlist-item-description"><?php echo esc_html($sample_description); ?></div>
                             <div class="toneka-playlist-item-name"><?php echo esc_html($sample_name); ?></div>
+                            <div class="toneka-playlist-item-description"><?php echo esc_html($sample_description); ?></div>
                         </div>
                         <button class="toneka-playlist-item-play">
                             <svg class="toneka-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="white">
@@ -2217,30 +2265,6 @@ function toneka_display_product_samples_player() {
 
         <!-- Dolny panel z informacjami i kontrolkami -->
         <div class="toneka-bottom-panel">
-            <!-- Informacje o utworze -->
-            <div class="toneka-track-info">
-                <div class="toneka-track-details">
-                    <h3 class="toneka-track-title"><?php echo esc_html($product->get_name()); ?></h3>
-                    <p class="toneka-track-subtitle"><?php 
-                        // Wyświetl nazwę pierwszego sampla
-                        echo esc_html($first_sample['name'] ?? '');
-                    ?> • <?php 
-                        // Wyświetl opis pierwszego sampla
-                        echo esc_html($first_sample['description'] ?? '');
-                    ?></p>
-                </div>
-                <div class="toneka-track-time">
-                    <span class="toneka-current-time">0:00</span> /<span class="toneka-total-time">0:00</span>
-                </div>
-            </div>
-            
-            <!-- Progress bar -->
-            <div class="toneka-progress-container">
-                <div class="toneka-progress-background"></div>
-                <div class="toneka-progress-bar"></div>
-                <div class="toneka-progress-handle"></div>
-            </div>
-            
             <!-- Kontrolki -->
             <div class="toneka-bottom-controls">
                 <div class="toneka-left-controls">
@@ -2281,6 +2305,42 @@ function toneka_display_product_samples_player() {
                             <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
                         </svg>
                     </button>
+                </div>
+            </div>
+            
+            <!-- Progress bar -->
+            <div class="toneka-progress-container">
+                <div class="toneka-progress-background"></div>
+                <div class="toneka-progress-bar"></div>
+                <div class="toneka-progress-handle"></div>
+            </div>
+            
+            <!-- Miniaturki galerii (tylko w trybie galerii) -->
+            <?php if ($is_gallery_mode && count($samples) > 1): ?>
+            <div class="toneka-gallery-thumbnails">
+                <?php foreach ($samples as $index => $sample): ?>
+                    <div class="toneka-gallery-thumbnail <?php echo $index === 0 ? 'active' : ''; ?>" 
+                         data-index="<?php echo $index; ?>"
+                         style="background-image: url('<?php echo esc_url($sample['file']); ?>')">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+            
+            <!-- Informacje o utworze (po kontrolkach) -->
+            <div class="toneka-track-info">
+                <div class="toneka-track-details">
+                    <h3 class="toneka-track-title"><?php 
+                        // Wyświetl nazwę pierwszego sampla jako tytuł
+                        echo esc_html($first_sample['name'] ?? $product->get_name());
+                    ?></h3>
+                    <p class="toneka-track-subtitle"><?php 
+                        // Wyświetl tylko opis pierwszego sampla
+                        echo esc_html($first_sample['description'] ?? '');
+                    ?></p>
+                </div>
+                <div class="toneka-track-time">
+                    <span class="toneka-current-time">0:00</span> /<span class="toneka-total-time">0:00</span>
                 </div>
             </div>
         </div>
