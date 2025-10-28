@@ -2873,7 +2873,7 @@ ol, ul {
     /* max-width: 500px; */
     aspect-ratio: 1;
     background: #000000;
-    border: 1px solid #a5a5a5;
+    /* border: 1px solid #a5a5a5; */
     border-bottom: none;
     border-left: none;
     display: flex;
@@ -3009,7 +3009,7 @@ ol, ul {
     flex: 1;
     overflow: hidden;
     background: #000000;
-    padding: 21%;
+    padding: 16%;
     display: flex;
     align-items: center;
     justify-content: center;
