@@ -3601,7 +3601,7 @@ function toneka_render_product_card($product_id) {
     ?>
     <div class="toneka-product-card" data-url="<?php echo esc_url($product_url); ?>">
         <div class="toneka-product-label">
-            <?php if (!empty($product_label) && !$is_merch) echo esc_html($product_label); ?>
+            <?php if (!empty($product_label)) echo esc_html($product_label); ?>
         </div>
         
         <div class="toneka-product-image-wrapper">
