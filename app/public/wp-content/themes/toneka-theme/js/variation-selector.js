@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (variationsDataElement) {
         try {
             variationsData = JSON.parse(variationsDataElement.textContent);
+            console.log('Loaded variations data:', variationsData);
         } catch (e) {
             console.error('Błąd parsowania danych wariantów:', e);
         }
@@ -23,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Funkcja aktualizująca wyświetlane informacje
     function updateVariationInfo(variationId) {
         const variation = variationsData.find(v => v.variation_id == variationId);
+        
+        console.log('updateVariationInfo called with ID:', variationId);
+        console.log('Found variation:', variation);
+        console.log('Price display element:', priceDisplay);
         
         if (variation) {
             // Ukryj wszystkie opisy inline
@@ -37,9 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 selectedDescription.style.display = 'block';
             }
             
-            // Aktualizuj cenę
-            if (priceDisplay && variation.price_html) {
-                priceDisplay.innerHTML = variation.price_html;
+            // Aktualizuj cenę - zawsze wyświetlaj, nawet jeśli quantity=1
+            if (priceDisplay) {
+                const priceHtml = variation.price_html || '';
+                console.log('Setting price HTML:', priceHtml);
+                priceDisplay.innerHTML = priceHtml;
+                priceDisplay.style.display = priceHtml ? 'block' : 'none';
             }
             
             // Aktualizuj ukryte pole variation_id
@@ -100,13 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkedRadio = document.querySelector('.toneka-carrier-radio:checked');
     if (checkedRadio) {
         updateVariationInfo(checkedRadio.value);
-    } else if (variationsData.length > 0) {
-        // Jeśli nie ma zaznaczonego wariantu, wybierz pierwszy i wyświetl jego cenę
-        const firstRadio = document.querySelector('.toneka-carrier-radio');
-        if (firstRadio) {
-            firstRadio.checked = true;
-            updateVariationInfo(firstRadio.value);
-        }
     }
     
     // Obsługa formularza dodawania do koszyka
