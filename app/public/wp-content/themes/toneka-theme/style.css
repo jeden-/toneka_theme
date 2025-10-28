@@ -2269,8 +2269,8 @@ ol, ul {
 
 .toneka-meta-row {
     display: block;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 0.8%;
+    padding-bottom: 1.2%;
     border-bottom: 1px solid #7b7b7b!important;
     line-height: 1.4;
     padding-left: 1%;
@@ -2479,6 +2479,7 @@ ol, ul {
     font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     color: #ffffff;
     text-transform: uppercase;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toneka-carrier-option input[type="radio"] {
@@ -2493,7 +2494,7 @@ ol, ul {
     border-radius: 50%;
     margin-right: 12px;
     position: relative;
-    transition: border-color 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toneka-carrier-option input[type="radio"]:checked + .toneka-carrier-radio-custom {
@@ -2510,6 +2511,22 @@ ol, ul {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
 .toneka-carrier-label {
@@ -2518,6 +2535,7 @@ ol, ul {
 
 .toneka-variation-info-container {
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .toneka-variation-description-display {
@@ -2530,16 +2548,29 @@ ol, ul {
 /* Opis wariantu bezpośrednio pod wybranym wariantem */
 .toneka-variation-description-inline {
     font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    color: #ffffff;
-    line-height: 1.6;
-    /* margin-top: 8px; */
-    margin-bottom: 20px;
+    color: #a5a5a5;
+    line-height: 1;
+    margin-bottom: 10px;
     padding-left: 28px; /* Wyrównanie do etykiety wariantu */
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                margin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toneka-variation-description-inline.active {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
 }
 
 .toneka-variation-price-display {
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    font-weight: 600;
+    font-size: clamp(1.4rem, 1.3vw, 1.8rem);
+    font-weight: 400;
     color: #ffffff;
     margin-bottom: 20px;
 }

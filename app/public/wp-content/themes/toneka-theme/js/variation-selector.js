@@ -30,16 +30,25 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Price display element:', priceDisplay);
         
         if (variation) {
-            // Ukryj wszystkie opisy inline
+            // Ukryj wszystkie opisy inline z animacją
             const allInlineDescriptions = document.querySelectorAll('.toneka-variation-description-inline');
             allInlineDescriptions.forEach(desc => {
-                desc.style.display = 'none';
+                desc.classList.remove('active');
+                // Ukryj po zakończeniu animacji (500ms)
+                setTimeout(() => {
+                    if (!desc.classList.contains('active')) {
+                        desc.style.display = 'none';
+                    }
+                }, 500);
             });
             
-            // Pokaż opis dla wybranego wariantu
+            // Pokaż opis dla wybranego wariantu z animacją
             const selectedDescription = document.querySelector(`.toneka-variation-description-inline[data-variation-id="${variationId}"]`);
             if (selectedDescription && variation.variation_description) {
                 selectedDescription.style.display = 'block';
+                // Trigger reflow to ensure animation works
+                void selectedDescription.offsetWidth;
+                selectedDescription.classList.add('active');
             }
             
             // Cena jest zarządzana przez carrier-selection-new.js, nie nadpisujemy jej tutaj
