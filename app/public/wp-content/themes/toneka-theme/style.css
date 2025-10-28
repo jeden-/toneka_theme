@@ -3338,7 +3338,8 @@ ol, ul {
     .toneka-footer-bottom-content {
         flex-direction: column;
         gap: 0;
-        text-align: center;
+        text-align: left;
+        align-items: flex-start;
     }
     
     .toneka-social-links {
@@ -3628,13 +3629,13 @@ ol, ul {
     .toneka-footer-container {
         grid-template-columns: 1fr;
         gap: 30px;
-        padding: 0 20px;
-        text-align: center;
+        padding: 0 7%;
+        text-align: left;
     }
     
     .toneka-footer-right {
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
     }
     
     .toneka-back-to-top {
