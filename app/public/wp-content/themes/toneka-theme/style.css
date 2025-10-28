@@ -2463,7 +2463,7 @@ ol, ul {
 .toneka-carrier-options {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .toneka-carrier-option {
@@ -2515,7 +2515,7 @@ ol, ul {
 }
 
 .toneka-variation-description-display {
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
     color: #ffffff;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -3075,7 +3075,7 @@ ol, ul {
 
 /* Nazwa produktu - semibold */
 .toneka-product-name {
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
 }
 
