@@ -177,7 +177,7 @@
 			<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="mobile-cart-link">
 				<?php include get_template_directory() . '/img/shop_bag.svg'; ?>
 				<span class="mobile-cart-text">KOSZYK</span>
-				<span class="cart-count"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></span>
+				(<?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?>)
 			</a>
 		</div>
 		

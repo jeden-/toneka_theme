@@ -3461,22 +3461,9 @@ ol, ul {
         display: none !important; /* Ukryj koszyk na mobile */
     }
     
-    /* Ukryj cart-count z headera, ale pokaż w mobile menu */
+    /* Ukryj cart-count z headera */
     .toneka-header-right .cart-count {
         display: none !important;
-    }
-    
-    /* Pokaż cart-count w mobile menu */
-    .mobile-cart-link .cart-count {
-        display: inline-flex !important;
-        position: static !important; /* Zmień z absolute na static */
-        top: auto !important;
-        right: auto !important;
-        align-items: center;
-        justify-content: center;
-        font-size: clamp(0.5rem, 1.5vw, 0.7rem);
-        font-weight: 300;
-        margin-left: 8px; /* Dodaj odstęp od tekstu */
     }
     
     .toneka-hero-section,
