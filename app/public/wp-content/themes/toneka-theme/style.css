@@ -3050,7 +3050,7 @@ ol, ul {
     background: #000000;
     color: #969696;
     padding: 3% 4%;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: clamp(1rem, 1.0vw, 1.4rem);
     font-weight: 400;
     /* text-transform: uppercase; */
     font-family: 'Figtree', sans-serif;
@@ -3774,7 +3774,10 @@ ol, ul {
     }
     
     .toneka-product-card {
-        border: 1px solid #a5a5a5; /* Na mobile wszystkie bordery widoczne */
+        border-bottom: 1px solid #a5a5a5!important;
+        border-right: none;
+        border-top: 1px solid #a5a5a5;
+        border-left: none;
         aspect-ratio: 1; /* Zachowaj kwadrat na mobile */
     }
     
