@@ -26,7 +26,7 @@ function initializePlayer(playerContainer) {
     const volumeButton = playerContainer.querySelector('.toneka-volume');
     const volumeOnIcon = playerContainer.querySelector('.toneka-volume-on');
     const volumeOffIcon = playerContainer.querySelector('.toneka-volume-off');
-    const playlistButton = playerContainer.querySelector('.toneka-playlist');
+    const playlistButton = playerContainer.querySelector('button.toneka-playlist');
     const fullscreenButton = playerContainer.querySelector('.toneka-fullscreen');
     
     // Stan playera
@@ -475,7 +475,7 @@ function initializePlayer(playerContainer) {
         }
         
         // Znajdź playlistę w HTML (teraz jest renderowana w PHP)
-        const playlist = playerContainer.querySelector('.toneka-playlist');
+        const playlist = playerContainer.querySelector('div.toneka-playlist');
         
         if (playlist) {
             // Toggle visibility
