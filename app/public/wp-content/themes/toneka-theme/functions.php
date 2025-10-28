@@ -2185,37 +2185,6 @@ function toneka_display_product_samples_player() {
             
         </div>
 
-        <!-- Główne kontrolki w centrum -->
-        <div class="toneka-main-controls">
-            <button class="toneka-skip-button toneka-skip-backward" data-skip="-15">
-                <div class="toneka-button-bg"></div>
-                <svg width="28" height="29" viewBox="0 0 28 29" fill="none">
-                    <path d="M11.5486 20.0043V11.5776L9.86328 13.1576" stroke="white" stroke-opacity="0.7" stroke-width="1.264" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14.9189 19.4778C15.3591 19.8084 15.9061 20.0043 16.4989 20.0043C17.9533 20.0043 19.1323 18.8253 19.1323 17.371C19.1323 15.9166 17.9533 14.7376 16.4989 14.7376C15.9061 14.7376 15.3591 14.9335 14.9189 15.2641L15.4456 11.5776H19.1323" stroke="white" stroke-opacity="0.7" stroke-width="1.264" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M6.02998 6.87592C1.26487 11.2903 1.00419 18.7063 5.44772 23.4401C9.89126 28.1739 17.3563 28.4329 22.1214 24.0185C26.8866 19.6042 27.1472 12.1882 22.7037 7.45436C20.1762 4.76176 16.6711 3.51693 13.2414 3.7564M14.9184 1.04443L11.9136 3.89073L14.9184 6.9431" stroke="white" stroke-opacity="0.7" stroke-width="2.10667" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            
-            <button class="toneka-play-pause-button">
-                <div class="toneka-main-button-bg"></div>
-                <svg class="toneka-play-icon" width="49" height="50" viewBox="0 0 49 50" fill="none">
-                    <path d="M13.5703 12.8604C13.5706 10.9151 15.6761 9.69816 17.3613 10.6699L39.2676 23.3057C40.9541 24.2785 40.9541 26.7127 39.2676 27.6855L17.3613 40.3213C15.676 41.2934 13.5704 40.0773 13.5703 38.1318V12.8604Z" fill="white"/>
-                </svg>
-                <svg class="toneka-pause-icon" width="28" height="28" viewBox="0 0 24 24" fill="white" style="display: none;">
-                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-                </svg>
-            </button>
-            
-            <button class="toneka-skip-button toneka-skip-forward" data-skip="15">
-                <div class="toneka-button-bg"></div>
-                <svg width="28" height="29" viewBox="0 0 28 29" fill="none">
-                    <path d="M11.3748 20.039V11.6123L9.68945 13.1923" stroke="white" stroke-opacity="0.7" stroke-width="1.264" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14.7461 19.5125C15.1862 19.8431 15.7333 20.039 16.3261 20.039C17.7804 20.039 18.9594 18.86 18.9594 17.4056C18.9594 15.9513 17.7804 14.7723 16.3261 14.7723C15.7333 14.7723 15.1862 14.9682 14.7461 15.2988L15.2728 11.6123H18.9594" stroke="white" stroke-opacity="0.7" stroke-width="1.264" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M21.9485 6.9101C26.7136 11.3244 26.9743 18.7405 22.5308 23.4743C18.0873 28.2081 10.6222 28.4671 5.85707 24.0527C1.09196 19.6384 0.831277 12.2223 5.27481 7.48854C7.8023 4.79594 11.3074 3.55111 14.7371 3.79058M13.0601 1.07861L16.0649 3.92491L13.0601 6.97728" stroke="white" stroke-opacity="0.7" stroke-width="2.10667" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
-
         <!-- Playlista (wyjeżdża z dołu) -->
         <?php if (count($samples) > 1): ?>
         <div class="toneka-playlist" data-visible="false">

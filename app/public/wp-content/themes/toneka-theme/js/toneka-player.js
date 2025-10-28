@@ -15,11 +15,6 @@ function initializePlayer(playerContainer) {
     
     // Elementy DOM
     const audioElement = playerContainer.querySelector('.toneka-hidden-player');
-    const playPauseButton = playerContainer.querySelector('.toneka-play-pause-button');
-    const playIcon = playerContainer.querySelector('.toneka-play-icon');
-    const pauseIcon = playerContainer.querySelector('.toneka-pause-icon');
-    const skipBackward = playerContainer.querySelector('.toneka-skip-backward');
-    const skipForward = playerContainer.querySelector('.toneka-skip-forward');
     const progressContainer = playerContainer.querySelector('.toneka-progress-container');
     const progressBar = playerContainer.querySelector('.toneka-progress-bar');
     const progressHandle = playerContainer.querySelector('.toneka-progress-handle');
@@ -234,9 +229,6 @@ function initializePlayer(playerContainer) {
     }
     
     function setupEventListeners() {
-        // Play/Pause
-        playPauseButton.addEventListener('click', togglePlayPause);
-        
         // Synchronizacja video z audio
         const videoElement = playerContainer.querySelector('.toneka-background-video');
         if (videoElement) {
@@ -258,10 +250,6 @@ function initializePlayer(playerContainer) {
                 }
             });
         }
-        
-        // Skip buttons (15 sekund)
-        skipBackward.addEventListener('click', () => skipTime(-15));
-        skipForward.addEventListener('click', () => skipTime(15));
         
         // Progress bar
         progressContainer.addEventListener('click', handleProgressClick);
@@ -412,7 +400,6 @@ function initializePlayer(playerContainer) {
         } else {
             audioElement.play().catch(error => {
                 console.warn('Autoplay prevented:', error);
-                showPlayButton();
             });
         }
     }
@@ -683,7 +670,6 @@ function initializePlayer(playerContainer) {
             changeTrack(1);
             setTimeout(() => audioElement.play(), 100);
         } else {
-            showPlayButton();
             progressBar.style.width = '0%';
             progressHandle.style.left = '0%';
             audioElement.currentTime = 0;
@@ -692,7 +678,6 @@ function initializePlayer(playerContainer) {
     
     function handlePlay() {
         isPlaying = true;
-        showPauseButton();
         playerContainer.classList.add('playing');
         playerContainer.classList.remove('paused');
         
@@ -703,7 +688,6 @@ function initializePlayer(playerContainer) {
     
     function handlePause() {
         isPlaying = false;
-        showPlayButton();
         playerContainer.classList.add('paused');
         playerContainer.classList.remove('playing');
         
@@ -715,7 +699,6 @@ function initializePlayer(playerContainer) {
     function handleError(e) {
         console.error('Audio playback error:', e);
         playerContainer.classList.add('error');
-        showPlayButton();
     }
     
     function handleKeyboard(e) {
@@ -777,15 +760,8 @@ function initializePlayer(playerContainer) {
         }
     }
     
-    function showPlayButton() {
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-    }
-    
-    function showPauseButton() {
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'block';
-    }
+    // Funkcje showPlayButton i showPauseButton nie są już potrzebne
+    // Główny przycisk play/pause został usunięty z centrum obrazka
     
     function showVolumeOn() {
         if (volumeOnIcon && volumeOffIcon) {
