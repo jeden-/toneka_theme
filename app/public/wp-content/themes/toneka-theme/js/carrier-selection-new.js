@@ -61,6 +61,7 @@ jQuery(document).ready(function($) {
             console.log('Price HTML:', priceHtml);
             console.log('Regular Price:', regularPrice);
             console.log('Sale Price:', salePrice);
+            console.log('*** NOWA WERSJA - ZAWSZE GENERUJ CENE ***');
             
             // Oblicz całkowitą cenę
             const totalRegularPrice = regularPrice * quantity;
@@ -74,6 +75,8 @@ jQuery(document).ready(function($) {
                 // Normalna cena
                 priceHtml = formatPrice(totalSalePrice);
             }
+            
+            console.log('Wygenerowano Price HTML:', priceHtml);
 
             // Aktualizuj opcjonalną tabelę
             variationDescription.html(description);
@@ -82,6 +85,8 @@ jQuery(document).ready(function($) {
             // Aktualizuj zawsze widoczne kontenery
             variationDescriptionDisplay.html(description);
             variationPriceDisplay.html(priceHtml);
+            
+            console.log('Zaktualizowano priceDisplay, HTML:', variationPriceDisplay.html());
 
             // Pokaż lub ukryj kontener z detalami
             if (description || priceHtml) {

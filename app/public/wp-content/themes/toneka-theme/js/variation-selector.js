@@ -42,13 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 selectedDescription.style.display = 'block';
             }
             
-            // Aktualizuj cenę - zawsze wyświetlaj, nawet jeśli quantity=1
-            if (priceDisplay) {
-                const priceHtml = variation.price_html || '';
-                console.log('Setting price HTML:', priceHtml);
-                priceDisplay.innerHTML = priceHtml;
-                priceDisplay.style.display = priceHtml ? 'block' : 'none';
-            }
+            // Cena jest zarządzana przez carrier-selection-new.js, nie nadpisujemy jej tutaj
             
             // Aktualizuj ukryte pole variation_id
             if (variationIdInput) {
