@@ -1733,6 +1733,9 @@ function toneka_output_variable_product_selector() {
                 <span class="toneka-carrier-radio-custom"></span>
                 <span class="toneka-carrier-label"><?php echo esc_html($variation_data['variation_display_name']); ?></span>
             </label>
+            <div class="toneka-variation-description-inline" data-variation-id="<?php echo esc_attr($variation_data['variation_id']); ?>" style="display: none;">
+                <?php echo wp_kses_post($variation_data['variation_description'] ?? ''); ?>
+            </div>
             <?php 
                 $first = false;
             endforeach; 
@@ -1740,7 +1743,6 @@ function toneka_output_variable_product_selector() {
         </div>
         
         <div class="toneka-variation-info-container">
-            <div class="toneka-variation-description-display"></div>
             <div class="toneka-variation-price-display"></div>
         </div>
         

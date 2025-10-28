@@ -25,9 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const variation = variationsData.find(v => v.variation_id == variationId);
         
         if (variation) {
-            // Aktualizuj opis
-            if (descriptionDisplay && variation.variation_description) {
-                descriptionDisplay.innerHTML = variation.variation_description;
+            // Ukryj wszystkie opisy inline
+            const allInlineDescriptions = document.querySelectorAll('.toneka-variation-description-inline');
+            allInlineDescriptions.forEach(desc => {
+                desc.style.display = 'none';
+            });
+            
+            // Pokaż opis dla wybranego wariantu
+            const selectedDescription = document.querySelector(`.toneka-variation-description-inline[data-variation-id="${variationId}"]`);
+            if (selectedDescription && variation.variation_description) {
+                selectedDescription.style.display = 'block';
             }
             
             // Aktualizuj cenę

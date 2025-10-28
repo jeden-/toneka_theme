@@ -2521,6 +2521,16 @@ ol, ul {
     margin-bottom: 20px;
 }
 
+/* Opis wariantu bezpośrednio pod wybranym wariantem */
+.toneka-variation-description-inline {
+    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    color: #ffffff;
+    line-height: 1.6;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    padding-left: 28px; /* Wyrównanie do etykiety wariantu */
+}
+
 .toneka-variation-price-display {
     font-size: clamp(0.9rem, 1.3vw, 1.2rem);
     font-weight: 600;
@@ -3081,7 +3091,7 @@ ol, ul {
 
 /* Separator między tytułem a autorem */
 .toneka-title-separator {
-    font-weight: 400;
+    font-weight: 300;
 }
 
 /* Autor - regular */
