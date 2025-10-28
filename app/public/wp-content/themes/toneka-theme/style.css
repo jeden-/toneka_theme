@@ -4621,8 +4621,8 @@ div.toneka-playlist[data-visible="true"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 28px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 7px 1%;
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
     cursor: pointer;
     transition: background 0.2s ease;
 }
@@ -4670,8 +4670,9 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-playlist-item-play svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
 }
 
 .toneka-playlist-item-play:hover {
@@ -4681,7 +4682,8 @@ div.toneka-playlist[data-visible="true"] {
 .toneka-playlist-item-time {
     font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     color: #bbbbbb;
-    margin-left: 16px;
+    /* margin-left: 16px; */
+    padding-right: 1%;
     min-width: 70px;
     text-align: right;
 }
