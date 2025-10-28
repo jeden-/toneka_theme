@@ -2877,7 +2877,7 @@ ol, ul {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 14%;
+    /* padding: 14%; */
 }
 
 .toneka-product-image img {
@@ -4539,7 +4539,7 @@ button.toneka-skip-button.toneka-skip-backward:hover {
 }
 
 /* Playlista wyjeżdżająca z dołu */
-.toneka-playlist {
+div.toneka-playlist {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -4555,7 +4555,7 @@ button.toneka-skip-button.toneka-skip-backward:hover {
     pointer-events: none; /* Wyłącz interakcje gdy ukryta */
 }
 
-.toneka-playlist[data-visible="true"] {
+div.toneka-playlist[data-visible="true"] {
     transform: translateY(0); /* Wysuwa się do góry */
     opacity: 1; /* Pokazuj gdy aktywna */
     pointer-events: auto; /* Włącz interakcje gdy widoczna */
@@ -4776,6 +4776,13 @@ button.toneka-skip-button.toneka-skip-backward:hover {
 
 .toneka-control-btn:hover svg {
     opacity: 1;
+}
+
+/* Przycisk playlisty - upewnij się, że jest widoczny */
+button.toneka-playlist {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Ukryty player */
