@@ -1180,7 +1180,7 @@ function toneka_theme_scripts() {
 		'toneka-variation-selector',
 		get_template_directory_uri() . '/js/variation-selector.js',
 		array(),
-		'1.0.0',
+		filemtime(get_template_directory() . '/js/variation-selector.js'),
 		true
 	);
 	
@@ -1800,7 +1800,9 @@ function toneka_enqueue_variation_selector_assets() {
         wp_enqueue_script(
             'toneka-carrier-selection', 
             get_template_directory_uri() . '/js/carrier-selection-new.js',
-            array('jquery', 'toneka-minicart'), '1.0.0', true
+            array('jquery', 'toneka-minicart'), 
+            filemtime(get_template_directory() . '/js/carrier-selection-new.js'), 
+            true
         );
         
         wp_localize_script('toneka-carrier-selection', 'toneka_ajax_object', array(
