@@ -7,7 +7,10 @@ jQuery(document).ready(function($) {
         var newRow = `
             <tr class="sample-row">
                 <td>
-                    <input type="text" class="input_text" placeholder="Nazwa próbki" name="_product_sample_names[]" value="">
+                    <input type="text" class="input_text" placeholder="Nazwa próbki" name="_product_sample_names[]" value="" style="width: 100%;">
+                </td>
+                <td>
+                    <input type="text" class="input_text" placeholder="Rozdział 1" name="_product_sample_descriptions[]" value="" style="width: 100%;">
                 </td>
                 <td class="file_url_choose">
                     <input type="text" class="input_text" placeholder="https://" name="_product_sample_files[]" value="">

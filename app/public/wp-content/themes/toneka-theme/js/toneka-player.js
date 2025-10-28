@@ -478,21 +478,61 @@ function initializePlayer(playerContainer) {
             return;
         }
         
-        // Sprawdź czy playlist już istnieje
-        let existingPlaylist = playerContainer.querySelector('.toneka-playlist-overlay');
+        // Znajdź playlistę w HTML (teraz jest renderowana w PHP)
+        const playlist = playerContainer.querySelector('.toneka-playlist');
         
-        if (existingPlaylist) {
-            // Ukryj playlistę
-            existingPlaylist.classList.add('closing');
-            setTimeout(() => {
-                if (existingPlaylist.parentNode) {
-                    existingPlaylist.parentNode.removeChild(existingPlaylist);
-                }
-            }, 300);
-        } else {
-            // Pokaż playlistę
-            showPlaylist();
+        if (playlist) {
+            // Toggle visibility
+            const isVisible = playlist.getAttribute('data-visible') === 'true';
+            playlist.setAttribute('data-visible', !isVisible ? 'true' : 'false');
+            
+            // Jeśli otwieramy po raz pierwszy, dodaj event listenery
+            if (!isVisible && !playlist.hasAttribute('data-initialized')) {
+                setupPlaylistListeners(playlist);
+                playlist.setAttribute('data-initialized', 'true');
+            }
         }
+    }
+    
+    function setupPlaylistListeners(playlist) {
+        const items = playlist.querySelectorAll('.toneka-playlist-item');
+        
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const trackIndex = parseInt(item.dataset.index);
+                if (trackIndex !== currentTrackIndex) {
+                    const wasPlaying = isPlaying;
+                    loadTrack(trackIndex);
+                    if (wasPlaying) {
+                        setTimeout(() => audioElement.play(), 100);
+                    }
+                    
+                    // Zaktualizuj aktywny element
+                    items.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                }
+            });
+            
+            // Obsługa przycisku play/pause w elemencie playlisty
+            const playButton = item.querySelector('.toneka-playlist-item-play');
+            if (playButton) {
+                playButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const trackIndex = parseInt(item.dataset.index);
+                    
+                    if (trackIndex === currentTrackIndex) {
+                        // Toggle play/pause dla aktualnego utworu
+                        togglePlayPause();
+                    } else {
+                        // Załaduj i odtwórz nowy utwór
+                        loadTrack(trackIndex);
+                        setTimeout(() => audioElement.play(), 100);
+                        items.forEach(i => i.classList.remove('active'));
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
     }
     
     function showPlaylist() {

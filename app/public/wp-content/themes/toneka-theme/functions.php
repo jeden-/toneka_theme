@@ -2028,6 +2028,7 @@ function toneka_product_samples_data_panel() {
 					<thead>
 						<tr>
 							<th><?php _e('Nazwa', 'tonekatheme'); ?></th>
+							<th><?php _e('Opis', 'tonekatheme'); ?></th>
 							<th><?php _e('Adres URL pliku', 'tonekatheme'); ?></th>
 							<th>&nbsp;</th>
 						</tr>
@@ -2064,7 +2065,10 @@ function toneka_render_sample_row($key, $file) {
     ?>
     <tr class="sample-row">
         <td>
-            <input type="text" class="input_text" placeholder="<?php esc_attr_e('Nazwa próbki', 'tonekatheme'); ?>" name="_product_sample_names[]" value="<?php echo esc_attr($file['name'] ?? ''); ?>">
+            <input type="text" class="input_text" placeholder="<?php esc_attr_e('Nazwa próbki', 'tonekatheme'); ?>" name="_product_sample_names[]" value="<?php echo esc_attr($file['name'] ?? ''); ?>" style="width: 100%;">
+        </td>
+        <td>
+            <input type="text" class="input_text" placeholder="<?php esc_attr_e('Rozdział 1', 'tonekatheme'); ?>" name="_product_sample_descriptions[]" value="<?php echo esc_attr($file['description'] ?? ''); ?>" style="width: 100%;">
         </td>
         <td class="file_url_choose">
             <input type="text" class="input_text" placeholder="https://" name="_product_sample_files[]" value="<?php echo esc_attr($file['file'] ?? ''); ?>">
@@ -2085,11 +2089,13 @@ function toneka_save_product_samples($post_id) {
 	if (isset($_POST['_product_sample_files']) && isset($_POST['_product_sample_names'])) {
 		$sample_names = $_POST['_product_sample_names'];
 		$sample_files = $_POST['_product_sample_files'];
+		$sample_descriptions = isset($_POST['_product_sample_descriptions']) ? $_POST['_product_sample_descriptions'] : [];
 
 		for ($i = 0; $i < count($sample_files); $i++) {
 			if (!empty($sample_files[$i])) {
 				$samples[] = [
 					'name' => wc_clean($sample_names[$i]),
+					'description' => wc_clean($sample_descriptions[$i] ?? ''),
 					'file' => wc_clean($sample_files[$i]),
 				];
 			}
@@ -2210,22 +2216,51 @@ function toneka_display_product_samples_player() {
             </button>
         </div>
 
+        <!-- Playlista (wyjeżdża z dołu) -->
+        <?php if (count($samples) > 1): ?>
+        <div class="toneka-playlist" data-visible="false">
+            <div class="toneka-playlist-items">
+                <?php foreach ($samples as $index => $sample):
+                    if (empty($sample['file'])) continue;
+                    $sample_name = !empty($sample['name']) ? $sample['name'] : basename($sample['file']);
+                    $sample_description = !empty($sample['description']) ? $sample['description'] : '';
+                    ?>
+                    <div class="toneka-playlist-item <?php echo ($index === 0) ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" data-src="<?php echo esc_url($sample['file']); ?>">
+                        <div class="toneka-playlist-item-info">
+                            <div class="toneka-playlist-item-description"><?php echo esc_html($sample_description); ?></div>
+                            <div class="toneka-playlist-item-name"><?php echo esc_html($sample_name); ?></div>
+                        </div>
+                        <button class="toneka-playlist-item-play">
+                            <svg class="toneka-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="toneka-pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="white" style="display: none;">
+                                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                            </svg>
+                        </button>
+                        <div class="toneka-playlist-item-time">0:00 /0:40</div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
         <!-- Dolny panel z informacjami i kontrolkami -->
         <div class="toneka-bottom-panel">
             <!-- Informacje o utworze -->
             <div class="toneka-track-info">
                 <div class="toneka-track-details">
                     <h3 class="toneka-track-title"><?php echo esc_html($product->get_name()); ?></h3>
-                    <p class="toneka-track-type"><?php 
-                        if ($is_video && in_array($file_extension, ['mp4', 'mov', 'webm', 'avi'])) {
-                            echo 'Video';
-                        } else {
-                            echo 'Audio';
-                        }
+                    <p class="toneka-track-subtitle"><?php 
+                        // Wyświetl nazwę pierwszego sampla
+                        echo esc_html($first_sample['name'] ?? '');
+                    ?> • <?php 
+                        // Wyświetl opis pierwszego sampla
+                        echo esc_html($first_sample['description'] ?? '');
                     ?></p>
                 </div>
                 <div class="toneka-track-time">
-                    <span class="toneka-current-time">0:00</span> / <span class="toneka-total-time">0:00</span>
+                    <span class="toneka-current-time">0:00</span> /<span class="toneka-total-time">0:00</span>
                 </div>
             </div>
             
