@@ -2668,6 +2668,10 @@ ol, ul {
     /* margin-top: 30px; */
 }
 
+.toneka-categories-row {
+    margin-top: 30px!important;
+}
+
 .toneka-tag-link a {
     text-transform: none!important;
 }

@@ -2547,7 +2547,7 @@ function toneka_display_product_metadata() {
             foreach ($product_categories as $category) {
                 if ($category->slug !== 'uncategorized') {
                     $category_url = get_term_link($category);
-                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . esc_html($category->name) . '</a>';
+                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . esc_html(strtoupper($category->name)) . '</a>';
                 }
             }
         }
