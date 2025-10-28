@@ -3256,8 +3256,10 @@ ol, ul {
     margin: 0 auto;
     padding: 0 7%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
 }
 
 /* Social media links */
@@ -3336,8 +3338,8 @@ ol, ul {
 @media (max-width: 768px) {
     .toneka-footer-bottom-content {
         flex-direction: column;
-        gap: 0;
-        text-align: center;
+        gap: 20px;
+        text-align: left;
     }
     
     .toneka-social-links {
