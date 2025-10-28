@@ -15,6 +15,9 @@ function initializePlayer(playerContainer) {
     
     // Elementy DOM
     const audioElement = playerContainer.querySelector('.toneka-hidden-player');
+    const playPauseButton = playerContainer.querySelector('.toneka-play-pause');
+    const playIcon = playPauseButton ? playPauseButton.querySelector('.toneka-play-icon') : null;
+    const pauseIcon = playPauseButton ? playPauseButton.querySelector('.toneka-pause-icon') : null;
     const progressContainer = playerContainer.querySelector('.toneka-progress-container');
     const progressBar = playerContainer.querySelector('.toneka-progress-bar');
     const progressHandle = playerContainer.querySelector('.toneka-progress-handle');
@@ -229,6 +232,11 @@ function initializePlayer(playerContainer) {
     }
     
     function setupEventListeners() {
+        // Play/Pause button
+        if (playPauseButton) {
+            playPauseButton.addEventListener('click', togglePlayPause);
+        }
+        
         // Synchronizacja video z audio
         const videoElement = playerContainer.querySelector('.toneka-background-video');
         if (videoElement) {
@@ -400,6 +408,7 @@ function initializePlayer(playerContainer) {
         } else {
             audioElement.play().catch(error => {
                 console.warn('Autoplay prevented:', error);
+                showPlayButton();
             });
         }
     }
@@ -670,6 +679,7 @@ function initializePlayer(playerContainer) {
             changeTrack(1);
             setTimeout(() => audioElement.play(), 100);
         } else {
+            showPlayButton();
             progressBar.style.width = '0%';
             progressHandle.style.left = '0%';
             audioElement.currentTime = 0;
@@ -678,6 +688,7 @@ function initializePlayer(playerContainer) {
     
     function handlePlay() {
         isPlaying = true;
+        showPauseButton();
         playerContainer.classList.add('playing');
         playerContainer.classList.remove('paused');
         
@@ -688,6 +699,7 @@ function initializePlayer(playerContainer) {
     
     function handlePause() {
         isPlaying = false;
+        showPlayButton();
         playerContainer.classList.add('paused');
         playerContainer.classList.remove('playing');
         
@@ -699,6 +711,7 @@ function initializePlayer(playerContainer) {
     function handleError(e) {
         console.error('Audio playback error:', e);
         playerContainer.classList.add('error');
+        showPlayButton();
     }
     
     function handleKeyboard(e) {
@@ -760,8 +773,19 @@ function initializePlayer(playerContainer) {
         }
     }
     
-    // Funkcje showPlayButton i showPauseButton nie są już potrzebne
-    // Główny przycisk play/pause został usunięty z centrum obrazka
+    function showPlayButton() {
+        if (playIcon && pauseIcon) {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        }
+    }
+    
+    function showPauseButton() {
+        if (playIcon && pauseIcon) {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        }
+    }
     
     function showVolumeOn() {
         if (volumeOnIcon && volumeOffIcon) {

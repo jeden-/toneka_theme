@@ -2242,8 +2242,7 @@ ol, ul {
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
-	border-bottom: 1px solid #a5a5a5;
-	padding-bottom: 10px;
+	padding-bottom: 7%;
 }
 
 .toneka-title-row h1 {
@@ -2870,16 +2869,15 @@ ol, ul {
 
 .toneka-product-image {
     width: 100%;
-    /* max-width: 500px; */
     aspect-ratio: 1;
     background: #000000;
-    /* border: 1px solid #a5a5a5; */
     border-bottom: none;
     border-left: none;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 14%;
 }
 
 .toneka-product-image img {
@@ -4641,16 +4639,11 @@ button.toneka-skip-button.toneka-skip-backward:hover {
     text-align: right;
 }
 
-/* Dolny panel z gradientem */
+/* Dolny panel pod obrazem/filmem */
 .toneka-bottom-panel {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(8, 9, 13, 0.9) 80.37%);
-    backdrop-filter: blur(0.7px);
+    position: relative;
+    background: #000000;
     padding: 11px 28px;
-    z-index: 5;
     display: flex;
     flex-direction: column;
     gap: 11px;

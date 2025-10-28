@@ -2248,6 +2248,14 @@ function toneka_display_product_samples_player() {
                             <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
                         </svg>
                     </button>
+                    <button class="toneka-control-btn toneka-play-pause">
+                        <svg class="toneka-play-icon" width="17" height="17" viewBox="0 0 24 24" fill="white">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg class="toneka-pause-icon" width="17" height="17" viewBox="0 0 24 24" fill="white" style="display: none;">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                        </svg>
+                    </button>
                     <button class="toneka-control-btn toneka-next">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
                             <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
