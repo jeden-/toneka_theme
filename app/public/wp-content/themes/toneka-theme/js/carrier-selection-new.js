@@ -62,19 +62,17 @@ jQuery(document).ready(function($) {
             console.log('Regular Price:', regularPrice);
             console.log('Sale Price:', salePrice);
             
-            // Jeśli mamy ilość większą niż 1, zaktualizuj cenę
-            if (quantity > 1) {
-                const totalRegularPrice = regularPrice * quantity;
-                const totalSalePrice = salePrice * quantity;
-                
-                // Formatuj ceny
-                if (salePrice < regularPrice) {
-                    // Cena promocyjna
-                    priceHtml = '<del>' + formatPrice(totalRegularPrice) + '</del> <ins>' + formatPrice(totalSalePrice) + '</ins>';
-                } else {
-                    // Normalna cena
-                    priceHtml = formatPrice(totalSalePrice);
-                }
+            // Oblicz całkowitą cenę
+            const totalRegularPrice = regularPrice * quantity;
+            const totalSalePrice = salePrice * quantity;
+            
+            // Formatuj ceny - zawsze generuj HTML, nawet dla quantity=1
+            if (salePrice < regularPrice) {
+                // Cena promocyjna
+                priceHtml = '<del>' + formatPrice(totalRegularPrice) + '</del> <ins>' + formatPrice(totalSalePrice) + '</ins>';
+            } else if (salePrice > 0) {
+                // Normalna cena
+                priceHtml = formatPrice(totalSalePrice);
             }
 
             // Aktualizuj opcjonalną tabelę
@@ -512,19 +510,17 @@ jQuery(document).ready(function($) {
             const regularPrice = parseFloat(variationData.display_regular_price) || 0;
             const salePrice = parseFloat(variationData.display_price) || regularPrice;
             
-            // Jeśli mamy ilość większą niż 1, zaktualizuj cenę
-            if (quantity > 1) {
-                const totalRegularPrice = regularPrice * quantity;
-                const totalSalePrice = salePrice * quantity;
-                
-                // Formatuj ceny
-                if (salePrice < regularPrice) {
-                    // Cena promocyjna
-                    priceHtml = '<del>' + formatPrice(totalRegularPrice) + '</del> <ins>' + formatPrice(totalSalePrice) + '</ins>';
-                } else {
-                    // Normalna cena
-                    priceHtml = formatPrice(totalSalePrice);
-                }
+            // Oblicz całkowitą cenę
+            const totalRegularPrice = regularPrice * quantity;
+            const totalSalePrice = salePrice * quantity;
+            
+            // Formatuj ceny - zawsze generuj HTML, nawet dla quantity=1
+            if (salePrice < regularPrice) {
+                // Cena promocyjna
+                priceHtml = '<del>' + formatPrice(totalRegularPrice) + '</del> <ins>' + formatPrice(totalSalePrice) + '</ins>';
+            } else if (salePrice > 0) {
+                // Normalna cena
+                priceHtml = formatPrice(totalSalePrice);
             }
             
             // Aktualizuj kontenery z informacjami
