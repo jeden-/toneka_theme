@@ -4769,6 +4769,8 @@ button.toneka-skip-button.toneka-skip-backward:hover {
 .toneka-control-btn svg {
     opacity: 0.8;
     transition: opacity 0.3s ease;
+    width: 17px;
+    height: 17px;
 }
 
 .toneka-control-btn:hover svg {
