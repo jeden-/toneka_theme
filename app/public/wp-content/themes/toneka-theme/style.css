@@ -3158,10 +3158,11 @@ ol, ul {
 .toneka-footer-container {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto auto;
     gap: 80px;
     padding: 0 7%;
     align-items: start;
+    justify-content: start;
 }
 
 /* Pierwsza kolumna - widget area */
@@ -3256,10 +3257,8 @@ ol, ul {
     margin: 0 auto;
     padding: 0 7%;
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Social media links */
@@ -3338,8 +3337,8 @@ ol, ul {
 @media (max-width: 768px) {
     .toneka-footer-bottom-content {
         flex-direction: column;
-        gap: 20px;
-        text-align: left;
+        gap: 0;
+        text-align: center;
     }
     
     .toneka-social-links {
