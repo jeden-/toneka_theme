@@ -956,7 +956,7 @@ ol, ul {
     }
     
     .toneka-slide-content .toneka-hero-content {
-        padding: 40px 20px;
+        padding: 10% 5%;
         text-align: left;
     }
     
@@ -1259,7 +1259,7 @@ ol, ul {
 
 .toneka-no-content {
     text-align: center;
-    padding: 80px 20px;
+    padding: 80px 5%;
     color: #ffffff;
 }
 
@@ -2005,7 +2005,7 @@ ol, ul {
     }
     
     .toneka-minicart-content {
-        padding: 20px;
+        padding: 5%;
     }
     
     .toneka-minicart-item {
@@ -2952,7 +2952,7 @@ ol, ul {
     
     .toneka-product-content {
         width: 100%;
-        padding: 20px;
+        padding: 5%;
         border-left: none;
     }
 }
@@ -3543,7 +3543,7 @@ ol, ul {
     
     .mobile-menu-cart,
     .mobile-menu-social {
-        padding: 20px;
+        padding: 5%;
         border-top: 1px solid #7b7b7b;
     }
     
@@ -3639,7 +3639,7 @@ ol, ul {
     }
     
     .toneka-back-to-top {
-        padding: 0 20px;
+        padding: 0 5%;
         justify-content: center;
     }
     
@@ -3878,7 +3878,7 @@ ol, ul {
     
     .mobile-menu-cart,
     .mobile-menu-social {
-        padding: 20px;
+        padding: 5%;
         border-top: 1px solid #7b7b7b;
     }
     
@@ -4322,7 +4322,7 @@ ol, ul {
 /* No products message */
 .toneka-no-products {
     text-align: center;
-    padding: 100px 20px;
+    padding: 100px 5%;
     color: #969696;
     font-family: 'Figtree', sans-serif;
     font-size: clamp(0.9rem, 1.3vw, 1.2rem);
@@ -4368,7 +4368,7 @@ ol, ul {
     }
     
     .toneka-category-filter-section {
-        padding: 20px;
+        padding: 5%;
     }
     
     .toneka-category-filter-container {
@@ -5090,7 +5090,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-cart-container {
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 5%;
 }
 
 .toneka-cart-title {
@@ -5378,7 +5378,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-container {
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 5%;
 }
 
 .toneka-checkout-title {
@@ -5626,7 +5626,7 @@ button.toneka-playlist:hover svg rect {
 .woocommerce-register-form {
     background: #000000;
     min-height: 100vh;
-    padding: 100px 20px 50px 20px;
+    padding: 100px 5% 50px 5%;
 }
 
 .woocommerce-account .woocommerce-MyAccount-content,
