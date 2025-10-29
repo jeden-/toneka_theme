@@ -987,6 +987,8 @@ ol, ul {
     
     .toneka-slider-dots {
         bottom: 20px;
+        left: 90%!important;
+        transform: translateX(-50%)!important;
     }
     
     .toneka-slide-subtitle p {
