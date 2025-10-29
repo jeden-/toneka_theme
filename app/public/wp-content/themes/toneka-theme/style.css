@@ -915,12 +915,20 @@ ol, ul {
         scroll-snap-stop: always;
     }
     
+    /* Slajdy na mobilnych bez absolute positioning */
+    .toneka-slide,
+    .toneka-slide.toneka-hero-section {
+        position: relative;
+        height: 100vh;
+    }
+    
     .toneka-slide-content {
         flex-direction: column;
         text-align: center;
         padding: 0;
         display: flex;
         height: 100vh;
+        position: relative;
     }
     
     .toneka-slide-content .toneka-hero-left,
@@ -928,6 +936,7 @@ ol, ul {
         width: 100%;
         padding: 0;
         border-right: none;
+        position: relative;
     }
     
     /* Zdjęcie na górze - proporcje 1:1 z cover */
@@ -948,6 +957,7 @@ ol, ul {
         height: auto;
         flex: 1;
         aspect-ratio: auto;
+        min-height: 0;
     }
     
     .toneka-slide-content .toneka-hero-content {
@@ -4041,8 +4051,9 @@ ol, ul {
     .toneka-hero-content {
         border-right: none;
         padding: 7%;
-        aspect-ratio: 1;
+        aspect-ratio: auto;
         width: 100%;
+        height: 100%;
     }
 
     .toneka-text-section-image img {
