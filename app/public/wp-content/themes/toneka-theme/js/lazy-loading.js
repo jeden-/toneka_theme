@@ -122,28 +122,40 @@
         });
     }, observerOptions);
 
-    // Inicjalizacja po załadowaniu DOM
-    function initLazyLoading() {
-        // Znajdź wszystkie obrazy z data-src, wykluczając SVG
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        lazyImages.forEach(img => {
-            // Pomijaj obrazy SVG
-            const src = img.dataset.src || '';
-            if (src.toLowerCase().endsWith('.svg')) {
-                // Załaduj SVG od razu bez lazy loading
-                img.src = src;
-                img.classList.add('toneka-loaded');
-                return;
-            }
-            imageObserver.observe(img);
-        });
+            // Inicjalizacja po załadowaniu DOM
+            function initLazyLoading() {
+                // Znajdź wszystkie obrazy z data-src, wykluczając SVG i już załadowane
+                const lazyImages = document.querySelectorAll('img[data-src]:not(.toneka-loaded)');
+                lazyImages.forEach(img => {
+                    // Pomijaj obrazy SVG
+                    const src = img.dataset.src || '';
+                    if (src.toLowerCase().endsWith('.svg')) {
+                        // Załaduj SVG od razu bez lazy loading
+                        img.src = src;
+                        img.classList.add('toneka-loaded');
+                        const wrapper = img.closest('.toneka-lazy-wrapper');
+                        if (wrapper) {
+                            wrapper.classList.remove('toneka-loading');
+                            wrapper.classList.add('toneka-loaded');
+                        }
+                        return;
+                    }
+                    // Sprawdź czy obraz nie jest już obserwowany
+                    if (!img.classList.contains('toneka-observed')) {
+                        imageObserver.observe(img);
+                        img.classList.add('toneka-observed');
+                    }
+                });
 
-        // Znajdź wszystkie playery do załadowania
-        const lazyPlayers = document.querySelectorAll('.toneka-player-lazy-wrapper:not(.toneka-loaded)');
-        lazyPlayers.forEach(playerWrapper => {
-            playerObserver.observe(playerWrapper);
-        });
-    }
+                // Znajdź wszystkie playery do załadowania
+                const lazyPlayers = document.querySelectorAll('.toneka-player-lazy-wrapper:not(.toneka-loaded)');
+                lazyPlayers.forEach(playerWrapper => {
+                    if (!playerWrapper.classList.contains('toneka-observed')) {
+                        playerObserver.observe(playerWrapper);
+                        playerWrapper.classList.add('toneka-observed');
+                    }
+                });
+            }
 
     // Uruchom gdy DOM jest gotowy
     if (document.readyState === 'loading') {

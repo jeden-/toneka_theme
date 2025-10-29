@@ -124,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Trigger event for other scripts (like product card listeners)
                         document.dispatchEvent(new CustomEvent('toneka_products_updated'));
+                        
+                        // Refresh lazy loading for new images
+                        document.dispatchEvent(new CustomEvent('lazyLoadingRefresh'));
                     }
                     
                     // Update current category
@@ -256,6 +259,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         
                         attachPaginationListeners();
+                        
+                        // Refresh lazy loading for new images
+                        document.dispatchEvent(new CustomEvent('lazyLoadingRefresh'));
                     }
                 } else {
                     showErrorMessage('Błąd podczas ładowania strony.');

@@ -908,6 +908,11 @@ ol, ul {
         scroll-snap-type: y mandatory;
     }
     
+    /* Ukryj title icon na mobilnych */
+    .toneka-title-icon {
+        display: none !important;
+    }
+    
     .toneka-hero-slider {
         height: 100vh;
         min-height: 100vh;
@@ -957,12 +962,15 @@ ol, ul {
     }
     
     .toneka-slide.toneka-hero-section .toneka-hero-content {
-        padding: 10% 5%;
+        padding: 10% 5% !important;
+        padding-top: 10% !important;
+        padding-bottom: 10% !important;
         text-align: left;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin: 0;
     }
     
     .toneka-slide.toneka-hero-section .toneka-hero-right img {
@@ -3664,7 +3672,14 @@ ol, ul {
 
     .toneka-hero-content {
         border-right: none;
-        padding: 7%;
+        padding: 10% 5% !important;
+        padding-top: 10% !important;
+        padding-bottom: 10% !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        margin: 0;
     }
 
     .toneka-text-section-image img {
@@ -3807,6 +3822,19 @@ ol, ul {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+    
+    /* Wyrównanie content do środka w pionie dla wszystkich hero */
+    .toneka-hero-left .toneka-hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100%;
+        padding: 10% 5% !important;
+        padding-top: 10% !important;
+        padding-bottom: 10% !important;
+        margin: 0;
     }
     
     .toneka-hero-right img {
@@ -4048,10 +4076,16 @@ ol, ul {
 
     .toneka-hero-content {
         border-right: none;
-        padding: 7%;
+        padding: 10% 5% !important;
+        padding-top: 10% !important;
+        padding-bottom: 10% !important;
         aspect-ratio: auto;
         width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
     }
 
     .toneka-text-section-image img {
