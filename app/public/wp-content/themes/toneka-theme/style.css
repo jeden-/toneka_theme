@@ -2484,9 +2484,9 @@ ol, ul {
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     color: #ffffff;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
