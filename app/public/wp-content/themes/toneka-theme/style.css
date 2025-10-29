@@ -113,19 +113,19 @@ html {
 }
 
 /* Animacje dla produktów - USUNIĘTE opóźnienia (ładują się od razu) */
-/* .toneka-product-card:not(.toneka-ajax-loaded):nth-child(1) { animation-delay: 0.1s; }
-.toneka-product-card:not(.toneka-ajax-loaded):nth-child(2) { animation-delay: 0.4s; }
+/* .toneka-product-card:not(.toneka-ajax-loaded):nth-child(1) { animation-delay: 0.3s; }
+.toneka-product-card:not(.toneka-ajax-loaded):nth-child(2) { animation-delay: 0.3s; }
 .toneka-product-card:not(.toneka-ajax-loaded):nth-child(3) { animation-delay: 0.3s; }
-.toneka-product-card:not(.toneka-ajax-loaded):nth-child(4) { animation-delay: 0.4s; }
-.toneka-product-card:not(.toneka-ajax-loaded):nth-child(5) { animation-delay: 0.5s; }
-.toneka-product-card:not(.toneka-ajax-loaded):nth-child(6) { animation-delay: 0.6s; } */
+.toneka-product-card:not(.toneka-ajax-loaded):nth-child(4) { animation-delay: 0.3s; }
+.toneka-product-card:not(.toneka-ajax-loaded):nth-child(5) { animation-delay: 0.3s; }
+.toneka-product-card:not(.toneka-ajax-loaded):nth-child(6) { animation-delay: 0.3s; } */
 
 /* Loading states - usunięte shimmer effect dla produktów (zastąpione przez lazy loading) */
 
 /* Efekt fade dla AJAX */
 .toneka-fade-out {
     opacity: 0;
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.3s ease-out;
 }
 
 .toneka-fade-in {
@@ -146,7 +146,7 @@ html {
     justify-content: center;
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 .toneka-loading-overlay.active {
@@ -501,7 +501,7 @@ ol, ul {
     width: 0;
     height: 1px;
     background: #ffffff;
-    transition: width 0.4s ease;
+    transition: width 0.3s ease;
 }
 
 .toneka-primary-menu .menu-item a:hover {
@@ -785,7 +785,7 @@ ol, ul {
     height: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .toneka-slide.active {
@@ -911,15 +911,15 @@ ol, ul {
 
 /* Transition Types */
 .toneka-slider-fade .toneka-slide {
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .toneka-slider-slide .toneka-slide {
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .toneka-slider-zoom .toneka-slide {
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 /* Responsive Design */
@@ -1106,7 +1106,7 @@ ol, ul {
     width: 0;
     height: 1px;
     background: #ffffff;
-    transition: width 0.4s ease;
+    transition: width 0.3s ease;
 }
 
 .woocommerce-breadcrumb a:hover::after {
@@ -1363,7 +1363,7 @@ ol, ul {
     width: 0;
     height: 1px;
     background: #ffffff;
-    transition: width 0.4s ease;
+    transition: width 0.3s ease;
 }
 
 .toneka-breadcrumb a:hover {
@@ -1560,7 +1560,7 @@ ol, ul {
 .toneka-minicart-close svg {
     width: 24px;
     height: 24px;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 .toneka-minicart-close:hover svg {
@@ -1576,7 +1576,7 @@ ol, ul {
     display: flex !important;
     z-index: 99999 !important;
     opacity: 0;
-    animation: fadeInCloseButton 0.3s ease-in-out 0.4s forwards;
+    animation: fadeInCloseButton 0.3s ease-in-out 0.3s forwards;
     border: none;
 }
 
@@ -2102,7 +2102,7 @@ ol, ul {
     width: 0;
     height: 1px;
     background: #ffffff;
-    transition: width 0.4s ease;
+    transition: width 0.3s ease;
 }
 
 .animated-arrow-button:hover .button-text::after,
@@ -2125,7 +2125,7 @@ ol, ul {
 .animated-arrow-button .button-arrow {
     position: relative;
     transform: rotate(0deg);
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2176,7 +2176,7 @@ ol, ul {
     width: 100%;
     /* height: 100%; */
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2389,7 +2389,7 @@ ol, ul {
 .toneka-meta-value a {
     color: #ffffff;
     text-decoration: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 .toneka-meta-value a:hover {
@@ -2514,7 +2514,7 @@ ol, ul {
     font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     color: #ffffff;
     /* text-transform: uppercase; */
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toneka-carrier-option input[type="radio"] {
@@ -2529,7 +2529,7 @@ ol, ul {
     border-radius: 50%;
     margin-right: 12px;
     position: relative;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toneka-carrier-option input[type="radio"]:checked + .toneka-carrier-radio-custom {
@@ -2591,10 +2591,10 @@ ol, ul {
     max-height: 0;
     overflow: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                margin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toneka-variation-description-inline.active {
@@ -2721,9 +2721,8 @@ ol, ul {
 }
 
 .toneka-add-to-cart-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-    transform: scale(1.03);
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
 }
 
 /* ===== RESPONSYWNOŚĆ SEKCJI ZAKUPOWEJ ===== */
@@ -3059,7 +3058,7 @@ ol, ul {
     width: 100%;
     aspect-ratio: 1;
     position: relative;
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
     cursor: pointer;
     border: 1px solid #a5a5a5;
     border-left: none;
@@ -3330,7 +3329,7 @@ ol, ul {
     width: 0;
     height: 1px;
     background: #ffffff;
-    transition: width 0.4s ease;
+    transition: width 0.3s ease;
 }
 
 .footer-widget a:hover {
@@ -4358,7 +4357,7 @@ ol, ul {
     width: 0;
     height: 1px;
     background: #ffffff;
-    transition: width 0.4s ease;
+    transition: width 0.3s ease;
 }
 
 .toneka-category-filter-item a:hover {
@@ -4813,7 +4812,7 @@ div.toneka-playlist[data-visible="true"] {
     padding: 7px 1%;
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
     cursor: pointer;
-    transition: background 0.4s ease;
+    transition: background 0.3s ease;
 }
 
 .toneka-playlist-item:hover {
@@ -4855,7 +4854,7 @@ div.toneka-playlist[data-visible="true"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 .toneka-playlist-item-play svg {
@@ -4946,7 +4945,7 @@ div.toneka-playlist[data-visible="true"] {
     background: white;
     border-radius: 20px;
     width: 0%;
-    transition: width 0.1s ease;
+    transition: width 0.3s ease;
 }
 
 .toneka-progress-handle {
@@ -4959,7 +4958,7 @@ div.toneka-playlist[data-visible="true"] {
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 .toneka-progress-container:hover .toneka-progress-handle {
@@ -5268,7 +5267,7 @@ button.toneka-playlist:hover svg rect {
 
 /* Dynamiczne proporcje playera */
 .toneka-figma-player {
-    transition: height 0.5s ease-in-out;
+    transition: height 0.3s ease-in-out;
     min-height: 200px;
     max-height: 100%;
 }
@@ -6371,7 +6370,7 @@ textarea::placeholder {
 .toneka-creator-item {
     border-bottom: 1px solid #7b7b7b;
     padding: 40px 0;
-    transition: all 0.6s ease;
+    transition: all 0.3s ease;
 }
 
 .toneka-creator-item:last-child {
@@ -6586,7 +6585,7 @@ textarea::placeholder {
     position: relative;
     overflow: hidden;
     border-radius: 0!important;
-    transition: box-shadow 0.4s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 .toneka-portfolio-item:hover {
@@ -6750,7 +6749,7 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link),
     width: auto;
     text-decoration: none;
     text-transform: uppercase;
-    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 button:not(.animated-arrow-button):not(.toneka-slider-dot):hover,
