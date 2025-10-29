@@ -2466,9 +2466,9 @@ ol, ul {
 }
 
 .toneka-carrier-title {
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     font-weight: 300;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     color: #969696;
     margin: 0 0 20px 0;
     line-height: 1.2;
@@ -3059,8 +3059,8 @@ ol, ul {
     background: #000000;
     color: #969696;
     padding: 3% 4%;
-    font-size: clamp(1rem, 1.0vw, 1.4rem);
-    font-weight: 400;
+    font-size: clamp(0.8rem, 1.0vw, 0.95rem);
+    font-weight: 300;
     /* text-transform: uppercase; */
     font-family: 'Figtree', sans-serif;
     z-index: 10;
@@ -3126,7 +3126,9 @@ ol, ul {
     font-size: clamp(1rem, 1.0vw, 1.3rem);
     line-height: 1.3;
     font-family: 'Figtree', sans-serif;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     word-wrap: break-word;
 }
 
@@ -3140,14 +3142,15 @@ ol, ul {
     text-transform: uppercase;
 }
 
-/* Separator między tytułem a autorem */
+/* Separator między tytułem a autorem - ukryty */
 .toneka-title-separator {
-    font-weight: 300;
+    display: none;
 }
 
 /* Autor - regular */
 .toneka-product-author {
     font-weight: 300;
+    display: block;
 }
 
 /* Backward compatibility - ukryj stare elementy */
@@ -3193,7 +3196,7 @@ ol, ul {
 
 /* .toneka-footer-main { */
     /* padding: 60px 0; */
-}
+/* } */
 
 .toneka-footer-container {
     margin: 0 auto;
