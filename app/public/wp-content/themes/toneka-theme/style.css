@@ -3005,8 +3005,14 @@ ol, ul {
         position: static;
         width: 100%;
         height: auto;
-        aspect-ratio: 1;
+        /* aspect-ratio: 1; - usunięte, kontener dostosowuje się do playera */
         padding: 5%;
+    }
+    
+    /* Usuń sztywny aspect-ratio z kontenera produktu - niech dostosowuje się do playera */
+    .toneka-product-image {
+        aspect-ratio: auto !important;
+        height: auto !important;
     }
     
     .toneka-product-content {
@@ -3879,7 +3885,7 @@ ol, ul {
     }
     
     .toneka-product-image {
-        padding: 40px; /* Mniejszy padding na mobile */
+        /* padding: 40px; Mniejszy padding na mobile */
     }
     
     /* Mobile Menu Styles */
