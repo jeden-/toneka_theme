@@ -3006,7 +3006,7 @@ ol, ul {
         width: 100%;
         height: auto;
         /* aspect-ratio: 1; - usunięte, kontener dostosowuje się do playera */
-        padding: 5%;
+        padding: 0 5%;
     }
     
     /* Usuń sztywny aspect-ratio z kontenera produktu - niech dostosowuje się do playera */
