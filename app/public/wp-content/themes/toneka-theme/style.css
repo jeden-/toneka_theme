@@ -112,13 +112,13 @@ html {
     animation: none;
 }
 
-/* Animacje dla produktów z opóźnieniem - tylko dla normalnie ładowanych */
-.toneka-product-card:not(.toneka-ajax-loaded):nth-child(1) { animation-delay: 0.1s; }
+/* Animacje dla produktów - USUNIĘTE opóźnienia (ładują się od razu) */
+/* .toneka-product-card:not(.toneka-ajax-loaded):nth-child(1) { animation-delay: 0.1s; }
 .toneka-product-card:not(.toneka-ajax-loaded):nth-child(2) { animation-delay: 0.4s; }
 .toneka-product-card:not(.toneka-ajax-loaded):nth-child(3) { animation-delay: 0.3s; }
 .toneka-product-card:not(.toneka-ajax-loaded):nth-child(4) { animation-delay: 0.4s; }
 .toneka-product-card:not(.toneka-ajax-loaded):nth-child(5) { animation-delay: 0.5s; }
-.toneka-product-card:not(.toneka-ajax-loaded):nth-child(6) { animation-delay: 0.6s; }
+.toneka-product-card:not(.toneka-ajax-loaded):nth-child(6) { animation-delay: 0.6s; } */
 
 /* Loading states - usunięte shimmer effect dla produktów (zastąpione przez lazy loading) */
 
