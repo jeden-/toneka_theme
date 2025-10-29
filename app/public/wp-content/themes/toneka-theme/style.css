@@ -2251,7 +2251,7 @@ ol, ul {
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
-	padding-bottom: 7%;
+	padding-bottom: 3%;
 }
 
 .toneka-title-row h1 {
@@ -2316,7 +2316,7 @@ ol, ul {
 }
 
 .toneka-meta-label {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: clamp(0.8rem, 1.0vw, 1rem);
     font-weight: 300;
     text-transform: uppercase;
     color: #969696;
@@ -2325,7 +2325,7 @@ ol, ul {
 }
 
 .toneka-meta-value {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: clamp(0.8rem, 1.0vw, 1rem);
     font-weight: 300;
     color: #ffffff;
     line-height: 1.4;
@@ -2370,15 +2370,15 @@ ol, ul {
 }
 
 .toneka-description-row {
-    margin-top: 6%;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    margin-top: 1%;
+    font-size: clamp(0.8rem, 1.0vw, 1rem);
     padding-left: 1%;
     padding-right: 1%;
-    margin-bottom: 14%;
+    margin-bottom: 6%;
 }
 
 .toneka-description-row .toneka-meta-value {
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: clamp(0.8rem, 1.0vw, 1rem);
     line-height: 1.6;
 }
 
