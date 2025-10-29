@@ -915,24 +915,20 @@ ol, ul {
         scroll-snap-stop: always;
     }
     
-    /* Slajdy na mobilnych bez absolute positioning */
+    /* Slajdy na mobilnych - zachowaj absolute dla działania slidera */
+    /* Ale zmieniamy grid na flex column */
     .toneka-slide,
     .toneka-slide.toneka-hero-section {
-        position: relative;
+        position: absolute;
         height: 100vh;
-    }
-    
-    .toneka-slide-content {
+        display: flex !important;
         flex-direction: column;
-        text-align: center;
-        padding: 0;
-        display: flex;
-        height: 100vh;
-        position: relative;
+        grid-template-columns: none;
+        grid-template-areas: none;
     }
     
-    .toneka-slide-content .toneka-hero-left,
-    .toneka-slide-content .toneka-hero-right {
+    .toneka-slide.toneka-hero-section .toneka-hero-left,
+    .toneka-slide.toneka-hero-section .toneka-hero-right {
         width: 100%;
         padding: 0;
         border-right: none;
@@ -940,7 +936,7 @@ ol, ul {
     }
     
     /* Zdjęcie na górze - proporcje 1:1 z cover */
-    .toneka-slide-content .toneka-hero-right {
+    .toneka-slide.toneka-hero-section .toneka-hero-right {
         order: 1;
         height: auto;
         width: 100vw;
@@ -949,7 +945,7 @@ ol, ul {
     }
     
     /* Tekst poniżej - zajmuje resztę miejsca */
-    .toneka-slide-content .toneka-hero-left {
+    .toneka-slide.toneka-hero-section .toneka-hero-left {
         order: 2;
         margin-bottom: 0;
         border-bottom: none;
@@ -960,7 +956,7 @@ ol, ul {
         min-height: 0;
     }
     
-    .toneka-slide-content .toneka-hero-content {
+    .toneka-slide.toneka-hero-section .toneka-hero-content {
         padding: 10% 5%;
         text-align: left;
         height: 100%;
@@ -969,7 +965,7 @@ ol, ul {
         justify-content: center;
     }
     
-    .toneka-slide-content .toneka-hero-right img {
+    .toneka-slide.toneka-hero-section .toneka-hero-right img {
         object-fit: cover;
         width: 100%!important;
         height: 100%!important;
