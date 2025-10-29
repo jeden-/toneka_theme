@@ -3010,9 +3010,14 @@ ol, ul {
     }
     
     /* Usuń sztywny aspect-ratio z kontenera produktu - niech dostosowuje się do playera */
-    .toneka-product-image {
+    .toneka-product-layout .toneka-product-image {
         aspect-ratio: auto !important;
         height: auto !important;
+    }
+    
+    /* Usuń padding z image wrapper na stronie produktu, ale zachowaj na kartach */
+    .toneka-product-layout .toneka-product-image-wrapper {
+        padding: 0 !important;
     }
     
     .toneka-product-content {
