@@ -49,6 +49,27 @@ html {
    GLOBALNE ANIMACJE I EFEKTY ŁADOWANIA
    ===================================== */
 
+/* Globalne transition dla płynnych animacji */
+* {
+    transition: opacity 0.3s ease, 
+                transform 0.3s ease, 
+                background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                filter 0.3s ease;
+}
+
+/* Wyjątki - elementy, które nie powinny mieć transition */
+*:where(
+    video, 
+    audio, 
+    img[src*="gif"],
+    .no-transition
+) {
+    transition: none !important;
+}
+
 /* Keyframes dla animacji */
 @keyframes fadeIn {
     from {
@@ -3234,7 +3255,7 @@ ol, ul {
     display: grid;
     grid-template-columns: auto auto;
     gap: 80px;
-    padding: 0 7%;
+    /* padding: 0 7%; */
     align-items: start;
     justify-content: start;
 }
@@ -5073,7 +5094,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-gallery-thumbnail.active {
     opacity: 1;
-    border-color: #ffffff;
+    /* border-color: #ffffff; */
 }
 
 /* Ukryty player */
