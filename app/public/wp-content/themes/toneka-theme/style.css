@@ -2371,21 +2371,21 @@ ol, ul {
 
 .toneka-description-row {
     margin-top: 1%;
-    font-size: clamp(0.7rem, 1.0vw, 0.85rem);
+    font-size: clamp(0.85rem, 1.0vw, 1rem)!important;
     padding-left: 1%;
     padding-right: 1%;
     margin-bottom: 6%;
 }
 
 .toneka-description-row .toneka-meta-value {
-    font-size: clamp(0.7rem, 1.0vw, 0.85rem);
+    font-size: clamp(0.85rem, 1.0vw, 1rem)!important;
     line-height: 1.6;
 }
 
 .toneka-more-link {
     color: #969696;
     text-decoration: none;
-    font-size: clamp(0.7rem, 1.0vw, 0.85rem);
+    font-size: clamp(0.85rem, 1.0vw, 1rem)!important;
     text-transform: uppercase;
     margin-top: 10px;
     display: inline-block;
