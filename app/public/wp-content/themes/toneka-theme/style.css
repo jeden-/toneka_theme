@@ -234,7 +234,7 @@ ins {
 }
 
 h1 {
-    font-size: clamp(2rem, 3.3vw, 3rem);
+    font-size: clamp(1.4rem, 3.3vw, 3rem);
     font-weight: 300;
     text-transform: uppercase;
 }
