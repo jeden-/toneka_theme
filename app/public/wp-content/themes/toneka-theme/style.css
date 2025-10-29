@@ -2316,7 +2316,7 @@ ol, ul {
 }
 
 .toneka-meta-label {
-    font-size: clamp(0.8rem, 1.0vw, 1rem);
+    font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     font-weight: 300;
     text-transform: uppercase;
     color: #969696;
@@ -2325,7 +2325,7 @@ ol, ul {
 }
 
 .toneka-meta-value {
-    font-size: clamp(0.8rem, 1.0vw, 1rem);
+    font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     font-weight: 300;
     color: #ffffff;
     line-height: 1.4;
