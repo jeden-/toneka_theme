@@ -3006,7 +3006,7 @@ ol, ul {
         width: 100%;
         height: auto;
         aspect-ratio: 1;
-        padding: 14%;
+        padding: 5%;
     }
     
     .toneka-product-content {
@@ -5078,6 +5078,27 @@ button.toneka-playlist:hover svg rect {
         height: 100%;
         border-radius: 20px;
         margin: 20px 0;
+    }
+    
+    /* Obrazy (audio/gallery) - wymuś proporcje 1:1 */
+    .toneka-figma-player.audio-mode .toneka-player-background,
+    .toneka-figma-player.gallery-mode .toneka-player-background {
+        aspect-ratio: 1 / 1 !important;
+        width: 100%;
+    }
+    
+    /* Wideo - oryginalne proporcje, pełna szerokość */
+    .toneka-figma-player.video-mode .toneka-player-background {
+        aspect-ratio: auto !important;
+        width: 100%;
+    }
+    
+    .toneka-background-image {
+        object-fit: cover !important;
+    }
+    
+    .toneka-background-video {
+        object-fit: contain !important;
     }
     
     .toneka-main-controls {
