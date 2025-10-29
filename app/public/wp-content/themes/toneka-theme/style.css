@@ -4800,7 +4800,7 @@ div.toneka-playlist[data-visible="true"] {
 .toneka-track-time {
     font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     font-weight: 300;
-    color: white;
+    color: #a5a5a5;
     line-height: 1;
 }
 

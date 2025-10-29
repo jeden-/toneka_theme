@@ -2498,12 +2498,9 @@ function toneka_display_product_metadata() {
     
     ?>
     <div class="toneka-product-metadata">
-        <!-- Tytuł produktu z czasem trwania -->
+        <!-- Tytuł produktu -->
         <div class="toneka-title-row">
             <h1><?php the_title(); ?></h1>
-            <?php if ($czas_trwania): ?>
-                <span class="toneka-duration"><?php echo esc_html($czas_trwania); ?> MIN</span>
-            <?php endif; ?>
         </div>
         
         <!-- Kategorie produktu - przeniesione nad tagi -->
@@ -2586,8 +2583,14 @@ function toneka_display_product_metadata() {
         </div>
         <?php endif; ?>
         
-        <?php if (!empty($wydawcy) || $rok_produkcji): ?>
+        <?php if ($czas_trwania || !empty($wydawcy) || $rok_produkcji): ?>
         <div class="toneka-meta-row toneka-meta-row-split">
+            <?php if ($czas_trwania): ?>
+            <div class="toneka-meta-half">
+                <span class="toneka-meta-label">czas trwania:</span>
+                <span class="toneka-meta-value toneka-duration"><?php echo esc_html($czas_trwania); ?> MIN</span>
+            </div>
+            <?php endif; ?>
             <?php if (!empty($wydawcy)): ?>
             <div class="toneka-meta-half">
                 <span class="toneka-meta-label">wydawca:</span>
