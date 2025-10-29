@@ -47,9 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Continue with AJAX request for category_id = 0
         }
         
-        // Show loading state
-        showLoadingState();
-        
         // AJAX request
         jQuery.ajax({
             url: toneka_category_params.ajax_url,
@@ -167,53 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             complete: function() {
                 isLoading = false;
-                hideLoadingState();
             }
         });
-    }
-    
-    // Show loading state
-    function showLoadingState() {
-        const productsGrid = document.querySelector('.toneka-products-grid, .toneka-no-products');
-        if (productsGrid) {
-            productsGrid.classList.add('toneka-fade-out', 'toneka-loading');
-        }
-        
-        // Add loading overlay with spinner
-        const productsSection = document.querySelector('.toneka-category-products-container');
-        if (productsSection && !productsSection.querySelector('.toneka-loading-overlay')) {
-            const loadingOverlay = document.createElement('div');
-            loadingOverlay.className = 'toneka-loading-overlay';
-            loadingOverlay.innerHTML = '<div class="toneka-spinner"></div>';
-            
-            productsSection.style.position = 'relative';
-            productsSection.appendChild(loadingOverlay);
-            
-            // Trigger animation
-            setTimeout(() => {
-                loadingOverlay.classList.add('active');
-            }, 10);
-        }
-    }
-    
-    // Hide loading state
-    function hideLoadingState() {
-        const productsGrid = document.querySelector('.toneka-products-grid, .toneka-no-products');
-        if (productsGrid) {
-            productsGrid.classList.remove('toneka-fade-out', 'toneka-loading');
-            productsGrid.classList.add('toneka-fade-in');
-        }
-        
-        // Remove loading overlay
-        const loadingOverlay = document.querySelector('.toneka-loading-overlay');
-        if (loadingOverlay) {
-            loadingOverlay.classList.remove('active');
-            setTimeout(() => {
-                if (loadingOverlay.parentNode) {
-                    loadingOverlay.remove();
-                }
-            }, 200);
-        }
     }
     
     // Show error message
@@ -270,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isLoading) return;
         
         isLoading = true;
-        showLoadingState();
         
         jQuery.ajax({
             url: toneka_category_params.ajax_url,
@@ -315,7 +266,6 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             complete: function() {
                 isLoading = false;
-                hideLoadingState();
             }
         });
     }

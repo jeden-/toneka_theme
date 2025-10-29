@@ -69,7 +69,7 @@ get_header(); ?>
                 echo '<span class="button-text">' . esc_html(strtoupper(get_theme_mod('toneka_homepage_button_text', 'ostatnio dodane'))) . '</span>';
                 echo '<div class="button-arrow"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/><path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/><path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/></svg></div>';
                 echo '</a></div></div>';
-                echo '<div class="toneka-hero-right"><img src="' . esc_url($hero_image) . '" alt="Hero Image" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" /></div>';
+                echo '<div class="toneka-hero-right"><div class="toneka-lazy-wrapper"><img data-src="' . esc_url($hero_image) . '" alt="Hero Image" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" /></div></div>';
                 echo '</div>';
             } else {
                 echo '<div class="toneka-hero-placeholder" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666666; border: 2px dashed #7b7b7b;">Dodaj zdjęcie w Dostosuj → Hero Slider</div>';
@@ -84,7 +84,7 @@ get_header(); ?>
                 
                 // Obrazek nad tytułem dla tego slajdu
                 if ($slide['title_image']) {
-                    echo '<div class="toneka-text-section-image"><img src="' . esc_url($slide['title_image']) . '" alt="Title Image" /></div>';
+                    echo '<div class="toneka-text-section-image"><div class="toneka-lazy-wrapper"><img data-src="' . esc_url($slide['title_image']) . '" alt="Title Image" /></div></div>';
                 }
                 
                 echo '<div class="toneka-product-title"><h1>' . esc_html(strtoupper($slide['title'])) . '</h1></div>';
@@ -96,7 +96,7 @@ get_header(); ?>
                 echo '<div class="button-arrow"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 10.8364L11 0.969819" stroke="white" stroke-linecap="round"/><path d="M11 9.67383L11 0.836618" stroke="white" stroke-linecap="round"/><path d="M11 0.836426L2.04334 0.836427" stroke="white" stroke-linecap="round"/></svg></div>';
                 echo '</a></div></div>';
                 echo '<div class="toneka-hero-right">';
-                echo '<img src="' . esc_url($slide['image']) . '" alt="' . esc_attr($slide['title']) . '" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" />';
+                echo '<div class="toneka-lazy-wrapper"><img data-src="' . esc_url($slide['image']) . '" alt="' . esc_attr($slide['title']) . '" class="toneka-hero-image" style="width: 100%; height: 100%; object-fit: cover;" /></div>';
                 echo '</div></div>';
             }
         }

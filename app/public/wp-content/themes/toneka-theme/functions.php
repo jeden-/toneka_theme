@@ -1201,6 +1201,15 @@ function toneka_theme_scripts() {
 		'1.0.0',
 		true
 	);
+	
+	// Skrypt dla lazy loading obrazów i playerów
+	wp_enqueue_script(
+		'toneka-lazy-loading',
+		get_template_directory_uri() . '/js/lazy-loading.js',
+		array(),
+		filemtime(get_template_directory() . '/js/lazy-loading.js'),
+		true
+	);
 }
 add_action( 'wp_enqueue_scripts', 'toneka_theme_scripts' );
 
@@ -2146,8 +2155,14 @@ function toneka_display_product_samples_player() {
     $gallery_ids = $product->get_gallery_image_ids();
     $has_gallery = !empty($gallery_ids);
     
-    // Jeśli nie ma ani sampli, ani galerii, nie wyświetlaj playera
+    // Jeśli nie ma ani sampli, ani galerii, wyświetl tylko featured image
     if (!$has_samples && !$has_gallery) {
+        $product_image_id = $product->get_image_id();
+        if ($product_image_id) {
+            echo '<div class="toneka-product-featured-image">';
+            echo '<img src="' . esc_url(wp_get_attachment_image_url($product_image_id, 'large')) . '" alt="' . esc_attr($product->get_name()) . '">';
+            echo '</div>';
+        }
         return;
     }
     
@@ -2221,7 +2236,9 @@ function toneka_display_product_samples_player() {
     $player_id = 'toneka-player-' . $product->get_id();
     
     // Sprawdź, czy wszystkie sample to obrazy (tryb galerii)
-    $is_gallery_mode = !empty($samples) && count(array_filter($samples, function($s) { return isset($s['is_image']) && $s['is_image']; })) === count($samples);
+    // Galeria pokazuje się tylko jeśli jest więcej niż 1 obraz
+    $image_samples = array_filter($samples, function($s) { return isset($s['is_image']) && $s['is_image']; });
+    $is_gallery_mode = !empty($samples) && count($image_samples) === count($samples) && count($image_samples) > 1;
     ?>
     <div class="toneka-figma-player <?php echo $is_gallery_mode ? 'gallery-mode' : ''; ?>" id="<?php echo esc_attr($player_id); ?>" data-current-track="0" data-total-tracks="<?php echo count($samples); ?>">
         <!-- Tło wideo/obrazu -->
@@ -3685,7 +3702,9 @@ function toneka_render_product_card($product_id) {
         
         <div class="toneka-product-image-wrapper">
             <?php if ($image_url): ?>
-                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name); ?>" class="toneka-product-image">
+                <div class="toneka-lazy-wrapper">
+                    <img data-src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name); ?>" class="toneka-product-image">
+                </div>
             <?php else: ?>
                 <div class="toneka-product-placeholder">
                     <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">

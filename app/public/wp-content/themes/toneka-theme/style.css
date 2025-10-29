@@ -77,14 +77,6 @@ html {
     }
 }
 
-@keyframes shimmer {
-    0% {
-        background-position: -200px 0;
-    }
-    100% {
-        background-position: calc(200px + 100%) 0;
-    }
-}
 
 /* Globalne animacje dla wszystkich elementów */
 .toneka-product-card:not(.toneka-ajax-loaded),
@@ -107,28 +99,7 @@ html {
 .toneka-product-card:not(.toneka-ajax-loaded):nth-child(5) { animation-delay: 0.5s; }
 .toneka-product-card:not(.toneka-ajax-loaded):nth-child(6) { animation-delay: 0.6s; }
 
-/* Loading states */
-.toneka-loading {
-    position: relative;
-    overflow: hidden;
-}
-
-.toneka-loading::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    animation: shimmer 1.5s infinite;
-    z-index: 1;
-}
+/* Loading states - usunięte shimmer effect dla produktów (zastąpione przez lazy loading) */
 
 /* Efekt fade dla AJAX */
 .toneka-fade-out {
@@ -932,9 +903,16 @@ ol, ul {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Scroll snap dla hero */
+    html {
+        scroll-snap-type: y mandatory;
+    }
+    
     .toneka-hero-slider {
-        height: auto;
-        min-height: 200vw; /* 2 kwadraty pionowo */
+        height: 100vh;
+        min-height: 100vh;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
     
     .toneka-slide-content {
@@ -942,31 +920,43 @@ ol, ul {
         text-align: center;
         padding: 0;
         display: flex;
+        height: 100vh;
     }
     
     .toneka-slide-content .toneka-hero-left,
     .toneka-slide-content .toneka-hero-right {
         width: 100%;
         padding: 0;
-        aspect-ratio: 1;
-        height: auto;
         border-right: none;
     }
     
+    /* Zdjęcie na górze - proporcje 1:1 z cover */
+    .toneka-slide-content .toneka-hero-right {
+        order: 1;
+        height: auto;
+        width: 100vw;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+    }
+    
+    /* Tekst poniżej - zajmuje resztę miejsca */
     .toneka-slide-content .toneka-hero-left {
         order: 2;
         margin-bottom: 0;
         border-bottom: none;
         border-top: 1px solid rgba(255, 255, 255, 0.4);
-    }
-    
-    .toneka-slide-content .toneka-hero-right {
-        order: 1;
+        height: auto;
+        flex: 1;
+        aspect-ratio: auto;
     }
     
     .toneka-slide-content .toneka-hero-content {
         padding: 10% 5%;
         text-align: left;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .toneka-slide-content .toneka-hero-right img {
@@ -2947,6 +2937,23 @@ ol, ul {
     /* padding: 14%; */
 }
 
+/* Player lazy wrapper w kontenerze produktu */
+.toneka-product-image .toneka-player-lazy-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+.toneka-product-image .toneka-player-lazy-wrapper .toneka-figma-player {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .toneka-product-image img {
     width: 100%;
     height: 100%;
@@ -3149,6 +3156,7 @@ ol, ul {
 
 /* Autor - regular */
 .toneka-product-author {
+    font-size: clamp(0.8rem, 1.0vw, 0.95rem)!important;
     font-weight: 300;
     display: block;
 }
@@ -3758,27 +3766,39 @@ ol, ul {
     .toneka-slide.toneka-hero-section {
         grid-template-columns: 1fr;
         grid-template-areas: 
-            "hero-text"
-            "hero-image";
-        height: auto;
-        min-height: auto;
+            "hero-image"
+            "hero-text";
+        height: 100vh;
+        min-height: 100vh;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
     
     .toneka-hero-left,
     .toneka-hero-right {
         border-right: none;
         width: 100vw;
-        aspect-ratio: 1;
     }
     
-    .toneka-hero-left {
-        grid-area: hero-text;
-        border-bottom: 1px solid #ffffff;
-        height: auto;
-    }
-    
+    /* Zdjęcie na górze - proporcje 1:1 z cover */
     .toneka-hero-right {
         grid-area: hero-image;
+        aspect-ratio: 1 / 1;
+        height: auto;
+        flex-shrink: 0;
+    }
+    
+    /* Tekst poniżej - zajmuje resztę miejsca */
+    .toneka-hero-left {
+        grid-area: hero-text;
+        border-bottom: none;
+        /* border-top: 1px solid rgba(255, 255, 255, 0.4); */
+        height: auto;
+        flex: 1;
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .toneka-hero-right img {
@@ -4051,7 +4071,7 @@ ol, ul {
 
 /* Nagłówki sekcji na stronie głównej */
 .toneka-category-title h2 {
-    font-size: clamp(1.4rem, 1.7vw, 2rem);
+    font-size: clamp(1.3rem, 1.3vw, 2.3rem);
     font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4;
@@ -4085,7 +4105,7 @@ ol, ul {
 }
 
 .toneka-section-title h2 {
-    font-size: clamp(1rem, 1.7vw, 1.4rem);
+    font-size: clamp(1.3rem, 1.3vw, 2.3rem);
     font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4;
@@ -4516,13 +4536,30 @@ ol, ul {
     /* margin: 40px 0; */
 }
 
+/* Player w kontenerze produktu musi wypełniać całą przestrzeń */
+.toneka-product-image .toneka-player-lazy-wrapper .toneka-figma-player {
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Tło playera */
 .toneka-player-background {
     position: relative;
     width: 100%;
-    /* aspect-ratio: 1 / 1; - Usunięte, aby wideo miało oryginalne proporcje */
     z-index: 1;
     /* Wysokość będzie ustawiana dynamicznie przez JavaScript */
+}
+
+/* Tryb audio i galerii - obrazy mają proporcje 1:1 */
+.toneka-figma-player.audio-mode .toneka-player-background,
+.toneka-figma-player.gallery-mode .toneka-player-background {
+    aspect-ratio: 1 / 1;
+}
+
+/* Tryb video - zachowaj oryginalne proporcje */
+.toneka-figma-player.video-mode .toneka-player-background {
+    aspect-ratio: auto;
 }
 
 .toneka-background-video {
@@ -4531,7 +4568,7 @@ ol, ul {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Zmienione z cover na contain, aby zachować oryginalne proporcje */
+    object-fit: contain; /* Oryginalne proporcje dla wideo */
     filter: blur(1px) brightness(0.7);
     z-index: 1;
     display: block;
@@ -4543,7 +4580,7 @@ ol, ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
+    background-size: cover; /* Cover dla obrazów */
     background-position: center;
     background-repeat: no-repeat;
     /* filter: blur(2px) brightness(0.5); */
@@ -4923,6 +4960,20 @@ button.toneka-playlist:hover svg rect {
 .toneka-figma-player.gallery-mode .toneka-progress-container,
 .toneka-figma-player.gallery-mode .toneka-track-info {
     display: none !important;
+}
+
+/* Featured image (dla produktów bez sampli i galerii) */
+.toneka-product-featured-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #000;
+}
+
+.toneka-product-featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Miniaturki galerii */
@@ -6606,4 +6657,112 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
     background: #ffffff;
     color: #000000;
     border-color: #ffffff;
+}
+
+/* ===================================== 
+   LAZY LOADING LOADER
+   ===================================== */
+
+.toneka-lazy-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+}
+
+.toneka-lazy-loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: toneka-loader-pulse 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes toneka-loader-pulse {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) scale(0.9);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Wrapper dla obrazów z lazy loading */
+.toneka-lazy-wrapper {
+    position: relative;
+    background: #000000;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.toneka-lazy-wrapper img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.toneka-lazy-wrapper img.toneka-loaded {
+    opacity: 1;
+}
+
+.toneka-lazy-wrapper.toneka-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: toneka-loader-pulse 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    z-index: 10;
+}
+
+/* Wrapper dla playerów z lazy loading */
+.toneka-player-lazy-wrapper {
+    position: relative;
+    background: #000000;
+    width: 100%;
+    height: 100%;
+}
+
+.toneka-player-lazy-wrapper.toneka-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: toneka-loader-pulse 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    z-index: 10;
+}
+
+.toneka-player-lazy-wrapper.toneka-loaded .toneka-figma-player {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.toneka-player-lazy-wrapper.toneka-loaded .toneka-figma-player.toneka-player-visible {
+    opacity: 1;
 }

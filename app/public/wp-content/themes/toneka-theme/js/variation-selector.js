@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     if (!desc.classList.contains('active')) {
                         desc.style.display = 'none';
-                    }
+            }
                 }, 500);
             });
             

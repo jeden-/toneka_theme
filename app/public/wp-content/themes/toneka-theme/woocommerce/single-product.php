@@ -40,7 +40,9 @@ get_header( 'shop' ); ?>
 			    <!-- Left Side - Sticky Player -->
 			    <div class="toneka-product-image-container">
 			        <div class="toneka-product-image">
-			            <?php toneka_display_product_samples_player(); ?>
+			            <div class="toneka-player-lazy-wrapper">
+			                <?php toneka_display_product_samples_player(); ?>
+			            </div>
 			        </div>
                 </div>
 

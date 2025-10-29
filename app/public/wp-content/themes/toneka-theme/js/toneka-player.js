@@ -3,12 +3,6 @@
  * Obsługuje odtwarzanie próbek audio i wideo z eleganckim interfejsem
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    const players = document.querySelectorAll('.toneka-figma-player');
-    
-    players.forEach(initializePlayer);
-});
-
 function initializePlayer(playerContainer) {
     const playerId = playerContainer.id;
     const playerData = JSON.parse(playerContainer.querySelector('.toneka-player-data').textContent);
@@ -159,6 +153,21 @@ function initializePlayer(playerContainer) {
         if (!originalWidth || !originalHeight) return;
         
         const containerWidth = playerContainer.offsetWidth;
+        const isAudioMode = playerContainer.classList.contains('audio-mode');
+        const isVideoMode = playerContainer.classList.contains('video-mode');
+        const isGalleryMode = playerContainer.classList.contains('gallery-mode');
+        
+        // Dla trybu audio i galerii (obrazy) - wymuś proporcje 1:1
+        if ((isAudioMode || isGalleryMode) && !isVideoMode) {
+            const backgroundContainer = playerContainer.querySelector('.toneka-player-background');
+            if (backgroundContainer) {
+                backgroundContainer.style.height = containerWidth + 'px';
+                backgroundContainer.style.aspectRatio = '1 / 1';
+                return;
+            }
+        }
+        
+        // Dla trybu video - zachowaj oryginalne proporcje
         const aspectRatio = originalWidth / originalHeight;
         
         // Oblicz wysokość zachowując proporcje, ale na podstawie szerokości kontenera
@@ -915,6 +924,22 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+// Eksportuj funkcję do globalnego scope dla lazy-loading.js
+window.initializeTonekaPlayer = initializePlayer;
+
+// Inicjalizacja playerów przy załadowaniu DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicjalizuj tylko playery, które nie są w lazy wrapper lub są już załadowane
+    const players = document.querySelectorAll('.toneka-figma-player:not(.toneka-player-lazy-wrapper .toneka-figma-player)');
+    const lazyPlayers = document.querySelectorAll('.toneka-player-lazy-wrapper.toneka-loaded .toneka-figma-player');
+    
+    // Inicjalizuj playery, które nie są lazy
+    players.forEach(initializePlayer);
+    
+    // Inicjalizuj playery lazy, które są już załadowane (na wypadek gdyby były widoczne od razu)
+    lazyPlayers.forEach(initializePlayer);
+});
 
 // Export dla użycia w innych skryptach
 window.TonekaPlayer = {
