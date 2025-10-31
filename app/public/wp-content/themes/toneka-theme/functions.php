@@ -1210,6 +1210,15 @@ function toneka_theme_scripts() {
 		filemtime(get_template_directory() . '/js/lazy-loading.js'),
 		true
 	);
+	
+	// Skrypt do ekstrakcji kolorów z okładek produktów
+	wp_enqueue_script(
+		'toneka-product-color-extractor',
+		get_template_directory_uri() . '/js/product-color-extractor.js',
+		array(),
+		filemtime(get_template_directory() . '/js/product-color-extractor.js'),
+		true
+	);
 }
 add_action( 'wp_enqueue_scripts', 'toneka_theme_scripts' );
 
