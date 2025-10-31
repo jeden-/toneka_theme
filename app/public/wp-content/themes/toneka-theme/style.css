@@ -3084,11 +3084,10 @@ ol, ul {
     display: flex;
     flex-direction: column;
     width: 100%;
-    aspect-ratio: 1;
     position: relative;
     transition: transform 0.3s ease;
     cursor: pointer;
-    border: 1px solid #a5a5a5;
+    /* border: 1px solid #a5a5a5; wylaczone do testow*/
     border-left: none;
 }
 
@@ -3130,10 +3129,7 @@ ol, ul {
 
 /* Etykieta nad zdjęciem (np. W ROLI GŁÓWNEJ: MACIEJ STUHR) */
 .toneka-product-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     background: #000000;
     color: #969696;
     padding: 3% 4%;
@@ -3141,29 +3137,34 @@ ol, ul {
     font-weight: 300;
     /* text-transform: uppercase; */
     font-family: 'Figtree', sans-serif;
-    z-index: 10;
     min-height: 2.5em;
-    display: flex;
+    /* display: flex; */
+    display: none;
     align-items: center;
+    order: 1;
 }
 
 /* Wrapper dla zdjęcia - zajmuje dostępne miejsce w karcie */
 .toneka-product-image-wrapper {
     position: relative;
     width: 100%;
-    flex: 1;
+    flex: 0 0 auto;
     overflow: hidden;
     background: #000000;
-    padding: 16%;
+    padding: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
+    order: 2;
+    aspect-ratio: 1 !important;
+    min-height: 0;
+    height: auto;
 }
 
 .toneka-product-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     display: block;
 }
@@ -3180,17 +3181,15 @@ ol, ul {
 
 /* Info pod zdjęciem - tytuł / autor w jednej linii */
 .toneka-product-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     background: #000000;
     padding: 3% 4%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    z-index: 10;
+    order: 3;
+    min-height: 88px;
 }
 
 /* Linia z tytułem i autorem */
@@ -3763,7 +3762,11 @@ ol, ul {
     }
     
     .toneka-product-image-wrapper {
-        padding: 16%!important;
+        padding: 0 !important;
+        aspect-ratio: 1 !important;
+        flex: 0 0 auto;
+        height: auto;
+        margin-top: 22px;
     }
 
     .toneka-product-title-line {
@@ -3916,7 +3919,7 @@ ol, ul {
         border-right: none;
         border-top: 1px solid #a5a5a5;
         border-left: none;
-        aspect-ratio: 1; /* Zachowaj kwadrat na mobile */
+        aspect-ratio: auto; /* Karta dostosowuje się do zawartości (obrazek 1:1 + info) */
     }
     
     .toneka-product-card:last-child {
@@ -6668,6 +6671,7 @@ textarea::placeholder {
     grid-template-columns: repeat(3, 1fr);
     margin: 0 auto 0 auto;
     padding: 0;
+    gap: 1px; /* gap do testów między kartami */
 }
 
 /* Suggested products sections on single product page */
