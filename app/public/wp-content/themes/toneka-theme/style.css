@@ -935,8 +935,8 @@ ol, ul {
     }
     
     .toneka-hero-slider {
-        height: 100vh;
-        min-height: 100vh;
+        height: 90vh;
+        min-height: 90vh;
         scroll-snap-align: start;
         scroll-snap-stop: always;
     }
@@ -946,7 +946,7 @@ ol, ul {
     .toneka-slide,
     .toneka-slide.toneka-hero-section {
         position: absolute;
-        height: 100vh;
+        height: 90vh;
         display: flex !important;
         flex-direction: column;
         grid-template-columns: none;
@@ -968,6 +968,8 @@ ol, ul {
         width: 100vw;
         aspect-ratio: 1 / 1;
         flex-shrink: 0;
+        /* border-top: 1px solid rgba(255, 255, 255, 0.4); */
+        /* border-bottom: 1px solid rgba(255, 255, 255, 0.4); */
     }
     
     /* Tekst poniżej - zajmuje resztę miejsca */
@@ -975,7 +977,7 @@ ol, ul {
         order: 2;
         margin-bottom: 0;
         border-bottom: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        border-top: 1px solid #a5a5a5;
         height: auto;
         flex: 1;
         aspect-ratio: auto;

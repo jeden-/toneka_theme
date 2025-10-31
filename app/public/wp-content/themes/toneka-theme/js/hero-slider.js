@@ -159,32 +159,34 @@ class HeroSlider {
         const prevSlide = this.slides[prevIndex];
         const nextSlide = this.slides[nextIndex];
 
-        // Najpierw ukryj poprzedni slajd
-        prevSlide.style.transition = 'opacity 0.4s ease-in-out';
-        prevSlide.style.opacity = '0';
+        // Crossfade - jednoczesne nakładanie się slajdów bez czerni
+        // Ustaw następny slajd z opacity 0 i dodaj klasę active
+        nextSlide.classList.add('active');
+        nextSlide.style.opacity = '0';
+        nextSlide.style.transition = 'opacity 0.5s ease-in-out';
+        nextSlide.style.zIndex = '2';
+        prevSlide.style.zIndex = '1';
         
-        // Po ukryciu poprzedniego, pokaż następny
-        setTimeout(() => {
-            prevSlide.classList.remove('active');
-            prevSlide.style.transition = '';
-            prevSlide.style.opacity = '';
+        // Ustaw transition dla poprzedniego slajdu
+        prevSlide.style.transition = 'opacity 0.5s ease-in-out';
+        
+        // Rozpocznij crossfade - oba slajdy jednocześnie
+        requestAnimationFrame(() => {
+            prevSlide.style.opacity = '0';
+            nextSlide.style.opacity = '1';
             
-            // Pokaż następny slajd
-            nextSlide.classList.add('active');
-            nextSlide.style.opacity = '0';
-            
-            // Animacja fade in
-            requestAnimationFrame(() => {
-                nextSlide.style.transition = 'opacity 0.4s ease-in-out';
-                nextSlide.style.opacity = '1';
-                
-                setTimeout(() => {
-                    nextSlide.style.transition = '';
-                    nextSlide.style.opacity = '';
-                    this.isTransitioning = false;
-                }, 400);
-            });
-        }, 400);
+            // Po zakończeniu animacji
+            setTimeout(() => {
+                prevSlide.classList.remove('active');
+                prevSlide.style.transition = '';
+                prevSlide.style.opacity = '';
+                prevSlide.style.zIndex = '';
+                nextSlide.style.transition = '';
+                nextSlide.style.opacity = '';
+                nextSlide.style.zIndex = '';
+                this.isTransitioning = false;
+            }, 500);
+        });
     }
 
     slideTransition(prevIndex, nextIndex) {
