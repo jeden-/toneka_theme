@@ -937,8 +937,16 @@ ol, ul {
     .toneka-hero-slider {
         height: 90vh;
         min-height: 90vh;
+        max-height: 90vh;
         scroll-snap-align: start;
         scroll-snap-stop: always;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .toneka-slider-container {
+        height: 100%;
+        position: relative;
     }
     
     /* Slajdy na mobilnych - zachowaj absolute dla działania slidera */
@@ -979,9 +987,12 @@ ol, ul {
         border-bottom: none;
         border-top: 1px solid #a5a5a5;
         height: auto;
-        flex: 1;
+        flex: 1 1 auto;
         aspect-ratio: auto;
         min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
     
     /* Wspólne style dla .toneka-hero-content na mobile */
@@ -990,11 +1001,15 @@ ol, ul {
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        height: 100%;
+        flex: 1;
+        min-height: 0;
+        max-height: 100%;
         margin: 0;
         padding: 10% 5% !important;
-        border-right: none;
+        border-right: none !important;
         text-align: left;
+        overflow: hidden;
+        box-sizing: border-box;
     }
     
     /* Specyficzne style dla slidera */
@@ -3821,8 +3836,8 @@ ol, ul {
         grid-template-areas: 
             "hero-image"
             "hero-text";
-        height: 100vh;
-        min-height: 100vh;
+        height: 90vh;
+        min-height: 90vh;
         scroll-snap-align: start;
         scroll-snap-stop: always;
     }
