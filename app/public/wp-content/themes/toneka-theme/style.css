@@ -989,17 +989,17 @@ ol, ul {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         height: 100%;
         margin: 0;
         padding: 10% 5% !important;
         border-right: none;
-        text-align: center;
+        text-align: left;
     }
     
     /* Specyficzne style dla slidera */
     .toneka-slide.toneka-hero-section .toneka-hero-content {
-        text-align: center;
+        text-align: left;
     }
     
     .toneka-slide.toneka-hero-section .toneka-hero-right img {
@@ -3856,7 +3856,7 @@ ol, ul {
     
     /* Wyrównanie content do środka w pionie dla wszystkich hero */
     .toneka-hero-left .toneka-hero-content {
-        align-items: center;
+        align-items: flex-start;
     }
     
     .toneka-hero-right img {
