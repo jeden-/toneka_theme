@@ -1023,6 +1023,11 @@ ol, ul {
     .toneka-slide-subtitle p {
         font-size: clamp(0.8rem, 1.2vw, 1.1rem);
     }
+    
+    /* Usuń dolny border z hero section na mobile */
+    .toneka-hero-section {
+        border-bottom: none !important;
+    }
 }
 
 /* Hero Section - Idealne kwadraty 50/50 */
@@ -3907,6 +3912,10 @@ ol, ul {
         border-top: 1px solid #a5a5a5;
         border-left: none;
         aspect-ratio: 1; /* Zachowaj kwadrat na mobile */
+    }
+    
+    .toneka-product-card:last-child {
+        border-bottom: none !important;
     }
     
     .toneka-product-image {
