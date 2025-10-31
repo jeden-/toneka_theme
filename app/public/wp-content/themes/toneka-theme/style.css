@@ -2982,7 +2982,7 @@ ol, ul {
     display: flex;
     align-items: start;
     /* justify-content: center; */
-    padding: 7%;
+    padding: 0;
     box-sizing: border-box;
     overflow: visible;
 }
@@ -3054,7 +3054,7 @@ ol, ul {
         width: 100%;
         height: auto;
         /* aspect-ratio: 1; - usunięte, kontener dostosowuje się do playera */
-        padding: 0 5%;
+        padding: 0;
     }
     
     /* Usuń sztywny aspect-ratio z kontenera produktu - niech dostosowuje się do playera */
