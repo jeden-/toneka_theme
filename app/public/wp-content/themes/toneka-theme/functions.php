@@ -1212,6 +1212,8 @@ function toneka_theme_scripts() {
 	);
 	
 	// Skrypt do ekstrakcji kolorów z okładek produktów
+	// ZAKOMENTOWANE - wyłączone kolorowanie tła w zależności od zdjęcia
+	/*
 	wp_enqueue_script(
 		'toneka-product-color-extractor',
 		get_template_directory_uri() . '/js/product-color-extractor.js',
@@ -1219,6 +1221,7 @@ function toneka_theme_scripts() {
 		filemtime(get_template_directory() . '/js/product-color-extractor.js'),
 		true
 	);
+	*/
 }
 add_action( 'wp_enqueue_scripts', 'toneka_theme_scripts' );
 

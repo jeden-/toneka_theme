@@ -31,6 +31,15 @@ FONTY RESPONSYWNE:
 */
 
 /* =====================================
+   ZMIENNE CSS
+   ===================================== */
+
+:root {
+    --color-line-grey: #a5a5a5;
+    --color-line-white: #ffffff;
+}
+
+/* =====================================
    1. RESET I PODSTAWOWE STYLE
    ===================================== */
 
@@ -402,7 +411,7 @@ ol, ul {
     position: relative;
     z-index: 999;
     background: #000000;
-    border-bottom: 1px solid #a5a5a5;
+    border-bottom: 1px solid var(--color-line-grey);
 }
 
 /* Header standardowy */
@@ -985,7 +994,7 @@ ol, ul {
         order: 2;
         margin-bottom: 0;
         border-bottom: none;
-        border-top: 1px solid #a5a5a5;
+        border-top: 1px solid var(--color-line-grey);
         height: auto;
         flex: 1 1 auto;
         aspect-ratio: auto;
@@ -1092,7 +1101,7 @@ ol, ul {
     align-items: flex-start;
     overflow: visible;
     box-sizing: border-box;
-    border-right: 1px solid #a5a5a5;
+    border-right: 1px solid var(--color-line-grey);
 }
 
 .toneka-text-section-image {
@@ -1352,7 +1361,7 @@ ol, ul {
     color: #ffffff;
     text-decoration: none;
     padding: 12px 24px;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     transition: all 0.3s ease;
     text-transform: uppercase;
     font-weight: 500;
@@ -1513,7 +1522,7 @@ ol, ul {
     width: 50%;
     height: 100vh;
     background: #000000;
-    border-left: 1px solid #a5a5a5;
+    border-left: 1px solid var(--color-line-grey);
     z-index: 9999;
     transition: right 0.3s ease;
     overflow-y: auto;
@@ -1703,7 +1712,7 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 0;
-    /* border: 1px solid #a5a5a5; */
+    /* border: 1px solid var(--color-line-grey); */
     border-radius: 30px;
     padding: 2px;
     order: 2;
@@ -1809,7 +1818,7 @@ ol, ul {
 .toneka-minicart-total-savings {
     margin-bottom: 10px;
     padding: 8px 12px;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     text-align: center;
 }
 
@@ -1835,7 +1844,7 @@ ol, ul {
     width: 100%;
     background: #ffffff;
     color: #000000;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     padding: 12px 24px;
     border-radius: 25px;
     font-family: 'Figtree', sans-serif;
@@ -1981,7 +1990,7 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 0;
-    /* border: 1px solid #a5a5a5; */
+    /* border: 1px solid var(--color-line-grey); */
     border-radius: 30px;
     padding: 2px;
 }
@@ -2030,7 +2039,7 @@ ol, ul {
 .toneka-minicart-upsell-add-btn {
     background: none;
     color: #ffffff;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     padding: 12px 24px;
     border-radius: 25px;
     font-family: 'Figtree', sans-serif;
@@ -2552,7 +2561,7 @@ ol, ul {
 .toneka-carrier-radio-custom {
     width: 16px;
     height: 16px;
-    border: 2px solid #a5a5a5;
+    border: 2px solid var(--color-line-grey);
     background-color: #fff;
     border-radius: 50%;
     margin-right: 12px;
@@ -2737,7 +2746,7 @@ ol, ul {
 
 .toneka-add-to-cart-button {
     background: none;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 25px;
@@ -2814,7 +2823,7 @@ ol, ul {
     align-items: center;
     gap: 10px;
     padding: 10px;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -2835,7 +2844,7 @@ ol, ul {
 .toneka-audio-player {
     width: 100%;
     background: #111111;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     border-radius: 8px;
     padding: 20px;
 }
@@ -2862,7 +2871,7 @@ ol, ul {
 
 .toneka-control-btn {
     background: none;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     color: #ffffff;
     width: 40px;
     height: 40px;
@@ -3040,7 +3049,7 @@ ol, ul {
     padding: 7%;
     box-sizing: border-box;
     background: #000000;
-    border-left: 1px solid #a5a5a5;
+    border-left: 1px solid var(--color-line-grey);
 }
 
 /* Mobile - single column layout */
@@ -3087,44 +3096,36 @@ ol, ul {
     position: relative;
     transition: transform 0.3s ease;
     cursor: pointer;
-    /* border: 1px solid #a5a5a5; wylaczone do testow*/
-    border-left: none;
+    border: none;
 }
 
 .toneka-product-card:hover {
     transform: none;
 }
 
-/* Pierwszy kafelek w rzędzie - bez lewego bordera */
-.toneka-product-card:first-child {
-    border-left: none;
+/* Pierwsza kolumna - przezroczysta lewa ramka dla równych szerokości */
+.toneka-product-card:nth-child(3n+1) {
+    border-left: 1px solid transparent;
 }
 
-/* Pierwszy rząd produktów - bez górnego bordera (żeby nie było podwójnej linii z tytułem) */
-.toneka-product-card:nth-child(-n+3) {
-    border-top: none;
+/* Linie pionowe - między kolumnami (druga i trzecia kolumna) */
+.toneka-product-card:not(:nth-child(3n+1)) {
+    border-left: 1px solid var(--color-line-grey);
 }
 
-/* Ostatni kafelek w rzędzie - prawy border przezroczysty (niewidoczny ale zajmuje miejsce) */
-.toneka-product-card:last-child {
-    border-right: 1px solid rgba(255, 255, 255, 0);
+/* Prawa linia dla trzeciej kolumny */
+.toneka-product-card:nth-child(3n) {
+    /* border-right: 1px solid var(--color-line-white); */
 }
 
-/* Gdy jest tylko 1 produkt - musi mieć widoczną prawą ramkę */
-.toneka-product-card:first-child:last-child {
-    border-right: 1px solid #a5a5a5;
+/* Linie poziome - między rzędami (nie pierwszy rząd ma górną linię) */
+.toneka-product-card:nth-child(n+4) {
+    border-top: 1px solid var(--color-line-white);
 }
 
-/* Gdy są tylko 2 produkty w gridzie 3-kolumnowym, drugi produkt musi mieć widoczną linię z prawej */
-.toneka-suggested-merch-grid .toneka-product-card:nth-child(2):last-child,
-.toneka-suggested-audio-grid .toneka-product-card:nth-child(2):last-child,
-.toneka-category-products-grid .toneka-product-card:nth-child(2):last-child {
-    border-right: 1px solid #a5a5a5;
-}
-
-/* Ostatni rząd kafelków - bez dolnego bordera (łączy się z footerem) */
+/* Dolna linia dla ostatniego rzędu */
 .toneka-products-grid .toneka-product-card:nth-last-child(-n+3) {
-    border-bottom: none;
+    /* border-bottom: 1px solid #ffffff; */
 }
 
 /* Etykieta nad zdjęciem (np. W ROLI GŁÓWNEJ: MACIEJ STUHR) */
@@ -3190,6 +3191,7 @@ ol, ul {
     justify-content: center;
     order: 3;
     min-height: 88px;
+    /* border-top: 1px solid var(--color-line-white); */
 }
 
 /* Linia z tytułem i autorem */
@@ -3371,7 +3373,7 @@ ol, ul {
 .toneka-footer-bottom {
     background: #000;
     padding: 20px 0;
-    border-top: 1px solid #a5a5a5;
+    border-top: 1px solid var(--color-line-grey);
 }
 
 .toneka-footer-bottom-content {
@@ -3494,8 +3496,8 @@ ol, ul {
 /* Scrolling text section */
 .toneka-scrolling-text-section {
     background: #000000;
-    border-top: 1px solid #a5a5a5;
-    border-bottom: 1px solid #a5a5a5;
+    border-top: 1px solid var(--color-line-grey);
+    border-bottom: 1px solid var(--color-line-grey);
     padding: 30px 0;
     overflow: hidden;
     white-space: nowrap;
@@ -3915,15 +3917,19 @@ ol, ul {
     }
     
     .toneka-product-card {
-        border-bottom: 1px solid #a5a5a5!important;
-        border-right: none;
-        border-top: 1px solid #a5a5a5;
-        border-left: none;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: 1px solid var(--color-line-white);
+        border-bottom: none;
         aspect-ratio: auto; /* Karta dostosowuje się do zawartości (obrazek 1:1 + info) */
     }
     
+    .toneka-product-card:first-child {
+        border-top: none !important;
+    }
+    
     .toneka-product-card:last-child {
-        border-bottom: none !important;
+        border-bottom: 1px solid var(--color-line-white) !important;
     }
     
     .toneka-product-image {
@@ -4146,8 +4152,8 @@ ol, ul {
     margin: 0;
     text-align: center;
     padding: 30px 0;
-    border-top: 1px solid #a5a5a5;
-    border-bottom: 1px solid #a5a5a5;
+    border-top: 1px solid var(--color-line-grey);
+    border-bottom: 1px solid var(--color-line-grey);
 }
 
 /* Nowy layout nagłówków sekcji */
@@ -4156,8 +4162,8 @@ ol, ul {
     justify-content: space-between;
     align-items: center;
     padding: 30px 7%;
-    border-top: 1px solid #a5a5a5;
-    border-bottom: 1px solid #a5a5a5;
+    border-top: 1px solid var(--color-line-grey);
+    border-bottom: 1px solid var(--color-line-grey);
 }
 
 .toneka-section-title {
@@ -4314,8 +4320,8 @@ ol, ul {
 /* Category Filter Section */
 .toneka-category-filter-section {
     background: #000000;
-    border-top: 1px solid #a5a5a5;
-    border-bottom: 1px solid #a5a5a5;
+    border-top: 1px solid var(--color-line-grey);
+    border-bottom: 1px solid var(--color-line-grey);
     min-height: 120px;
     display: flex;
     align-items: center;
@@ -4407,7 +4413,7 @@ ol, ul {
 .toneka-loading-spinner .spinner {
     width: 40px;
     height: 40px;
-    border: 3px solid #a5a5a5;
+    border: 3px solid var(--color-line-grey);
     border-top: 3px solid #ffffff;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -4462,7 +4468,7 @@ ol, ul {
     background: transparent;
     color: #ffffff;
     text-decoration: none;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     font-family: 'Figtree', sans-serif;
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     text-transform: uppercase;
@@ -4512,7 +4518,7 @@ ol, ul {
     background: transparent;
     color: #ffffff;
     text-decoration: none;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     font-family: 'Figtree', sans-serif;
     font-size: clamp(0.65rem, 1.0vw, 0.9rem);
     text-transform: uppercase;
@@ -4667,7 +4673,7 @@ ol, ul {
 }
 
 button.toneka-skip-button {
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
 }
 
 .toneka-skip-button {
@@ -4702,7 +4708,7 @@ button.toneka-skip-button {
     right: 0;
     bottom: 0;
     background: rgba(255, 255, 255, 0.4);
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     border-radius: 50%;
     backdrop-filter: blur(2px);
     z-index: 1;
@@ -4749,7 +4755,7 @@ button.toneka-skip-button.toneka-skip-backward:hover {
     right: 0;
     bottom: 0;
     background: rgba(255, 255, 255, 0.4);
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     border-radius: 50%;
     backdrop-filter: blur(2px);
     z-index: 1;
@@ -5085,7 +5091,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-gallery-thumbnail:hover {
     opacity: 1;
-    border-color: #a5a5a5;
+    border-color: var(--color-line-grey);
 }
 
 .toneka-gallery-thumbnail.active {
@@ -5398,7 +5404,7 @@ button.toneka-playlist:hover svg rect {
     width: 30px;
     height: 30px;
     padding: 20px!important;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     background: none;
     color: #ffffff;
     cursor: pointer;
@@ -5415,7 +5421,7 @@ button.toneka-playlist:hover svg rect {
 .toneka-cart-quantity .quantity-input {
     width: 60px;
     height: 30px;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     background: #000000;
     color: #ffffff;
     text-align: center;
@@ -5496,7 +5502,7 @@ button.toneka-playlist:hover svg rect {
 .toneka-cart-total-savings {
     margin-bottom: 15px;
     padding: 12px 16px;
-    border: 1px solid #a5a5a5;
+    border: 1px solid var(--color-line-grey);
     text-align: center;
 }
 
@@ -6671,7 +6677,7 @@ textarea::placeholder {
     grid-template-columns: repeat(3, 1fr);
     margin: 0 auto 0 auto;
     padding: 0;
-    gap: 1px; /* gap do testów między kartami */
+    gap: 0;
 }
 
 /* Suggested products sections on single product page */
@@ -6695,24 +6701,10 @@ textarea::placeholder {
     .toneka-homepage-audio-grid,
     .toneka-homepage-merch-grid,
     .toneka-suggested-merch-grid,
-    .toneka-suggested-audio-grid {
+    .toneka-suggested-audio-grid,
+    .toneka-category-products-grid {
         grid-template-columns: 1fr;
         gap: 0;
-    }
-    
-    /* Na mobilnych (1 kolumna) - ostatni produkt nie ma border-right */
-    /* Chyba że jest tylko 1 produkt - wtedy zostaje border-right */
-    .toneka-suggested-merch-grid .toneka-product-card:last-child:not(:first-child),
-    .toneka-suggested-audio-grid .toneka-product-card:last-child:not(:first-child),
-    .toneka-category-products-grid .toneka-product-card:last-child:not(:first-child) {
-        border-right: 1px solid rgba(255, 255, 255, 0) !important;
-    }
-    
-    /* Tylko dla 1 produktu - zachowaj border-right */
-    .toneka-suggested-merch-grid .toneka-product-card:first-child:last-child,
-    .toneka-suggested-audio-grid .toneka-product-card:first-child:last-child,
-    .toneka-category-products-grid .toneka-product-card:first-child:last-child {
-        border-right: 1px solid #a5a5a5 !important;
     }
 }
 
