@@ -1211,9 +1211,7 @@ function toneka_theme_scripts() {
 		true
 	);
 	
-	// Skrypt do ekstrakcji kolorów z okładek produktów
-	// ZAKOMENTOWANE - wyłączone kolorowanie tła w zależności od zdjęcia
-	/*
+	// Skrypt do ekstrakcji kolorów z okładek produktów (używany jako filtr nakładki)
 	wp_enqueue_script(
 		'toneka-product-color-extractor',
 		get_template_directory_uri() . '/js/product-color-extractor.js',
@@ -1221,7 +1219,15 @@ function toneka_theme_scripts() {
 		filemtime(get_template_directory() . '/js/product-color-extractor.js'),
 		true
 	);
-	*/
+	
+	// Skrypt dla tooltipów na plakietkach produktów (podąża za kursorem)
+	wp_enqueue_script(
+		'toneka-product-tooltip',
+		get_template_directory_uri() . '/js/product-tooltip.js',
+		array(),
+		filemtime(get_template_directory() . '/js/product-tooltip.js'),
+		true
+	);
 }
 add_action( 'wp_enqueue_scripts', 'toneka_theme_scripts' );
 
@@ -1362,6 +1368,25 @@ function toneka_add_custom_product_fields() {
 	]);
 	echo '</div>';
 	
+	// Pola tooltip (wyświetlane przy najechaniu na plakietkę)
+	echo '<div class="options_group">';
+	echo '<h4 style="padding-left:12px;">Tooltip na plakietce (hover)</h4>';
+	woocommerce_wp_text_input([
+		'id' => '_tooltip_label',
+		'label' => __('Tooltip - linia 1 (rola/kategoria)', 'tonekatheme'),
+		'placeholder' => __('np. Czyta', 'tonekatheme'),
+		'desc_tip' => true,
+		'description' => __('Pierwsza linia w tooltipie - mniejsza czcionka, szara.', 'tonekatheme'),
+	]);
+	woocommerce_wp_text_input([
+		'id' => '_tooltip_value',
+		'label' => __('Tooltip - linia 2 (wartość)', 'tonekatheme'),
+		'placeholder' => __('np. Roch Siemianowski', 'tonekatheme'),
+		'desc_tip' => true,
+		'description' => __('Druga linia w tooltipie - większa czcionka, biała.', 'tonekatheme'),
+	]);
+	echo '</div>';
+	
 	echo '<div class="options_group">';
 	
 	// Rok produkcji i Czas trwania
@@ -1483,7 +1508,7 @@ function toneka_save_custom_product_fields($post_id) {
 	// error_log('TONEKA DEBUG - Saving product fields for post_id: ' . $post_id);
 	
 	// Zapisz proste pola tekstowe
-	$simple_fields = ['_product_label', '_rok_produkcji', '_czas_trwania'];
+	$simple_fields = ['_product_label', '_tooltip_label', '_tooltip_value', '_rok_produkcji', '_czas_trwania'];
 	foreach ($simple_fields as $field) {
 		if (isset($_POST[$field])) {
 			$value = sanitize_text_field($_POST[$field]);
@@ -3705,6 +3730,11 @@ function toneka_render_product_card($product_id) {
         $creators = toneka_get_all_product_creators($product_id);
     }
     
+    // Get tooltip data
+    $tooltip_label = get_post_meta($product_id, '_tooltip_label', true);
+    $tooltip_value = get_post_meta($product_id, '_tooltip_value', true);
+    $has_tooltip = !empty($tooltip_label) && !empty($tooltip_value);
+    
     ob_start();
     ?>
     <div class="toneka-product-card" data-url="<?php echo esc_url($product_url); ?>">
@@ -3725,14 +3755,19 @@ function toneka_render_product_card($product_id) {
                     </svg>
                 </div>
             <?php endif; ?>
+            
+            <?php if ($has_tooltip): ?>
+                <div class="toneka-product-tooltip">
+                    <div class="toneka-tooltip-label"><?php echo esc_html($tooltip_label); ?></div>
+                    <div class="toneka-tooltip-value"><?php echo esc_html($tooltip_value); ?></div>
+                </div>
+            <?php endif; ?>
         </div>
         
         <div class="toneka-product-info">
             <div class="toneka-product-title-line">
                 <a href="<?php echo esc_url($product_url); ?>">
-                    <?php if (!empty($creators)): ?>
-                        <span class="toneka-product-author"><?php echo esc_html($creators); ?></span>
-                    <?php endif; ?>
+                    <span class="toneka-product-author"><?php echo !empty($creators) ? esc_html($creators) : '&nbsp;'; ?></span>
                     <span class="toneka-product-name"><?php echo esc_html($product_name); ?></span>
                 </a>
             </div>

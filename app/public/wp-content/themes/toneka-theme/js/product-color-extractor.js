@@ -363,30 +363,29 @@
             });
         }
         
-        // Znajdź element .toneka-product-info
-        const productInfo = card.querySelector('.toneka-product-info');
-        if (!productInfo) return;
-        
-        // Sprawdź czy już ma ustawiony kolor (unikaj ponownej analizy)
-        if (productInfo.dataset.colorExtracted) return;
+        // Sprawdź czy już przetworzono
+        if (imageWrapper.dataset.colorExtracted) return;
         
         try {
-            // Wyciągnij dominujący kolor
-            let backgroundColor = await extractDominantColor(img);
+            // Wyciągnij dominujący kolor ze zdjęcia
+            let filterColor = await extractDominantColor(img);
             
-            // Konwertuj na pastelowy jeśli włączone
+            // Konwertuj na pastelowy jeśli włączone (opcjonalnie)
             if (CONFIG.pastelize) {
-                backgroundColor = pastelizeColor(backgroundColor, CONFIG.pastelIntensity);
+                filterColor = pastelizeColor(filterColor, CONFIG.pastelIntensity);
             }
             
-            // Jeśli kolor jest zbyt jasny, przyciemnij go
-            if (isTooLight(backgroundColor)) {
-                backgroundColor = adjustColorBrightness(backgroundColor, CONFIG.darkenPercentage);
+            // Opcjonalnie przyciemnij jeśli zbyt jasny
+            if (isTooLight(filterColor)) {
+                filterColor = adjustColorBrightness(filterColor, CONFIG.darkenPercentage);
             }
             
-            // Ustaw kolor tła
-            productInfo.style.backgroundColor = backgroundColor;
-            productInfo.dataset.colorExtracted = 'true';
+            // Ustaw kolor jako CSS variable na imageWrapper
+            // Będzie użyty przez ::before pseudo-element w CSS jako nakładka
+            imageWrapper.style.setProperty('--filter-color', filterColor);
+            imageWrapper.dataset.colorExtracted = 'true';
+            
+            console.log('Kolor filtra dla produktu:', filterColor);
             
         } catch (error) {
             console.error('Błąd podczas przetwarzania karty produktu:', error);
