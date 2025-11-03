@@ -71,6 +71,10 @@ FONTY RESPONSYWNE:
     /* Easing functions */
     --ease-smooth: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-follow: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Płynne podążanie */
+    --ease-lazy: cubic-bezier(0.33, 1, 0.68, 1); /* Leniwe, spowolnione */
+    --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1); /* Delikatne, Material Design */
+    --ease-magnetic: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Magnetyczny efekt */
 }
 
 /* =====================================
@@ -3265,13 +3269,29 @@ ol, ul {
     transform: translate(-50%, -50%);
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--transition-fast) ease, visibility var(--transition-fast) ease;
+    transition: opacity var(--transition-fast) ease, 
+                visibility var(--transition-fast) ease,
+                transform 0.2s var(--ease-lazy);
     z-index: 10;
     pointer-events: none;
     display: flex;
     flex-direction: column;
     gap: 0;
 }
+
+/* ============================================
+   TESTOWANIE EASING - zmień w linii powyżej:
+   transform 0.2s var(--ease-NAZWA);
+   
+   Opcje do przetestowania:
+   --ease-lazy: ✓ leniwe, spowolnione (AKTYWNE) - "o krok za kursorem"
+   --ease-follow: szybkie, płynne podążanie
+   --ease-gentle: delikatne, Material Design
+   --ease-magnetic: magnetyczny, z lekkim odbiciem
+   
+   Możesz też zmienić czas (0.2s -> 0.3s lub 0.15s)
+   dla mocniejszego/słabszego efektu
+   ============================================ */
 
 /* Hover jest obsługiwany przez JavaScript */
 
