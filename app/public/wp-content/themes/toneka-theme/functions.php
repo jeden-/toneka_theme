@@ -1228,6 +1228,26 @@ function toneka_theme_scripts() {
 		filemtime(get_template_directory() . '/js/product-tooltip.js'),
 		true
 	);
+
+	// Skrypt do customowych selectów
+	wp_enqueue_script(
+		'toneka-custom-select',
+		get_template_directory_uri() . '/js/custom-select.js',
+		array('jquery'),
+		'1.0.0',
+		true
+	);
+
+	// Skrypt do przewijanego tekstu (tylko na stronie głównej)
+	if (is_front_page()) {
+		wp_enqueue_script(
+			'toneka-scrolling-text',
+			get_template_directory_uri() . '/js/scrolling-text.js',
+			array(),
+			'1.0.0',
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'toneka_theme_scripts' );
 
@@ -1720,6 +1740,19 @@ function toneka_output_variable_product_selector() {
         if ($variation && is_object($variation) && method_exists($variation, 'get_variation_attributes')) {
             $available_variations[$key]['variation_description'] = $variation->get_description();
             
+            // Upewnijmy się, że mamy price_html dla JavaScript
+            if (!isset($available_variations[$key]['price_html']) || empty($available_variations[$key]['price_html'])) {
+                $available_variations[$key]['price_html'] = $variation->get_price_html();
+            }
+            
+            // Upewnijmy się, że mamy display_price i display_regular_price dla JavaScript
+            if (!isset($available_variations[$key]['display_price'])) {
+                $available_variations[$key]['display_price'] = $variation->get_price();
+            }
+            if (!isset($available_variations[$key]['display_regular_price'])) {
+                $available_variations[$key]['display_regular_price'] = $variation->get_regular_price();
+            }
+            
             // Pobierz atrybuty wariantu
             $attributes = $variation->get_variation_attributes();
             $display_parts = array();
@@ -1789,7 +1822,23 @@ function toneka_output_variable_product_selector() {
         </div>
         
         <div class="toneka-variation-info-container">
-            <div class="toneka-variation-price-display"></div>
+            <div class="toneka-variation-price-display">
+                <?php 
+                // Wyświetl cenę pierwszego zaznaczonego wariantu od razu (pierwszy wariant)
+                if (!empty($available_variations)) {
+                    $first_variation = reset($available_variations);
+                    if (isset($first_variation['price_html']) && !empty($first_variation['price_html'])) {
+                        echo wp_kses_post($first_variation['price_html']);
+                    } else {
+                        // Fallback: pobierz cenę bezpośrednio z obiektu wariantu
+                        $first_variation_obj = wc_get_product($first_variation['variation_id']);
+                        if ($first_variation_obj) {
+                            echo wp_kses_post($first_variation_obj->get_price_html());
+                        }
+                    }
+                }
+                ?>
+            </div>
         </div>
         
         <script type="application/json" class="toneka-variations-data">

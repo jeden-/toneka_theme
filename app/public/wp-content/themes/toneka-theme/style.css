@@ -38,18 +38,23 @@ FONTY RESPONSYWNE:
     /* Kolory */
     --color-black: #000000;
     --color-white: #ffffff;
-    --color-grey: #969696;
     --color-grey-dark: #333333;
-    --color-grey-light: #1a1a1a;
     --color-line-grey: #a5a5a5;
-    --color-line-white: #ffffff;
+    --color-error: #bf2b2b;
+    --color-success: #2f8358;
     
     /* Czcionki */
     --font-primary: 'Figtree', sans-serif;
-    --font-size-xs: clamp(0.7rem, 0.9vw, 0.85rem);
-    --font-size-sm: clamp(0.8rem, 1.0vw, 0.95rem);
-    --font-size-base: clamp(1rem, 1.1vw, 1.25rem);
-    --font-size-lg: clamp(1.2rem, 1.4vw, 1.5rem);
+    --font-size-xxs: clamp(0.55rem, 0.8vw, 0.7rem);
+    --font-size-xs: clamp(0.6rem, 0.9vw, 0.8rem);
+    --font-size-sm: clamp(0.65rem, 1.0vw, 0.9rem);
+    --font-size-md: clamp(0.75rem, 1.1vw, 1rem);
+    --font-size-base: clamp(0.8rem, 1.2vw, 1.1rem);
+    --font-size-lg: clamp(1rem, 1.4vw, 1.3rem);
+    --font-size-xl: clamp(1.5rem, 2.2vw, 2rem);
+    --font-size-xxl: clamp(1.8rem, 2.8vw, 2.5rem);
+    --font-size-hero: clamp(2rem, 3.3vw, 3rem);
+    --font-size-title: clamp(1.55rem, 3.3vw, 3rem);
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-semibold: 600;
@@ -58,23 +63,19 @@ FONTY RESPONSYWNE:
     --spacing-xs: 8px;
     --spacing-sm: 12px;
     --spacing-md: 20px;
-    --spacing-lg: 30px;
-    --spacing-xl: 40px;
     
     /* Transitions */
     --transition-fast: 0.2s;
     --transition-medium: 0.3s;
     --transition-normal: 0.4s;
     --transition-slow: 0.6s;
-    --transition-elastic: 0.8s;
+    --transition-loader: 1.2s; /* Dla animacji loaderów */
+    --transition-tooltip: 0.8s; /* Dla ruchu lewo/prawo (czarny prostokąt poziomo) - BARDZO WOLNY */
+    --transition-tooltip-vertical: 0.8s; /* Dla ruchu góra/dół (czarny prostokąt pionowo) - BARDZO WOLNY */
     
     /* Easing functions */
-    --ease-smooth: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --ease-follow: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Płynne podążanie */
-    --ease-lazy: cubic-bezier(0.33, 1, 0.68, 1); /* Leniwe, spowolnione */
-    --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1); /* Delikatne, Material Design */
-    --ease-magnetic: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Magnetyczny efekt */
+    --ease-tooltip: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* easeOutQuad - bardzo smooth dla tooltipa */
 }
 
 /* =====================================
@@ -127,31 +128,13 @@ html {
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.7;
-    }
-}
-
 
 /* Globalne animacje dla wszystkich elementów */
 .toneka-product-card:not(.toneka-ajax-loaded),
 .toneka-category-filter-item,
 .woocommerce-pagination .page-numbers,
 .toneka-ajax-pagination .page-numbers {
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeIn var(--transition-medium) ease-out;
 }
 
 /* Produkty ładowane przez AJAX - bez automatycznej animacji CSS */
@@ -187,7 +170,7 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--color-grey-dark);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -203,8 +186,8 @@ html {
 .toneka-spinner {
     width: 40px;
     height: 40px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top: 2px solid #ffffff;
+    border: 2px solid var(--color-line-grey);
+    border-top: 2px solid var(--color-white);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -293,7 +276,7 @@ p, span, div, a, button, input, textarea, select,
 }
 
 del {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     padding-right: 10px;
 }
 
@@ -302,48 +285,47 @@ ins {
 }
 
 h1 {
-    font-size: clamp(1.55rem, 3.3vw, 3rem);
+    font-size: var(--font-size-title);
     font-weight: 300;
     text-transform: uppercase;
 }
 
 h2.wc-block-components-title.wc-block-components-checkout-step__title {
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     font-weight: 300;
     text-transform: uppercase;
-    color: #fff;
-    border-bottom: 1px solid #fff;
+    color: var(--color-white);
+    border-bottom: 1px solid var(--color-white);
 }
 
 .wc-block-components-checkout-step__description {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     font-weight: 300;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .wp-block-woocommerce-checkout .wc-block-checkout__login-prompt {
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--color-white);
     text-decoration: none;
 }
 
 .wc-block-components-form .wc-block-components-text-input input[type=email], .wc-block-components-form .wc-block-components-text-input input[type=number], .wc-block-components-form .wc-block-components-text-input input[type=password], .wc-block-components-form .wc-block-components-text-input input[type=tel], .wc-block-components-form .wc-block-components-text-input input[type=text], .wc-block-components-form .wc-block-components-text-input input[type=url], .wc-block-components-text-input input[type=email], .wc-block-components-text-input input[type=number], .wc-block-components-text-input input[type=password], .wc-block-components-text-input input[type=tel], .wc-block-components-text-input input[type=text], .wc-block-components-text-input input[type=url] {
-    background-color: #000000!important;
+    background-color: var(--color-black) !important;
     border-radius: 0!important;
-    border: none!important;
-    border-bottom: 1px solid #666666!important;
+    border: 1px solid var(--color-grey-dark)!important;
     padding: 12px 15px!important;
     margin: 0;
-    color: #ffffff!important;
+    color: var(--color-white) !important;
     transition: all 0.3s ease!important;
 }
 
 .wc-block-components-form .wc-block-components-text-input input[type=email]:focus, .wc-block-components-form .wc-block-components-text-input input[type=number]:focus, .wc-block-components-form .wc-block-components-text-input input[type=password]:focus, .wc-block-components-form .wc-block-components-text-input input[type=tel]:focus, .wc-block-components-form .wc-block-components-text-input input[type=text]:focus, .wc-block-components-form .wc-block-components-text-input input[type=url]:focus, .wc-block-components-text-input input[type=email]:focus, .wc-block-components-text-input input[type=number]:focus, .wc-block-components-text-input input[type=password]:focus, .wc-block-components-text-input input[type=tel]:focus, .wc-block-components-text-input input[type=text]:focus, .wc-block-components-text-input input[type=url]:focus {
     outline: none!important;
-    border-bottom-color: #ffffff!important;
-    background: rgba(255, 255, 255, 0.05)!important;
+    border-color: var(--color-grey-dark)!important;
+    background: var(--color-line-grey) !important;
 }
 
 /* Override autofill styles - zachowaj czarne tło */
@@ -359,23 +341,24 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
 .wc-block-components-text-input input[type=tel]:-webkit-autofill, 
 .wc-block-components-text-input input[type=text]:-webkit-autofill, 
 .wc-block-components-text-input input[type=url]:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
-    -webkit-text-fill-color: #ffffff !important;
-    background-color: #000000 !important;
-    color: #ffffff !important;
+    background-color: var(--color-black) !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    background-color: var(--color-black) !important;
+    color: var(--color-white) !important;
 }
 
 .wc-block-components-form .wc-block-components-text-input.has-error label, .wc-block-components-text-input.has-error label {
-    color: #e71d1d!important;
+    color: var(--color-error) !important;
 }
 
 /* WooCommerce Blocks label styles - szare teksty, uppercase, wyżej */
 .wc-block-components-form .wc-block-components-text-input label,
 .wc-block-components-form .wc-block-components-select label,
-.wc-block-components-form .wc-block-components-textarea label {
-    color: #404040 !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+.wc-block-components-form .wc-block-components-textarea label,
+.wc-block-components-select__label {
+    color: var(--color-line-grey) !important; /* Używam jaśniejszego szarego dla lepszej czytelności */
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     margin-bottom: 12px !important;
@@ -386,9 +369,9 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
 /* WooCommerce Blocks section headings - białe tytuły, padding */
 .wc-block-components-form h2,
 .wc-block-components-form h3 {
-    color: #ffffff !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem) !important;
+    color: var(--color-white) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-base) !important;
     font-weight: 500 !important;
     text-transform: uppercase !important;
     margin-bottom: 16px !important;
@@ -397,9 +380,9 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
 
 /* WooCommerce Blocks descriptions - szare opisy, padding */
 .wc-block-components-form p {
-    color: #999999 !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.7rem, 1.0vw, 0.85rem) !important;
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-xs) !important;
     font-weight: 300 !important;
     margin-bottom: 16px !important;
     line-height: 1.4 !important;
@@ -429,7 +412,7 @@ h2.wc-block-components-title.wc-block-components-checkout-step__title {
     color: var(--color-white);
     padding: 8px 16px;
     text-decoration: none;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
 }
 
 .skip-link:focus {
@@ -506,7 +489,7 @@ ol, ul {
 
 .toneka-default-logo a {
     color: var(--color-white);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 300;
     text-transform: uppercase;
     text-decoration: none;
@@ -532,7 +515,7 @@ ol, ul {
 .toneka-primary-menu .menu-item a {
     color: var(--color-white);
     text-decoration: none;
-    font-size: clamp(0.7rem, 1.0vw, 0.85rem) !important;
+    font-size: var(--font-size-xs) !important;
     font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4;
@@ -642,7 +625,7 @@ ol, ul {
     gap: 8px;
     color: var(--color-white);
     text-decoration: none;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     text-transform: uppercase;
     transition: opacity 0.3s ease;
 }
@@ -668,7 +651,7 @@ ol, ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+    font-size: var(--font-size-xxs);
     font-weight: 600;
 }
 
@@ -695,24 +678,24 @@ ol, ul {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     text-transform: uppercase;
     transition: color 0.3s ease;
 }
 
 .toneka-main-header svg {
-    fill: #ffffff;
-    stroke: #ffffff;
+    fill: var(--color-white);
+    stroke: var(--color-white);
     transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
 .toneka-main-header svg circle,
 .toneka-main-header svg path {
-    stroke: #ffffff;
+    stroke: var(--color-white);
 }
 
 .toneka-main-header svg text {
-    fill: #ffffff;
+    fill: var(--color-white);
     transition: fill 0.3s ease;
 }
 
@@ -755,7 +738,7 @@ ol, ul {
 .product-page-header .toneka-primary-menu li a {
     color: var(--color-white);
     text-decoration: none;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 300;
     text-transform: uppercase;
     transition: color 0.3s ease;
@@ -778,22 +761,22 @@ ol, ul {
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: clamp(0.75rem, 1.1vw, 1rem);
+        font-size: var(--font-size-md);
         text-transform: uppercase;
         transition: color 0.3s ease;
     }
 }
 
 .product-page-header .cart-count {
-    background: #292929;
-    color: #fff;
+    background: var(--color-grey-dark);
+    color: var(--color-white);
     border-radius: 50%;
     width: 14px;
     height: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+    font-size: var(--font-size-xxs);
     font-weight: 300;
 }
 
@@ -860,7 +843,7 @@ ol, ul {
 
 .toneka-slide-subtitle p {
     font-family: var(--font-primary);
-    font-size: clamp(1rem, 1.4vw, 1.3rem);
+    font-size: var(--font-size-lg);
     font-weight: 400;
     line-height: 1.6;
     color: var(--color-white);
@@ -908,7 +891,7 @@ ol, ul {
 
 .toneka-slider-prev:hover,
 .toneka-slider-next:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--color-line-grey);
     border: none!important;
     transform: translateY(-50%) scale(1.1);
 }
@@ -935,7 +918,7 @@ ol, ul {
     width: 12px;
     height: 12px;
     border-radius: 0;
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--color-line-grey);
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -952,7 +935,7 @@ ol, ul {
 }
 
 .toneka-slider-dot:hover {
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--color-line-grey);
     transform: scale(1.1);
 }
 
@@ -1091,7 +1074,7 @@ ol, ul {
     }
     
     .toneka-slide-subtitle p {
-        font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+        font-size: var(--font-size-base);
     }
     
     /* Usuń dolny border z hero section na mobile */
@@ -1108,7 +1091,7 @@ ol, ul {
     width: 100%;
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid var(--color-line-grey);
 }
 
 .toneka-hero-left {
@@ -1161,14 +1144,14 @@ ol, ul {
 }
 
 .woocommerce-breadcrumb {
-    color: var(--color-grey);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem)!important;
+    color: var(--color-line-grey);
+    font-size: var(--font-size-xs)!important;
     font-weight: 100;
     text-transform: uppercase;
 }
 
 .woocommerce-breadcrumb a {
-    color: #ffffff!important;
+    color: var(--color-white) !important;
     text-decoration: none;
     position: relative;
 }
@@ -1207,12 +1190,12 @@ ol, ul {
 
 .toneka-page-header {
     margin-bottom: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid var(--color-line-grey);
     padding-bottom: 20px;
 }
 
 .toneka-page-title {
-    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-size: var(--font-size-xl);
     font-weight: 300;
     text-transform: uppercase;
     color: var(--color-white);
@@ -1273,12 +1256,12 @@ ol, ul {
 
 .toneka-archive-header {
     margin-bottom: 40px;
-    border-bottom: 1px solid #7b7b7b;
+    border-bottom: 1px solid var(--color-line-grey);
     padding-bottom: 20px;
 }
 
 .toneka-archive-title {
-    font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+    font-size: var(--font-size-xxl);
     font-weight: 700;
     text-transform: uppercase;
     color: var(--color-white);
@@ -1288,7 +1271,7 @@ ol, ul {
 .toneka-post-content {
     margin-bottom: 60px;
     padding-bottom: 40px;
-    border-bottom: 1px solid #7b7b7b;
+    border-bottom: 1px solid var(--color-line-grey);
     color: var(--color-white);
 }
 
@@ -1301,7 +1284,7 @@ ol, ul {
 }
 
 .toneka-post-title {
-    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-size: var(--font-size-xl);
     font-weight: 600;
     text-transform: uppercase;
     color: var(--color-white);
@@ -1320,8 +1303,8 @@ ol, ul {
 }
 
 .toneka-post-meta {
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    color: #999999;
+    font-size: var(--font-size-sm);
+    color: var(--color-line-grey);
     text-transform: uppercase;
     font-weight: 300;
 }
@@ -1358,7 +1341,7 @@ ol, ul {
 }
 
 .toneka-read-more {
-    color: #ffffff !important;
+    color: var(--color-white) !important;
     text-decoration: underline;
     font-weight: 400;
     transition: opacity 0.3s ease;
@@ -1375,21 +1358,21 @@ ol, ul {
 }
 
 .toneka-no-content h1 {
-    font-size: clamp(2rem, 3.3vw, 3rem);
+    font-size: var(--font-size-hero);
     margin-bottom: 20px;
     color: var(--color-white);
 }
 
 .toneka-no-content p {
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
-    color: #999999;
+    font-size: var(--font-size-base);
+    color: var(--color-line-grey);
 }
 
 /* Nawigacja stron */
 .posts-navigation {
     margin-top: 60px;
     padding-top: 40px;
-    border-top: 1px solid #7b7b7b;
+    border-top: 1px solid var(--color-line-grey);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1416,8 +1399,8 @@ ol, ul {
 
 /* Custom breadcrumb dla stron twórcy */
 .toneka-breadcrumb {
-    color: var(--color-grey);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-xs);
     font-weight: 100;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -1450,20 +1433,20 @@ ol, ul {
 }
 
 .breadcrumb-separator {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     margin: 0 8px;
 }
 
 .breadcrumb-current {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
 }
 
 /* Kategorie produktu */
 .toneka-product-categories {
     font-family: var(--font-primary);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     font-weight: 100;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     margin: 30px 0;
     text-transform: uppercase;
 }
@@ -1484,7 +1467,7 @@ ol, ul {
     border: none;
     color: var(--color-white);
     padding: 8px 0;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
     text-transform: uppercase;
     margin-top: 3%;
@@ -1535,18 +1518,9 @@ ol, ul {
 
 .toneka-listen-button .button-arrow svg {
     fill: none;
-    stroke: #ffffff;
+    stroke: var(--color-white);
     width: clamp(16px, 2.5vw, 24px);
     height: clamp(16px, 2.5vw, 24px);
-}
-
-@keyframes arrow-move {
-    0% {
-        stroke-dashoffset: 20;
-    }
-    100% {
-        stroke-dashoffset: 0;
-    }
 }
 
 /* =====================================
@@ -1576,7 +1550,7 @@ ol, ul {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--color-grey-dark);
     z-index: 9998;
     opacity: 0;
     visibility: hidden;
@@ -1599,14 +1573,14 @@ ol, ul {
     position: relative;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #969696;
+    border-bottom: 1px solid var(--color-line-grey);
 }
 
 .toneka-minicart-header h3 {
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 300;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
     margin: 0;
 }
@@ -1651,12 +1625,12 @@ ol, ul {
     display: flex !important;
     z-index: 99999 !important;
     opacity: 0;
-    animation: fadeInCloseButton 0.3s ease-in-out 0.3s forwards;
+    animation: fadeInCloseButton var(--transition-medium) ease-in-out var(--transition-medium) forwards;
     border: none;
 }
 
 .toneka-minicart.is-active .toneka-minicart-close:hover {
-    background: #5a5a5a!important;
+    background: var(--color-grey-dark)!important;
 }
 
 @keyframes fadeInCloseButton {
@@ -1679,7 +1653,7 @@ ol, ul {
     display: flex;
     gap: 5%;
     padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid var(--color-line-grey);
     align-items: flex-start;
 }
 
@@ -1723,7 +1697,7 @@ ol, ul {
 
 .toneka-minicart-remove {
     background: none;
-    border: 1px solid #5a5a5a!important;
+    border: 1px solid var(--color-grey-dark)!important;
     color: var(--color-white);
     cursor: pointer;
     padding: 4px;
@@ -1734,7 +1708,7 @@ ol, ul {
 
 .toneka-minicart-remove:hover {
     opacity: 1;
-    background: #5a5a5a!important;
+    background: var(--color-grey-dark)!important;
 }
 
 .toneka-minicart-remove svg {
@@ -1758,7 +1732,7 @@ ol, ul {
 
 .quantity-btn {
     background: none;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     color: var(--color-white);
     width: 30px!important;
     height: 30px!important;
@@ -1773,7 +1747,7 @@ ol, ul {
 }
 
 .quantity-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-line-grey);
 }
 
 .quantity-input {
@@ -1782,7 +1756,7 @@ ol, ul {
     color: var(--color-white);
     width: 35px;
     text-align: center;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-family: var(--font-primary);
 }
 
@@ -1793,13 +1767,14 @@ ol, ul {
 }
 
 .quantity-input[type=number] {
+    appearance: textfield;
     -moz-appearance: textfield;
     -ms-appearance: textfield;
 }
 
 .toneka-minicart-item-name {
     font-family: var(--font-primary);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
@@ -1809,15 +1784,15 @@ ol, ul {
 
 .toneka-minicart-item-variant {
     font-family: var(--font-primary);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-xs);
+    color: var(--color-line-grey);
     text-transform: uppercase;
     margin: 2px 0;
 }
 
 .toneka-minicart-item-price {
     font-family: var(--font-primary);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
     margin-top: 5px;
@@ -1832,24 +1807,24 @@ ol, ul {
 
 .toneka-minicart-price-regular {
     text-decoration: line-through;
-    color: #666666;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-md);
 }
 
 .toneka-minicart-price-current {
     color: var(--color-white);
     font-weight: 600;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
 }
 
 .toneka-minicart-savings {
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    color: var(--color-grey);
+    font-size: var(--font-size-sm);
+    color: var(--color-line-grey);
     font-weight: 500;
 }
 
 .toneka-minicart-footer {
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid var(--color-white);
     padding-top: 20px;
 }
 
@@ -1862,15 +1837,15 @@ ol, ul {
 
 .toneka-minicart-total-savings span {
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 600;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
 }
 
 .toneka-minicart-total {
     font-family: var(--font-primary);
-    font-size: clamp(1rem, 1.4vw, 1.3rem);
+    font-size: var(--font-size-lg);
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
@@ -1886,7 +1861,7 @@ ol, ul {
     padding: 12px 24px;
     border-radius: 25px;
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 500;
     text-transform: uppercase;
     cursor: pointer;
@@ -1904,13 +1879,13 @@ ol, ul {
 
 .toneka-minicart-upsells {
     margin-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid var(--color-line-grey);
     padding-top: 20px;
 }
 
 .toneka-minicart-upsells h4 {
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
@@ -1921,7 +1896,7 @@ ol, ul {
     display: flex;
     gap: 15px;
     padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--color-line-grey);
     align-items: flex-start;
 }
 
@@ -1958,7 +1933,7 @@ ol, ul {
 
 .toneka-minicart-upsell-item-name {
     font-family: var(--font-primary);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
@@ -1968,15 +1943,15 @@ ol, ul {
 
 .toneka-minicart-upsell-item-variant {
     font-family: var(--font-primary);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-xs);
+    color: var(--color-line-grey);
     text-transform: uppercase;
     margin: 2px 0;
 }
 
 .toneka-minicart-upsell-item-price {
     font-family: var(--font-primary);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
     margin-top: 5px;
@@ -1992,21 +1967,21 @@ ol, ul {
 
 .toneka-minicart-upsell-price-regular {
     text-decoration: line-through;
-    color: #666666;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-md);
 }
 
 .toneka-minicart-upsell-price-current {
     color: var(--color-white);
     font-weight: 600;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
 }
 
 .toneka-minicart-upsell-savings {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    color: #00ff00;
+    font-size: var(--font-size-xs);
+    color: var(--color-success);
     font-weight: 600;
-    background: rgba(0, 255, 0, 0.1);
+    background: var(--color-line-grey);
     padding: 2px 6px;
 }
 
@@ -2035,7 +2010,7 @@ ol, ul {
 
 .upsell-quantity-btn {
     background: none;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     color: var(--color-white);
     width: 30px!important;
     height: 30px!important;
@@ -2050,7 +2025,7 @@ ol, ul {
 }
 
 .upsell-quantity-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-line-grey);
 }
 
 .upsell-quantity-input {
@@ -2059,7 +2034,7 @@ ol, ul {
     color: var(--color-white);
     width: 35px;
     text-align: center;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-family: var(--font-primary);
 }
 
@@ -2070,6 +2045,7 @@ ol, ul {
 }
 
 .upsell-quantity-input[type=number] {
+    appearance: textfield;
     -moz-appearance: textfield;
     -ms-appearance: textfield;
 }
@@ -2081,7 +2057,7 @@ ol, ul {
     padding: 12px 24px;
     border-radius: 25px;
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 500;
     text-transform: uppercase;
     cursor: pointer;
@@ -2134,16 +2110,16 @@ ol, ul {
     
     
     .toneka-minicart-item-variant {
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+        font-size: var(--font-size-xs);
     }
     
     .toneka-minicart-item-price {
-        font-size: clamp(0.75rem, 1.1vw, 1rem);
+        font-size: var(--font-size-md);
     }
     
     .toneka-minicart-header h3 {
-        font-size: clamp(0.75rem, 1.1vw, 1rem);
-        color: var(--color-grey);
+        font-size: var(--font-size-md);
+        color: var(--color-line-grey);
     }
 }
 
@@ -2295,14 +2271,14 @@ ol, ul {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--color-line-grey);
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .gallery-dot:hover,
 .gallery-dot.active {
-    background: rgba(255, 255, 255, 1);
+    background: var(--color-white);
 }
 
 .toneka-no-image {
@@ -2311,8 +2287,8 @@ ol, ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-base);
 }
 
 /* =====================================
@@ -2326,12 +2302,12 @@ ol, ul {
     min-height: auto;
     margin: 0;
     padding: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid var(--color-line-grey);
+    border-bottom: 1px solid var(--color-line-grey);
 }
 
 .toneka-product-details {
-    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    border-right: 1px solid var(--color-line-grey);
     padding: 14%;
     display: flex;
     flex-direction: column;
@@ -2357,7 +2333,7 @@ ol, ul {
 }
 
 .toneka-title-row h1 {
-    font-size: clamp(2rem, 3.3vw, 3rem);
+    font-size: var(--font-size-hero);
     font-weight: 300;
     text-transform: uppercase;
     line-height: 1.2;
@@ -2369,7 +2345,7 @@ ol, ul {
 }
 
 .toneka-duration {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     font-weight: 300;
     text-transform: uppercase;
     color: var(--color-white);
@@ -2381,7 +2357,7 @@ ol, ul {
     display: block;
     padding-top: 0.8%;
     padding-bottom: 1.2%;
-    border-bottom: 1px solid #7b7b7b!important;
+    border-bottom: 1px solid var(--color-line-grey)!important;
     line-height: 1.4;
     padding-left: 1%;
     padding-right: 1%;
@@ -2390,7 +2366,7 @@ ol, ul {
 /* Border dla pierwszego elementu metadata po opisie */
 .toneka-description-row + .toneka-meta-row,
 .toneka-product-metadata > .toneka-meta-row:first-of-type {
-    border-top: 1px solid #7b7b7b!important;
+    border-top: 1px solid var(--color-line-grey)!important;
 }
 
 .toneka-meta-row:last-child {
@@ -2421,7 +2397,7 @@ ol, ul {
     font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     font-weight: 300;
     text-transform: uppercase;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     display: inline;
     line-height: 1.4;
 }
@@ -2437,7 +2413,7 @@ ol, ul {
 }
 
 .toneka-role {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     font-weight: 300;
 }
 
@@ -2485,7 +2461,7 @@ ol, ul {
 }
 
 .toneka-more-link {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-decoration: none;
     font-size: clamp(0.8rem, 1.0vw, 0.95rem)!important;
     text-transform: uppercase;
@@ -2514,7 +2490,7 @@ ol, ul {
 .toneka-toggle-description {
     color: var(--color-white);
     text-decoration: none;
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     text-transform: uppercase;
     margin-top: 10px;
     display: flex;
@@ -2526,7 +2502,7 @@ ol, ul {
 }
 
 .toneka-toggle-description:hover {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
 }
 
 .toneka-toggle-description {
@@ -2571,7 +2547,7 @@ ol, ul {
     font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     font-weight: 300;
     /* text-transform: uppercase; */
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     margin: 0 0 20px 0;
     line-height: 1.2;
 }
@@ -2599,8 +2575,7 @@ ol, ul {
 .toneka-carrier-radio-custom {
     width: 16px;
     height: 16px;
-    border: 2px solid var(--color-line-grey);
-    background-color: #fff;
+    background-color: var(--color-white);
     border-radius: 50%;
     margin-right: 12px;
     position: relative;
@@ -2615,28 +2590,13 @@ ol, ul {
     content: '';
     width: 8px;
     height: 8px;
-    background-color: #000;
+    background-color: var(--color-black);
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: scaleIn 0.3s ease;
-}
-
-@keyframes scaleIn {
-    0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.2);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
+    animation: fadeIn var(--transition-medium) ease;
 }
 
 .toneka-carrier-label {
@@ -2649,7 +2609,7 @@ ol, ul {
 }
 
 .toneka-variation-description-display {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     color: var(--color-white);
     line-height: 1.6;
     margin-bottom: 20px;
@@ -2657,8 +2617,8 @@ ol, ul {
 
 /* Opis wariantu bezpośrednio pod wybranym wariantem */
 .toneka-variation-description-inline {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    color: #a5a5a5;
+    font-size: var(--font-size-xs);
+    color: var(--color-line-grey);
     line-height: 1;
     margin-bottom: 10px;
     padding-left: 28px; /* Wyrównanie do etykiety wariantu */
@@ -2713,7 +2673,7 @@ ol, ul {
 .toneka-quantity-minus,
 .toneka-quantity-plus {
     background: none;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     border-radius: 50%!important;
     color: var(--color-white);
     font-size: clamp(0.9rem, 1.3vw, 1.2rem)!important;
@@ -2729,7 +2689,7 @@ ol, ul {
 
 .toneka-quantity-minus:hover,
 .toneka-quantity-plus:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-line-grey);
     transform: scale(1.1);
 }
 
@@ -2740,8 +2700,10 @@ ol, ul {
     text-align: center;
     width: 28px;
     padding: 8px 4px;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
+    appearance: textfield;
     -moz-appearance: textfield; /* Firefox - usuń kontrolki */
+    -ms-appearance: textfield; /* Internet Explorer */
     text-align: center!important;
 }
 
@@ -2752,28 +2714,62 @@ ol, ul {
     margin: 0;
 }
 
-/* Internet Explorer */
-.toneka-quantity-input {
-    -ms-appearance: textfield;
-}
-
 .toneka-quantity-input:focus {
     outline: none;
 }
 
-.woocommerce form .form-row .input-text, .woocommerce form .form-row select {
-    background-color: #000!important;
-    border-color: #969696!important;
-    border-top: none!important;
-    border-left: none!important;
-    border-right: none!important;
-    color: #ffffff!important;
+.woocommerce form .form-row .input-text, 
+.woocommerce form .form-row select,
+.woocommerce form .form-row textarea {
+    background-color: var(--color-black) !important;
+    border: 1px solid var(--color-grey-dark)!important;
+    color: var(--color-white) !important;
+    padding: 12px 15px!important;
+    border-radius: 0!important;
+    transition: all 0.3s ease!important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+}
+
+.woocommerce form .form-row .input-text:hover,
+.woocommerce form .form-row select:hover,
+.woocommerce form .form-row textarea:hover {
+    border-color: var(--color-grey-dark)!important;
+    background: var(--color-line-grey) !important;
+}
+
+.woocommerce form .form-row .input-text:focus,
+.woocommerce form .form-row select:focus,
+.woocommerce form .form-row textarea:focus {
+    outline: none!important;
+    border-color: var(--color-grey-dark)!important;
+    background: var(--color-line-grey) !important;
+}
+
+.woocommerce form .form-row .input-text:-webkit-autofill,
+.woocommerce form .form-row select:-webkit-autofill,
+.woocommerce form .form-row textarea:-webkit-autofill {
+    background-color: var(--color-black) !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    background-color: var(--color-black) !important;
+    color: var(--color-white) !important;
+}
+
+.woocommerce form .form-row label {
+    color: var(--color-grey-dark) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    padding: 0 15px !important;
 }
 
 .woocommerce-account h2, .woocommerce-form-login h2, .woocommerce-form-register h2 {
     text-align: left!important;
     font-size: clamp(0.8rem, 1.2vw, 1.1rem)!important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4)
+    border-bottom: 1px solid var(--color-line-grey);
 }
 
 .woocommerce form.checkout_coupon, .woocommerce form.login, .woocommerce form.register {
@@ -2789,14 +2785,14 @@ ol, ul {
     padding: 12px 24px;
     border-radius: 25px;
     text-transform: uppercase;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .toneka-add-to-cart-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-line-grey);
     transform: scale(1.01);
 }
 
@@ -2869,11 +2865,11 @@ ol, ul {
 .toneka-variation-item:hover,
 .toneka-variation-item.selected {
     border-color: var(--color-white);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-line-grey);
 }
 
 .toneka-variation-label {
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     color: var(--color-white);
     text-transform: uppercase;
 }
@@ -2881,7 +2877,7 @@ ol, ul {
 /* Audio player */
 .toneka-audio-player {
     width: 100%;
-    background: #111111;
+    background: var(--color-black);
     border: 1px solid var(--color-line-grey);
     border-radius: 8px;
     padding: 20px;
@@ -2889,8 +2885,8 @@ ol, ul {
 
 .toneka-player-placeholder {
     text-align: center;
-    color: var(--color-grey);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-base);
     margin-bottom: 20px;
 }
 
@@ -2922,7 +2918,7 @@ ol, ul {
 }
 
 .toneka-control-btn:hover {
-    background: #a5a5a5;
+    background: var(--color-line-grey);
     color: var(--color-black);
 }
 
@@ -2933,14 +2929,14 @@ ol, ul {
 }
 
 .toneka-track-title {
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     color: var(--color-white);
     margin-bottom: 5px;
 }
 
 .toneka-track-time {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    color: var(--color-grey);
+    font-size: var(--font-size-xs);
+    color: var(--color-line-grey);
 }
 
 .toneka-volume-controls {
@@ -2952,7 +2948,7 @@ ol, ul {
 .toneka-volume-slider {
     flex: 1;
     height: 4px;
-    background: #7b7b7b;
+    background: var(--color-line-grey);
     border-radius: 2px;
     position: relative;
     cursor: pointer;
@@ -2972,7 +2968,7 @@ ol, ul {
 .toneka-more-section {
     background: var(--color-black);
     /* border-top: 1px solid #ffffff; */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid var(--color-line-grey);
     padding: 27px 60px;
     height: 82px;
     display: flex;
@@ -3083,6 +3079,12 @@ ol, ul {
     box-sizing: border-box;
 }
 
+/* Padding dla nawigacji playera na stronie produktu */
+.toneka-product-image .toneka-figma-player .toneka-main-controls {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
 .toneka-product-content {
     width: 50%;
     padding: 7%;
@@ -3139,18 +3141,6 @@ ol, ul {
     }
 }
 
-/* Animacja znikania - z zewnątrz do środka */
-@keyframes scaleOut {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0);
-        opacity: 0;
-    }
-}
-
 .toneka-product-card {
     background: var(--color-black);
     display: flex;
@@ -3182,24 +3172,19 @@ ol, ul {
     /* z-index: 10; */
 }
 
-/* Pierwsza kolumna - przezroczysta lewa ramka dla równych szerokości */
-.toneka-product-card:nth-child(3n+1) {
-    border-left: 1px solid transparent;
-}
-
-/* Linie pionowe - między kolumnami (druga i trzecia kolumna) */
-.toneka-product-card:not(:nth-child(3n+1)) {
-    border-left: 1px solid var(--color-line-grey);
-}
-
-/* Prawa linia dla trzeciej kolumny */
+/* Ostatnia kolumna - przezroczysta prawa ramka dla równych szerokości */
 .toneka-product-card:nth-child(3n) {
-    /* border-right: 1px solid var(--color-line-white); */
+    border-right: 1px solid transparent;
+}
+
+/* Linie pionowe - między kolumnami (pierwsza i druga kolumna) */
+.toneka-product-card:not(:nth-child(3n)) {
+    border-right: 1px solid var(--color-line-grey);
 }
 
 /* Linie poziome - między rzędami (nie pierwszy rząd ma górną linię) */
 .toneka-product-card:nth-child(n+4) {
-    border-top: 1px solid var(--color-line-white);
+    border-top: 1px solid var(--color-white);
 }
 
 /* Dolna linia dla ostatniego rzędu */
@@ -3211,7 +3196,7 @@ ol, ul {
 .toneka-product-label {
     position: relative;
     background: var(--color-black);
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     padding: 3% 4%;
     font-size: clamp(0.8rem, 1.0vw, 0.95rem);
     font-weight: 300;
@@ -3251,7 +3236,7 @@ ol, ul {
     height: 100%;
     background-color: var(--filter-color, #78ff00);
     mix-blend-mode: multiply;
-    opacity: 0.75;
+    opacity: 0; /* Wyłączone */
     z-index: 1;
     pointer-events: none;
     transition: opacity var(--transition-normal) ease;
@@ -3264,36 +3249,46 @@ ol, ul {
 /* Tooltip na plakietce - dwie przesunięte ramki (podąża za kursorem) */
 .toneka-product-tooltip {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     opacity: 0;
     visibility: hidden;
     transition: opacity var(--transition-fast) ease, 
-                visibility var(--transition-fast) ease,
-                transform 0.2s var(--ease-lazy);
+                visibility var(--transition-fast) ease;
     z-index: 10;
     pointer-events: none;
+    display: flex; /* Kontener flex w poziomie (kierunek: row) */
+}
+
+/* 
+ * MECHANIZM RUCHU LEWO/PRAWO: Niewidzialny spacer
+ * Poniższy element ::before jest niewidzialnym "rozpychaczem".
+ * Animując jego właściwość `flex-grow`, płynnie przesuwamy treść tooltipa.
+*/
+.toneka-product-tooltip::before {
+    content: '';
+    display: block;
+    flex-grow: 0; /* Stan domyślny (lewo): spacer nie zajmuje miejsca. */
+    /* Prędkość animacji L/P jest kontrolowana przez --transition-tooltip */
+    transition: flex-grow var(--transition-tooltip) var(--ease-tooltip);
+}
+
+/* Gdy kursor jest po prawej stronie, spacer "rośnie", wypychając treść. */
+.toneka-product-tooltip.tooltip-flipped::before {
+    flex-grow: 1; /* Stan odwrócony (prawo): spacer wypełnia dostępną przestrzeń. */
+}
+
+/* Wrapper na obie ramki, ustawia je w pionie (kierunek: column) */
+.tooltip-content-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0;
 }
 
-/* ============================================
-   TESTOWANIE EASING - zmień w linii powyżej:
-   transform 0.2s var(--ease-NAZWA);
-   
-   Opcje do przetestowania:
-   --ease-lazy: ✓ leniwe, spowolnione (AKTYWNE) - "o krok za kursorem"
-   --ease-follow: szybkie, płynne podążanie
-   --ease-gentle: delikatne, Material Design
-   --ease-magnetic: magnetyczny, z lekkim odbiciem
-   
-   Możesz też zmienić czas (0.2s -> 0.3s lub 0.15s)
-   dla mocniejszego/słabszego efektu
-   ============================================ */
-
-/* Hover jest obsługiwany przez JavaScript */
+/* 
+ * POZYCJONOWANIE RAMEK (Label i Value)
+ * Używamy `transform: translate(X, Y)` do kontrolowania:
+ * 1. Wzajemnego przesunięcia ramek w poziomie (offset X).
+ * 2. Płynnej animacji zamiany miejsc góra/dół (offset Y).
+*/
 
 /* Pierwsza ramka - czarna z białym tekstem (label) */
 .toneka-tooltip-label {
@@ -3310,6 +3305,10 @@ ol, ul {
     display: inline-block;
     width: fit-content;
     white-space: nowrap;
+    /* Pozycja startowa: przesunięcie w lewo o 20% i brak przesunięcia w pionie */
+    transform: translate(-20%, 0);
+    /* Prędkość animacji G/D jest kontrolowana przez --transition-tooltip-vertical */
+    transition: transform var(--transition-tooltip-vertical) var(--ease-tooltip);
 }
 
 /* Druga ramka - biała z czarnym tekstem (value) - przesunięta o 20% */
@@ -3323,12 +3322,56 @@ ol, ul {
     padding: var(--spacing-sm) var(--spacing-md);
     position: relative;
     margin-top: calc(var(--spacing-xs) * -1);
-    margin-left: 20%;
     z-index: 1;
     display: inline-block;
     width: fit-content;
     text-transform: uppercase;
     white-space: nowrap;
+    /* Stan TOP-LEFT (domyślny): obie ramki wyrównane do lewej (-20%) */
+    transform: translate(-20%, 0);
+    /* Prędkość animacji G/D jest kontrolowana przez --transition-tooltip-vertical */
+    transition: transform var(--transition-tooltip-vertical) var(--ease-tooltip);
+}
+
+/* 
+ * STAN "FLIPPED" (Kursor po prawej stronie)
+ * Odwracamy tylko poziomy offset (X) w transformacji.
+ * Ruch całego bloku jest realizowany przez spacer (flex-grow).
+*/
+.tooltip-flipped .toneka-tooltip-label {
+    /* Stan TOP-RIGHT: obie ramki wyrównane do prawej (+20%) */
+    transform: translate(310%, -100%);
+}
+
+.tooltip-flipped .toneka-tooltip-value {
+    /* Stan TOP-RIGHT: obie ramki wyrównane do prawej (+20%) */
+    transform: translate(-80%, 10);
+}
+
+/* 
+ * STAN "BOTTOM" (Kursor na dole)
+ * Zmieniamy pionowy offset (Y) w transformacji, aby ramki zamieniły się miejscami.
+*/
+.tooltip-bottom .toneka-tooltip-label {
+    /* Przesuń w dół o 100% wysokości + mała korekta na "zakładkę" */
+    transform: translate(0%, calc(80% - var(--spacing-sm)));
+}
+
+.tooltip-bottom .toneka-tooltip-value {
+    /* Przesuń w górę o 100% wysokości + mała korekta na "zakładkę" */
+    transform: translate(-20%, calc(60% + var(--spacing-sm)));
+}
+
+/* 
+ * STAN KOMBINOWANY (Dół + Prawa strona)
+ * Łączymy transformacje ze stanu "flipped" (offset X) i "bottom" (offset Y).
+*/
+.tooltip-bottom.tooltip-flipped .toneka-tooltip-label {
+    transform: translate(10%, calc(50% - var(--spacing-sm)));
+}
+
+.tooltip-bottom.tooltip-flipped .toneka-tooltip-value {
+    transform: translate(120%, calc(100% + var(--spacing-sm)));
 }
 
 .toneka-product-image-wrapper img {
@@ -3348,7 +3391,7 @@ ol, ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1a1a1a;
+    background: var(--color-grey-dark);
 }
 
 /* Info pod zdjęciem - tytuł / autor w jednej linii */
@@ -3362,7 +3405,7 @@ ol, ul {
     justify-content: flex-start;
     order: 3;
     min-height: 88px;
-    /* border-top: 1px solid var(--color-line-white); */
+    /* border-top: 1px solid var(--color-white); */
 }
 
 /* Linia z tytułem i autorem */
@@ -3481,7 +3524,7 @@ ol, ul {
 
 .toneka-footer-contact p {
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 300;
     line-height: 1.4;
     color: var(--color-white);
@@ -3543,7 +3586,7 @@ ol, ul {
 
 /* Footer bottom */
 .toneka-footer-bottom {
-    background: #000;
+    background: var(--color-black);
     padding: 20px 0;
     border-top: 1px solid var(--color-line-grey);
 }
@@ -3569,7 +3612,7 @@ ol, ul {
     gap: 7px;
     color: white;
     text-decoration: none;
-    font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+    font-size: var(--font-size-xxs);
     font-weight: 300;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -3618,8 +3661,8 @@ ol, ul {
 
 /* Copyright */
 .toneka-copyright {
-    color: #bbbbbb;
-    font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-xxs);
     font-weight: 300;
     text-transform: uppercase;
 }
@@ -3658,7 +3701,7 @@ ol, ul {
     border: none;
     color: var(--color-white);
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
     text-transform: uppercase;
     cursor: pointer;
@@ -3839,11 +3882,11 @@ ol, ul {
     .mobile-menu-cart,
     .mobile-menu-social {
         padding: 5%;
-        border-top: 1px solid #7b7b7b;
+        border-top: 1px solid var(--color-line-grey);
     }
     
     .mobile-menu-cart {
-        border-bottom: 1px solid #7b7b7b;
+        border-bottom: 1px solid var(--color-line-grey);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -3967,11 +4010,11 @@ ol, ul {
     }
     
     .toneka-back-to-top-btn {
-        font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+        font-size: var(--font-size-base);
     }
     
     .toneka-scrolling-text-content {
-        font-size: clamp(1rem, 1.4vw, 1.3rem);
+        font-size: var(--font-size-lg);
         /* padding-right: 60px; */
     }
     
@@ -4066,7 +4109,7 @@ ol, ul {
     }
     
     .toneka-product-categories {
-        font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+        font-size: var(--font-size-xxs);
         margin: 20px 0;
     }
     
@@ -4076,7 +4119,7 @@ ol, ul {
     
     .toneka-product-details {
         border-right: none;
-        border-bottom: 1px solid #ffffff;
+        border-bottom: 1px solid var(--color-white);
         padding: 7%;
     }
     
@@ -4091,7 +4134,7 @@ ol, ul {
     .toneka-product-card {
         border-left: none !important;
         border-right: none !important;
-        border-top: 1px solid var(--color-line-white);
+        border-top: 1px solid var(--color-white);
         border-bottom: none;
         aspect-ratio: auto; /* Karta dostosowuje się do zawartości (obrazek 1:1 + info) */
     }
@@ -4101,7 +4144,7 @@ ol, ul {
     }
     
     .toneka-product-card:last-child {
-        border-bottom: 1px solid var(--color-line-white) !important;
+        border-bottom: 1px solid var(--color-white) !important;
     }
     
     /* Tooltip na mobilnych - zachowaj dwie przesunięte ramki */
@@ -4249,11 +4292,11 @@ ol, ul {
     .mobile-menu-cart,
     .mobile-menu-social {
         padding: 5%;
-        border-top: 1px solid #7b7b7b;
+        border-top: 1px solid var(--color-line-grey);
     }
     
     .mobile-menu-cart {
-        border-bottom: 1px solid #7b7b7b;
+        border-bottom: 1px solid var(--color-line-grey);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -4431,7 +4474,7 @@ ol, ul {
 
 /* Quote section styling */
 .toneka-quote-section {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid var(--color-line-grey);
     padding: 30px 0;
     text-align: center;
 }
@@ -4481,9 +4524,9 @@ ol, ul {
 
 /* Category description */
 .toneka-category-description {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     line-height: 1.6;
     margin: 20px 0;
     text-transform: uppercase;
@@ -4523,13 +4566,13 @@ ol, ul {
 
 .toneka-category-filter-item {
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
     text-transform: uppercase;
 }
 
 .toneka-category-filter-item a {
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-decoration: none;
     transition: color 0.3s ease;
     cursor: pointer;
@@ -4578,9 +4621,9 @@ ol, ul {
 /* Category filter separator */
 .toneka-category-filter-separator {
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -4599,28 +4642,23 @@ ol, ul {
     width: 40px;
     height: 40px;
     border: 3px solid var(--color-line-grey);
-    border-top: 3px solid #ffffff;
+    border-top: 3px solid var(--color-white);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 .toneka-filter-error {
     position: fixed;
     top: 100px;
     right: 20px;
-    background: #ff4444;
+    background: var(--color-error);
     color: var(--color-white);
     padding: 15px 20px;
     border-radius: 5px;
     z-index: 9999;
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    animation: slideInRight 0.3s ease;
+    font-size: var(--font-size-sm);
+    animation: slideInRight var(--transition-medium) ease;
 }
 
 @keyframes slideInRight {
@@ -4642,7 +4680,7 @@ ol, ul {
 .toneka-ajax-pagination {
     margin: 40px 0;
     text-align: center;
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid var(--color-white);
     padding-top: 40px;
 }
 
@@ -4655,7 +4693,7 @@ ol, ul {
     text-decoration: none;
     border: 1px solid var(--color-line-grey);
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     text-transform: uppercase;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -4682,7 +4720,7 @@ ol, ul {
 .toneka-no-products {
     text-align: center;
     padding: 100px 5%;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     font-family: var(--font-primary);
     font-size: clamp(0.9rem, 1.3vw, 1.2rem);
     text-transform: uppercase;
@@ -4692,7 +4730,7 @@ ol, ul {
 .woocommerce-pagination {
     margin: 40px 0;
     text-align: center;
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid var(--color-white);
     padding-top: 40px;
 }
 
@@ -4705,7 +4743,7 @@ ol, ul {
     text-decoration: none;
     border: 1px solid var(--color-line-grey);
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     text-transform: uppercase;
     transition: all 0.3s ease;
 }
@@ -4719,7 +4757,7 @@ ol, ul {
 /* Responsive styles for category page */
 @media (max-width: 768px) {
     .toneka-category-description {
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+        font-size: var(--font-size-xs);
     }
     
     .toneka-category-products-section {
@@ -4737,11 +4775,11 @@ ol, ul {
     }
     
     .toneka-category-filter-item {
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+        font-size: var(--font-size-xs);
     }
     
     .toneka-category-filter-separator {
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+        font-size: var(--font-size-xs);
     }
     
     .toneka-filter-error {
@@ -4765,7 +4803,7 @@ ol, ul {
     .toneka-ajax-pagination .page-numbers {
         padding: 8px 12px;
         margin: 0 3px;
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+        font-size: var(--font-size-xs);
     }
     
     .woocommerce-pagination {
@@ -4776,7 +4814,7 @@ ol, ul {
     .woocommerce-pagination .page-numbers {
         padding: 8px 12px;
         margin: 0 3px;
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+        font-size: var(--font-size-xs);
     }
 }
 
@@ -4790,7 +4828,7 @@ ol, ul {
     height: auto; /* Auto aby pomieścić wszystkie elementy */
     border-radius: 0x;
     overflow: visible; /* Visible aby dolny panel był widoczny */
-    background: #000;
+    background: var(--color-black);
     /* margin: 40px 0; */
 }
 
@@ -4878,7 +4916,7 @@ button.toneka-skip-button {
     position: relative;
     z-index: 2;
     pointer-events: none;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 1px 2px var(--color-grey-dark));
 }
 
 .toneka-skip-button:hover {
@@ -4892,7 +4930,7 @@ button.toneka-skip-button {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--color-line-grey);
     border: 1px solid var(--color-line-grey);
     border-radius: 50%;
     backdrop-filter: blur(2px);
@@ -4924,7 +4962,7 @@ button.toneka-skip-button {
 }
 
 button.toneka-skip-button.toneka-skip-backward:hover {
-    background: #a5a5a5;
+    background: var(--color-line-grey);
     color: var(--color-black);
 }
 
@@ -4939,7 +4977,7 @@ button.toneka-skip-button.toneka-skip-backward:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--color-line-grey);
     border: 1px solid var(--color-line-grey);
     border-radius: 50%;
     backdrop-filter: blur(2px);
@@ -4953,12 +4991,12 @@ div.toneka-playlist {
     left: 0;
     right: 0;
     max-height: 50%; /* Maksymalnie do połowy wysokości */
-    background: rgba(0, 0, 0, 0.95);
+    background: var(--color-black);
     backdrop-filter: blur(10px);
     z-index: 4;
     transform: translateY(100%); /* Domyślnie ukryta - wysuwa się w dół */
     transition: transform 0.3s ease;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--color-line-grey);
     opacity: 0; /* Dodatkowe ukrycie */
     pointer-events: none; /* Wyłącz interakcje gdy ukryta */
 }
@@ -4981,16 +5019,16 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-playlist-items::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-line-grey);
 }
 
 .toneka-playlist-items::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--color-line-grey);
     border-radius: 3px;
 }
 
 .toneka-playlist-items::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--color-line-grey);
 }
 
 .toneka-playlist-item {
@@ -5004,11 +5042,11 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-playlist-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-line-grey);
 }
 
 .toneka-playlist-item.active {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-line-grey);
 }
 
 .toneka-playlist-item-info {
@@ -5022,7 +5060,7 @@ div.toneka-playlist[data-visible="true"] {
 .toneka-playlist-item-description {
     font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     font-weight: 300;
-    color: #bbbbbb;
+    color: var(--color-line-grey);
     min-width: 120px;
 }
 
@@ -5057,7 +5095,7 @@ div.toneka-playlist[data-visible="true"] {
 
 .toneka-playlist-item-time {
     font-size: clamp(0.55rem, 0.8vw, 0.75rem);
-    color: #bbbbbb;
+    color: var(--color-line-grey);
     /* margin-left: 16px; */
     padding-right: 1%;
     min-width: 70px;
@@ -5096,14 +5134,14 @@ div.toneka-playlist[data-visible="true"] {
     font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     font-weight: 300;
     margin: 5px 0 0 0;
-    color: #bbbbbb;
+    color: var(--color-line-grey);
     line-height: 1;
 }
 
 .toneka-track-time {
     font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     font-weight: 300;
-    color: #a5a5a5;
+    color: var(--color-line-grey);
     line-height: 1;
 }
 
@@ -5121,7 +5159,7 @@ div.toneka-playlist[data-visible="true"] {
     left: 0;
     right: 0;
     height: 1.4px;
-    background: rgba(217, 217, 217, 0.4);
+    background: var(--color-line-grey);
     border-radius: 20px;
 }
 
@@ -5183,8 +5221,8 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-control-btn:hover {
-    background: #ffffff!important;
-    color: #000000!important;
+    background: var(--color-white) !important;
+    color: var(--color-black)!important;
     transform: scale(1.1);
 }
 
@@ -5197,7 +5235,7 @@ div.toneka-playlist[data-visible="true"] {
 
 .toneka-control-btn:hover svg {
     opacity: 1;
-    fill: #000000!important;
+    fill: var(--color-black) !important;
 }
 
 /* Przycisk playlisty - upewnij się, że jest widoczny */
@@ -5208,7 +5246,7 @@ button.toneka-playlist {
 }
 
 button.toneka-playlist:hover svg rect {
-    fill: #000000 !important;
+    fill: var(--color-black) !important;
 }
 
 /* Tryb galerii - ukryj niepotrzebne kontrolki */
@@ -5225,7 +5263,7 @@ button.toneka-playlist:hover svg rect {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    background: #000;
+    background: var(--color-black);
 }
 
 .toneka-product-featured-image img {
@@ -5242,7 +5280,7 @@ button.toneka-playlist:hover svg rect {
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    scrollbar-color: var(--color-line-grey) transparent;
 }
 
 .toneka-gallery-thumbnails::-webkit-scrollbar {
@@ -5254,12 +5292,12 @@ button.toneka-playlist:hover svg rect {
 }
 
 .toneka-gallery-thumbnails::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--color-line-grey);
     border-radius: 2px;
 }
 
 .toneka-gallery-thumbnails::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--color-line-grey);
 }
 
 .toneka-gallery-thumbnail {
@@ -5340,12 +5378,12 @@ button.toneka-playlist:hover svg rect {
     }
     
     .toneka-track-details h3.toneka-track-title {
-        font-size: clamp(0.75rem, 1.1vw, 1rem);
+        font-size: var(--font-size-md);
     }
     
     .toneka-track-details p.toneka-track-type,
     .toneka-track-time {
-        font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+        font-size: var(--font-size-xxs);
     }
     
 }
@@ -5387,7 +5425,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-figma-player.toneka-fullscreen .toneka-track-details p.toneka-track-type,
 .toneka-figma-player.toneka-fullscreen .toneka-track-time {
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
 }
 
 /* Stany playera */
@@ -5516,7 +5554,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-cart-title {
     font-family: var(--font-primary);
-    font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+    font-size: var(--font-size-xxl);
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
@@ -5532,7 +5570,7 @@ button.toneka-playlist:hover svg rect {
     display: flex;
     gap: 20px;
     padding: 20px 0;
-    border-bottom: 1px solid #7b7b7b;
+    border-bottom: 1px solid var(--color-line-grey);
     align-items: flex-start;
 }
 
@@ -5600,7 +5638,7 @@ button.toneka-playlist:hover svg rect {
 }
 
 .toneka-cart-quantity .quantity-btn:hover {
-    background: #969696;
+    background: var(--color-line-grey);
 }
 
 .toneka-cart-quantity .quantity-input {
@@ -5639,15 +5677,15 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-cart-item-variant {
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
 }
 
 .toneka-cart-item-price {
     font-family: var(--font-primary);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     font-weight: 500;
     color: var(--color-white);
 }
@@ -5661,25 +5699,25 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-cart-price-regular {
     text-decoration: line-through;
-    color: #666666;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-md);
 }
 
 .toneka-cart-price-current {
     color: var(--color-white);
     font-weight: 600;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
 }
 
 .toneka-cart-savings {
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    color: var(--color-grey);
+    font-size: var(--font-size-sm);
+    color: var(--color-line-grey);
     font-weight: 500;
 }
 
 /* Cart totals */
 .toneka-cart-totals {
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid var(--color-white);
     padding-top: 30px;
     margin-left: auto;
 }
@@ -5693,9 +5731,9 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-cart-total-savings span {
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 600;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
 }
 
@@ -5713,11 +5751,11 @@ button.toneka-playlist:hover svg rect {
     width: 100%;
     background: var(--color-white);
     color: var(--color-black);
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     padding: 15px 30px;
     border-radius: 25px;
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 500;
     text-transform: uppercase;
     text-align: center;
@@ -5740,17 +5778,17 @@ button.toneka-playlist:hover svg rect {
 .toneka-cart-actions .button {
     background: none;
     color: var(--color-white);
-    border: 1px solid #969696;
+    border: 1px solid var(--color-line-grey);
     padding: 10px 20px;
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .toneka-cart-actions .button:hover {
-    background: #969696;
+    background: var(--color-line-grey);
 }
 
 /* Responsive cart styles */
@@ -5760,7 +5798,7 @@ button.toneka-playlist:hover svg rect {
     }
     
     .toneka-cart-title {
-        font-size: clamp(1.5rem, 2.2vw, 2rem);
+        font-size: var(--font-size-xl);
         margin-bottom: 30px;
     }
     
@@ -5804,7 +5842,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-title {
     font-family: var(--font-primary);
-    font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+    font-size: var(--font-size-xxl);
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
@@ -5826,7 +5864,7 @@ button.toneka-playlist:hover svg rect {
     color: var(--color-white);
     text-transform: uppercase;
     margin-bottom: 30px;
-    border-bottom: 1px solid #7b7b7b;
+    border-bottom: 1px solid var(--color-line-grey);
     padding-bottom: 15px;
 }
 
@@ -5837,11 +5875,13 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-fields label {
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
-    color: var(--color-white);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: block;
+    font-size: var(--font-size-md);
+    color: var(--color-grey-dark) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    padding: 0 15px !important;
 }
 
 .toneka-checkout-fields input[type="text"],
@@ -5851,14 +5891,22 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-fields textarea {
     width: 100%;
     padding: 12px 15px;
-    border: none;
-    border-bottom: 1px solid #666666;
+    border: 1px solid var(--color-grey-dark);
     background: var(--color-black);
     color: var(--color-white);
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     border-radius: 0!important;
     transition: all 0.3s ease;
+}
+
+.toneka-checkout-fields input[type="text"]:hover,
+.toneka-checkout-fields input[type="email"]:hover,
+.toneka-checkout-fields input[type="tel"]:hover,
+.toneka-checkout-fields select:hover,
+.toneka-checkout-fields textarea:hover {
+    border-color: var(--color-grey-dark);
+    background: var(--color-line-grey);
 }
 
 .toneka-checkout-fields input[type="text"]:focus,
@@ -5867,25 +5915,25 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-fields select:focus,
 .toneka-checkout-fields textarea:focus {
     outline: none;
-    border-bottom-color: var(--color-white);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-grey-dark);
+    background: var(--color-line-grey);
 }
 
 /* Override autofill styles - zachowaj czarne tło */
 .toneka-checkout-fields input[type="text"]:-webkit-autofill,
 .toneka-checkout-fields input[type="email"]:-webkit-autofill,
 .toneka-checkout-fields input[type="tel"]:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
-    -webkit-text-fill-color: #ffffff !important;
-    background-color: #000000 !important;
-    color: #ffffff !important;
+    background-color: var(--color-black) !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    background-color: var(--color-black) !important;
+    color: var(--color-white) !important;
 }
 
 .toneka-checkout-fields input:focus,
 .toneka-checkout-fields select:focus,
 .toneka-checkout-fields textarea:focus {
     outline: none;
-    border-color: var(--color-black);
+    border-color: var(--color-grey-dark);
 }
 
 /* Checkout items */
@@ -5897,7 +5945,7 @@ button.toneka-playlist:hover svg rect {
     display: flex;
     gap: 15px;
     padding: 15px 0;
-    border-bottom: 1px solid #7b7b7b;
+    border-bottom: 1px solid var(--color-line-grey);
     align-items: center;
 }
 
@@ -5916,7 +5964,7 @@ button.toneka-playlist:hover svg rect {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 1px solid #969696;
+    border: 1px solid var(--color-line-grey);
 }
 
 .toneka-checkout-item-qty {
@@ -5931,7 +5979,7 @@ button.toneka-playlist:hover svg rect {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     font-weight: 600;
 }
 
@@ -5941,7 +5989,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-item-name {
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 300;
     color: var(--color-white);
     margin: 0 0 5px 0;
@@ -5949,8 +5997,8 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-item-variant {
     font-family: var(--font-primary);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-    color: var(--color-grey);
+    font-size: var(--font-size-xs);
+    color: var(--color-line-grey);
     text-transform: uppercase;
 }
 
@@ -5967,40 +6015,40 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-price-regular {
     text-decoration: line-through;
-    color: #666666;
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-sm);
 }
 
 .toneka-checkout-price-current {
     color: var(--color-white);
     font-weight: 600;
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
 }
 
 /* Checkout totals */
 .toneka-checkout-totals {
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid var(--color-white);
     padding-top: 20px;
 }
 
 .toneka-checkout-total-savings {
     margin-bottom: 15px;
     padding: 10px 12px;
-    border: 1px solid #969696;
+    border: 1px solid var(--color-line-grey);
     text-align: center;
 }
 
 .toneka-checkout-total-savings span {
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 600;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
 }
 
 .toneka-checkout-total {
     font-family: var(--font-primary);
-    font-size: clamp(1rem, 1.4vw, 1.3rem);
+    font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--color-white);
     text-align: center;
@@ -6025,11 +6073,11 @@ button.toneka-playlist:hover svg rect {
     width: 100%;
     background: var(--color-white);
     color: var(--color-black);
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     padding: 15px 30px;
     border-radius: 25px;
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 500;
     text-transform: uppercase;
     cursor: pointer;
@@ -6058,15 +6106,70 @@ button.toneka-playlist:hover svg rect {
     color: var(--color-white);
 }
 
-/* Checkbox styles - zgodne z projektem Figma */
+/* MyAccount form fields - zastosuj style produktów */
+.woocommerce-account .woocommerce-MyAccount-content input[type="text"],
+.woocommerce-account .woocommerce-MyAccount-content input[type="email"],
+.woocommerce-account .woocommerce-MyAccount-content input[type="password"],
+.woocommerce-account .woocommerce-MyAccount-content input[type="tel"],
+.woocommerce-account .woocommerce-MyAccount-content input[type="number"],
+.woocommerce-account .woocommerce-MyAccount-content input[type="url"],
+.woocommerce-account .woocommerce-MyAccount-content select,
+.woocommerce-account .woocommerce-MyAccount-content textarea {
+    background-color: var(--color-black) !important;
+    border: 1px solid var(--color-grey-dark) !important;
+    color: var(--color-white) !important;
+    padding: 12px 15px !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content input[type="text"]:hover,
+.woocommerce-account .woocommerce-MyAccount-content input[type="email"]:hover,
+.woocommerce-account .woocommerce-MyAccount-content input[type="password"]:hover,
+.woocommerce-account .woocommerce-MyAccount-content input[type="tel"]:hover,
+.woocommerce-account .woocommerce-MyAccount-content input[type="number"]:hover,
+.woocommerce-account .woocommerce-MyAccount-content input[type="url"]:hover,
+.woocommerce-account .woocommerce-MyAccount-content select:hover,
+.woocommerce-account .woocommerce-MyAccount-content textarea:hover {
+    border-color: var(--color-grey-dark) !important;
+    background: var(--color-line-grey) !important;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content input[type="text"]:focus,
+.woocommerce-account .woocommerce-MyAccount-content input[type="email"]:focus,
+.woocommerce-account .woocommerce-MyAccount-content input[type="password"]:focus,
+.woocommerce-account .woocommerce-MyAccount-content input[type="tel"]:focus,
+.woocommerce-account .woocommerce-MyAccount-content input[type="number"]:focus,
+.woocommerce-account .woocommerce-MyAccount-content input[type="url"]:focus,
+.woocommerce-account .woocommerce-MyAccount-content select:focus,
+.woocommerce-account .woocommerce-MyAccount-content textarea:focus {
+    outline: none !important;
+    border-color: var(--color-grey-dark) !important;
+    background: var(--color-line-grey) !important;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content label {
+    color: var(--color-grey-dark) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    padding: 0 15px !important;
+}
+
+/* Checkbox styles - zgodne ze stylem radio */
 input[type="checkbox"] {
     appearance: none !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     width: 18px !important;
     height: 18px !important;
-    border: 1px solid #666666 !important;
-    background: #000000 !important;
+    border: 2px solid var(--color-line-grey) !important;
+    background: var(--color-white) !important;
     border-radius: 0 !important;
     margin: 0 8px 0 0 !important;
     padding: 0 !important;
@@ -6078,8 +6181,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-    background: #000000 !important;
-    border-color: #ffffff !important;
+    background: var(--color-white) !important;
+    border-color: var(--color-white) !important;
 }
 
 input[type="checkbox"]:checked::after {
@@ -6088,34 +6191,34 @@ input[type="checkbox"]:checked::after {
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    color: #ffffff !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    color: var(--color-black) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 600 !important;
     line-height: 1 !important;
-    font-family: 'Figtree', sans-serif !important;
+    font-family: var(--font-primary) !important;
 }
 
 input[type="checkbox"]:focus {
     outline: none !important;
-    border-color: #ffffff !important;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--color-white) !important;
+    box-shadow: 0 0 0 2px var(--color-line-grey) !important;
 }
 
 input[type="checkbox"]:hover {
-    border-color: #999999 !important;
+    border-color: var(--color-white) !important;
 }
 
 /* WooCommerce checkout button styles - subtelne */
 .woocommerce-checkout .woocommerce-form button[type="submit"],
 .woocommerce-checkout .woocommerce-form .button,
 .woocommerce-checkout .woocommerce-form input[type="submit"] {
-    background: #ffffff !important;
-    border: 1px solid #ffffff !important;
-    color: #000000 !important;
+    background: var(--color-white) !important;
+    border: 1px solid var(--color-white) !important;
+    color: var(--color-black) !important;
     padding: 12px 24px !important;
     border-radius: 25px !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     cursor: pointer !important;
@@ -6127,18 +6230,18 @@ input[type="checkbox"]:hover {
 .woocommerce-checkout .woocommerce-form button[type="submit"]:hover,
 .woocommerce-checkout .woocommerce-form .button:hover,
 .woocommerce-checkout .woocommerce-form input[type="submit"]:hover {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-color: #ffffff !important;
-    color: #000000 !important;
+    background: var(--color-white) !important;
+    border-color: var(--color-white) !important;
+    color: var(--color-black) !important;
 }
 
 .woocommerce-checkout .woocommerce-form button[type="submit"]:focus,
 .woocommerce-checkout .woocommerce-form .button:focus,
 .woocommerce-checkout .woocommerce-form input[type="submit"]:focus {
     outline: none !important;
-    border-color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.8) !important;
-    color: #000000 !important;
+    border-color: var(--color-white) !important;
+    background: var(--color-line-grey) !important;
+    color: var(--color-black) !important;
 }
 
 /* WooCommerce Blocks checkout button styles - biały z zaokrąglonymi rogami jak w mini koszyku */
@@ -6147,13 +6250,13 @@ input[type="checkbox"]:hover {
 button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained,
 .wc-block-checkout__actions .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained,
 .wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained {
-    background: #ffffff !important;
-    border: 1px solid #ffffff !important;
-    color: #000000 !important;
+    background: var(--color-white) !important;
+    border: 1px solid var(--color-white) !important;
+    color: var(--color-black) !important;
     padding: 12px 24px !important;
     border-radius: 25px !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     cursor: pointer !important;
@@ -6167,9 +6270,9 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
 button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover,
 .wc-block-checkout__actions .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover,
 .wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-color: #ffffff !important;
-    color: #000000 !important;
+    background: var(--color-white) !important;
+    border-color: var(--color-white) !important;
+    color: var(--color-black) !important;
 }
 
 .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus,
@@ -6178,21 +6281,21 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
 .wc-block-checkout__actions .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus,
 .wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus {
     outline: none !important;
-    border-color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.8) !important;
-    color: #000000 !important;
+    border-color: var(--color-white) !important;
+    background: var(--color-line-grey) !important;
+    color: var(--color-black) !important;
 }
 
 /* Secondary button styles (like "Wróć do koszyka") - subtelne */
 .woocommerce-checkout .woocommerce-form .button.alt,
 .woocommerce-checkout .woocommerce-form a.button {
     background: transparent !important;
-    border: 1px solid #666666 !important;
-    color: #ffffff !important;
+    border: 1px solid var(--color-line-grey) !important;
+    color: var(--color-white) !important;
     padding: 12px 24px !important;
     border-radius: 0 !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     cursor: pointer !important;
@@ -6205,27 +6308,31 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
 
 .woocommerce-checkout .woocommerce-form .button.alt:hover,
 .woocommerce-checkout .woocommerce-form a.button:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-color: #999999 !important;
+    background: var(--color-line-grey) !important;
+    border-color: var(--color-line-grey) !important;
 }
 
 .woocommerce-checkout .woocommerce-form .button.alt:focus,
 .woocommerce-checkout .woocommerce-form a.button:focus {
     outline: none !important;
-    border-color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--color-white) !important;
+    background: var(--color-line-grey) !important;
 }
 
-/* Select dropdown styles */
+/* Select dropdown styles - wymuś custom styling we wszystkich przeglądarkach */
+.form-row select,
+.wc-block-components-select select,
+.toneka-checkout-fields select,
+.woocommerce-account .woocommerce-MyAccount-content select,
+.widget_layered_nav_filters select,
 select {
-    background: #000000 !important;
-    border: none !important;
-    border-bottom: 1px solid #666666 !important;
-    color: #ffffff !important;
+    background: var(--color-black) !important;
+    border: 1px solid var(--color-grey-dark) !important;
+    color: var(--color-white) !important;
     border-radius: 0 !important;
     padding: 12px 15px !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     transition: all 0.3s ease !important;
     appearance: none !important;
     -webkit-appearance: none !important;
@@ -6235,20 +6342,67 @@ select {
     background-position: right 15px center !important;
     background-size: 16px !important;
     padding-right: 40px !important;
+    cursor: pointer !important;
+    width: 100%; /* Ensure select takes full width of parent */
 }
 
+/* Hover and Focus States */
+.form-row select:hover,
+.wc-block-components-select select:hover,
+.toneka-checkout-fields select:hover,
+.woocommerce-account .woocommerce-MyAccount-content select:hover,
+.widget_layered_nav_filters select:hover,
+select:hover {
+    border-color: var(--color-grey-dark) !important;
+    background-color: var(--color-line-grey) !important;
+}
+
+.form-row select:focus,
+.wc-block-components-select select:focus,
+.toneka-checkout-fields select:focus,
+.woocommerce-account .woocommerce-MyAccount-content select:focus,
+.widget_layered_nav_filters select:focus,
 select:focus {
     outline: none !important;
-    border-bottom-color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--color-grey-dark) !important;
+    background-color: var(--color-line-grey) !important;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+}
+
+/* Style for dropdown options */
+select option {
+    background: var(--color-black) !important;
+    color: var(--color-white) !important;
+    padding: 12px 15px !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    border: none !important;
+}
+
+select option:hover,
+select option:focus,
+select option:checked {
+    background: var(--color-line-grey) !important;
+    color: var(--color-white) !important;
+}
+
+/* Firefox - special styles for option */
+@-moz-document url-prefix() {
+    select option {
+        background-color: var(--color-black);
+        color: var(--color-white);
+    }
+    select option:hover,
+    select option:focus {
+        background-color: var(--color-line-grey);
+    }
 }
 
 /* Label styles for checkout forms */
 .woocommerce-checkout .woocommerce-form label {
-    color: #404040 !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    color: var(--color-grey-dark) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     margin-bottom: 12px !important;
@@ -6258,9 +6412,9 @@ select:focus {
 
 /* Description text styles - szare opisy, padding jak input label */
 .woocommerce-checkout .woocommerce-form p {
-    color: #999999 !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.7rem, 1.0vw, 0.85rem) !important;
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-xs) !important;
     font-weight: 300 !important;
     margin-bottom: 16px !important;
     line-height: 1.4 !important;
@@ -6270,9 +6424,9 @@ select:focus {
 /* Section headings - białe tytuły */
 .woocommerce-checkout .woocommerce-form h2,
 .woocommerce-checkout .woocommerce-form h3 {
-    color: #ffffff !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem) !important;
+    color: var(--color-white) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-base) !important;
     font-weight: 500 !important;
     text-transform: uppercase !important;
     margin-bottom: 16px !important;
@@ -6295,9 +6449,9 @@ select:focus {
     gap: 0 !important;
     margin-bottom: 0 !important;
     cursor: pointer !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
-    color: #999999 !important;
-    font-family: 'Figtree', sans-serif !important;
+    font-size: var(--font-size-md) !important;
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
     font-weight: 300 !important;
     text-transform: none !important;
     line-height: 1.4 !important;
@@ -6310,9 +6464,9 @@ select:focus {
     gap: 0 !important;
     margin-bottom: 0 !important;
     cursor: pointer !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
-    color: #999999 !important;
-    font-family: 'Figtree', sans-serif !important;
+    font-size: var(--font-size-md) !important;
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
     font-weight: 300 !important;
     text-transform: none !important;
     line-height: 1.4 !important;
@@ -6320,14 +6474,13 @@ select:focus {
 
 /* Textarea styles for order notes - subtelne */
 textarea {
-    background: #000000 !important;
-    border: none !important;
-    border-bottom: 1px solid #666666 !important;
-    color: #ffffff !important;
+    background: var(--color-black) !important;
+    border: 1px solid var(--color-grey-dark) !important;
+    color: var(--color-white) !important;
     border-radius: 0 !important;
     padding: 12px 15px !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     transition: all 0.3s ease !important;
     resize: vertical !important;
     min-height: 100px !important;
@@ -6336,14 +6489,14 @@ textarea {
 
 textarea:focus {
     outline: none !important;
-    border-bottom-color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--color-grey-dark) !important;
+    background: var(--color-line-grey) !important;
 }
 
 textarea::placeholder {
-    color: #666666 !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 300 !important;
 }
 
@@ -6352,13 +6505,13 @@ textarea::placeholder {
 .wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained,
 .wc-block-checkout__actions .wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained,
 .wc-block-checkout__actions button.wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained {
-    background: #ffffff !important;
-    border: 1px solid #ffffff !important;
-    color: #000000 !important;
+    background: var(--color-white) !important;
+    border: 1px solid var(--color-white) !important;
+    color: var(--color-black) !important;
     padding: 12px 24px !important;
     border-radius: 25px !important;
-    font-family: 'Figtree', sans-serif !important;
-    font-size: clamp(0.75rem, 1.1vw, 1rem) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     cursor: pointer !important;
@@ -6371,9 +6524,9 @@ textarea::placeholder {
 .wc-block-checkout__actions button.wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:hover,
 .wc-block-checkout__actions .wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained:hover,
 .wc-block-checkout__actions button.wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained:hover {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-color: #ffffff !important;
-    color: #000000 !important;
+    background: var(--color-white) !important;
+    border-color: var(--color-white) !important;
+    color: var(--color-black) !important;
 }
 
 .wc-block-checkout__actions .wc-block-components-button.wp-element-button.wc-block-components-checkout-place-order-button.contained:focus,
@@ -6381,16 +6534,16 @@ textarea::placeholder {
 .wc-block-checkout__actions .wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained:focus,
 .wc-block-checkout__actions button.wc-block-components-checkout-place-order-button.wc-block-components-button.wp-element-button.contained:focus {
     outline: none !important;
-    border-color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.8) !important;
-    color: #000000 !important;
+    border-color: var(--color-white) !important;
+    background: var(--color-line-grey) !important;
+    color: var(--color-black) !important;
 }
 
 .woocommerce-account h2,
 .woocommerce-form-login h2,
 .woocommerce-form-register h2 {
     font-family: var(--font-primary);
-    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-size: var(--font-size-xl);
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
@@ -6404,60 +6557,90 @@ textarea::placeholder {
 
 .woocommerce-form-row label {
     font-family: var(--font-primary);
-    font-size: clamp(0.6rem, 1.0vw, 0.8rem);
-    color: #7B7B7B;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: block;
+    font-size: var(--font-size-md);
+    color: var(--color-grey-dark) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    padding: 0 15px !important;
 }
 
 .woocommerce-form-row input[type="text"],
 .woocommerce-form-row input[type="email"],
-.woocommerce-form-row input[type="password"] {
+.woocommerce-form-row input[type="password"],
+.woocommerce-form-row input[type="tel"],
+.woocommerce-form-row input[type="number"],
+.woocommerce-form-row input[type="url"],
+.woocommerce-form-row select,
+.woocommerce-form-row textarea {
     width: 100%;
     padding: 12px 15px;
-    border: none;
-    border-bottom: 1px solid #666666;
+    border: 1px solid var(--color-grey-dark);
     background: var(--color-black);
     color: var(--color-white);
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     border-radius: 0!important;
     transition: all 0.3s ease;
 }
 
+.woocommerce-form-row input[type="text"]:hover,
+.woocommerce-form-row input[type="email"]:hover,
+.woocommerce-form-row input[type="password"]:hover,
+.woocommerce-form-row input[type="tel"]:hover,
+.woocommerce-form-row input[type="number"]:hover,
+.woocommerce-form-row input[type="url"]:hover,
+.woocommerce-form-row select:hover,
+.woocommerce-form-row textarea:hover {
+    border-color: var(--color-grey-dark);
+    background: var(--color-line-grey);
+}
+
 .woocommerce-form-row input[type="text"]:focus,
 .woocommerce-form-row input[type="email"]:focus,
-.woocommerce-form-row input[type="password"]:focus {
+.woocommerce-form-row input[type="password"]:focus,
+.woocommerce-form-row input[type="tel"]:focus,
+.woocommerce-form-row input[type="number"]:focus,
+.woocommerce-form-row input[type="url"]:focus,
+.woocommerce-form-row select:focus,
+.woocommerce-form-row textarea:focus {
     outline: none;
-    border-bottom-color: var(--color-white);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-grey-dark);
+    background: var(--color-line-grey);
 }
 
 /* Override autofill styles - zachowaj czarne tło */
 .woocommerce-form-row input[type="text"]:-webkit-autofill,
 .woocommerce-form-row input[type="email"]:-webkit-autofill,
-.woocommerce-form-row input[type="password"]:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
-    -webkit-text-fill-color: #ffffff !important;
-    background-color: #000000 !important;
-    color: #ffffff !important;
+.woocommerce-form-row input[type="password"]:-webkit-autofill,
+.woocommerce-form-row input[type="tel"]:-webkit-autofill,
+.woocommerce-form-row input[type="number"]:-webkit-autofill,
+.woocommerce-form-row input[type="url"]:-webkit-autofill,
+.woocommerce-form-row select:-webkit-autofill,
+.woocommerce-form-row textarea:-webkit-autofill {
+    background-color: var(--color-black) !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    background-color: var(--color-black) !important;
+    color: var(--color-white) !important;
 }
 
-.woocommerce-form-row input:focus {
+.woocommerce-form-row input:focus,
+.woocommerce-form-row select:focus,
+.woocommerce-form-row textarea:focus {
     outline: none;
-    border-color: var(--color-black);
+    border-color: var(--color-grey-dark);
 }
 
 .woocommerce-Button {
     width: 100%;
     background: var(--color-white);
     color: var(--color-black);
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     padding: 15px 30px;
     border-radius: 25px;
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 500;
     text-transform: uppercase;
     cursor: pointer;
@@ -6478,7 +6661,7 @@ textarea::placeholder {
     }
     
     .toneka-checkout-title {
-        font-size: clamp(1.5rem, 2.2vw, 2rem);
+        font-size: var(--font-size-xl);
     }
     
     .toneka-checkout-item {
@@ -6516,7 +6699,7 @@ textarea::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1a1a1a;
+    background: var(--color-grey-dark);
 }
 
 .toneka-placeholder-content {
@@ -6527,7 +6710,7 @@ textarea::placeholder {
     font-family: var(--font-primary);
     font-size: clamp(2.2rem, 3.3vw, 3rem);
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--color-line-grey);
     text-transform: uppercase;
 }
 
@@ -6538,9 +6721,9 @@ textarea::placeholder {
 .toneka-creators-archive-description {
     margin: 30px 0;
     font-family: var(--font-primary);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-line-grey);
 }
 
 /* Creators list styles */
@@ -6556,7 +6739,7 @@ textarea::placeholder {
 }
 
 .toneka-creator-item {
-    border-bottom: 1px solid #7b7b7b;
+    border-bottom: 1px solid var(--color-line-grey);
     padding: 40px 0;
     transition: all 0.3s ease;
 }
@@ -6574,7 +6757,7 @@ textarea::placeholder {
 
 .toneka-creator-name {
     font-family: var(--font-primary);
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-size: var(--font-size-base);
     font-weight: 300;
     margin: 0;
     line-height: 1.2;
@@ -6591,17 +6774,17 @@ textarea::placeholder {
 }
 
 .toneka-creator-function {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    color: var(--color-line-grey);
+    font-size: var(--font-size-xs);
     font-weight: 300;
     margin-left: 20px;
 }
 
 .toneka-creator-excerpt {
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-line-grey);
 }
 
 .toneka-creator-excerpt p {
@@ -6624,28 +6807,23 @@ textarea::placeholder {
     justify-content: center;
     gap: 15px;
     font-family: var(--font-primary);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-line-grey);
 }
 
 .toneka-spinner {
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-top: 2px solid rgba(255, 255, 255, 0.6);
+    border: 2px solid var(--color-line-grey);
+    border-top: 2px solid var(--color-line-grey);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 .toneka-creators-end {
     text-align: center;
     padding: 40px 0;
     font-family: var(--font-primary);
-    color: rgba(255, 255, 255, 0.4);
+    background: var(--color-line-grey);
     font-style: italic;
 }
 
@@ -6653,18 +6831,18 @@ textarea::placeholder {
     text-align: center;
     padding: 80px 0;
     font-family: var(--font-primary);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-line-grey);
 }
 
 /* Responsive styles for creators archive */
 @media (max-width: 768px) {
     .toneka-creators-archive-description {
-        font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+        font-size: var(--font-size-sm);
         margin: 20px 0;
     }
     
     .toneka-creators-archive-content {
-        border-top: 1px solid #ffffff;
+        border-top: 1px solid var(--color-white);
         padding: 40px 15px;
     }
     
@@ -6677,7 +6855,7 @@ textarea::placeholder {
     }
     
     .toneka-creator-function {
-        font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+        font-size: var(--font-size-xs);
         margin-left: 10px;
         display: block;
         margin-top: 5px;
@@ -6685,7 +6863,7 @@ textarea::placeholder {
     }
     
     .toneka-creator-excerpt {
-        font-size: clamp(0.75rem, 1.1vw, 1rem);
+        font-size: var(--font-size-md);
     }
 }
 
@@ -6699,7 +6877,7 @@ textarea::placeholder {
 .toneka-creator-placeholder {
     width: 100%;
     height: 100%;
-    background: #333;
+    background: var(--color-grey-dark);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6711,9 +6889,9 @@ textarea::placeholder {
 
 .toneka-creator-role-text {
     font-family: var(--font-primary);
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
     margin: 0;
 }
@@ -6722,16 +6900,16 @@ textarea::placeholder {
 .toneka-creator-title-addon {
     font-weight: 300;
     font-size: 0.6em;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     margin-left: 40px;
     display: inline-block;
 }
 
 .toneka-creator-title-right {
     font-family: var(--font-primary);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     font-weight: 300;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     text-transform: uppercase;
 }
 
@@ -6746,7 +6924,7 @@ textarea::placeholder {
 }
 
 .toneka-creator-description {
-    font-size: clamp(0.65rem, 1.0vw, 0.9rem);
+    font-size: var(--font-size-sm);
     font-weight: 300;
     color: var(--color-white);
     line-height: 1.7;
@@ -6777,7 +6955,7 @@ textarea::placeholder {
 }
 
 .toneka-portfolio-item:hover {
-    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px var(--color-line-grey);
 }
 
 .toneka-portfolio-link {
@@ -6807,12 +6985,12 @@ textarea::placeholder {
 .toneka-portfolio-placeholder {
     width: 100%;
     height: 100%;
-    background: #333;
+    background: var(--color-grey-dark);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-primary);
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: var(--font-size-xs);
     font-weight: 300;
     color: var(--color-white);
     text-align: center;
@@ -6827,9 +7005,9 @@ textarea::placeholder {
 
 .toneka-no-portfolio p {
     font-family: var(--font-primary);
-    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    font-size: var(--font-size-md);
     font-weight: 300;
-    color: var(--color-grey);
+    color: var(--color-line-grey);
     margin: 0;
 }
 
@@ -6914,7 +7092,7 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link),
     justify-content: center;
     gap: 10px;
     padding: 12px 28px;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--color-white);
     border-radius: 9999px;
     background: var(--color-black);
     color: var(--color-white);
@@ -6962,10 +7140,10 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
     transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid var(--color-line-grey);
     border-top-color: var(--color-white);
     border-radius: 50%;
-    animation: toneka-loader-pulse 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: toneka-loader-pulse var(--transition-loader) cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
 @keyframes toneka-loader-pulse {
@@ -7009,10 +7187,10 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
     transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid var(--color-line-grey);
     border-top-color: var(--color-white);
     border-radius: 50%;
-    animation: toneka-loader-pulse 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: toneka-loader-pulse var(--transition-loader) cubic-bezier(0.5, 0, 0.5, 1) infinite;
     z-index: 10;
 }
 
@@ -7032,10 +7210,10 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
     transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid var(--color-line-grey);
     border-top-color: var(--color-white);
     border-radius: 50%;
-    animation: toneka-loader-pulse 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: toneka-loader-pulse var(--transition-loader) cubic-bezier(0.5, 0, 0.5, 1) infinite;
     z-index: 10;
 }
 
@@ -7046,4 +7224,152 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
 
 .toneka-player-lazy-wrapper.toneka-loaded .toneka-figma-player.toneka-player-visible {
     opacity: 1;
+}
+
+/* Custom Select Dropdown Styles */
+.custom-select-container {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select-trigger {
+    background: var(--color-black);
+    border: 1px solid var(--color-grey-dark);
+    color: var(--color-white);
+    border-radius: 0;
+    padding: 12px 15px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    padding-right: 40px;
+}
+
+.custom-select-trigger::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-50%);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;
+}
+
+.custom-select-container:hover .custom-select-trigger {
+    border-color: var(--color-grey-dark);
+    background: var(--color-grey-dark);
+}
+
+.custom-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-black);
+    border: 1px solid var(--color-grey-dark);
+    border-top: none;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+.custom-select-option {
+    padding: 12px 15px;
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-select-option:hover,
+.custom-select-option.selected {
+    background-color: var(--color-line-grey);
+}
+
+select.custom-select-hidden {
+    display: none !important;
+}
+
+/* Cleanup old select styles */
+select {
+   /* appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: none !important; */
+}
+select option,
+select option:hover,
+select option:focus,
+select option:checked {
+    /* Remove old option styles as they are not needed anymore */
+}
+
+/* Firefox - special styles for option */
+@-moz-document url-prefix() {
+    select option,
+    select option:hover,
+    select option:focus {
+        /* Remove old option styles as they are not needed anymore */
+    }
+}
+
+/* -- START: Wyłączenie pływających etykiet i styl dla placeholderów -- */
+/* Wymuszenie statycznej pozycji dla etykiet, które normalnie "pływają" */
+.wc-block-components-text-input--floating .wc-block-components-text-input__label {
+    position: static !important;
+    transform: none !important;
+    padding: 0 15px !important;
+    margin-bottom: 12px !important;
+    font-size: var(--font-size-md) !important;
+}
+
+/* Dostosowanie paddingu pól, które miały pływające etykiety */
+.wc-block-components-text-input--floating input {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+/* Globalne style dla placeholderów w formularzach blokowych */
+.wc-block-components-form ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--color-line-grey);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.wc-block-components-form ::-moz-placeholder { /* Firefox 19+ */
+  color: var(--color-line-grey);
+  text-transform: uppercase;
+  font-weight: 400;
+  opacity: 1;
+}
+.wc-block-components-form :-ms-input-placeholder { /* IE 10+ */
+  color: var(--color-line-grey);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.wc-block-components-form :-moz-placeholder { /* Firefox 18- */
+  color: var(--color-line-grey);
+  text-transform: uppercase;
+  font-weight: 400;
+  opacity: 1;
+}
+/* -- END: Wyłączenie pływających etykiet i styl dla placeholderów -- */
+
+/* WooCommerce Blocks section headings - białe tytuły, padding */
+.wc-block-components-form h2,
+.wc-block-components-form h3 {
+    color: var(--color-white) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-base) !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 16px !important;
+    padding: 0 15px !important;
 }
