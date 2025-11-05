@@ -4018,6 +4018,32 @@ add_filter('post_link', 'toneka_change_checkout_permalink', 10, 2);
 add_filter('page_link', 'toneka_change_checkout_permalink', 10, 2);
 
 /**
+ * Change WooCommerce my account page slug to "moje-konto"
+ */
+function toneka_change_myaccount_permalink($permalink, $post) {
+    if (!function_exists('wc_get_page_id')) {
+        return $permalink;
+    }
+    
+    // Handle both WP_Post object and post ID
+    $post_id = is_object($post) ? $post->ID : (int)$post;
+    
+    if (!$post_id) {
+        return $permalink;
+    }
+    
+    $myaccount_page_id = wc_get_page_id('myaccount');
+    
+    if ($myaccount_page_id && $myaccount_page_id > 0 && $post_id == $myaccount_page_id) {
+        $permalink = home_url('/moje-konto/');
+    }
+    
+    return $permalink;
+}
+add_filter('post_link', 'toneka_change_myaccount_permalink', 10, 2);
+add_filter('page_link', 'toneka_change_myaccount_permalink', 10, 2);
+
+/**
  * Change WooCommerce cart page slug to "koszyk"
  */
 function toneka_change_cart_permalink($permalink, $post) {
@@ -4053,6 +4079,7 @@ function toneka_add_woocommerce_rewrite_rules() {
     
     $checkout_page_id = wc_get_page_id('checkout');
     $cart_page_id = wc_get_page_id('cart');
+    $myaccount_page_id = wc_get_page_id('myaccount');
     
     if ($checkout_page_id && $checkout_page_id > 0) {
         add_rewrite_rule('^kasa/?$', 'index.php?page_id=' . $checkout_page_id, 'top');
@@ -4061,6 +4088,11 @@ function toneka_add_woocommerce_rewrite_rules() {
     
     if ($cart_page_id && $cart_page_id > 0) {
         add_rewrite_rule('^koszyk/?$', 'index.php?page_id=' . $cart_page_id, 'top');
+    }
+    
+    if ($myaccount_page_id && $myaccount_page_id > 0) {
+        add_rewrite_rule('^moje-konto/?$', 'index.php?page_id=' . $myaccount_page_id, 'top');
+        add_rewrite_rule('^moje-konto/(.+)/?$', 'index.php?page_id=' . $myaccount_page_id . '&$matches[1]', 'top');
     }
 }
 add_action('init', 'toneka_add_woocommerce_rewrite_rules', 20);
@@ -4072,6 +4104,21 @@ function toneka_woocommerce_checkout_url($url) {
     return home_url('/kasa/');
 }
 add_filter('woocommerce_get_checkout_url', 'toneka_woocommerce_checkout_url');
+
+/**
+ * Change WooCommerce my account URL
+ */
+function toneka_woocommerce_myaccount_url($url) {
+    return home_url('/moje-konto/');
+}
+add_filter('woocommerce_get_myaccount_page_id', 'toneka_woocommerce_myaccount_url');
+add_filter('wc_get_page_permalink', function($permalink, $page) {
+    if ($page === 'myaccount') {
+        return home_url('/moje-konto/');
+    }
+    return $permalink;
+}, 10, 2);
+add_filter('woocommerce_get_myaccount_page_permalink', 'toneka_woocommerce_myaccount_url');
 
 /**
  * Change WooCommerce cart URL
@@ -4091,6 +4138,7 @@ function toneka_setup_woocommerce_pages() {
     
     $checkout_page_id = wc_get_page_id('checkout');
     $cart_page_id = wc_get_page_id('cart');
+    $myaccount_page_id = wc_get_page_id('myaccount');
     
     if ($checkout_page_id && $checkout_page_id > 0) {
         $checkout_page = get_post($checkout_page_id);
@@ -4112,8 +4160,18 @@ function toneka_setup_woocommerce_pages() {
         }
     }
     
+    if ($myaccount_page_id && $myaccount_page_id > 0) {
+        $myaccount_page = get_post($myaccount_page_id);
+        if ($myaccount_page && $myaccount_page->post_name !== 'moje-konto') {
+            wp_update_post(array(
+                'ID' => $myaccount_page_id,
+                'post_name' => 'moje-konto'
+            ));
+        }
+    }
+    
     // Flush rewrite rules only if pages exist
-    if (($checkout_page_id && $checkout_page_id > 0) || ($cart_page_id && $cart_page_id > 0)) {
+    if (($checkout_page_id && $checkout_page_id > 0) || ($cart_page_id && $cart_page_id > 0) || ($myaccount_page_id && $myaccount_page_id > 0)) {
         flush_rewrite_rules(false);
     }
 }
@@ -4159,6 +4217,37 @@ function toneka_force_checkout_template($template) {
     return $template;
 }
 add_filter('template_include', 'toneka_force_checkout_template', 99);
+
+/**
+ * Make WooCommerce recognize "moje-konto" page as my account
+ */
+function toneka_register_moje_konto_as_myaccount() {
+    if (!function_exists('wc_get_page_id')) {
+        return;
+    }
+    
+    $myaccount_page_id = wc_get_page_id('myaccount');
+    
+    if ($myaccount_page_id && $myaccount_page_id > 0) {
+        // Get current page
+        $current_page_id = get_queried_object_id();
+        $pagename = get_query_var('pagename');
+        
+        // Check if we're on my account page by ID or slug
+        if ($current_page_id == $myaccount_page_id || $pagename === 'moje-konto' || (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/moje-konto/') !== false)) {
+            // Force WooCommerce to recognize this as my account page
+            add_filter('woocommerce_is_account_page', '__return_true');
+            
+            // Set body class
+            add_filter('body_class', function($classes) {
+                $classes[] = 'woocommerce-account';
+                $classes[] = 'woocommerce-page';
+                return $classes;
+            });
+        }
+    }
+}
+add_action('wp', 'toneka_register_moje_konto_as_myaccount', 5);
 
 /**
  * Make WooCommerce recognize "kasa" page as checkout
