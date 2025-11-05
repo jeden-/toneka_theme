@@ -28,7 +28,7 @@ $allowed_html = array(
 		printf(
 			/* translators: 1: user display name 2: logout url */
 			wp_kses( __( 'Witaj %1$s (nie jesteś %1$s? <a href="%2$s">Wyloguj się</a>)', 'woocommerce' ), $allowed_html ),
-			'<strong>' . esc_html( wp_get_current_user()->display_name ) . '</strong>',
+			'<strong>' . esc_html( $current_user->display_name ) . '</strong>',
 			esc_url( wc_logout_url() )
 		);
 		?>
