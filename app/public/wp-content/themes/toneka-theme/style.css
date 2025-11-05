@@ -7880,3 +7880,631 @@ select option:checked {
     margin-bottom: 16px !important;
     padding: 0 15px !important;
 }
+
+/* ==========================================================================
+   MY ACCOUNT & LOGIN/REGISTER PAGES
+   ========================================================================== */
+
+/* My Account Page Container */
+.toneka-myaccount-page {
+    background: var(--color-black);
+    min-height: 100vh;
+    padding: 100px 0 50px 0;
+}
+
+.toneka-myaccount-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Login/Register Grid */
+.toneka-login-register-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.toneka-login-single {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Section Titles */
+.toneka-section-title {
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+}
+
+/* My Account Form Styles */
+.toneka-myaccount-form .form-row {
+    margin-bottom: 20px;
+}
+
+.toneka-myaccount-form label {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-grey-dark) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    padding: 0 15px !important;
+}
+
+.toneka-myaccount-form input[type="text"],
+.toneka-myaccount-form input[type="email"],
+.toneka-myaccount-form input[type="password"],
+.toneka-myaccount-form select,
+.toneka-myaccount-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-grey-dark);
+    background: var(--color-black);
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.toneka-myaccount-form input[type="text"]:hover,
+.toneka-myaccount-form input[type="email"]:hover,
+.toneka-myaccount-form input[type="password"]:hover,
+.toneka-myaccount-form select:hover,
+.toneka-myaccount-form textarea:hover {
+    border-color: var(--color-grey-dark);
+    background: var(--color-line-grey);
+}
+
+.toneka-myaccount-form input[type="text"]:focus,
+.toneka-myaccount-form input[type="email"]:focus,
+.toneka-myaccount-form input[type="password"]:focus,
+.toneka-myaccount-form select:focus,
+.toneka-myaccount-form textarea:focus {
+    outline: none;
+    border-color: var(--color-grey-dark);
+    background: var(--color-line-grey);
+}
+
+/* Autofill styles */
+.toneka-myaccount-form input[type="text"]:-webkit-autofill,
+.toneka-myaccount-form input[type="email"]:-webkit-autofill,
+.toneka-myaccount-form input[type="password"]:-webkit-autofill {
+    background-color: var(--color-black) !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    color: var(--color-white) !important;
+}
+
+/* Checkbox styles */
+.toneka-myaccount-form .form-row-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.toneka-myaccount-form .form-row-checkbox label {
+    display: flex !important;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-transform: none !important;
+    color: var(--color-white) !important;
+}
+
+.toneka-myaccount-form .form-row-checkbox input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Button styles */
+.toneka-button {
+    padding: 12px 30px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 1px solid var(--color-white);
+    background: none;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.toneka-button:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+.toneka-button-primary {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Lost password link */
+.toneka-myaccount-form .lost_password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.toneka-myaccount-form .lost_password a {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    color: var(--color-grey-dark);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.toneka-myaccount-form .lost_password a:hover {
+    color: var(--color-white);
+}
+
+/* WooCommerce Account Dashboard */
+.woocommerce-account .woocommerce-MyAccount-navigation {
+    background: transparent;
+    border: 1px solid var(--color-line-grey);
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation li {
+    border-bottom: 1px solid var(--color-line-grey);
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation li:last-child {
+    border-bottom: none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a {
+    display: block;
+    padding: 15px 20px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-white);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a:hover,
+.woocommerce-account .woocommerce-MyAccount-navigation li.is-active a {
+    background: var(--color-line-grey);
+    color: var(--color-white);
+}
+
+.woocommerce-account .woocommerce-MyAccount-content {
+    background: transparent;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content h2,
+.woocommerce-account .woocommerce-MyAccount-content h3 {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content p {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+}
+
+/* WooCommerce Notices on My Account pages */
+.woocommerce-account .woocommerce-message,
+.woocommerce-account .woocommerce-error,
+.woocommerce-account .woocommerce-info {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+    border-color: var(--color-line-grey);
+    background: var(--color-line-grey);
+}
+
+/* Address & Order tables */
+.woocommerce-account table.my_account_orders,
+.woocommerce-account table.woocommerce-table--order-details {
+    border: 1px solid var(--color-line-grey);
+}
+
+.woocommerce-account table.my_account_orders th,
+.woocommerce-account table.my_account_orders td,
+.woocommerce-account table.woocommerce-table--order-details th,
+.woocommerce-account table.woocommerce-table--order-details td {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+    border-color: var(--color-line-grey);
+}
+
+.woocommerce-account table.my_account_orders thead th,
+.woocommerce-account table.woocommerce-table--order-details thead th {
+    background: var(--color-line-grey);
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* Addresses */
+.woocommerce-Address address {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+    font-style: normal;
+}
+
+.woocommerce-Address-title h3 {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .toneka-login-register-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .toneka-myaccount-page {
+        padding: 80px 0 30px 0;
+    }
+    
+    .toneka-myaccount-container {
+        padding: 0 15px;
+    }
+}
+
+/* ==========================================================================
+   THANK YOU PAGE ENHANCEMENTS
+   ========================================================================== */
+
+/* Thank You Page Container */
+.toneka-thankyou-page {
+    background: var(--color-black);
+    min-height: 100vh;
+    padding: 100px 0 50px 0;
+}
+
+.toneka-thankyou-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 5%;
+    text-align: center;
+}
+
+/* Thank You Title */
+.toneka-thankyou-title {
+    font-family: var(--font-primary);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Order Details */
+.toneka-order-details {
+    background: transparent;
+    border: 1px solid var(--color-line-grey);
+    padding: 30px;
+    margin: 40px 0;
+}
+
+.toneka-order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.toneka-order-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-line-grey);
+}
+
+.toneka-order-info-row:last-child {
+    border-bottom: none;
+}
+
+.toneka-order-info-label {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-grey-dark);
+    text-transform: uppercase;
+}
+
+.toneka-order-info-value {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-white);
+    font-weight: 400;
+}
+
+/* Thank You Actions */
+.toneka-thankyou-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.toneka-my-account-button,
+.toneka-continue-shopping-button,
+.toneka-retry-payment-button {
+    padding: 12px 30px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 1px solid var(--color-white);
+    background: none;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.toneka-my-account-button:hover,
+.toneka-continue-shopping-button:hover,
+.toneka-retry-payment-button:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+/* WooCommerce Notices on Thank You page */
+.toneka-thankyou-page .woocommerce-notice {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+    background: transparent;
+    border: 1px solid var(--color-line-grey);
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.toneka-thankyou-page .woocommerce-notice--success {
+    border-color: var(--color-white);
+}
+
+.toneka-thankyou-page .woocommerce-notice--error {
+    border-color: #ff4444;
+    color: #ff4444;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .toneka-thankyou-actions {
+        flex-direction: column;
+    }
+    
+    .toneka-my-account-button,
+    .toneka-continue-shopping-button,
+    .toneka-retry-payment-button {
+        width: 100%;
+    }
+    
+    .toneka-order-info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* ==========================================================================
+   UNIFIED HEADINGS & FORM STYLES
+   ========================================================================== */
+
+/* Global WooCommerce Page Titles */
+.woocommerce h1,
+.woocommerce h2,
+.woocommerce h3 {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+}
+
+.woocommerce h1 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-bottom: 30px;
+}
+
+.woocommerce h2 {
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.woocommerce h3 {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    margin-bottom: 20px;
+}
+
+/* Global WooCommerce Forms */
+.woocommerce form .form-row,
+.woocommerce-form .form-row {
+    margin-bottom: 20px;
+}
+
+.woocommerce form label,
+.woocommerce-form label {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-grey-dark);
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+}
+
+/* Global WooCommerce Buttons */
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce a.button,
+.woocommerce .button {
+    padding: 12px 30px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 1px solid var(--color-white);
+    background: none;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 0;
+}
+
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce a.button:hover,
+.woocommerce .button:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+/* Global WooCommerce Notices */
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+    background: transparent;
+    border: 1px solid var(--color-line-grey);
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+
+.woocommerce-message {
+    border-color: var(--color-white);
+}
+
+.woocommerce-error {
+    border-color: #ff4444;
+    color: #ff4444;
+}
+
+.woocommerce-info {
+    border-color: var(--color-grey-dark);
+}
+
+/* Lost Password Page */
+.woocommerce-lost-password h2,
+.woocommerce-ResetPassword h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* Edit Account / Edit Address Forms */
+.woocommerce-EditAccountForm,
+.woocommerce-Address-edit {
+    background: transparent;
+}
+
+.woocommerce-EditAccountForm h3,
+.woocommerce-Address-edit h3 {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* View Order Page */
+.woocommerce-order-details h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.woocommerce-order-details table {
+    border: 1px solid var(--color-line-grey);
+}
+
+.woocommerce-order-details table th,
+.woocommerce-order-details table td {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+    border-color: var(--color-line-grey);
+}
+
+.woocommerce-order-details table thead th {
+    background: var(--color-line-grey);
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* Customer Details */
+.woocommerce-customer-details h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.woocommerce-customer-details address {
+    font-family: var(--font-primary);
+    color: var(--color-white);
+    font-style: normal;
+}
+
+/* Downloads Page */
+.woocommerce-Downloads h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* Payment Methods Page */
+.woocommerce-PaymentMethods h2 {
+    font-family: var(--font-primary);
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-line-grey);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
