@@ -277,7 +277,9 @@ p, span, div, a, button, input, textarea, select,
 
 del {
     color: var(--color-line-grey);
-    padding-right: 10px;
+    padding-right: var(--spacing-xs);
+    font-weight: 300;
+    font-size: var(--font-size-md);
 }
 
 ins {
@@ -1550,7 +1552,7 @@ ol, ul {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: var(--color-grey-dark);
+    background: var(--color-black);
     z-index: 9998;
     opacity: 0;
     visibility: hidden;
@@ -1558,7 +1560,7 @@ ol, ul {
 }
 
 .toneka-minicart-overlay.is-active {
-    opacity: 1;
+    opacity: 0.65;
     visibility: visible;
 }
 
@@ -1647,6 +1649,7 @@ ol, ul {
 .toneka-minicart-items {
     flex: 1;
     margin-bottom: 30px;
+    overflow: visible;
 }
 
 .toneka-minicart-item {
@@ -1662,8 +1665,8 @@ ol, ul {
 }
 
 .toneka-minicart-item-image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     flex-shrink: 0;
 }
 
@@ -1679,12 +1682,49 @@ ol, ul {
     flex-direction: row;
     gap: 5%;
     align-items: flex-start;
+    position: relative;
+    z-index: 1;
 }
 
-.toneka-minicart-item-details {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+/* Tooltip positioning for minicart - use JavaScript to position */
+.toneka-minicart .toneka-attribute-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.toneka-minicart .toneka-attribute-value[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    padding: 12px 16px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    text-transform: none;
+    white-space: nowrap;
+    max-width: 300px;
+    white-space: normal;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.toneka-minicart .toneka-attribute-value[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2px;
+    border: 6px solid transparent;
+    border-top-color: var(--color-white);
+    z-index: 100000;
+    pointer-events: none;
 }
 
 .toneka-minicart-item-header {
@@ -1697,18 +1737,18 @@ ol, ul {
 
 .toneka-minicart-remove {
     background: none;
-    border: 1px solid var(--color-grey-dark)!important;
+    border: 1px solid var(--color-white)!important;
     color: var(--color-white);
     cursor: pointer;
-    padding: 4px;
-    opacity: 0.7;
+    padding: 11px!important;
+    opacity: 1;
     order: 1;
     transition: opacity 0.3s ease;
 }
 
 .toneka-minicart-remove:hover {
     opacity: 1;
-    background: var(--color-grey-dark)!important;
+    background: var(--color-white)!important;
 }
 
 .toneka-minicart-remove svg {
@@ -1782,12 +1822,71 @@ ol, ul {
     line-height: 1.2;
 }
 
-.toneka-minicart-item-variant {
+.toneka-minicart-item-variant,
+.toneka-variation-attributes {
     font-family: var(--font-primary);
     font-size: var(--font-size-xs);
     color: var(--color-line-grey);
     text-transform: uppercase;
     margin: 2px 0;
+}
+
+.toneka-variation-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.toneka-attribute-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.toneka-attribute-value {
+    cursor: help;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+}
+
+.toneka-attribute-value:hover {
+    text-decoration: underline;
+}
+
+.toneka-attribute-value[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    padding: 12px 16px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    text-transform: none;
+    white-space: nowrap;
+    max-width: 300px;
+    white-space: normal;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.toneka-attribute-value[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2px;
+    border: 6px solid transparent;
+    border-top-color: var(--color-white);
+    z-index: 100000;
+    pointer-events: none;
 }
 
 .toneka-minicart-item-price {
@@ -2626,10 +2725,10 @@ ol, ul {
     max-height: 0;
     overflow: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 0.5), 
+                /* max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),  */
+                /* transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), */
+                /* margin 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
 }
 
 .toneka-variation-description-inline.active {
@@ -2924,8 +3023,16 @@ ol, ul {
 
 .toneka-track-info {
     text-align: left;
-    padding-left: 1%;
-    padding-right: 1%;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
+.toneka-track-details {
+    padding-left: var(--spacing-xs);
+}
+
+.toneka-track-time {
+    padding-right: var(--spacing-xs);
 }
 
 .toneka-track-title {
@@ -4996,7 +5103,6 @@ div.toneka-playlist {
     z-index: 4;
     transform: translateY(100%); /* Domyślnie ukryta - wysuwa się w dół */
     transition: transform 0.3s ease;
-    border-top: 1px solid var(--color-line-grey);
     opacity: 0; /* Dodatkowe ukrycie */
     pointer-events: none; /* Wyłącz interakcje gdy ukryta */
 }
@@ -5035,18 +5141,21 @@ div.toneka-playlist[data-visible="true"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 7px 1%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .toneka-playlist-item:hover {
-    background: var(--color-line-grey);
+    background: var(--color-grey-dark);
 }
 
 .toneka-playlist-item.active {
-    background: var(--color-line-grey);
+    background: var(--color-grey-dark);
 }
 
 .toneka-playlist-item-info {
@@ -5094,7 +5203,7 @@ div.toneka-playlist[data-visible="true"] {
 }
 
 .toneka-playlist-item-time {
-    font-size: clamp(0.55rem, 0.8vw, 0.75rem);
+    font-size: var(--font-size-xxs);
     color: var(--color-line-grey);
     /* margin-left: 16px; */
     padding-right: 1%;
@@ -5196,7 +5305,8 @@ div.toneka-playlist[data-visible="true"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2px;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
 }
 
 .toneka-left-controls,
@@ -5275,8 +5385,8 @@ button.toneka-playlist:hover svg rect {
 /* Miniaturki galerii */
 .toneka-gallery-thumbnails {
     display: flex;
-    gap: 8px;
-    padding: 11px 0;
+    gap: 10px;
+    padding: 11px 30px;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: thin;
@@ -5293,7 +5403,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-gallery-thumbnails::-webkit-scrollbar-thumb {
     background: var(--color-line-grey);
-    border-radius: 2px;
+    border: none;
 }
 
 .toneka-gallery-thumbnails::-webkit-scrollbar-thumb:hover {
@@ -5579,8 +5689,8 @@ button.toneka-playlist:hover svg rect {
 }
 
 .toneka-cart-item-image {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     flex-shrink: 0;
 }
 
@@ -5605,22 +5715,39 @@ button.toneka-playlist:hover svg rect {
 }
 
 .toneka-cart-remove {
+    width: 30px;
+    height: 30px;
+    padding: 20px !important;
+    border: 1px solid var(--color-line-grey);
     background: none;
-    border: none;
+    color: var(--color-white);
     cursor: pointer;
-    padding: 5px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 .toneka-cart-remove:hover {
+    background: var(--color-line-grey);
     opacity: 1;
+}
+
+.toneka-cart-remove svg {
+    width: 16px;
+    height: 16px;
 }
 
 .toneka-cart-quantity {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.toneka-cart-quantity .toneka-cart-remove {
+    order: -1;
 }
 
 .toneka-cart-quantity .quantity-btn {
@@ -5675,12 +5802,72 @@ button.toneka-playlist:hover svg rect {
     opacity: 0.7;
 }
 
-.toneka-cart-item-variant {
+.toneka-cart-item-variant,
+.toneka-variation-attributes {
     font-family: var(--font-primary);
     font-size: var(--font-size-sm);
     font-weight: 300;
     color: var(--color-line-grey);
     text-transform: uppercase;
+}
+
+.toneka-variation-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.toneka-attribute-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.toneka-attribute-value {
+    cursor: help;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+}
+
+.toneka-attribute-value:hover {
+    text-decoration: underline;
+}
+
+.toneka-attribute-value[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    padding: 12px 16px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    text-transform: none;
+    white-space: nowrap;
+    max-width: 300px;
+    white-space: normal;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.toneka-attribute-value[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2px;
+    border: 6px solid transparent;
+    border-top-color: var(--color-white);
+    z-index: 100000;
+    pointer-events: none;
 }
 
 .toneka-cart-item-price {
@@ -5808,8 +5995,8 @@ button.toneka-playlist:hover svg rect {
     }
     
     .toneka-cart-item-image {
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
         align-self: center;
     }
     
@@ -5938,14 +6125,14 @@ button.toneka-playlist:hover svg rect {
 
 /* Checkout items */
 .toneka-checkout-items {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .toneka-checkout-item {
     display: flex;
     gap: 15px;
     padding: 15px 0;
-    border-bottom: 1px solid var(--color-line-grey);
+    border-bottom: 1px solid var(--color-grey-dark);
     align-items: center;
 }
 
@@ -5954,8 +6141,8 @@ button.toneka-playlist:hover svg rect {
 }
 
 .toneka-checkout-item-image {
-    width: 60px;
-    height: 60px;
+    width: 150px;
+    height: 150px;
     position: relative;
     flex-shrink: 0;
 }
@@ -5964,7 +6151,7 @@ button.toneka-playlist:hover svg rect {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 1px solid var(--color-line-grey);
+    border: none;
 }
 
 .toneka-checkout-item-qty {
@@ -5995,11 +6182,71 @@ button.toneka-playlist:hover svg rect {
     margin: 0 0 5px 0;
 }
 
-.toneka-checkout-item-variant {
+.toneka-checkout-item-variant,
+.toneka-variation-attributes {
     font-family: var(--font-primary);
     font-size: var(--font-size-xs);
     color: var(--color-line-grey);
     text-transform: uppercase;
+}
+
+.toneka-variation-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.toneka-attribute-tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.toneka-attribute-value {
+    cursor: help;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+}
+
+.toneka-attribute-value:hover {
+    text-decoration: underline;
+}
+
+.toneka-attribute-value[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    padding: 12px 16px;
+    background: var(--color-white);
+    color: var(--color-black);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    text-transform: none;
+    white-space: nowrap;
+    max-width: 300px;
+    white-space: normal;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.toneka-attribute-value[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2px;
+    border: 6px solid transparent;
+    border-top-color: var(--color-white);
+    z-index: 100000;
+    pointer-events: none;
 }
 
 .toneka-checkout-item-price {
@@ -6089,6 +6336,262 @@ button.toneka-playlist:hover svg rect {
     color: var(--color-white);
 }
 
+/* Responsive checkout */
+@media (max-width: 768px) {
+    .toneka-checkout-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .toneka-checkout-container {
+        padding: 0 15px;
+    }
+    
+    .toneka-checkout-title {
+        font-size: var(--font-size-xl);
+        margin-bottom: 30px;
+    }
+}
+
+/* Thank You Page */
+.toneka-thankyou-page {
+    background: var(--color-black);
+    min-height: 100vh;
+    padding: 100px 0 50px 0;
+}
+
+.toneka-thankyou-container {
+    margin: 0 auto;
+    padding: 0 5%;
+    max-width: 800px;
+}
+
+.toneka-thankyou-title {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xxl);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.woocommerce-notice {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-white);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.woocommerce-notice--success {
+    color: var(--color-white);
+}
+
+.woocommerce-notice--error {
+    color: var(--color-line-grey);
+}
+
+.toneka-order-details {
+    margin: 40px 0;
+    padding: 30px;
+    border: 1px solid var(--color-line-grey);
+}
+
+.toneka-order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.toneka-order-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-line-grey);
+}
+
+.toneka-order-info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.toneka-order-info-label {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: 300;
+    color: var(--color-line-grey);
+    text-transform: uppercase;
+}
+
+.toneka-order-info-value {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--color-white);
+}
+
+.toneka-thankyou-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.toneka-my-account-button,
+.toneka-continue-shopping-button,
+.toneka-retry-payment-button {
+    background: none;
+    border: 1px solid var(--color-line-grey);
+    color: var(--color-white);
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.toneka-my-account-button:hover,
+.toneka-continue-shopping-button:hover,
+.toneka-retry-payment-button:hover {
+    background: var(--color-line-grey);
+    color: var(--color-white);
+}
+
+.toneka-continue-shopping-button {
+    background: var(--color-white);
+    color: var(--color-black);
+    border-color: var(--color-white);
+}
+
+.toneka-continue-shopping-button:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+}
+
+@media (max-width: 768px) {
+    .toneka-thankyou-container {
+        padding: 0 15px;
+    }
+    
+    .toneka-thankyou-title {
+        font-size: var(--font-size-xl);
+    }
+    
+    .toneka-thankyou-actions {
+        flex-direction: column;
+    }
+    
+    .toneka-my-account-button,
+    .toneka-continue-shopping-button,
+    .toneka-retry-payment-button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .toneka-order-details {
+        padding: 20px;
+    }
+}
+
+/* Cart page improvements */
+.toneka-cart-collaterals {
+    margin-top: 40px;
+}
+
+.wc-proceed-to-checkout {
+    margin-top: 20px;
+}
+
+.wc-proceed-to-checkout .button {
+    background: var(--color-white);
+    color: var(--color-black);
+    border: 1px solid var(--color-white);
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.wc-proceed-to-checkout .button:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+}
+
+/* Checkout form fields wrapper */
+.toneka-checkout-billing {
+    padding: 0;
+}
+
+.toneka-checkout-billing .woocommerce-billing-fields,
+.toneka-checkout-billing .woocommerce-additional-fields {
+    margin: 0;
+}
+
+.toneka-checkout-billing .form-row {
+    margin-bottom: 20px;
+}
+
+.toneka-checkout-billing label {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xxs);
+    color: var(--color-line-grey) !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    display: block !important;
+    padding: 0 var(--spacing-xs) !important;
+}
+
+.toneka-checkout-billing input[type="text"],
+.toneka-checkout-billing input[type="email"],
+.toneka-checkout-billing input[type="tel"],
+.toneka-checkout-billing select,
+.toneka-checkout-billing textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-grey-dark);
+    background: var(--color-black);
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    border-radius: 0 !important;
+    transition: all 0.3s ease;
+}
+
+.toneka-checkout-billing input[type="text"]:hover,
+.toneka-checkout-billing input[type="email"]:hover,
+.toneka-checkout-billing input[type="tel"]:hover,
+.toneka-checkout-billing select:hover,
+.toneka-checkout-billing textarea:hover {
+    border-color: var(--color-grey-dark);
+    background: var(--color-grey-dark);
+}
+
+.toneka-checkout-billing input[type="text"]:focus,
+.toneka-checkout-billing input[type="email"]:focus,
+.toneka-checkout-billing input[type="tel"]:focus,
+.toneka-checkout-billing select:focus,
+.toneka-checkout-billing textarea:focus {
+    outline: none;
+    border-color: var(--color-grey-dark);
+    background: var(--color-grey-dark);
+}
+
 /* Account Pages */
 .woocommerce-account .woocommerce,
 .woocommerce-login-form,
@@ -6168,7 +6671,6 @@ input[type="checkbox"] {
     -moz-appearance: none !important;
     width: 18px !important;
     height: 18px !important;
-    border: 2px solid var(--color-line-grey) !important;
     background: var(--color-white) !important;
     border-radius: 0 !important;
     margin: 0 8px 0 0 !important;
@@ -6667,6 +7169,11 @@ textarea::placeholder {
     .toneka-checkout-item {
         flex-wrap: wrap;
         gap: 10px;
+    }
+    
+    .toneka-checkout-item-image {
+        width: 150px;
+        height: 150px;
     }
     
     .toneka-checkout-item-price {
@@ -7237,7 +7744,7 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
     border: 1px solid var(--color-grey-dark);
     color: var(--color-white);
     border-radius: 0;
-    padding: 12px 15px;
+    padding: var(--spacing-md);
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
     transition: all 0.3s ease;
@@ -7281,7 +7788,7 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
 }
 
 .custom-select-option {
-    padding: 12px 15px;
+    padding: var(--spacing-md);
     color: var(--color-white);
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
@@ -7291,7 +7798,7 @@ a.button:not(.animated-arrow-button):not(.toneka-more-link):hover,
 
 .custom-select-option:hover,
 .custom-select-option.selected {
-    background-color: var(--color-line-grey);
+    background-color: var(--color-grey-dark);
 }
 
 select.custom-select-hidden {

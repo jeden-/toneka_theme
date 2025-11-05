@@ -4,18 +4,21 @@
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart.php.
  *
- * @package Toneka
+ * @see     https://woo.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 7.9.0
  */
 
 defined( 'ABSPATH' ) || exit;
+
+get_header( 'shop' );
 
 do_action( 'woocommerce_before_cart' ); ?>
 
 <div class="toneka-cart-page">
     <div class="toneka-cart-container">
-        
-        <h1 class="toneka-cart-title">Cart</h1>
-        
+        <h1 class="toneka-cart-title"><?php esc_html_e( 'Koszyk', 'woocommerce' ); ?></h1>
+
         <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
             <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -27,148 +30,150 @@ do_action( 'woocommerce_before_cart' ); ?>
 
                     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
                         $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
-                        
-                        // Get variant text
-                        $variant_text = '';
-                        if (isset($cart_item['variation']) && !empty($cart_item['variation'])) {
-                            $variant_parts = array();
-                            foreach ($cart_item['variation'] as $key => $value) {
-                                if (strpos($key, 'attribute_') === 0) {
-                                    $attribute_name = str_replace('attribute_', '', $key);
-                                    $variant_parts[] = strtoupper($value);
-                                }
-                            }
-                            $variant_text = implode(', ', $variant_parts);
-                        }
-                        
-                        // Get product image
-                        $thumbnail = $_product->get_image();
-                        $image_url = wp_get_attachment_image_url(get_post_thumbnail_id($product_id), 'full');
-                        if (!$image_url) {
-                            $image_url = wc_placeholder_img_src('full');
-                        }
                         ?>
-                        
-                        <div class="toneka-cart-item" data-cart-key="<?php echo esc_attr($cart_item_key); ?>">
+                        <div class="toneka-cart-item" data-cart-item-key="<?php echo esc_attr( $cart_item_key ); ?>">
                             <div class="toneka-cart-item-image">
-                                <?php if ($product_permalink): ?>
-                                    <a href="<?php echo esc_url($product_permalink); ?>">
-                                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($_product->get_name()); ?>">
-                                    </a>
-                                <?php else: ?>
-                                    <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($_product->get_name()); ?>">
-                                <?php endif; ?>
+                                <?php
+                                $thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+                                if ( ! $product_permalink ) {
+                                    echo $thumbnail; // PHPCS: XSS ok.
+                                } else {
+                                    printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
+                                }
+                                ?>
                             </div>
-                            
+
                             <div class="toneka-cart-item-content">
                                 <div class="toneka-cart-item-header">
-                                    <button class="toneka-cart-remove" data-cart-key="<?php echo esc_attr($cart_item_key); ?>" title="Usuń produkt">
-                                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M20.25 5H16.5V4.25C16.5 3.65326 16.2629 3.08097 15.841 2.65901C15.419 2.23705 14.8467 2 14.25 2H9.75C9.15326 2 8.58097 2.23705 8.15901 2.65901C7.73705 3.08097 7.5 3.65326 7.5 4.25V5H3.75C3.55109 5 3.36032 5.07902 3.21967 5.21967C3.07902 5.36032 3 5.55109 3 5.75C3 5.94891 3.07902 6.13968 3.21967 6.28033C3.36032 6.42098 3.55109 6.5 3.75 6.5H4.5V20C4.5 20.3978 4.65804 20.7794 4.93934 21.0607C5.22064 21.342 5.60218 21.5 6 21.5H18C18.3978 21.5 18.7794 21.342 19.0607 21.0607C19.342 20.7794 19.5 20.3978 19.5 20V6.5H20.25C20.4489 6.5 20.6397 6.42098 20.7803 6.28033C20.921 6.13968 21 5.94891 21 5.75C21 5.55109 20.921 5.36032 20.7803 5.21967C20.6397 5.07902 20.4489 5 20.25 5Z" stroke="white" stroke-width="1.5"/>
-                                        </svg>
-                                    </button>
-                                    
-                                    <div class="toneka-cart-quantity">
-                                        <button class="quantity-btn minus" data-cart-key="<?php echo esc_attr($cart_item_key); ?>">-</button>
-                                        <input type="number" value="<?php echo $cart_item['quantity']; ?>" min="1" class="quantity-input" data-cart-key="<?php echo esc_attr($cart_item_key); ?>" name="cart[<?php echo $cart_item_key; ?>][qty]">
-                                        <button class="quantity-btn plus" data-cart-key="<?php echo esc_attr($cart_item_key); ?>">+</button>
+                                    <div class="toneka-cart-item-details">
+                                        <div class="toneka-cart-item-name">
+                                            <?php
+                                            if ( ! $product_permalink ) {
+                                                echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+                                            } else {
+                                                echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
+                                            }
+
+                                            do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
+
+                                            // Meta data.
+                                            echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
+
+                                            // Backorder notification.
+                                            if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+                                                echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
+                                            }
+                                            ?>
+                                        </div>
+                                        <?php
+                                        // Display variation attributes with tooltips
+                                        if ( ! empty( $cart_item['variation'] ) || $_product->is_type( 'variation' ) ) {
+                                            echo toneka_format_variation_attributes_for_display( $cart_item );
+                                        }
+                                        ?>
                                     </div>
                                 </div>
-                                
-                                <div class="toneka-cart-item-details">
-                                    <h4 class="toneka-cart-item-name">
-                                        <?php if ($product_permalink): ?>
-                                            <a href="<?php echo esc_url($product_permalink); ?>"><?php echo $_product->get_name(); ?></a>
-                                        <?php else: ?>
-                                            <?php echo $_product->get_name(); ?>
-                                        <?php endif; ?>
-                                    </h4>
-                                    
-                                    <?php if ($variant_text): ?>
-                                    <div class="toneka-cart-item-variant"><?php echo esc_html($variant_text); ?></div>
-                                    <?php else: ?>
-                                    <div class="toneka-cart-item-variant">PLIKI CYFROWE</div>
-                                    <?php endif; ?>
-                                    
-                                    <div class="toneka-cart-item-price">
-                                        <?php 
-                                        // Display full price with sale information
-                                        if ($_product->is_on_sale()) {
-                                            $regular_price = $_product->get_regular_price();
-                                            $sale_price = $_product->get_sale_price();
-                                            $savings = ($regular_price - $sale_price) * $cart_item['quantity'];
-                                            $savings_percent = round((($regular_price - $sale_price) / $regular_price) * 100);
-                                            
-                                            echo '<div class="toneka-cart-price-sale">';
-                                            echo '<span class="toneka-cart-price-regular">' . wc_price($regular_price * $cart_item['quantity']) . '</span> ';
-                                            echo '<span class="toneka-cart-price-current">' . wc_price($sale_price * $cart_item['quantity']) . '</span>';
-                                            echo '<div class="toneka-cart-savings">Oszczędzasz: ' . wc_price($savings) . ' (' . $savings_percent . '%)</div>';
-                                            echo '</div>';
+
+                                <div class="toneka-cart-item-footer">
+                                    <div class="toneka-cart-quantity">
+                                        <?php
+                                        // Remove button
+                                        echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            'woocommerce_cart_item_remove_link',
+                                            sprintf(
+                                                '<a href="%s" class="toneka-cart-remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                                    </svg>
+                                                </a>',
+                                                esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+                                                esc_html__( 'Remove this item', 'woocommerce' ),
+                                                esc_attr( $product_id ),
+                                                esc_attr( $_product->get_sku() )
+                                            ),
+                                            $cart_item_key
+                                        );
+                                        
+                                        if ( $_product->is_sold_individually() ) {
+                                            $min_quantity = 1;
+                                            $max_quantity = 1;
                                         } else {
-                                            echo '<div class="toneka-cart-price-regular">' . wc_price($_product->get_price() * $cart_item['quantity']) . '</div>';
+                                            $min_quantity = 0;
+                                            $max_quantity = $_product->get_max_purchase_quantity();
                                         }
+
+                                        $product_quantity = woocommerce_quantity_input(
+                                            array(
+                                                'input_name'   => "cart[{$cart_item_key}][qty]",
+                                                'input_value'  => $cart_item['quantity'],
+                                                'max_value'    => $max_quantity,
+                                                'min_value'    => $min_quantity,
+                                                'product_name' => $_product->get_name(),
+                                            ),
+                                            $_product,
+                                            false
+                                        );
+
+                                        echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
+                                        ?>
+                                    </div>
+
+                                    <div class="toneka-cart-item-price">
+                                        <?php
+                                        echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
                                         ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
                         <?php
                     }
                 }
                 ?>
-            </div>
 
-            <div class="toneka-cart-actions">
-                <button type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
-                <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+                <?php do_action( 'woocommerce_cart_contents' ); ?>
+
+                <div class="toneka-cart-actions">
+                    <?php if ( wc_coupons_enabled() ) { ?>
+                        <div class="coupon">
+                            <label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label>
+                            <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Kod promocyjny', 'woocommerce' ); ?>" />
+                            <button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Zastosuj', 'woocommerce' ); ?></button>
+                            <?php do_action( 'woocommerce_cart_coupon' ); ?>
+                        </div>
+                    <?php } ?>
+
+                    <button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Aktualizuj koszyk', 'woocommerce' ); ?></button>
+
+                    <?php do_action( 'woocommerce_cart_actions' ); ?>
+
+                    <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+                </div>
+
+                <?php do_action( 'woocommerce_after_cart_contents' ); ?>
             </div>
 
             <?php do_action( 'woocommerce_after_cart_table' ); ?>
         </form>
 
-        <div class="toneka-cart-totals">
+        <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
+
+        <div class="toneka-cart-collaterals">
             <?php
-            // Calculate total savings
-            $total_savings = 0;
-            $total_regular = 0;
-            
-            foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-                $product = $cart_item['data'];
-                $quantity = $cart_item['quantity'];
-                
-                if ($product->is_on_sale()) {
-                    $regular_price = $product->get_regular_price();
-                    $sale_price = $product->get_sale_price();
-                    $item_savings = ($regular_price - $sale_price) * $quantity;
-                    $total_savings += $item_savings;
-                    $total_regular += $regular_price * $quantity;
-                }
-            }
-            
-            if ($total_savings > 0) {
-                $savings_percent = round(($total_savings / $total_regular) * 100);
-                ?>
-                <div class="toneka-cart-total-savings">
-                    <span>Oszczędzasz łącznie: <?php echo wc_price($total_savings); ?> (<?php echo $savings_percent; ?>%)</span>
-                </div>
-                <?php
-            }
+            /**
+             * Cart collaterals hook.
+             *
+             * @hooked woocommerce_cross_sell_display
+             * @hooked woocommerce_cart_totals - 10
+             */
+            do_action( 'woocommerce_cart_collaterals' );
             ?>
-            
-            <div class="toneka-cart-total">
-                <span>Razem: <?php echo WC()->cart->get_cart_total(); ?></span>
-            </div>
-            
-            <div class="toneka-cart-checkout">
-                <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="toneka-checkout-button">
-                    ZAMÓW
-                </a>
-            </div>
         </div>
-        
+
+        <?php do_action( 'woocommerce_after_cart' ); ?>
     </div>
 </div>
 
-<?php do_action( 'woocommerce_after_cart' ); ?>
+<?php
+get_footer( 'shop' );
 

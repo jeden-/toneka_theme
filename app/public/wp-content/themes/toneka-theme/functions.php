@@ -136,14 +136,21 @@ function toneka_display_custom_minicart() {
                 $product_image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id), 'thumbnail');
                 $image_url = $product_image ? $product_image[0] : wc_placeholder_img_src();
                 
-                // Get variant info
+                // Get variant info with tooltips
                 $variant_text = '';
                 if ($variation_id) {
                     $variation = wc_get_product($variation_id);
                     if ($variation && is_object($variation) && method_exists($variation, 'get_variation_attributes')) {
                         $attributes = $variation->get_variation_attributes();
-                        $variant_text = implode(', ', $attributes);
+                        if (!empty($attributes)) {
+                            $variant_text = toneka_display_variation_attributes_with_tooltips($attributes, $cart_item);
+                        }
                     }
+                }
+                
+                // Fallback if no variation
+                if (empty($variant_text)) {
+                    $variant_text = '<div class="toneka-minicart-item-variant">PLIKI CYFROWE</div>';
                 }
                 
                 ?>
@@ -170,11 +177,7 @@ function toneka_display_custom_minicart() {
                         <div class="toneka-minicart-item-details">
                             <h4 class="toneka-minicart-item-name"><?php echo $product->get_name(); ?></h4>
                             
-                            <?php if ($variant_text): ?>
-                            <div class="toneka-minicart-item-variant"><?php echo esc_html($variant_text); ?></div>
-                            <?php else: ?>
-                            <div class="toneka-minicart-item-variant">PLIKI CYFROWE</div>
-                            <?php endif; ?>
+                            <?php echo $variant_text; // PHPCS: XSS ok - contains HTML from toneka_display_variation_attributes_with_tooltips ?>
                             
                             <div class="toneka-minicart-item-price">
                                 <?php 
@@ -3983,4 +3986,320 @@ function toneka_strtoupper_polish($string) {
     $string = strtr($string, $polish_chars);
     return strtoupper($string);
 }
+
+// ==================================================================
+// WOOCOMMERCE POLISH PERMALINKS
+// ==================================================================
+
+/**
+ * Change WooCommerce checkout page slug to "kasa"
+ */
+function toneka_change_checkout_permalink($permalink, $post) {
+    if (!function_exists('wc_get_page_id')) {
+        return $permalink;
+    }
+    
+    // Handle both WP_Post object and post ID
+    $post_id = is_object($post) ? $post->ID : (int)$post;
+    
+    if (!$post_id) {
+        return $permalink;
+    }
+    
+    $checkout_page_id = wc_get_page_id('checkout');
+    
+    if ($checkout_page_id && $checkout_page_id > 0 && $post_id == $checkout_page_id) {
+        $permalink = home_url('/kasa/');
+    }
+    
+    return $permalink;
+}
+add_filter('post_link', 'toneka_change_checkout_permalink', 10, 2);
+add_filter('page_link', 'toneka_change_checkout_permalink', 10, 2);
+
+/**
+ * Change WooCommerce cart page slug to "koszyk"
+ */
+function toneka_change_cart_permalink($permalink, $post) {
+    if (!function_exists('wc_get_page_id')) {
+        return $permalink;
+    }
+    
+    // Handle both WP_Post object and post ID
+    $post_id = is_object($post) ? $post->ID : (int)$post;
+    
+    if (!$post_id) {
+        return $permalink;
+    }
+    
+    $cart_page_id = wc_get_page_id('cart');
+    
+    if ($cart_page_id && $cart_page_id > 0 && $post_id == $cart_page_id) {
+        $permalink = home_url('/koszyk/');
+    }
+    
+    return $permalink;
+}
+add_filter('post_link', 'toneka_change_cart_permalink', 10, 2);
+add_filter('page_link', 'toneka_change_cart_permalink', 10, 2);
+
+/**
+ * Add rewrite rules for Polish WooCommerce pages
+ */
+function toneka_add_woocommerce_rewrite_rules() {
+    if (!function_exists('wc_get_page_id')) {
+        return;
+    }
+    
+    $checkout_page_id = wc_get_page_id('checkout');
+    $cart_page_id = wc_get_page_id('cart');
+    
+    if ($checkout_page_id && $checkout_page_id > 0) {
+        add_rewrite_rule('^kasa/?$', 'index.php?page_id=' . $checkout_page_id, 'top');
+        add_rewrite_rule('^kasa/(.+)/?$', 'index.php?page_id=' . $checkout_page_id . '&$matches[1]', 'top');
+    }
+    
+    if ($cart_page_id && $cart_page_id > 0) {
+        add_rewrite_rule('^koszyk/?$', 'index.php?page_id=' . $cart_page_id, 'top');
+    }
+}
+add_action('init', 'toneka_add_woocommerce_rewrite_rules', 20);
+
+/**
+ * Change WooCommerce checkout URL
+ */
+function toneka_woocommerce_checkout_url($url) {
+    return home_url('/kasa/');
+}
+add_filter('woocommerce_get_checkout_url', 'toneka_woocommerce_checkout_url');
+
+/**
+ * Change WooCommerce cart URL
+ */
+function toneka_woocommerce_cart_url($url) {
+    return home_url('/koszyk/');
+}
+add_filter('woocommerce_get_cart_url', 'toneka_woocommerce_cart_url');
+
+/**
+ * Ensure WooCommerce pages have correct slugs on activation
+ */
+function toneka_setup_woocommerce_pages() {
+    if (!function_exists('wc_get_page_id')) {
+        return;
+    }
+    
+    $checkout_page_id = wc_get_page_id('checkout');
+    $cart_page_id = wc_get_page_id('cart');
+    
+    if ($checkout_page_id && $checkout_page_id > 0) {
+        $checkout_page = get_post($checkout_page_id);
+        if ($checkout_page && $checkout_page->post_name !== 'kasa') {
+            wp_update_post(array(
+                'ID' => $checkout_page_id,
+                'post_name' => 'kasa'
+            ));
+        }
+    }
+    
+    if ($cart_page_id && $cart_page_id > 0) {
+        $cart_page = get_post($cart_page_id);
+        if ($cart_page && $cart_page->post_name !== 'koszyk') {
+            wp_update_post(array(
+                'ID' => $cart_page_id,
+                'post_name' => 'koszyk'
+            ));
+        }
+    }
+    
+    // Flush rewrite rules only if pages exist
+    if (($checkout_page_id && $checkout_page_id > 0) || ($cart_page_id && $cart_page_id > 0)) {
+        flush_rewrite_rules(false);
+    }
+}
+add_action('after_switch_theme', 'toneka_setup_woocommerce_pages');
+add_action('woocommerce_init', 'toneka_setup_woocommerce_pages');
+
+/**
+ * Disable WooCommerce redirect to cart when cart is empty on checkout
+ */
+function toneka_disable_empty_cart_redirect() {
+    // Disable checkout redirect when cart is empty
+    remove_action('template_redirect', array('WC_Form_Handler', 'checkout_redirect'));
+    
+    // Also disable via filter
+    add_filter('woocommerce_checkout_empty_cart_message', '__return_empty_string');
+}
+add_action('init', 'toneka_disable_empty_cart_redirect', 1);
+
+/**
+ * Force WooCommerce checkout template for "kasa" page
+ */
+function toneka_force_checkout_template($template) {
+    if (!function_exists('wc_get_page_id')) {
+        return $template;
+    }
+    
+    $checkout_page_id = wc_get_page_id('checkout');
+    
+    if ($checkout_page_id && $checkout_page_id > 0) {
+        $current_page_id = get_queried_object_id();
+        $pagename = get_query_var('pagename');
+        
+        // Check if we're on checkout page
+        if ($current_page_id == $checkout_page_id || $pagename === 'kasa' || (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/kasa/') !== false)) {
+            // Force WooCommerce to use checkout template
+            $checkout_template = locate_template(array('woocommerce/checkout/form-checkout.php'));
+            if ($checkout_template) {
+                return $checkout_template;
+            }
+        }
+    }
+    
+    return $template;
+}
+add_filter('template_include', 'toneka_force_checkout_template', 99);
+
+/**
+ * Make WooCommerce recognize "kasa" page as checkout
+ */
+function toneka_register_kasa_as_checkout() {
+    if (!function_exists('wc_get_page_id')) {
+        return;
+    }
+    
+    $checkout_page_id = wc_get_page_id('checkout');
+    
+    if ($checkout_page_id && $checkout_page_id > 0) {
+        // Get current page
+        $current_page_id = get_queried_object_id();
+        $pagename = get_query_var('pagename');
+        
+        // Check if we're on checkout page by ID or slug
+        if ($current_page_id == $checkout_page_id || $pagename === 'kasa' || (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/kasa/') !== false)) {
+            // Force WooCommerce to recognize this as checkout page
+            add_filter('woocommerce_is_checkout', '__return_true');
+            add_filter('woocommerce_is_cart', '__return_false');
+            
+            // Set body class
+            add_filter('body_class', function($classes) {
+                $classes[] = 'woocommerce-checkout';
+                $classes[] = 'woocommerce-page';
+                return $classes;
+            });
+        }
+    }
+}
+add_action('wp', 'toneka_register_kasa_as_checkout', 5);
+
+/**
+ * Display variation attributes with tooltips from variation description
+ */
+function toneka_display_variation_attributes_with_tooltips( $variation_attributes, $cart_item ) {
+    if ( empty( $variation_attributes ) || ! is_array( $variation_attributes ) ) {
+        return '';
+    }
+    
+    // Get variation ID from cart item
+    $variation_id = isset( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : 0;
+    
+    if ( ! $variation_id ) {
+        return '';
+    }
+    
+    // Get variation product object
+    $variation = wc_get_product( $variation_id );
+    
+    if ( ! $variation || ! $variation->is_type( 'variation' ) ) {
+        return '';
+    }
+    
+    // Get variation description (this is what we want in tooltip)
+    $variation_description = $variation->get_description();
+    
+    // Get formatted attribute names for display
+    $attribute_parts = array();
+    
+    foreach ( $variation_attributes as $attribute_name => $attribute_value ) {
+        if ( empty( $attribute_value ) ) {
+            continue;
+        }
+        
+        // Remove 'attribute_' prefix to get taxonomy name
+        $taxonomy = str_replace( 'attribute_', '', $attribute_name );
+        
+        // Get term name for display
+        $term = get_term_by( 'slug', $attribute_value, $taxonomy );
+        
+        if ( $term && ! is_wp_error( $term ) ) {
+            $term_name = $term->name;
+        } else {
+            // Fallback if term not found - try to format the value nicely
+            $term_name = ucwords( str_replace( array( '-', '_' ), ' ', $attribute_value ) );
+        }
+        
+        // If we have variation description, add tooltip
+        if ( ! empty( $variation_description ) ) {
+            $attribute_parts[] = sprintf(
+                '<span class="toneka-attribute-tooltip-wrapper">
+                    <span class="toneka-attribute-value" data-tooltip="%s">%s</span>
+                </span>',
+                esc_attr( wp_strip_all_tags( $variation_description ) ),
+                esc_html( $term_name )
+            );
+        } else {
+            // No description, just display value
+            $attribute_parts[] = '<span class="toneka-attribute-value">' . esc_html( $term_name ) . '</span>';
+        }
+    }
+    
+    if ( empty( $attribute_parts ) ) {
+        return '';
+    }
+    
+    return '<div class="toneka-variation-attributes">' . implode( ', ', $attribute_parts ) . '</div>';
+}
+
+/**
+ * Format variation attributes for cart/checkout display with tooltips
+ */
+function toneka_format_variation_attributes_for_display( $cart_item ) {
+    // Check if product is variation or has variation data
+    $_product = isset( $cart_item['data'] ) ? $cart_item['data'] : null;
+    
+    if ( ! $_product ) {
+        return '';
+    }
+    
+    // For variation products, check variation data
+    if ( $_product->is_type( 'variation' ) ) {
+        // Get parent product variation attributes
+        $variation_attributes = $_product->get_variation_attributes();
+        if ( ! empty( $variation_attributes ) ) {
+            return toneka_display_variation_attributes_with_tooltips( $variation_attributes, $cart_item );
+        }
+    }
+    
+    // For variable products, check cart item variation
+    if ( ! empty( $cart_item['variation'] ) && is_array( $cart_item['variation'] ) ) {
+        return toneka_display_variation_attributes_with_tooltips( $cart_item['variation'], $cart_item );
+    }
+    
+    return '';
+}
+
+/**
+ * Flush rewrite rules when needed
+ */
+function toneka_flush_rewrite_rules() {
+    toneka_add_woocommerce_rewrite_rules();
+    flush_rewrite_rules();
+}
+add_action('admin_init', function() {
+    if (isset($_GET['toneka_flush_rules']) && current_user_can('manage_options')) {
+        toneka_flush_rewrite_rules();
+        wp_redirect(admin_url('options-permalink.php?settings-updated=true'));
+        exit;
+    }
+});
 
