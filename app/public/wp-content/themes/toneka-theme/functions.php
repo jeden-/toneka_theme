@@ -4111,14 +4111,13 @@ add_filter('woocommerce_get_checkout_url', 'toneka_woocommerce_checkout_url');
 function toneka_woocommerce_myaccount_url($url) {
     return home_url('/moje-konto/');
 }
-add_filter('woocommerce_get_myaccount_page_id', 'toneka_woocommerce_myaccount_url');
+add_filter('woocommerce_get_myaccount_page_permalink', 'toneka_woocommerce_myaccount_url');
 add_filter('wc_get_page_permalink', function($permalink, $page) {
     if ($page === 'myaccount') {
         return home_url('/moje-konto/');
     }
     return $permalink;
 }, 10, 2);
-add_filter('woocommerce_get_myaccount_page_permalink', 'toneka_woocommerce_myaccount_url');
 
 /**
  * Change WooCommerce cart URL
