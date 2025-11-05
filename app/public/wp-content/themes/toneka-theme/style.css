@@ -1737,18 +1737,17 @@ ol, ul {
 
 .toneka-minicart-remove {
     background: none;
-    border: 1px solid var(--color-white)!important;
     color: var(--color-white);
     cursor: pointer;
     padding: 11px!important;
     opacity: 1;
     order: 1;
     transition: opacity 0.3s ease;
+    border: none!important;
 }
 
 .toneka-minicart-remove:hover {
     opacity: 1;
-    background: var(--color-white)!important;
 }
 
 .toneka-minicart-remove svg {
