@@ -4,7 +4,7 @@ Theme URI: https://toneka.pl/
 Author: Mariusz
 Author URI: https://toneka.pl/
 Description: Theme for Toneka website based on Ma design.
-Version: 1.1
+Version: 1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: custom-theme
@@ -8507,4 +8507,85 @@ select option:checked {
     border-bottom: 1px solid var(--color-line-grey);
     padding-bottom: 15px;
     margin-bottom: 30px;
+}
+
+/* ==========================================================================
+   CHECKOUT PAGE - LOGIN FORM FIXES (wysoką specyficzność)
+   ========================================================================== */
+
+/* Formularz logowania powracającego klienta na stronie kasy */
+.woocommerce-checkout .woocommerce-form-login input[type="text"],
+.woocommerce-checkout .woocommerce-form-login input[type="password"],
+.woocommerce-checkout .woocommerce-form-login input[type="email"],
+.woocommerce-checkout form.login input[type="text"],
+.woocommerce-checkout form.login input[type="password"],
+.woocommerce-checkout form.login input[type="email"],
+.woocommerce-checkout form.checkout_coupon input[type="text"] {
+    background-color: var(--color-black) !important;
+    border: 1px solid var(--color-grey-dark) !important;
+    color: var(--color-white) !important;
+    padding: 12px 15px !important;
+    border-radius: 0 !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.woocommerce-checkout .woocommerce-form-login input[type="text"]:focus,
+.woocommerce-checkout .woocommerce-form-login input[type="password"]:focus,
+.woocommerce-checkout .woocommerce-form-login input[type="email"]:focus,
+.woocommerce-checkout form.login input:focus,
+.woocommerce-checkout form.checkout_coupon input:focus {
+    outline: none !important;
+    border-color: var(--color-grey-dark) !important;
+    background: var(--color-line-grey) !important;
+}
+
+.woocommerce-checkout .woocommerce-form-login label,
+.woocommerce-checkout form.login label,
+.woocommerce-checkout form.checkout_coupon label {
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    color: var(--color-grey-dark) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+}
+
+/* Przyciski w formularzach logowania i kuponów */
+.woocommerce-checkout .woocommerce-form-login button,
+.woocommerce-checkout form.login button,
+.woocommerce-checkout form.checkout_coupon button {
+    padding: 12px 30px !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    border: 1px solid var(--color-white) !important;
+    background: none !important;
+    color: var(--color-white) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    border-radius: 0 !important;
+}
+
+.woocommerce-checkout .woocommerce-form-login button:hover,
+.woocommerce-checkout form.login button:hover,
+.woocommerce-checkout form.checkout_coupon button:hover {
+    background: var(--color-white) !important;
+    color: var(--color-black) !important;
+}
+
+/* Linki w sekcji powracającego klienta */
+.woocommerce-checkout .woocommerce-info a,
+.woocommerce-checkout .showlogin,
+.woocommerce-checkout .showcoupon {
+    color: var(--color-white) !important;
+    text-decoration: underline !important;
+}
+
+.woocommerce-checkout .woocommerce-info a:hover {
+    color: var(--color-grey-dark) !important;
 }
