@@ -45,7 +45,17 @@ defined( 'ABSPATH' ) || exit;
                     
                     <div class="toneka-checkout-item-details">
                         <h4 class="toneka-checkout-item-name">
-                            <?php echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) ); ?>
+                            <?php
+                            // Get parent product name (without variation attributes)
+                            $product_name = $_product->get_name();
+                            if ( $_product->is_type( 'variation' ) ) {
+                                $parent_product = wc_get_product( $_product->get_parent_id() );
+                                if ( $parent_product ) {
+                                    $product_name = $parent_product->get_name();
+                                }
+                            }
+                            echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $product_name, $cart_item, $cart_item_key ) );
+                            ?>
                         </h4>
                         
                         <?php

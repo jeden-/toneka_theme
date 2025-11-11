@@ -1686,6 +1686,7 @@ ol, ul {
     align-items: flex-start;
     position: relative;
     z-index: 1;
+    min-width: 0;
 }
 
 /* Tooltip positioning for minicart - use JavaScript to position */
@@ -1739,7 +1740,9 @@ ol, ul {
     flex-direction: column;
     gap: 8px;
     align-items: center;
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
+    /* width: 80px; */
+    /* min-width: 80px; */
 }
 
 .toneka-minicart-remove {
@@ -1779,31 +1782,37 @@ ol, ul {
 .quantity-btn {
     background: none;
     border: 1px solid var(--color-white);
+    border-radius: 50%!important;
     color: var(--color-white);
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem)!important;
+    padding: 20px!important;
     width: 30px!important;
     height: 30px!important;
-    padding: 20px!important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    border-radius: 50%!important;
-    transition: all 0.3s ease;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    cursor: pointer!important;
+    transition: all 0.3s ease!important;
 }
 
 .quantity-btn:hover {
-    background: var(--color-line-grey);
+    background-color: var(--color-line-grey);
+    transform: scale(1.1);
 }
 
 .quantity-input {
     background: none;
     border: none;
     color: var(--color-white);
-    width: 35px;
     text-align: center;
+    width: 28px;
+    padding: 8px 4px;
     font-size: var(--font-size-md);
     font-family: var(--font-primary);
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -ms-appearance: textfield;
+    text-align: center!important;
 }
 
 .quantity-input::-webkit-outer-spin-button,
@@ -1816,6 +1825,14 @@ ol, ul {
     appearance: textfield;
     -moz-appearance: textfield;
     -ms-appearance: textfield;
+}
+
+.toneka-minicart-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    min-width: 0;
 }
 
 .toneka-minicart-item-name {
@@ -1910,7 +1927,7 @@ ol, ul {
     font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
-    margin-top: 5px;
+    margin-bottom: 12px;
 }
 
 /* Sale price styling for minicart items */
@@ -1932,10 +1949,22 @@ ol, ul {
     font-size: var(--font-size-base);
 }
 
+.toneka-minicart-savings,
+.toneka-minicart-savings * {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 500 !important;
+    color: var(--color-line-grey) !important;
+    text-transform: none !important;
+    line-height: 1.5 !important;
+    display: inline !important;
+}
+
 .toneka-minicart-savings {
-    font-size: var(--font-size-sm);
-    color: var(--color-line-grey);
-    font-weight: 500;
+    display: block !important;
 }
 
 .toneka-minicart-footer {
@@ -1943,19 +1972,23 @@ ol, ul {
     padding-top: 20px;
 }
 
-.toneka-minicart-total-savings {
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    border: 1px solid var(--color-line-grey);
-    text-align: center;
+.toneka-minicart-total-savings,
+.toneka-minicart-total-savings * {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    text-align: left !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: 500 !important;
+    color: var(--color-line-grey) !important;
+    text-transform: none !important;
+    line-height: 1.5 !important;
+    display: inline !important;
 }
 
-.toneka-minicart-total-savings span {
-    font-family: var(--font-primary);
-    font-size: var(--font-size-md);
-    font-weight: 600;
-    color: var(--color-line-grey);
-    text-transform: uppercase;
+.toneka-minicart-total-savings {
+    display: block !important;
 }
 
 .toneka-minicart-total {
@@ -2009,7 +2042,7 @@ ol, ul {
 
 .toneka-minicart-upsell-item {
     display: flex;
-    gap: 15px;
+    gap: 5%;
     padding: 20px 0;
     border-bottom: 1px solid var(--color-line-grey);
     align-items: flex-start;
@@ -2020,8 +2053,8 @@ ol, ul {
 }
 
 .toneka-minicart-upsell-item-image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     flex-shrink: 0;
 }
 
@@ -2035,15 +2068,27 @@ ol, ul {
     flex: 1;
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 5%;
     align-items: flex-start;
+    min-width: 0;
+}
+
+.toneka-minicart-upsell-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+    width: 80px;
+    min-width: 80px;
 }
 
 .toneka-minicart-upsell-item-details {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0;
     flex: 1;
+    min-width: 0;
 }
 
 .toneka-minicart-upsell-item-name {
@@ -2056,12 +2101,18 @@ ol, ul {
     line-height: 1.2;
 }
 
+.toneka-minicart-upsell-item-variant-wrapper {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-line-grey);
+    margin-bottom: 8px;
+}
+
 .toneka-minicart-upsell-item-variant {
     font-family: var(--font-primary);
     font-size: var(--font-size-xs);
     color: var(--color-line-grey);
     text-transform: uppercase;
-    margin: 2px 0;
+    margin: 0;
 }
 
 .toneka-minicart-upsell-item-price {
@@ -2069,15 +2120,14 @@ ol, ul {
     font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
-    margin-top: 5px;
+    margin-bottom: 12px;
 }
 
-/* Sale price styling for upsell items */
+/* Sale price styling for upsell items - matching minicart items */
 .toneka-minicart-upsell-price-sale {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .toneka-minicart-upsell-price-regular {
@@ -2093,25 +2143,10 @@ ol, ul {
 }
 
 .toneka-minicart-upsell-savings {
-    font-size: var(--font-size-xs);
-    color: var(--color-success);
-    font-weight: 600;
-    background: var(--color-line-grey);
-    padding: 2px 6px;
-}
-
-.toneka-minicart-upsell-item-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-end;
-    flex-shrink: 0;
-}
-
-.toneka-minicart-upsell-cart-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    font-size: var(--font-size-sm);
+    color: var(--color-line-grey);
+    font-weight: 500;
+    margin-top: 3px;
 }
 
 .toneka-minicart-upsell-quantity {
@@ -2126,31 +2161,37 @@ ol, ul {
 .upsell-quantity-btn {
     background: none;
     border: 1px solid var(--color-white);
+    border-radius: 50%!important;
     color: var(--color-white);
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem)!important;
+    padding: 20px!important;
     width: 30px!important;
     height: 30px!important;
-    padding: 20px!important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    border-radius: 50%!important;
-    transition: all 0.3s ease;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    cursor: pointer!important;
+    transition: all 0.3s ease!important;
 }
 
 .upsell-quantity-btn:hover {
-    background: var(--color-line-grey);
+    background-color: var(--color-line-grey);
+    transform: scale(1.1);
 }
 
 .upsell-quantity-input {
     background: none;
     border: none;
     color: var(--color-white);
-    width: 35px;
     text-align: center;
+    width: 28px;
+    padding: 8px 4px;
     font-size: var(--font-size-md);
     font-family: var(--font-primary);
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -ms-appearance: textfield;
+    text-align: center!important;
 }
 
 .upsell-quantity-input::-webkit-outer-spin-button,
@@ -2166,9 +2207,9 @@ ol, ul {
 }
 
 .toneka-minicart-upsell-add-btn {
-    background: none;
-    color: var(--color-white);
-    border: 1px solid var(--color-line-grey);
+    background: var(--color-white);
+    color: var(--color-black);
+    border: 1px solid var(--color-white);
     padding: 12px 24px;
     border-radius: 25px;
     font-family: var(--font-primary);
@@ -2178,11 +2219,14 @@ ol, ul {
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
+    width: 100%;
+    margin-top: 8px;
 }
 
 .toneka-minicart-upsell-add-btn:hover {
-    background: var(--color-white);
-    color: var(--color-black);
+    background: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-white);
 }
 
 .toneka-minicart-upsell-add-btn:active {
@@ -4512,7 +4556,7 @@ ol, ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 7%;
+    padding: 40px 7%;
     border-top: 1px solid var(--color-line-grey);
     border-bottom: 1px solid var(--color-line-grey);
 }
@@ -4532,12 +4576,14 @@ ol, ul {
     font-size: clamp(1.3rem, 1.3vw, 2.3rem);
     font-weight: 300;
     text-transform: uppercase;
-    line-height: 1.4;
+    line-height: 1;
     color: var(--color-white);
     margin: 0;
     text-align: left;
     padding: 0;
     border: none;
+    display: flex;
+    align-items: center;
 }
 
 .toneka-section-link {
@@ -4556,13 +4602,14 @@ ol, ul {
     text-transform: uppercase;
     transition: all 0.3s ease;
     position: relative;
-    padding: 8px 0;
+    padding: 0;
+    line-height: 1;
 }
 
-.toneka-view-all-link::before {
+.toneka-view-all-link::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     width: 0;
     height: 1px;
@@ -4570,7 +4617,7 @@ ol, ul {
     transition: width 0.3s ease;
 }
 
-.toneka-view-all-link:hover::before {
+.toneka-view-all-link:hover::after {
     width: 100%;
 }
 
@@ -5772,31 +5819,37 @@ button.toneka-playlist:hover svg rect {
 .toneka-cart-quantity .quantity-btn {
     background: none;
     border: 1px solid var(--color-white);
+    border-radius: 50%!important;
     color: var(--color-white);
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem)!important;
+    padding: 20px!important;
     width: 30px!important;
     height: 30px!important;
-    padding: 20px!important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    border-radius: 50%!important;
-    transition: all 0.3s ease;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    cursor: pointer!important;
+    transition: all 0.3s ease!important;
 }
 
 .toneka-cart-quantity .quantity-btn:hover {
-    background: var(--color-line-grey);
+    background-color: var(--color-line-grey);
+    transform: scale(1.1);
 }
 
 .toneka-cart-quantity .quantity-input {
     background: none;
     border: none;
     color: var(--color-white);
-    width: 35px;
     text-align: center;
+    width: 28px;
+    padding: 8px 4px;
     font-size: var(--font-size-md);
     font-family: var(--font-primary);
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -ms-appearance: textfield;
+    text-align: center!important;
 }
 
 .toneka-cart-item-details {
@@ -6305,31 +6358,37 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-quantity .quantity-btn {
     background: none;
     border: 1px solid var(--color-white);
+    border-radius: 50%!important;
     color: var(--color-white);
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem)!important;
+    padding: 20px!important;
     width: 30px!important;
     height: 30px!important;
-    padding: 20px!important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
-    border-radius: 50%!important;
-    transition: all 0.3s ease;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+    cursor: pointer!important;
+    transition: all 0.3s ease!important;
 }
 
 .toneka-checkout-quantity .quantity-btn:hover {
-    background: var(--color-line-grey);
+    background-color: var(--color-line-grey);
+    transform: scale(1.1);
 }
 
 .toneka-checkout-quantity .quantity-input {
     background: none;
     border: none;
     color: var(--color-white);
-    width: 35px;
     text-align: center;
+    width: 28px;
+    padding: 8px 4px;
     font-size: var(--font-size-md);
     font-family: var(--font-primary);
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -ms-appearance: textfield;
+    text-align: center!important;
 }
 
 .toneka-checkout-item-details {
@@ -8303,7 +8362,7 @@ select option:checked {
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     /* border-bottom: 1px solid var(--color-line-grey); */
     /* padding-bottom: 15px; */
 }
@@ -8708,14 +8767,14 @@ select option:checked {
 
 .woocommerce h1 {
     /* font-size: clamp(1.5rem, 2.5vw, 2rem); */
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .woocommerce h2 {
     font-size: clamp(1.1rem, 1.7vw, 1.5rem);
-    border-bottom: 1px solid var(--color-line-grey);
-    padding-bottom: 15px;
-    margin-bottom: 30px;
+    /* border-bottom: 1px solid var(--color-line-grey); */
+    /* padding-bottom: 15px; */
+    /* margin-bottom: 30px; */
 }
 
 .woocommerce h3 {

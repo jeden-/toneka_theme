@@ -83,16 +83,22 @@ do_action( 'woocommerce_before_cart' ); ?>
                                 <div class="toneka-cart-item-details">
                                     <div class="toneka-cart-item-name">
                                         <?php
+                                        // Get parent product name (without variation attributes)
+                                        $product_name = $_product->get_name();
+                                        if ( $_product->is_type( 'variation' ) ) {
+                                            $parent_product = wc_get_product( $_product->get_parent_id() );
+                                            if ( $parent_product ) {
+                                                $product_name = $parent_product->get_name();
+                                            }
+                                        }
+                                        
                                         if ( ! $product_permalink ) {
-                                            echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+                                            echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $product_name, $cart_item, $cart_item_key ) . '&nbsp;' );
                                         } else {
-                                            echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
+                                            echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $product_name ), $cart_item, $cart_item_key ) );
                                         }
 
                                         do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
-
-                                        // Meta data.
-                                        echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
 
                                         // Backorder notification.
                                         if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {

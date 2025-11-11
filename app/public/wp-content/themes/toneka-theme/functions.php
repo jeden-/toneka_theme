@@ -175,7 +175,17 @@ function toneka_display_custom_minicart() {
                         </div>
                         
                         <div class="toneka-minicart-item-details">
-                            <h4 class="toneka-minicart-item-name"><?php echo $product->get_name(); ?></h4>
+                            <?php
+                            // Get parent product name (without variation attributes)
+                            $product_name = $product->get_name();
+                            if ( $product->is_type( 'variation' ) ) {
+                                $parent_product = wc_get_product( $product->get_parent_id() );
+                                if ( $parent_product ) {
+                                    $product_name = $parent_product->get_name();
+                                }
+                            }
+                            ?>
+                            <h4 class="toneka-minicart-item-name"><?php echo esc_html( $product_name ); ?></h4>
                             
                             <?php if ( ! empty( $variant_text ) ) : ?>
                                 <div class="toneka-minicart-item-variant-wrapper">
@@ -237,9 +247,31 @@ function toneka_display_custom_minicart() {
                                     </div>
                                     
                                     <div class="toneka-minicart-upsell-item-content">
+                                        <div class="toneka-minicart-upsell-item-header">
+                                            <div class="toneka-minicart-upsell-quantity">
+                                                <button class="upsell-quantity-btn minus" data-product-id="<?php echo $upsell_id; ?>">-</button>
+                                                <input type="number" value="1" min="1" class="upsell-quantity-input" data-product-id="<?php echo $upsell_id; ?>">
+                                                <button class="upsell-quantity-btn plus" data-product-id="<?php echo $upsell_id; ?>">+</button>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="toneka-minicart-upsell-item-details">
-                                            <h5 class="toneka-minicart-upsell-item-name"><?php echo $upsell_product->get_name(); ?></h5>
-                                            <div class="toneka-minicart-upsell-item-variant">PLIKI CYFROWE</div>
+                                            <?php
+                                            // Get parent product name (without variation attributes)
+                                            $product_name = $upsell_product->get_name();
+                                            if ( $upsell_product->is_type( 'variation' ) ) {
+                                                $parent_product = wc_get_product( $upsell_product->get_parent_id() );
+                                                if ( $parent_product ) {
+                                                    $product_name = $parent_product->get_name();
+                                                }
+                                            }
+                                            ?>
+                                            <h4 class="toneka-minicart-upsell-item-name"><?php echo esc_html( $product_name ); ?></h4>
+                                            
+                                            <div class="toneka-minicart-upsell-item-variant-wrapper">
+                                                <div class="toneka-minicart-upsell-item-variant">PLIKI CYFROWE</div>
+                                            </div>
+                                            
                                             <div class="toneka-minicart-upsell-item-price">
                                                 <?php 
                                                 // Display full price with sale information for upsells
@@ -250,26 +282,17 @@ function toneka_display_custom_minicart() {
                                                     $savings_percent = round(($savings / $regular_price) * 100);
                                                     
                                                     echo '<div class="toneka-minicart-upsell-price-sale">';
-                                                    echo '<span class="toneka-minicart-upsell-price-regular">' . wc_price($regular_price) . '</span> ';
+                                                    echo '<span class="toneka-minicart-upsell-price-regular">' . wc_price($regular_price) . '</span>';
                                                     echo '<span class="toneka-minicart-upsell-price-current">' . wc_price($sale_price) . '</span>';
-                                                    echo '<div class="toneka-minicart-upsell-savings">-' . $savings_percent . '%</div>';
+                                                    echo '<div class="toneka-minicart-upsell-savings">Oszczędzasz: ' . wc_price($savings) . ' (' . $savings_percent . '%)</div>';
                                                     echo '</div>';
                                                 } else {
                                                     echo '<div class="toneka-minicart-upsell-price-regular">' . wc_price($upsell_product->get_price()) . '</div>';
                                                 }
                                                 ?>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="toneka-minicart-upsell-item-actions">
-                                            <div class="toneka-minicart-upsell-cart-section">
-                                                <div class="toneka-minicart-upsell-quantity">
-                                                    <button class="upsell-quantity-btn minus" data-product-id="<?php echo $upsell_id; ?>">-</button>
-                                                    <input type="number" value="1" min="1" class="upsell-quantity-input" data-product-id="<?php echo $upsell_id; ?>">
-                                                    <button class="upsell-quantity-btn plus" data-product-id="<?php echo $upsell_id; ?>">+</button>
-                                                </div>
-                                                <button class="toneka-minicart-upsell-add-btn" data-product-id="<?php echo $upsell_id; ?>">DODAJ DO KOSZYKA</button>
-                                            </div>
+                                            
+                                            <button class="toneka-minicart-upsell-add-btn" data-product-id="<?php echo $upsell_id; ?>">DODAJ DO KOSZYKA</button>
                                         </div>
                                     </div>
                                 </div>
@@ -307,7 +330,7 @@ function toneka_display_custom_minicart() {
                         $savings_percent = round(($total_savings / $total_regular) * 100);
                         ?>
                         <div class="toneka-minicart-total-savings">
-                            <span>Oszczędzasz łącznie: <?php echo wc_price($total_savings); ?> (<?php echo $savings_percent; ?>%)</span>
+                            Oszczędzasz łącznie: <?php echo wc_price($total_savings); ?> (<?php echo $savings_percent; ?>%)
                         </div>
                         <?php
                     }
