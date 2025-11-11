@@ -6084,7 +6084,7 @@ button.toneka-playlist:hover svg rect {
     font-weight: 300;
     color: var(--color-white);
     text-transform: uppercase;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     border-bottom: 1px solid var(--color-line-grey);
     padding-bottom: 15px;
 }
@@ -8304,8 +8304,8 @@ select option:checked {
     color: var(--color-white);
     text-transform: uppercase;
     margin-bottom: 30px;
-    border-bottom: 1px solid var(--color-line-grey);
-    padding-bottom: 15px;
+    /* border-bottom: 1px solid var(--color-line-grey); */
+    /* padding-bottom: 15px; */
 }
 
 /* My Account Form Styles */
@@ -8707,7 +8707,7 @@ select option:checked {
 }
 
 .woocommerce h1 {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    /* font-size: clamp(1.5rem, 2.5vw, 2rem); */
     margin-bottom: 30px;
 }
 
