@@ -115,13 +115,13 @@ get_header(); ?>
                     <?php if ($is_current): ?>
                         <!-- Current Category (Active) -->
                         <div class="toneka-category-filter-item toneka-category-filter-active">
-                            <span><?php echo esc_html(strtoupper($category->name)); ?></span>
+                            <span><?php echo esc_html(mb_strtoupper($category->name, 'UTF-8')); ?></span>
                         </div>
                     <?php else: ?>
                         <!-- Other categories -->
                         <div class="toneka-category-filter-item">
                             <a href="#" data-category-id="<?php echo esc_attr($category->term_id); ?>" data-category-url="<?php echo $category->term_id === 0 ? esc_url(wc_get_page_permalink('shop')) : esc_url(get_term_link($category)); ?>">
-                                <?php echo esc_html(strtoupper($category->name)); ?>
+                                <?php echo esc_html(mb_strtoupper($category->name, 'UTF-8')); ?>
                             </a>
                         </div>
                     <?php endif; ?>

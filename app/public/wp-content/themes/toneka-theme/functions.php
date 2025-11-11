@@ -2724,7 +2724,7 @@ function toneka_display_product_metadata() {
             foreach ($product_categories as $category) {
                 if ($category->slug !== 'uncategorized') {
                     $category_url = get_term_link($category);
-                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . esc_html(strtoupper($category->name)) . '</a>';
+                    $category_links[] = '<a href="' . esc_url($category_url) . '" class="toneka-category-link">' . esc_html(mb_strtoupper($category->name, 'UTF-8')) . '</a>';
                 }
             }
         }
@@ -3002,7 +3002,7 @@ function toneka_display_category_hero_product($category_id) {
             echo '<div class="toneka-category-placeholder">';
             echo '<svg width="200" height="200" viewBox="0 0 200 200" fill="#333">';
             echo '<rect width="200" height="200" fill="#333"/>';
-            echo '<text x="100" y="100" text-anchor="middle" fill="white" font-size="14">' . esc_html(strtoupper(get_term($category_id)->name)) . '</text>';
+            echo '<text x="100" y="100" text-anchor="middle" fill="white" font-size="14">' . esc_html(mb_strtoupper(get_term($category_id)->name, 'UTF-8')) . '</text>';
             echo '</svg>';
             echo '</div>';
         }
