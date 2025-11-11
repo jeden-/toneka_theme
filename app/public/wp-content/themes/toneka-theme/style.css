@@ -40,8 +40,10 @@ FONTY RESPONSYWNE:
     --color-white: #ffffff;
     --color-grey-dark: #333333;
     --color-line-grey: #a5a5a5;
+    --color-line-grey-dark: #7b7b7b;
     --color-error: #bf2b2b;
     --color-success: #2f8358;
+    --color-info: #3877a1;
     
     /* Czcionki */
     --font-primary: 'Figtree', sans-serif;
@@ -1706,12 +1708,17 @@ ol, ul {
     font-size: var(--font-size-xs);
     font-weight: 400;
     text-transform: none;
-    white-space: nowrap;
-    max-width: 300px;
+    width: 250px;
     white-space: normal;
+    border-radius: 0;
     /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); */
     z-index: 99999;
     pointer-events: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
 }
 
 .toneka-minicart .toneka-attribute-value[data-tooltip]:hover::before {
@@ -1830,6 +1837,12 @@ ol, ul {
     margin: 2px 0;
 }
 
+.toneka-minicart-item-variant-wrapper {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-line-grey);
+    margin-bottom: 8px;
+}
+
 .toneka-variation-attributes {
     display: flex;
     flex-wrap: wrap;
@@ -1866,13 +1879,17 @@ ol, ul {
     font-size: var(--font-size-xs);
     font-weight: 400;
     text-transform: none;
-    white-space: nowrap;
-    max-width: 300px;
+    width: 250px;
     white-space: normal;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 99999;
     pointer-events: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
 }
 
 .toneka-attribute-value[data-tooltip]:hover::before {
@@ -5677,7 +5694,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-cart-item {
     display: flex;
-    gap: 20px;
+    gap: 5%;
     padding: 20px 0;
     border-bottom: 1px solid var(--color-line-grey);
     align-items: flex-start;
@@ -5703,63 +5720,68 @@ button.toneka-playlist:hover svg rect {
 .toneka-cart-item-content {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    gap: 5%;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
 }
 
 .toneka-cart-item-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 8px;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .toneka-cart-remove {
-    width: 30px;
-    height: 30px;
-    padding: 20px !important;
-    border: 1px solid var(--color-line-grey);
     background: none;
     color: var(--color-white);
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50% !important;
-    transition: all 0.3s ease;
+    padding: 11px!important;
+    opacity: 1;
+    order: 1;
+    transition: opacity 0.3s ease;
+    border: none!important;
     text-decoration: none;
 }
 
 .toneka-cart-remove:hover {
-    background: var(--color-line-grey);
     opacity: 1;
 }
 
 .toneka-cart-remove svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
+}
+
+.toneka-cart-remove:hover svg path {
+    fill-opacity: 1;
 }
 
 .toneka-cart-quantity {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.toneka-cart-quantity .toneka-cart-remove {
-    order: -1;
+    gap: 0;
+    border-radius: 30px;
+    padding: 2px;
+    order: 2;
 }
 
 .toneka-cart-quantity .quantity-btn {
-    width: 30px;
-    height: 30px;
-    padding: 20px!important;
-    border: 1px solid var(--color-line-grey);
     background: none;
+    border: 1px solid var(--color-white);
     color: var(--color-white);
-    cursor: pointer;
+    width: 30px!important;
+    height: 30px!important;
+    padding: 20px!important;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+    border-radius: 50%!important;
     transition: all 0.3s ease;
 }
 
@@ -5768,27 +5790,30 @@ button.toneka-playlist:hover svg rect {
 }
 
 .toneka-cart-quantity .quantity-input {
-    width: 60px;
-    height: 30px;
-    border: 1px solid var(--color-line-grey);
-    background: var(--color-black);
+    background: none;
+    border: none;
     color: var(--color-white);
+    width: 35px;
     text-align: center;
+    font-size: var(--font-size-md);
     font-family: var(--font-primary);
 }
 
 .toneka-cart-item-details {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
 }
 
 .toneka-cart-item-name {
     font-family: var(--font-primary);
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+    font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
+    text-transform: uppercase;
     margin: 0;
+    line-height: 1.2;
 }
 
 .toneka-cart-item-name a {
@@ -5804,17 +5829,22 @@ button.toneka-playlist:hover svg rect {
 .toneka-cart-item-variant,
 .toneka-variation-attributes {
     font-family: var(--font-primary);
-    font-size: var(--font-size-sm);
-    font-weight: 300;
+    font-size: var(--font-size-xs);
     color: var(--color-line-grey);
     text-transform: uppercase;
+    margin: 2px 0;
+}
+
+.toneka-cart-item-variant-wrapper {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-line-grey);
+    margin-bottom: 8px;
 }
 
 .toneka-variation-attributes {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 8px;
 }
 
 .toneka-attribute-tooltip-wrapper {
@@ -5847,13 +5877,17 @@ button.toneka-playlist:hover svg rect {
     font-size: var(--font-size-xs);
     font-weight: 400;
     text-transform: none;
-    white-space: nowrap;
-    max-width: 300px;
+    width: 250px;
     white-space: normal;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 99999;
     pointer-events: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
 }
 
 .toneka-attribute-value[data-tooltip]:hover::before {
@@ -5872,15 +5906,16 @@ button.toneka-playlist:hover svg rect {
 .toneka-cart-item-price {
     font-family: var(--font-primary);
     font-size: var(--font-size-base);
-    font-weight: 500;
+    font-weight: 300;
     color: var(--color-white);
+    margin-top: 5px;
 }
 
 /* Sale price styling for cart items */
 .toneka-cart-price-sale {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 3px;
 }
 
 .toneka-cart-price-regular {
@@ -6023,7 +6058,7 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-container {
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 7%;
 }
 
 .toneka-checkout-title {
@@ -6062,28 +6097,32 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-fields label {
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
-    color: var(--color-grey-dark) !important;
-    font-weight: 400 !important;
+    color: var(--color-white) !important;
+    font-weight: 300 !important;
     text-transform: uppercase !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
     display: block !important;
-    padding: 0 15px !important;
+    padding: 0 !important;
 }
 
 .toneka-checkout-fields input[type="text"],
 .toneka-checkout-fields input[type="email"],
 .toneka-checkout-fields input[type="tel"],
+.toneka-checkout-fields input[type="password"],
+.toneka-checkout-fields input[type="number"],
 .toneka-checkout-fields select,
 .toneka-checkout-fields textarea {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--color-grey-dark);
-    background: var(--color-black);
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid var(--color-line-grey);
+    background: transparent;
     color: var(--color-white);
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
     border-radius: 0!important;
-    transition: all 0.3s ease;
+    transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s;
+    -webkit-transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s;
 }
 
 .toneka-checkout-fields input[type="text"]:hover,
@@ -6091,8 +6130,8 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-fields input[type="tel"]:hover,
 .toneka-checkout-fields select:hover,
 .toneka-checkout-fields textarea:hover {
-    border-color: var(--color-grey-dark);
-    background: var(--color-line-grey);
+    border-bottom-color: var(--color-white);
+    background: transparent;
 }
 
 .toneka-checkout-fields input[type="text"]:focus,
@@ -6101,25 +6140,85 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-fields select:focus,
 .toneka-checkout-fields textarea:focus {
     outline: none;
-    border-color: var(--color-grey-dark);
-    background: var(--color-line-grey);
+    border-bottom-color: var(--color-white);
+    background: transparent;
 }
 
-/* Override autofill styles - zachowaj czarne tło */
+/* Placeholder styles for toneka-checkout-fields */
+.toneka-checkout-fields input::placeholder,
+.toneka-checkout-fields textarea::placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+}
+
+.toneka-checkout-fields input::-webkit-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+}
+
+.toneka-checkout-fields input::-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+}
+
+.toneka-checkout-fields input:-ms-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+}
+
+.toneka-checkout-fields input:-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+}
+
+/* Override autofill styles - transparentne tło dla checkout - bez zmiany koloru */
 .toneka-checkout-fields input[type="text"]:-webkit-autofill,
 .toneka-checkout-fields input[type="email"]:-webkit-autofill,
-.toneka-checkout-fields input[type="tel"]:-webkit-autofill {
-    background-color: var(--color-black) !important;
+.toneka-checkout-fields input[type="tel"]:-webkit-autofill,
+.toneka-checkout-fields input[type="password"]:-webkit-autofill,
+.toneka-checkout-fields input[type="number"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="text"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="email"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="tel"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="password"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="number"]:-webkit-autofill,
+.toneka-checkout-billing input[type="text"]:-webkit-autofill,
+.toneka-checkout-billing input[type="email"]:-webkit-autofill,
+.toneka-checkout-billing input[type="tel"]:-webkit-autofill,
+.toneka-checkout-billing input[type="password"]:-webkit-autofill,
+.toneka-checkout-billing input[type="number"]:-webkit-autofill,
+.woocommerce-checkout input[type="text"]:-webkit-autofill,
+.woocommerce-checkout input[type="email"]:-webkit-autofill,
+.woocommerce-checkout input[type="tel"]:-webkit-autofill,
+.woocommerce-checkout input[type="password"]:-webkit-autofill,
+.woocommerce-checkout input[type="number"]:-webkit-autofill {
+    background-color: transparent !important;
     -webkit-text-fill-color: var(--color-white) !important;
-    background-color: var(--color-black) !important;
     color: var(--color-white) !important;
+    -webkit-box-shadow: 0 0 0 10000px transparent inset !important;
+    box-shadow: 0 0 0 10000px transparent inset !important;
+    transition: background-color 50000s ease-in-out 0s !important;
+    -webkit-transition: background-color 50000s ease-in-out 0s !important;
 }
 
 .toneka-checkout-fields input:focus,
 .toneka-checkout-fields select:focus,
 .toneka-checkout-fields textarea:focus {
     outline: none;
-    border-color: var(--color-grey-dark);
+    border-bottom-color: var(--color-white);
 }
 
 /* Checkout items */
@@ -6129,10 +6228,10 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-item {
     display: flex;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--color-grey-dark);
-    align-items: center;
+    gap: 5%;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-line-grey);
+    align-items: flex-start;
 }
 
 .toneka-checkout-item:last-child {
@@ -6142,7 +6241,6 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-item-image {
     width: 150px;
     height: 150px;
-    position: relative;
     flex-shrink: 0;
 }
 
@@ -6150,35 +6248,105 @@ button.toneka-playlist:hover svg rect {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: none;
 }
 
-.toneka-checkout-item-qty {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--color-white);
-    color: var(--color-black);
-    border-radius: 50%;
+.toneka-checkout-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+.toneka-checkout-item-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.toneka-checkout-remove {
+    background: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 11px!important;
+    opacity: 1;
+    order: 1;
+    transition: opacity 0.3s ease;
+    border: none!important;
+    text-decoration: none;
+}
+
+.toneka-checkout-remove:hover {
+    opacity: 1;
+}
+
+.toneka-checkout-remove svg {
     width: 20px;
     height: 20px;
+}
+
+.toneka-checkout-remove:hover svg path {
+    fill-opacity: 1;
+}
+
+.toneka-checkout-quantity {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-radius: 30px;
+    padding: 2px;
+    order: 2;
+}
+
+.toneka-checkout-quantity .quantity-btn {
+    background: none;
+    border: 1px solid var(--color-white);
+    color: var(--color-white);
+    width: 30px!important;
+    height: 30px!important;
+    padding: 20px!important;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--font-size-xs);
-    font-weight: 600;
+    cursor: pointer;
+    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+    border-radius: 50%!important;
+    transition: all 0.3s ease;
+}
+
+.toneka-checkout-quantity .quantity-btn:hover {
+    background: var(--color-line-grey);
+}
+
+.toneka-checkout-quantity .quantity-input {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    width: 35px;
+    text-align: center;
+    font-size: var(--font-size-md);
+    font-family: var(--font-primary);
 }
 
 .toneka-checkout-item-details {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .toneka-checkout-item-name {
     font-family: var(--font-primary);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--color-white);
-    margin: 0 0 5px 0;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
 }
 
 .toneka-checkout-item-variant,
@@ -6187,13 +6355,19 @@ button.toneka-playlist:hover svg rect {
     font-size: var(--font-size-xs);
     color: var(--color-line-grey);
     text-transform: uppercase;
+    margin: 2px 0;
+}
+
+.toneka-checkout-item-variant-wrapper {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-line-grey);
+    margin-bottom: 8px;
 }
 
 .toneka-variation-attributes {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 5px;
 }
 
 .toneka-attribute-tooltip-wrapper {
@@ -6226,13 +6400,17 @@ button.toneka-playlist:hover svg rect {
     font-size: var(--font-size-xs);
     font-weight: 400;
     text-transform: none;
-    white-space: nowrap;
-    max-width: 300px;
+    width: 250px;
     white-space: normal;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 99999;
     pointer-events: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
 }
 
 .toneka-attribute-value[data-tooltip]:hover::before {
@@ -6249,26 +6427,35 @@ button.toneka-playlist:hover svg rect {
 }
 
 .toneka-checkout-item-price {
-    text-align: right;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: 300;
+    color: var(--color-white);
+    margin-top: 5px;
 }
 
 .toneka-checkout-price-sale {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 2px;
+    gap: 3px;
 }
 
 .toneka-checkout-price-regular {
     text-decoration: line-through;
     color: var(--color-line-grey);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
 }
 
 .toneka-checkout-price-current {
     color: var(--color-white);
     font-weight: 600;
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-base);
+}
+
+.toneka-checkout-savings {
+    font-size: var(--font-size-sm);
+    color: var(--color-line-grey);
+    font-weight: 500;
 }
 
 /* Checkout totals */
@@ -6544,32 +6731,42 @@ button.toneka-playlist:hover svg rect {
 
 .toneka-checkout-billing .form-row {
     margin-bottom: 20px;
+    position: relative;
 }
 
+/* Hide labels visually but keep for screen readers and accessibility */
 .toneka-checkout-billing label {
-    font-family: var(--font-primary);
-    font-size: var(--font-size-xxs);
-    color: var(--color-line-grey) !important;
-    font-weight: 300 !important;
-    text-transform: uppercase !important;
-    display: block !important;
-    padding: 0 var(--spacing-xs) !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border-width: 0 !important;
 }
 
 .toneka-checkout-billing input[type="text"],
 .toneka-checkout-billing input[type="email"],
 .toneka-checkout-billing input[type="tel"],
+.toneka-checkout-billing input[type="password"],
+.toneka-checkout-billing input[type="number"],
 .toneka-checkout-billing select,
 .toneka-checkout-billing textarea {
     width: 100%;
-    padding: var(--spacing-md);
-    border: 1px solid var(--color-grey-dark);
-    background: var(--color-black);
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid var(--color-grey-dark);
+    background: transparent;
     color: var(--color-white);
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
     border-radius: 0 !important;
-    transition: all 0.3s ease;
+    transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s;
+    -webkit-transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s;
+    position: relative;
+    z-index: 2;
 }
 
 .toneka-checkout-billing input[type="text"]:hover,
@@ -6577,8 +6774,8 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-billing input[type="tel"]:hover,
 .toneka-checkout-billing select:hover,
 .toneka-checkout-billing textarea:hover {
-    border-color: var(--color-grey-dark);
-    background: var(--color-grey-dark);
+    border-bottom-color: var(--color-white);
+    background: transparent;
 }
 
 .toneka-checkout-billing input[type="text"]:focus,
@@ -6587,8 +6784,53 @@ button.toneka-playlist:hover svg rect {
 .toneka-checkout-billing select:focus,
 .toneka-checkout-billing textarea:focus {
     outline: none;
-    border-color: var(--color-grey-dark);
-    background: var(--color-grey-dark);
+    border-bottom-color: var(--color-white);
+    background: transparent;
+}
+
+/* Placeholder styles for checkout billing fields - labels are now placeholders */
+.toneka-checkout-billing input::placeholder,
+.toneka-checkout-billing textarea::placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+    text-transform: none !important;
+}
+
+.toneka-checkout-billing input::-webkit-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+}
+
+.toneka-checkout-billing input::-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+    text-transform: none !important;
+}
+
+.toneka-checkout-billing input:-ms-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+}
+
+.toneka-checkout-billing input:-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+    text-transform: none !important;
 }
 
 /* Account Pages */
@@ -6605,6 +6847,11 @@ button.toneka-playlist:hover svg rect {
 .woocommerce-form-register {
     margin: 0 auto;
     background: var(--color-black);
+    color: var(--color-white);
+    padding: var(--spacing-lg);
+}
+
+.woocommerce-form.woocommerce-form-login.login {
     color: var(--color-white);
 }
 
@@ -6661,6 +6908,11 @@ button.toneka-playlist:hover svg rect {
     margin-bottom: 12px !important;
     display: block !important;
     padding: 0 15px !important;
+}
+
+.woocommerce-notices-wrapper {
+    margin-top: var(--spacing-xxl) !important;
+    padding: var(--spacing-xl) !important;
 }
 
 /* Checkbox styles - zgodne ze stylem radio */
@@ -6821,6 +7073,15 @@ button.wc-block-components-button.wp-element-button.wc-block-components-checkout
 }
 
 /* Select dropdown styles - wymuś custom styling we wszystkich przeglądarkach */
+.woocommerce-checkout .form-row select,
+.woocommerce-checkout .toneka-checkout-fields select,
+.woocommerce-checkout .toneka-checkout-billing select {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid var(--color-line-grey) !important;
+    padding: 12px 0 !important;
+}
+
 .form-row select,
 .wc-block-components-select select,
 .toneka-checkout-fields select,
@@ -6845,6 +7106,22 @@ select {
     padding-right: 40px !important;
     cursor: pointer !important;
     width: 100%; /* Ensure select takes full width of parent */
+}
+
+/* Hover and Focus States for checkout select */
+.woocommerce-checkout .form-row select:hover,
+.woocommerce-checkout .toneka-checkout-fields select:hover,
+.woocommerce-checkout .toneka-checkout-billing select:hover {
+    border-bottom-color: var(--color-white) !important;
+    background: transparent !important;
+}
+
+.woocommerce-checkout .form-row select:focus,
+.woocommerce-checkout .toneka-checkout-fields select:focus,
+.woocommerce-checkout .toneka-checkout-billing select:focus {
+    outline: none !important;
+    border-bottom-color: var(--color-white) !important;
+    background: transparent !important;
 }
 
 /* Hover and Focus States */
@@ -6901,17 +7178,17 @@ select option:checked {
 
 /* Label styles for checkout forms */
 .woocommerce-checkout .woocommerce-form label {
-    color: var(--color-grey-dark) !important;
+    color: var(--color-white) !important;
     font-family: var(--font-primary) !important;
     font-size: var(--font-size-md) !important;
-    font-weight: 400 !important;
+    font-weight: 300 !important;
     text-transform: uppercase !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
     display: block !important;
-    padding: 0 15px !important;
+    padding: 0 !important;
 }
 
-/* Description text styles - szare opisy, padding jak input label */
+/* Description text styles - szare opisy */
 .woocommerce-checkout .woocommerce-form p {
     color: var(--color-line-grey) !important;
     font-family: var(--font-primary) !important;
@@ -6919,7 +7196,7 @@ select option:checked {
     font-weight: 300 !important;
     margin-bottom: 16px !important;
     line-height: 1.4 !important;
-    padding: 0 15px !important;
+    padding: 0 !important;
 }
 
 /* Section headings - białe tytuły */
@@ -6931,24 +7208,71 @@ select option:checked {
     font-weight: 500 !important;
     text-transform: uppercase !important;
     margin-bottom: 16px !important;
-    padding: 0 15px !important;
+    padding: 0 !important;
 }
 
 /* Form field wrapper styles */
 .woocommerce-checkout .woocommerce-form .form-row {
     margin-bottom: 20px !important;
+    position: relative;
 }
 
+/* Hide labels visually but keep for screen readers */
 .woocommerce-checkout .woocommerce-form .form-row label {
-    margin-bottom: 8px !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border-width: 0 !important;
 }
 
-/* Checkbox label styles */
+/* Radio button label styles for checkout - override hidden state */
+.woocommerce-checkout .woocommerce-form .form-row input[type="radio"] + label {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 15px 0 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    border-width: initial !important;
+    color: var(--color-white) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    cursor: pointer !important;
+}
+
+/* Radio button input styles for checkout */
+.woocommerce-checkout .woocommerce-form .form-row input[type="radio"] {
+    width: auto !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+}
+
+/* Checkbox label styles - keep visible */
 .woocommerce-checkout .woocommerce-form .form-row input[type="checkbox"] + label {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    border-width: initial !important;
     display: flex !important;
     align-items: center !important;
     gap: 0 !important;
-    margin-bottom: 0 !important;
     cursor: pointer !important;
     font-size: var(--font-size-md) !important;
     color: var(--color-line-grey) !important;
@@ -7056,62 +7380,125 @@ textarea::placeholder {
     margin-bottom: 20px;
 }
 
-.woocommerce-form-row label {
+.woocommerce-checkout .woocommerce-form-row label {
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
-    color: var(--color-grey-dark) !important;
-    font-weight: 400 !important;
+    color: var(--color-white) !important;
+    font-weight: 300 !important;
     text-transform: uppercase !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
     display: block !important;
-    padding: 0 15px !important;
+    padding: 0 !important;
 }
 
-.woocommerce-form-row input[type="text"],
-.woocommerce-form-row input[type="email"],
-.woocommerce-form-row input[type="password"],
-.woocommerce-form-row input[type="tel"],
-.woocommerce-form-row input[type="number"],
-.woocommerce-form-row input[type="url"],
-.woocommerce-form-row select,
-.woocommerce-form-row textarea {
+.woocommerce-checkout .woocommerce-form-row input[type="text"],
+.woocommerce-checkout .woocommerce-form-row input[type="email"],
+.woocommerce-checkout .woocommerce-form-row input[type="password"],
+.woocommerce-checkout .woocommerce-form-row input[type="tel"],
+.woocommerce-checkout .woocommerce-form-row input[type="number"],
+.woocommerce-checkout .woocommerce-form-row input[type="url"],
+.woocommerce-checkout .woocommerce-form-row select,
+.woocommerce-checkout .woocommerce-form-row textarea {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--color-grey-dark);
-    background: var(--color-black);
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid var(--color-line-grey);
+    background: transparent;
     color: var(--color-white);
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
     border-radius: 0!important;
-    transition: all 0.3s ease;
+    transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s;
+    -webkit-transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s;
 }
 
-.woocommerce-form-row input[type="text"]:hover,
-.woocommerce-form-row input[type="email"]:hover,
-.woocommerce-form-row input[type="password"]:hover,
-.woocommerce-form-row input[type="tel"]:hover,
-.woocommerce-form-row input[type="number"]:hover,
-.woocommerce-form-row input[type="url"]:hover,
-.woocommerce-form-row select:hover,
-.woocommerce-form-row textarea:hover {
-    border-color: var(--color-grey-dark);
-    background: var(--color-line-grey);
+.woocommerce-checkout .woocommerce-form-row input[type="text"]:hover,
+.woocommerce-checkout .woocommerce-form-row input[type="email"]:hover,
+.woocommerce-checkout .woocommerce-form-row input[type="password"]:hover,
+.woocommerce-checkout .woocommerce-form-row input[type="tel"]:hover,
+.woocommerce-checkout .woocommerce-form-row input[type="number"]:hover,
+.woocommerce-checkout .woocommerce-form-row input[type="url"]:hover,
+.woocommerce-checkout .woocommerce-form-row select:hover,
+.woocommerce-checkout .woocommerce-form-row textarea:hover {
+    border-bottom-color: var(--color-white);
+    background: transparent;
 }
 
-.woocommerce-form-row input[type="text"]:focus,
-.woocommerce-form-row input[type="email"]:focus,
-.woocommerce-form-row input[type="password"]:focus,
-.woocommerce-form-row input[type="tel"]:focus,
-.woocommerce-form-row input[type="number"]:focus,
-.woocommerce-form-row input[type="url"]:focus,
-.woocommerce-form-row select:focus,
-.woocommerce-form-row textarea:focus {
+.woocommerce-checkout .woocommerce-form-row input[type="text"]:focus,
+.woocommerce-checkout .woocommerce-form-row input[type="email"]:focus,
+.woocommerce-checkout .woocommerce-form-row input[type="password"]:focus,
+.woocommerce-checkout .woocommerce-form-row input[type="tel"]:focus,
+.woocommerce-checkout .woocommerce-form-row input[type="number"]:focus,
+.woocommerce-checkout .woocommerce-form-row input[type="url"]:focus,
+.woocommerce-checkout .woocommerce-form-row select:focus,
+.woocommerce-checkout .woocommerce-form-row textarea:focus {
     outline: none;
-    border-color: var(--color-grey-dark);
-    background: var(--color-line-grey);
+    border-bottom-color: var(--color-white);
+    background: transparent;
 }
 
-/* Override autofill styles - zachowaj czarne tło */
+/* Placeholder styles for WooCommerce checkout form fields - labels are now placeholders */
+.woocommerce-checkout .woocommerce-form-row input::placeholder,
+.woocommerce-checkout .woocommerce-form-row textarea::placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+    text-transform: none !important;
+}
+
+.woocommerce-checkout .woocommerce-form-row input::-webkit-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+}
+
+.woocommerce-checkout .woocommerce-form-row input::-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+    text-transform: none !important;
+}
+
+.woocommerce-checkout .woocommerce-form-row input:-ms-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+}
+
+.woocommerce-checkout .woocommerce-form-row input:-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+    text-transform: none !important;
+}
+
+/* Override autofill styles dla checkout - transparentne tło */
+.woocommerce-checkout .woocommerce-form-row input[type="text"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="email"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="password"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="tel"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="number"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-row input[type="url"]:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    color: var(--color-white) !important;
+    -webkit-box-shadow: 0 0 0 10000px transparent inset !important;
+    box-shadow: 0 0 0 10000px transparent inset !important;
+    transition: background-color 50000s ease-in-out 0s !important;
+    -webkit-transition: background-color 50000s ease-in-out 0s !important;
+}
+
+/* Autofill dla innych formularzy WooCommerce (nie checkout) */
 .woocommerce-form-row input[type="text"]:-webkit-autofill,
 .woocommerce-form-row input[type="email"]:-webkit-autofill,
 .woocommerce-form-row input[type="password"]:-webkit-autofill,
@@ -7122,7 +7509,6 @@ textarea::placeholder {
 .woocommerce-form-row textarea:-webkit-autofill {
     background-color: var(--color-black) !important;
     -webkit-text-fill-color: var(--color-white) !important;
-    background-color: var(--color-black) !important;
     color: var(--color-white) !important;
 }
 
@@ -7847,23 +8233,23 @@ select option:checked {
 .wc-block-components-form ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: var(--color-line-grey);
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 300;
 }
 .wc-block-components-form ::-moz-placeholder { /* Firefox 19+ */
-  color: var(--color-line-grey);
+  color: var(--color-grey-dark);
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 300;
   opacity: 1;
 }
 .wc-block-components-form :-ms-input-placeholder { /* IE 10+ */
   color: var(--color-line-grey);
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 300;
 }
 .wc-block-components-form :-moz-placeholder { /* Firefox 18- */
   color: var(--color-line-grey);
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 300;
   opacity: 1;
 }
 /* -- END: Wyłączenie pływających etykiet i styl dla placeholderów -- */
@@ -7874,7 +8260,7 @@ select option:checked {
     color: var(--color-white) !important;
     font-family: var(--font-primary) !important;
     font-size: var(--font-size-base) !important;
-    font-weight: 500 !important;
+    font-weight: 300 !important;
     text-transform: uppercase !important;
     margin-bottom: 16px !important;
     padding: 0 15px !important;
@@ -8398,13 +8784,17 @@ select option:checked {
     border-color: var(--color-white);
 }
 
-.woocommerce-error {
-    border-color: #ff4444;
-    color: #ff4444;
+.woocommerce-error,
+.woocommerce-error a {
+    border: none!important;
+    color: var(--color-white);
+    background: var(--color-error);
 }
 
 .woocommerce-info {
-    border-color: var(--color-grey-dark);
+    border-color: var(--color-info);
+    background: var(--color-info);
+    color: var(--color-white);
 }
 
 /* Lost Password Page */
@@ -8520,15 +8910,18 @@ select option:checked {
 .woocommerce-checkout form.login input[type="password"],
 .woocommerce-checkout form.login input[type="email"],
 .woocommerce-checkout form.checkout_coupon input[type="text"] {
-    background-color: var(--color-black) !important;
-    border: 1px solid var(--color-grey-dark) !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid var(--color-line-grey) !important;
     color: var(--color-white) !important;
-    padding: 12px 15px !important;
+    padding: 12px 0 !important;
     border-radius: 0 !important;
     font-family: var(--font-primary) !important;
     font-size: var(--font-size-md) !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s !important;
+    -webkit-transition: border-bottom-color 0.3s ease, background-color 50000s ease-in-out 0s !important;
 }
 
 .woocommerce-checkout .woocommerce-form-login input[type="text"]:focus,
@@ -8537,8 +8930,74 @@ select option:checked {
 .woocommerce-checkout form.login input:focus,
 .woocommerce-checkout form.checkout_coupon input:focus {
     outline: none !important;
-    border-color: var(--color-grey-dark) !important;
-    background: var(--color-line-grey) !important;
+    border-bottom-color: var(--color-white) !important;
+    background: transparent !important;
+}
+
+/* Autofill styles dla formularzy logowania i kuponów w checkout */
+.woocommerce-checkout .woocommerce-form-login input[type="text"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-login input[type="password"]:-webkit-autofill,
+.woocommerce-checkout .woocommerce-form-login input[type="email"]:-webkit-autofill,
+.woocommerce-checkout form.login input[type="text"]:-webkit-autofill,
+.woocommerce-checkout form.login input[type="password"]:-webkit-autofill,
+.woocommerce-checkout form.login input[type="email"]:-webkit-autofill,
+.woocommerce-checkout form.checkout_coupon input[type="text"]:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-text-fill-color: var(--color-white) !important;
+    color: var(--color-white) !important;
+    -webkit-box-shadow: 0 0 0 10000px transparent inset !important;
+    box-shadow: 0 0 0 10000px transparent inset !important;
+    transition: background-color 50000s ease-in-out 0s !important;
+    -webkit-transition: background-color 50000s ease-in-out 0s !important;
+}
+
+/* Placeholder styles for checkout login and coupon forms */
+.woocommerce-checkout .woocommerce-form-login input::placeholder,
+.woocommerce-checkout form.login input::placeholder,
+.woocommerce-checkout form.checkout_coupon input::placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+}
+
+.woocommerce-checkout .woocommerce-form-login input::-webkit-input-placeholder,
+.woocommerce-checkout form.login input::-webkit-input-placeholder,
+.woocommerce-checkout form.checkout_coupon input::-webkit-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+}
+
+.woocommerce-checkout .woocommerce-form-login input::-moz-placeholder,
+.woocommerce-checkout form.login input::-moz-placeholder,
+.woocommerce-checkout form.checkout_coupon input::-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
+}
+
+.woocommerce-checkout .woocommerce-form-login input:-ms-input-placeholder,
+.woocommerce-checkout form.login input:-ms-input-placeholder,
+.woocommerce-checkout form.checkout_coupon input:-ms-input-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+}
+
+.woocommerce-checkout .woocommerce-form-login input:-moz-placeholder,
+.woocommerce-checkout form.login input:-moz-placeholder,
+.woocommerce-checkout form.checkout_coupon input:-moz-placeholder {
+    color: var(--color-line-grey) !important;
+    font-family: var(--font-primary) !important;
+    font-size: var(--font-size-md) !important;
+    font-weight: 300 !important;
+    opacity: 1 !important;
 }
 
 .woocommerce-checkout .woocommerce-form-login label,
@@ -8546,11 +9005,12 @@ select option:checked {
 .woocommerce-checkout form.checkout_coupon label {
     font-family: var(--font-primary) !important;
     font-size: var(--font-size-md) !important;
-    color: var(--color-grey-dark) !important;
-    font-weight: 400 !important;
+    color: var(--color-white) !important;
+    font-weight: 300 !important;
     text-transform: uppercase !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
     display: block !important;
+    padding: 0 !important;
 }
 
 /* Przyciski w formularzach logowania i kuponów */
@@ -8585,6 +9045,20 @@ select option:checked {
     text-decoration: underline !important;
 }
 
+.woocommerce-error::before,
+.woocommerce-info::before, 
+.woocommerce-message::before {
+    left: 97%;
+    color: var(--color-white);
+}
+
 .woocommerce-checkout .woocommerce-info a:hover {
     color: var(--color-grey-dark) !important;
+}
+
+#add_payment_method #payment,
+.woocommerce-cart #payment,
+.woocommerce-checkout #payment {
+    background: none;
+    color: var(--color-white) !important;
 }

@@ -34,8 +34,6 @@ if ( WC()->cart->is_empty() ) {
     return;
 }
 
-do_action( 'woocommerce_before_checkout_form', $checkout );
-
 // If checkout registration is disabled and not logged in, the user cannot checkout.
 if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
 	echo esc_html( apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) ) );
@@ -48,6 +46,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 <div class="toneka-checkout-page">
     <div class="toneka-checkout-container">
         <h1 class="toneka-checkout-title"><?php esc_html_e( 'Kasa', 'woocommerce' ); ?></h1>
+
+        <?php do_action( 'woocommerce_before_checkout_form', $checkout ); ?>
 
         <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
@@ -78,8 +78,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                 <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
             <?php endif; ?>
-
-            <?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
         </form>
 

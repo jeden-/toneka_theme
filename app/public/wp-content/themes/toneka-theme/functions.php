@@ -177,7 +177,11 @@ function toneka_display_custom_minicart() {
                         <div class="toneka-minicart-item-details">
                             <h4 class="toneka-minicart-item-name"><?php echo $product->get_name(); ?></h4>
                             
-                            <?php echo $variant_text; // PHPCS: XSS ok - contains HTML from toneka_display_variation_attributes_with_tooltips ?>
+                            <?php if ( ! empty( $variant_text ) ) : ?>
+                                <div class="toneka-minicart-item-variant-wrapper">
+                                    <?php echo $variant_text; // PHPCS: XSS ok - contains HTML from toneka_display_variation_attributes_with_tooltips ?>
+                                </div>
+                            <?php endif; ?>
                             
                             <div class="toneka-minicart-item-price">
                                 <?php 
