@@ -103,24 +103,36 @@
                     <?php
                 }
             } else {
-                // Dla listy postów - nowy layout z siatką
+                // Dla listy postów - nowy layout z siatką i sidebarem
                 ?>
-                <!-- Posts Grid -->
-                <div class="toneka-posts-grid">
-                    <?php
-                    while ( have_posts() ) {
-                        the_post();
-                        echo toneka_render_post_card( get_the_ID() );
-                    }
-                    ?>
+                <div class="toneka-archive-wrapper">
+                    <div class="toneka-archive-main">
+                        <!-- Posts Grid -->
+                        <div class="toneka-posts-grid">
+                            <?php
+                            while ( have_posts() ) {
+                                the_post();
+                                echo toneka_render_post_card( get_the_ID() );
+                            }
+                            ?>
+                        </div>
+                        
+                        <?php
+                        // Nawigacja stron
+                        the_posts_navigation( array(
+                            'prev_text' => '← Starsze wpisy',
+                            'next_text' => 'Nowsze wpisy →',
+                        ) );
+                        ?>
+                    </div>
+                    
+                    <?php if ( is_active_sidebar( 'blog-archive-sidebar' ) ) : ?>
+                        <aside class="toneka-post-sidebar">
+                            <?php dynamic_sidebar( 'blog-archive-sidebar' ); ?>
+                        </aside>
+                    <?php endif; ?>
                 </div>
-                
                 <?php
-                // Nawigacja stron
-                the_posts_navigation( array(
-                    'prev_text' => '← Starsze wpisy',
-                    'next_text' => 'Nowsze wpisy →',
-                ) );
             }
             
         } else {

@@ -4926,6 +4926,20 @@ ol, ul {
    ARCHIWUM BLOGA - KARTY POSTÓW
    ===================================== */
 
+/* Wrapper dla archiwum z sidebarem */
+.toneka-archive-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.toneka-archive-main {
+    min-width: 0; /* Zapobiega overflow w grid */
+}
+
 /* Siatka postów - trzy kolumny na desktop */
 .toneka-posts-grid {
     display: grid;
@@ -5113,6 +5127,12 @@ ol, ul {
 
 /* Responsive - jedna kolumna na mobile */
 @media (max-width: 768px) {
+    .toneka-archive-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0;
+    }
+    
     .toneka-posts-grid {
         grid-template-columns: 1fr;
     }
@@ -5152,6 +5172,14 @@ ol, ul {
     
     .toneka-archive-title {
         font-size: clamp(1.2rem, 5vw, 1.8rem);
+    }
+    
+    /* Wyłącz sticky na mobile dla sidebara archiwum */
+    .toneka-archive-wrapper .toneka-post-sidebar {
+        position: static;
+        top: auto;
+        max-height: none;
+        overflow-y: visible;
     }
 }
 
@@ -5375,6 +5403,11 @@ ol, ul {
 /* Sidebar dla postów */
 .toneka-post-sidebar {
     min-width: 0; /* Zapobiega overflow w grid */
+    position: sticky;
+    top: 140px; /* Odległość od góry (wysokość header + margines) */
+    align-self: start; /* Wyrównanie do góry w grid */
+    max-height: calc(100vh - 160px); /* Maksymalna wysokość viewport minus header i marginesy */
+    overflow-y: auto; /* Scroll jeśli zawartość jest za długa */
 }
 
 .toneka-post-sidebar-widget {
@@ -5479,6 +5512,14 @@ ol, ul {
     .toneka-post-sidebar-widget {
         margin-bottom: 30px;
         padding-bottom: 30px;
+    }
+    
+    /* Wyłącz sticky na mobile */
+    .toneka-post-sidebar {
+        position: static;
+        top: auto;
+        max-height: none;
+        overflow-y: visible;
     }
 }
 
