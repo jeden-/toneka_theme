@@ -1181,6 +1181,17 @@ ol, ul {
     color: var(--color-white);
 }
 
+/* Wyłącz padding dla .site-main na stronach bloga (padding jest w .toneka-content-container) */
+.single-post .site-main,
+.blog .site-main,
+.archive .site-main,
+.category .site-main,
+.tag .site-main,
+.date .site-main,
+.author .site-main {
+    padding: 0;
+}
+
 /* Style dla standardowych stron WordPress */
 .toneka-page-container {
     
@@ -1254,8 +1265,9 @@ ol, ul {
 
 /* Style dla index.php i postów */
 .toneka-content-container {
+    width: 100%;
     margin: 0 auto;
-    padding: 0;
+    padding: 7%;
 }
 
 .toneka-archive-header {
@@ -5147,10 +5159,20 @@ ol, ul {
    POJEDYNCZY POST BLOGOWY
    ===================================== */
 
-.toneka-post-single {
-    max-width: 1200px;
+.toneka-post-single-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    width: 100%;
     margin: 0 auto;
-    padding: 40px 5%;
+    padding: 0;
+}
+
+.toneka-post-single-main {
+    min-width: 0; /* Zapobiega overflow w grid */
+}
+
+.toneka-post-single {
     background: var(--color-black);
 }
 
@@ -5350,10 +5372,86 @@ ol, ul {
     font-weight: 300;
 }
 
+/* Sidebar dla postów */
+.toneka-post-sidebar {
+    min-width: 0; /* Zapobiega overflow w grid */
+}
+
+.toneka-post-sidebar-widget {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--color-line-grey);
+}
+
+.toneka-post-sidebar-widget:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.toneka-post-sidebar-title {
+    font-family: var(--font-primary);
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    font-weight: 300;
+    color: var(--color-white);
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+}
+
+.toneka-post-sidebar-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toneka-post-sidebar-widget li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-line-grey);
+}
+
+.toneka-post-sidebar-widget li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.toneka-post-sidebar-widget a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.toneka-post-sidebar-widget a:hover {
+    color: var(--color-line-grey);
+}
+
+.toneka-post-sidebar-widget p {
+    color: var(--color-line-grey);
+    font-family: var(--font-primary);
+    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.toneka-post-sidebar-widget p:last-child {
+    margin-bottom: 0;
+}
+
 /* Responsive dla pojedynczego posta */
 @media (max-width: 768px) {
-    .toneka-post-single {
-        padding: 20px 5%;
+    .toneka-post-single-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0;
+    }
+    
+    .toneka-content-container {
+        padding: 5%;
     }
     
     .toneka-post-single-header {
@@ -5376,6 +5474,11 @@ ol, ul {
     
     .post-navigation .nav-next {
         text-align: left;
+    }
+    
+    .toneka-post-sidebar-widget {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
     }
 }
 

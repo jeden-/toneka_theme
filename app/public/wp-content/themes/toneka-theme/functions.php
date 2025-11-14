@@ -474,6 +474,18 @@ function toneka_footer_widgets_init() {
 			'after_title'   => '</h4>',
 		)
 	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Post Sidebar', 'tonekatheme' ),
+			'id'            => 'post-sidebar',
+			'description'   => esc_html__( 'Add widgets here to appear in the sidebar on single post pages.', 'tonekatheme' ),
+			'before_widget' => '<div id="%1$s" class="toneka-post-sidebar-widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="toneka-post-sidebar-title">',
+			'after_title'   => '</h3>',
+		)
+	);
 }
 add_action( 'widgets_init', 'toneka_footer_widgets_init' );
 
