@@ -1,109 +1,106 @@
 <?php
 /**
- * The Template for displaying all single products
+ * The template for displaying single blog posts
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/single-product.php.
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see         https://woo.com/document/template-structure/
- * @package     WooCommerce\Templates
- * @version     1.6.4
+ * @package Toneka_Theme
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
 }
 
-get_header( 'shop' ); ?>
+get_header();
+?>
 
-<!-- DEBUG: TONEKA CUSTOM SINGLE PRODUCT TEMPLATE LOADED -->
-	<?php
-		/**
-		 * woocommerce_before_main_content hook.
-		 *
-		 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-		 * @hooked woocommerce_breadcrumb - 20 (removed - we add it manually)
-		 */
-		// do_action( 'woocommerce_before_main_content' );
-	?>
-
-		<?php while ( have_posts() ) : ?>
-			<?php the_post(); ?>
-
-			<!-- New Product Layout - Image Left Sticky, Content Right -->
-			<div class="toneka-product-layout">
-			    <!-- Left Side - Sticky Player -->
-			    <div class="toneka-product-image-container">
-			        <div class="toneka-product-image">
-			            <div class="toneka-player-lazy-wrapper">
-			                <?php toneka_display_product_samples_player(); ?>
-			        </div>
-			    </div>
-			</div>
-
-			    <!-- Right Side - All Content -->
-			    <div class="toneka-product-content">
-			        <?php toneka_display_product_metadata(); ?>
-			        <?php toneka_output_variable_product_selector(); ?>
-			    </div>
-			</div>
-
-			<!-- Sekcja "Więcej" -->
-			<div class="toneka-more-section">
-			    <div class="toneka-more-content animated-arrow-button">
-			        <span>SŁUCHOWISKA, KSIĄŻKI, SZTUKA</span>
-			        <div class="button-arrow">
-			            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-			                <path d="M5 10h10m0 0l-3-3m3 3l-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-			            </svg>
-			        </div>
-			    </div>
-			</div>
-
-			<!-- Related Products Section -->
-			<div class="toneka-related-products">
-			    <?php toneka_display_related_products(); ?>
-			</div>
-
-			<!-- Sekcja "Więcej" -->
-			<div class="toneka-more-section">
-			    <div class="toneka-more-content animated-arrow-button">
-			        <span>WIĘCEJ</span>
-			        <div class="button-arrow">
-			            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-			                <path d="M5 10h10m0 0l-3-3m3 3l-3 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-			            </svg>
-			        </div>
-			    </div>
-			</div>
-
-
-		<?php endwhile; // end of the loop. ?>
-
-	<?php
-		/**
-		 * woocommerce_after_main_content hook.
-		 *
-		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-		 */
-		// do_action( 'woocommerce_after_main_content' );
-	?>
-
-	<?php
-		/**
-		 * woocommerce_sidebar hook.
-		 *
-		 * @hooked woocommerce_get_sidebar - 10
-		 */
-		//do_action( 'woocommerce_sidebar' );
-	?>
+<main id="main" class="site-main">
+    <div class="toneka-content-container">
+        <?php
+        while ( have_posts() ) :
+            the_post();
+            ?>
+            
+            <article id="post-<?php the_ID(); ?>" <?php post_class('toneka-post-single'); ?>>
+                
+                <header class="toneka-post-single-header">
+                    <?php
+                    the_title( '<h1 class="toneka-post-single-title">', '</h1>' );
+                    
+                    if ( 'post' === get_post_type() ) {
+                        ?>
+                        <div class="toneka-post-single-meta">
+                            <span class="toneka-post-date"><?php echo get_the_date(); ?></span>
+                            <?php
+                            $categories = get_the_category();
+                            if ( ! empty( $categories ) ) {
+                                echo ' / <span class="toneka-post-categories">';
+                                foreach ( $categories as $category ) {
+                                    echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '">' . esc_html( $category->name ) . '</a> ';
+                                }
+                                echo '</span>';
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </header>
+                
+                <?php
+                // Featured image
+                if ( has_post_thumbnail() ) {
+                    ?>
+                    <div class="toneka-post-single-featured-image">
+                        <?php the_post_thumbnail( 'full', array( 'class' => 'toneka-post-featured-img' ) ); ?>
+                    </div>
+                    <?php
+                }
+                ?>
+                
+                <div class="toneka-post-single-content">
+                    <?php
+                    the_content();
+                    
+                    wp_link_pages( array(
+                        'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'toneka-theme' ),
+                        'after'  => '</div>',
+                    ) );
+                    ?>
+                </div>
+                
+                <?php
+                // Tags
+                $tags = get_the_tags();
+                if ( $tags && ! is_wp_error( $tags ) ) {
+                    ?>
+                    <footer class="toneka-post-single-footer">
+                        <div class="toneka-post-tags">
+                            <span class="toneka-tags-label">Tagi:</span>
+                            <?php
+                            foreach ( $tags as $tag ) {
+                                echo '<a href="' . esc_url( get_tag_link( $tag->term_id ) ) . '" class="toneka-tag-link">' . esc_html( $tag->name ) . '</a>';
+                            }
+                            ?>
+                        </div>
+                    </footer>
+                    <?php
+                }
+                ?>
+                
+            </article>
+            
+            <?php
+            // Navigation to previous/next post
+            the_post_navigation( array(
+                'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Poprzedni:', 'toneka-theme' ) . '</span> <span class="nav-title">%title</span>',
+                'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Następny:', 'toneka-theme' ) . '</span> <span class="nav-title">%title</span>',
+            ) );
+            
+        endwhile; // End of the loop.
+        ?>
+    </div>
+</main><!-- .site-main -->
 
 <?php
-get_footer( 'shop' );
-
-/* Omit closing PHP tag in the file that is only PHP, like this one. */
+get_footer();

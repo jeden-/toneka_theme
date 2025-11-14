@@ -203,8 +203,10 @@ function toneka_display_custom_minicart() {
                                     $savings_percent = round(($savings / $regular_price) * 100);
                                     
                                     echo '<div class="toneka-minicart-price-sale">';
-                                    echo '<span class="toneka-minicart-price-regular">' . wc_price($regular_price) . '</span> ';
+                                    echo '<div class="toneka-minicart-price-wrapper">';
+                                    echo '<span class="toneka-minicart-price-regular">' . wc_price($regular_price) . '</span>';
                                     echo '<span class="toneka-minicart-price-current">' . wc_price($sale_price) . '</span>';
+                                    echo '</div>';
                                     echo '<div class="toneka-minicart-savings">Oszczędzasz: ' . wc_price($savings) . ' (' . $savings_percent . '%)</div>';
                                     echo '</div>';
                                 } else {
@@ -282,8 +284,10 @@ function toneka_display_custom_minicart() {
                                                     $savings_percent = round(($savings / $regular_price) * 100);
                                                     
                                                     echo '<div class="toneka-minicart-upsell-price-sale">';
+                                                    echo '<div class="toneka-minicart-upsell-price-wrapper">';
                                                     echo '<span class="toneka-minicart-upsell-price-regular">' . wc_price($regular_price) . '</span>';
                                                     echo '<span class="toneka-minicart-upsell-price-current">' . wc_price($sale_price) . '</span>';
+                                                    echo '</div>';
                                                     echo '<div class="toneka-minicart-upsell-savings">Oszczędzasz: ' . wc_price($savings) . ' (' . $savings_percent . '%)</div>';
                                                     echo '</div>';
                                                 } else {
@@ -3852,6 +3856,45 @@ function toneka_render_product_card($product_id) {
             </div>
         </div>
     </div>
+    <?php
+    return ob_get_clean();
+}
+
+/**
+ * Generuje HTML karty posta blogowego
+ */
+function toneka_render_post_card($post_id) {
+    $post = get_post($post_id);
+    if (!$post) return '';
+    
+    $image_url = get_the_post_thumbnail_url($post_id, 'full');
+    $post_title = get_the_title($post_id);
+    $post_url = get_permalink($post_id);
+    
+    ob_start();
+    ?>
+    <article class="toneka-post-card" data-url="<?php echo esc_url($post_url); ?>">
+        <div class="toneka-post-image-wrapper">
+            <?php if ($image_url): ?>
+                <div class="toneka-lazy-wrapper">
+                    <img data-src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($post_title); ?>" class="toneka-post-image">
+                </div>
+            <?php else: ?>
+                <div class="toneka-post-placeholder">
+                    <svg width="200" height="200" viewBox="0 0 200 200" fill="#333">
+                        <rect width="200" height="200" fill="#333"/>
+                        <text x="100" y="100" text-anchor="middle" fill="white" font-size="14">BRAK ZDJĘCIA</text>
+                    </svg>
+                </div>
+            <?php endif; ?>
+            
+            <div class="toneka-post-title-overlay">
+                <a href="<?php echo esc_url($post_url); ?>">
+                    <h2 class="toneka-post-card-title"><?php echo esc_html($post_title); ?></h2>
+                </a>
+            </div>
+        </div>
+    </article>
     <?php
     return ob_get_clean();
 }
