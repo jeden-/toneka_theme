@@ -48,6 +48,12 @@
             </header>
             
             <div class="toneka-archive-wrapper">
+                <?php if ( is_active_sidebar( 'blog-archive-sidebar' ) ) : ?>
+                    <aside class="toneka-post-sidebar">
+                        <?php dynamic_sidebar( 'blog-archive-sidebar' ); ?>
+                    </aside>
+                <?php endif; ?>
+                
                 <div class="toneka-archive-main">
                     <!-- Posts Grid -->
                     <div class="toneka-posts-grid">
@@ -67,12 +73,6 @@
                     ) );
                     ?>
                 </div>
-                
-                <?php if ( is_active_sidebar( 'blog-archive-sidebar' ) ) : ?>
-                    <aside class="toneka-post-sidebar">
-                        <?php dynamic_sidebar( 'blog-archive-sidebar' ); ?>
-                    </aside>
-                <?php endif; ?>
             </div>
             
         } else {

@@ -17,6 +17,12 @@ get_header();
 <main id="main" class="site-main">
     <div class="toneka-content-container">
         <div class="toneka-post-single-wrapper">
+            <?php if ( is_active_sidebar( 'post-sidebar' ) ) : ?>
+                <aside class="toneka-post-sidebar">
+                    <?php dynamic_sidebar( 'post-sidebar' ); ?>
+                </aside>
+            <?php endif; ?>
+            
             <div class="toneka-post-single-main">
                 <?php
                 while ( have_posts() ) :
@@ -102,12 +108,6 @@ get_header();
                 endwhile; // End of the loop.
                 ?>
             </div>
-            
-            <?php if ( is_active_sidebar( 'post-sidebar' ) ) : ?>
-                <aside class="toneka-post-sidebar">
-                    <?php dynamic_sidebar( 'post-sidebar' ); ?>
-                </aside>
-            <?php endif; ?>
         </div>
     </div>
 </main><!-- .site-main -->
